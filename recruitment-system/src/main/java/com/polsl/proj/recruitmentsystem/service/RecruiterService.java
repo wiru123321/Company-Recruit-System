@@ -13,7 +13,7 @@ public interface RecruiterService {
 
     List<Recruiter> findByFirstName(String firstName);
 
-    List<Recruiter> findBySecondNameTEMPCHANGE(String secondName);
+    List<Recruiter> findBySecondNameTEMPCHANGE312(String secondName);
 
     Recruiter save(Recruiter recruiter);
 
