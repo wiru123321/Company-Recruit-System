@@ -1,0 +1,55 @@
+/* Login popup. */
+span.loginForm {
+
+}
+
+.loginForm{
+
+}
+
+form.loginForm {
+    padding: 0;
+    margin: 0;
+}
+
+input.loginForm{
+    margin: 4px;
+    padding: 8px 40px;
+    border-radius: 15px;
+    border: 0px;
+    background-color:lightgray;
+    color: black;
+}
+
+input.loginForm:focus {
+    outline: none;
+}
+
+p.loginForm{
+    margin: 10px;
+    padding: 2px;
+    background-color: gold;
+}
+
+button.loginForm {
+    margin: 4px;
+    padding: 8px;
+    flex-direction: revert;
+    border-radius: 15px;
+    background-color: dodgerblue;
+    color: white;
+    border: 0px;
+}
+
+button.loginForm:hover{
+    background-color: white;
+    color: dodgerblue;
+}
+
+button.loginForm:focus{
+    outline: none;
+}
+
+h1.loginForm{
+    font-size: 25px;
+}

@@ -14,6 +14,7 @@ public class HeadRecruiter {
     private Long id;
     private String firstName;
     private String lastName;
+    private String localizedKey;
 
     public HeadRecruiter(String firstName, String lastName) {
         this.firstName = firstName;
@@ -42,5 +43,13 @@ public class HeadRecruiter {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLocalizedKey(){
+        return localizedKey;
+    }
+
+    public void setLocalizedKey(String key){
+        this.localizedKey = key;
     }
 }
