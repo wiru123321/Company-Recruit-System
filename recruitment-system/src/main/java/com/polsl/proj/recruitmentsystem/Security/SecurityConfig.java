@@ -19,6 +19,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
+    private static final String[] WHITELIST = {
+            "/js/**",
+            "/css/**",
+            "/images/**",
+            "/webjars/**",
+            "/favicon",
+            "/register"
+    };
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
@@ -30,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/head/*").hasRole("ADMIN")
                 .antMatchers("/recruiter/*").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
+                .antMatchers(WHITELIST).permitAll()
                 .and().formLogin();
     }
 
