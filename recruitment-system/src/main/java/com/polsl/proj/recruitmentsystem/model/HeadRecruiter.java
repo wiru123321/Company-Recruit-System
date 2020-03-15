@@ -1,12 +1,17 @@
 package com.polsl.proj.recruitmentsystem.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class HeadRecruiter {
 
     @Id
@@ -14,6 +19,9 @@ public class HeadRecruiter {
     private Long id;
     private String firstName;
     private String lastName;
+    private String password;
+    private boolean active;
+    private String roles;
 
     public HeadRecruiter(String firstName, String lastName) {
         this.firstName = firstName;
@@ -42,5 +50,29 @@ public class HeadRecruiter {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
