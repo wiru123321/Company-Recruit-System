@@ -1,4 +1,6 @@
 .App {
+  margin: 0;
+  box-sizing: border-box;
   text-align: center;
 }
 
@@ -14,7 +16,9 @@
 }
 
 .App-header {
+  margin: 0;
   background-color: #282c34;
+  box-sizing: border-box;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
