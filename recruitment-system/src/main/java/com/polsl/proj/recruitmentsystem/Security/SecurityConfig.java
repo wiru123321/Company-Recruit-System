@@ -34,10 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
+
+    //TODO: Usuwanie cookies
+    //TODO: Remember me
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/head/*").hasRole("ADMIN")
+                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/head/*").hasAnyRole("USER","HEAD","ADMIN")
                 .antMatchers("/recruiter/*").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/").permitAll()
                 .antMatchers(WHITELIST).permitAll()
@@ -48,4 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+
+    //TODO: Kodowanie haseł wprowadzanych do bazy danych
+    //TODO: REGEX haseł
 }

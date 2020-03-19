@@ -3,6 +3,7 @@ package com.polsl.proj.recruitmentsystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class HeadRecruiter {
 
     @Id

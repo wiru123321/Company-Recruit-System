@@ -1,5 +1,6 @@
 package com.polsl.proj.recruitmentsystem.Security;
 
+import com.polsl.proj.recruitmentsystem.model.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.model.Recruiter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,15 @@ public class CustomUserDetails implements UserDetails {
         this.password = user.getPassword();
         this.active = user.isActive();
         this.authorities = Arrays.stream(user.getRoles().split(","))
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    CustomUserDetails(HeadRecruiter headUser) {             // TODO: Refactor Liskov
+        this.firstName = headUser.getFirstName();
+        this.password = headUser.getPassword();
+        this.active = headUser.isActive();
+        this.authorities = Arrays.stream(headUser.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
