@@ -3,6 +3,7 @@ package com.polsl.proj.recruitmentsystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Recruit {
 
     @Id
@@ -20,10 +21,6 @@ public class Recruit {
     private String firstName;
     private String lastName;
 
-    public Recruit(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     public Long getId() {
         return id;
