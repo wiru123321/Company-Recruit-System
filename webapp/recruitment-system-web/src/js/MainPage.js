@@ -15,6 +15,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 
+/* Strona główna dostępna pod /main */
 class MainPage extends React.Component {
   constructor (props) {
     super (props);
