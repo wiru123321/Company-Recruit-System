@@ -52,3 +52,9 @@ ul.navContainer {
   width: 45px;
   height: 45px;
 }
+
+.formContent{
+  margin-left: 30%;
+  float: left;
+  text-align: left;
+}
