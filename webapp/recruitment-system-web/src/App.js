@@ -1,7 +1,7 @@
 import React from 'react';
-import MainPage from './js/MainPage';
-import RecruiterPage from './js/RecruiterPage';
-import HeadRecruiterPage from './js/HeadRecruiterPage';
+import MainPage from './js/main/MainPage';
+import RecruiterPage from './js/recruiter/RecruiterPage';
+import HeadRecruiterPage from './js/head_recruiter/HeadRecruiterPage';
 import './App.css';
 import {
   BrowserRouter as Router,

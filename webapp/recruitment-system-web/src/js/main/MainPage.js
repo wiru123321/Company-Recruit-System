@@ -1,9 +1,9 @@
 import React from 'react';
-import '../css/MainPage.css';
-import '../css/LoginPopup.css';
-import network from '../resources/network.png';
-import idea from '../resources/idea.png';
-import help from '../resources/help.png';
+import '../../css/MainPage.css';
+import network from '../../resources/network.png';
+import idea from '../../resources/idea.png';
+import help from '../../resources/help.png';
+
 import {
   BrowserRouter as Router,
   Switch,
