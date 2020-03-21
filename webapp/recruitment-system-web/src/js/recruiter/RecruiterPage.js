@@ -47,7 +47,7 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="navContainer">
-                <a className="logout" href="/main">
+                <a className="logout" href="/login">
                   <img className="imgSize" src={logout} /> Wyloguj
                 </a>
               </li>
