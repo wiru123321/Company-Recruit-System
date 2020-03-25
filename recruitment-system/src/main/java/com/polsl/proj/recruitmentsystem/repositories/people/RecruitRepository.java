@@ -1,7 +1,6 @@
-package com.polsl.proj.recruitmentsystem.repositories;
+package com.polsl.proj.recruitmentsystem.repositories.people;
 
-import com.polsl.proj.recruitmentsystem.model.Recruit;
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
+import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,6 @@
 package com.polsl.proj.recruitmentsystem.service;
 
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
+import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
 
 import java.util.Collection;
 import java.util.List;

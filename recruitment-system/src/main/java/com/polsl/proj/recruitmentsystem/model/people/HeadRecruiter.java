@@ -1,7 +1,9 @@
-package com.polsl.proj.recruitmentsystem.model;
+package com.polsl.proj.recruitmentsystem.model.people;
+
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,8 @@ import javax.persistence.Id;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
-public class Recruiter {
+@RequiredArgsConstructor
+public class HeadRecruiter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +24,7 @@ public class Recruiter {
     private boolean active;
     private String roles;
 
-    public Recruiter(String firstName, String lastName) {
+    public HeadRecruiter(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

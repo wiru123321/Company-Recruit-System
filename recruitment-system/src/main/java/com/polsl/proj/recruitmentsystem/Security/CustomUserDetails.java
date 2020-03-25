@@ -1,10 +1,9 @@
 package com.polsl.proj.recruitmentsystem.Security;
 
-import com.polsl.proj.recruitmentsystem.model.HeadRecruiter;
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
+import com.polsl.proj.recruitmentsystem.model.people.HeadRecruiter;
+import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

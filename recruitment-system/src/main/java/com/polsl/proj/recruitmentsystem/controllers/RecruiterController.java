@@ -2,7 +2,6 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.facedes.RecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

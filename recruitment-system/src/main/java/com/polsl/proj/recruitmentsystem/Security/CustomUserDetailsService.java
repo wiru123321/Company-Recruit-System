@@ -1,10 +1,10 @@
 package com.polsl.proj.recruitmentsystem.Security;
 
 
-import com.polsl.proj.recruitmentsystem.model.HeadRecruiter;
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
-import com.polsl.proj.recruitmentsystem.repositories.HeadRecruiterRepository;
-import com.polsl.proj.recruitmentsystem.repositories.RecruiterRepository;
+import com.polsl.proj.recruitmentsystem.model.people.HeadRecruiter;
+import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
+import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
+import com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
