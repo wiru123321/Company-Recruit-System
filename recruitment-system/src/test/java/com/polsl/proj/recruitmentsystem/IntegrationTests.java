@@ -48,7 +48,7 @@ public class IntegrationTests  {
 
     @Before
     public void insertTraining() {
-        trainingRepository.save(new Training( 1L, "TestoweSzkolenie", "TestowyOpis",null));
+        trainingRepository.save(new Training( 1L, "TestoweSzkolenie", "TestowyOpis",null,null));
         trainingRepository.flush();
     }
 

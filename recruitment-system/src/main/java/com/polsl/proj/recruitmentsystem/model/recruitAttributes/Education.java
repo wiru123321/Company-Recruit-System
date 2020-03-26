@@ -1,14 +1,12 @@
 package com.polsl.proj.recruitmentsystem.model.recruitAttributes;
 
+import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -21,9 +19,12 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long educationId;
     private EduDegree degree;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Recruit recruit;
 }
 
 
-enum EduDegree{
-    secondary,vocational,higher
-        }
+enum EduDegree {
+    secondary, vocational, higher
+}

@@ -1,12 +1,10 @@
 package com.polsl.proj.recruitmentsystem.model.recruitAttributes;
 
 
+import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -23,4 +21,7 @@ public class Training {
     private String name;
     private String description;
     private Date date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Recruit recruit;
 }

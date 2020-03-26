@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -25,6 +22,13 @@ private Long applicationId;
 private String position;
 private String status;
 
+    @OneToOne(mappedBy = "jobApplication")
+    //@JoinColumn(name = "db_id",unique = true)
+    private Decission decission;
+
+    @OneToOne(mappedBy = "jobApplication")
+    //@JoinColumn(name = "db_id",unique = true)
+    private Rate rate;
 
 
 
