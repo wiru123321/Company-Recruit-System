@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/RecruiterPage.css';
-import RegisterForm from './RegisterForm';
+import RegisterForm from './register-form-components/RegisterForm';
 import FindRecruitForm from './FindRecruitForm';
 import HelpComponent from './HelpComponent';
 import reg from '../../resources/register.png';
