@@ -8,11 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface RecruitRepository  extends JpaRepository<Recruit,Integer> {
 
     @Query("SELECT r FROM Recruit r WHERE r.firstName = :firstName")
     int getByFirstName(String firstName);
+
+    @Query("SELECT r FROM Recruit r")
+    List<Recruit> getAll();
 
 
     @Modifying
