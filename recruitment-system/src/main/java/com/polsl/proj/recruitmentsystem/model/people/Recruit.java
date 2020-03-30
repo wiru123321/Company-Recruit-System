@@ -17,7 +17,7 @@ import java.util.List;
 public class Recruit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+ //   @GeneratedValue(strategy = GenerationType.AUTO)   TODO:WYŁACZONE DO TESTOW
     private Long id;
     private String firstName;
     private String lastName;
@@ -65,5 +65,10 @@ public class Recruit {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void addTraining(Training training){
+        this.trainings.add(training);
+        training.setRecruit(this);
     }
 }

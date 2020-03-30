@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface EducationRepository  extends JpaRepository<Education,Integer> {
 
     @Query("SELECT ed FROM Education ed WHERE ed.recruit = :recruit")
-    Education getEducationByRecruit(@Param("recrut") Recruit recruit);
+    Education getEducationByRecruit(@Param("recruit") Recruit recruit);
 }

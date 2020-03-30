@@ -12,5 +12,5 @@ public interface ExperienceRepository extends JpaRepository<EmpolymentExperience
 
 
     @Query("SELECT ex FROM EmpolymentExperience ex WHERE ex.recruit = :recruit")
-    EmpolymentExperience getByRecruit(@Param("recrut")Recruit recruit);
+    EmpolymentExperience getByRecruit(@Param("recruit")Recruit recruit);
 }

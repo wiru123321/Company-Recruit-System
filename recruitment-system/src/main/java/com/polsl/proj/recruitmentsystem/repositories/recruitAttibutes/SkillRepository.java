@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface SkillRepository  extends JpaRepository<Skill,Integer> {
 
     @Query("SELECT s FROM Skill s WHERE s.recruit = :recruit")
-    Skill getSkillByRecruit(@Param("recrut") Recruit recruit);
+    Skill getSkillByRecruit(@Param("recruit") Recruit recruit);
 }
