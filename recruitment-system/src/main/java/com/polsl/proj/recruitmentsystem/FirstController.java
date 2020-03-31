@@ -17,4 +17,10 @@ public class FirstController {
     String userWelcome() {
         return "Welcome";
     }
+
+    @GetMapping("/register")
+    String registerPage() {
+        return "register";
+    }
+
 }

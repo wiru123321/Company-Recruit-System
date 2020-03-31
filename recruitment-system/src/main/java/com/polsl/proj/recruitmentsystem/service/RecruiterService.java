@@ -1,6 +1,6 @@
 package com.polsl.proj.recruitmentsystem.service;
 
-import com.polsl.proj.recruitmentsystem.model.Recruiter;
+import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,7 +13,7 @@ public interface RecruiterService {
 
     List<Recruiter> findByFirstName(String firstName);
 
-    List<Recruiter> findBySecondNameTEMPCHANGE(String secondName);
+    List<Recruiter> findBySecondNameTEMPCHANGE2(String secondName);
 
     Recruiter save(Recruiter recruiter);
 
