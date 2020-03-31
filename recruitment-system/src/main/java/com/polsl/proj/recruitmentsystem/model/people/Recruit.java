@@ -5,19 +5,22 @@ import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Education;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.EmpolymentExperience;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Skill;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Training;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Recruit {
 
     @Id
- //   @GeneratedValue(strategy = GenerationType.AUTO)   TODO:WYŁACZONE DO TESTOW
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
@@ -68,6 +71,9 @@ public class Recruit {
     }
 
     public void addTraining(Training training){
+        if(this.trainings==null){
+            trainings = new LinkedList<>();
+        }
         this.trainings.add(training);
         training.setRecruit(this);
     }

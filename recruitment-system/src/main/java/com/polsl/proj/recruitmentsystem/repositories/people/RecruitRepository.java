@@ -30,5 +30,4 @@ public interface RecruitRepository  extends JpaRepository<Recruit,Integer> {
     int updateLastNameForFirstName(@Param("firstName")String firstName, @Param("newLastName")String newLastName);
 
 
-
 }
