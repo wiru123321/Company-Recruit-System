@@ -2,15 +2,13 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.facedes.RecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.people.Recruit;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Training;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullApplicationDto;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullRecruitDTO;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.TrainingDTO;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
-import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/recruiter")
@@ -22,37 +20,31 @@ public class RecruiterController {
     @Autowired
     RecruitRepository recruitRepository;
     @Autowired
-    TrainingRepository trainingRepository;
+
 
     @GetMapping("/main")
     String recruiterPage(){
         return "recruiter/main";
     }
 
-    @GetMapping("/addFull")
+    @PostMapping("/addFullRecruit")
     @ResponseBody
-    public String addFullRecruit(){     //TODO:Refactor
-        Training training = new Training();
-        training.setDate(null);
-        training.setDescription("aaa");
-        training.setName("bbbb");
-        Recruit recruit = new Recruit();
-        recruit.setFirstName("aaaa");
-        recruit.setLastName("bbb");
-        recruit.addTraining(training);
-        return "W bazie danych zapisano:"+ recruitRepository.save(recruit).toString();
+    public String addFullRecruit(@RequestBody FullRecruitDTO dto){     //TODO:Refactor
+        recruiterFacade.addNewRecruit(dto);
+        return "W bazie danych zapisano:"+ dto.getFirstName();
+    }
+
+    @PostMapping("/addFullApplication")
+    @ResponseBody
+    public String addFullApplication(@RequestBody FullApplicationDto dto){     //TODO:Refactor
+        recruiterFacade.addNewApplication(dto);
+        return "W bazie danych zapisano:"+ dto.getFirstName();
     }
 
 
-    @GetMapping("/addTraining")
-    @ResponseBody
-    public String addTraining(){        //TODO: Refactor
-        Training training = new Training();
-        training.setDate(null);
-        training.setDescription("test");
-        training.setName("test");
-        Recruit recruit = recruitRepository.findById(2L);
-        recruit.addTraining(training);
-       return "Rekrutowi dodano szkolenie"+  trainingRepository.save(training);
+    @PostMapping("/addTraining")
+    public String addTraining(@RequestBody TrainingDTO dto){
+        recruiterFacade.addTraining(dto);//TODO: Refactor
+        return "recruiter/main";
     }
 }

@@ -40,12 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ADMIN")
-                .antMatchers("/head/*").hasAnyRole("USER","HEAD","ADMIN")
-                .antMatchers("/recruiter/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/").permitAll()
+                .antMatchers("/admin/*").permitAll()//.hasRole("ADMIN")
+                .antMatchers("/head/*").permitAll()//.hasAnyRole("USER","HEAD","ADMIN")
+                .antMatchers("/recruiter/*").permitAll()//.hasAnyRole("ADMIN", "USER")
+                .antMatchers("/").permitAll()//.permitAll()
                 .antMatchers(WHITELIST).permitAll()
                 .and().formLogin();
+        http.csrf().disable();      // WYMAGANE DLA POSTMAN / INSOMNIA
     }
 
     @Bean

@@ -1,6 +1,7 @@
 package com.polsl.proj.recruitmentsystem.model.recruitmentParams;
 
 
+import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,21 +24,12 @@ private String position;
 private String status;
 
     @OneToOne(mappedBy = "jobApplication")
-    //@JoinColumn(name = "db_id",unique = true)
     private Decission decission;
 
     @OneToOne(mappedBy = "jobApplication")
-    //@JoinColumn(name = "db_id",unique = true)
     private Rate rate;
 
-
-
-
-
-
-
-
-
-
+    @OneToOne
+    private Recruit recruit;
 
 }

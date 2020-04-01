@@ -19,7 +19,7 @@ public class Decission {
  @GeneratedValue(strategy = GenerationType.AUTO)
  private Long decissionId;
 
- private Result result;
+ private Integer result; // TODO podmienić na enum
  private String description;
 
  @OneToOne
