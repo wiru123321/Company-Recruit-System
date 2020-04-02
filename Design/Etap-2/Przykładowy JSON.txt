@@ -1,0 +1,36 @@
+/* Przykładowy multipart JSON mapowany przez RecruitAttributesDTO, zawierający listy obiektów - do wykorzystania w Postman / Insomnia */
+
+localhost:8080/recruiter/addFullApplication
+
+Name:recruitDTO
+value:
+{
+  	"firstName": "TESTOWY",
+	 "lastName": "NAZWISKO"
+}
+
+
+
+Name:attributesDTO
+value:
+
+{
+  "educationDegrees":["podstawowe","ponadpodstawowe","srednie","wyzsze"],
+  "skills": [
+    {
+      "skillName":"skillDescritpion",
+      "skillLevel":"skillLevel"
+    }],
+    "trainings": [
+    {
+      "trainingName":"trainingTest",
+      "trainingDescription":"trainingDescription",
+       "trainingDate":"2020-01-02"  
+    }],
+    "experiences": [
+    {
+      "dateFrom":"2019-12-01",
+      "dateTo":"2019-12-30",
+      "position":"positionTest"
+    }]
+}
