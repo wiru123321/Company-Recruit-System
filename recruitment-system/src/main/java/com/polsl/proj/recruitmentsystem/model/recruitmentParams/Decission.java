@@ -1,6 +1,7 @@
 package com.polsl.proj.recruitmentsystem.model.recruitmentParams;
 
 
+import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.DecissionOutDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +16,24 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Decission {
 
- @Id
- @GeneratedValue(strategy = GenerationType.AUTO)
- private Long decissionId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long decissionId;
 
- private Integer result; // TODO podmienić na enum
- private String description;
+    private Integer result; // TODO podmienić na enum
+    private String description;
 
- @OneToOne
- private JobApplication jobApplication;
+    @OneToOne
+    private JobApplication jobApplication;
+
+    public DecissionOutDTO dto() {
+        return DecissionOutDTO.builder()
+                .result(this.result)
+                .description(this.description)
+                .build();
+    }
 }
 
-enum Result{
-    positive,negative,undefinied
+enum Result {
+    positive, negative, undefinied
 }

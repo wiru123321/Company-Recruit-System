@@ -1,5 +1,6 @@
 package com.polsl.proj.recruitmentsystem.model.recruitmentParams;
 
+import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.RateOutDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,9 @@ public class Rate {
     @OneToOne
     private JobApplication jobApplication;
 
+    public RateOutDTO dto() {
+        return RateOutDTO.builder()
+                .rate(this.rate)
+                .build();
+    }
 }

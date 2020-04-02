@@ -19,9 +19,7 @@ public class JobOutDTO {
     private String position;
     private String status;
 
- //   private DecissionOutDTO decission; TODO: Implement
-
- //   private RateOutDTO rate;      TODO: Implement
-
+    private DecissionOutDTO decission;
+    private RateOutDTO rate;
     private RecruitOutDTO recruit;
 }

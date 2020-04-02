@@ -2,9 +2,8 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.facedes.RecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullApplicationDto;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullRecruitDTO;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.TrainingDTO;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.*;
+import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,6 @@ public class RecruiterController {
 
     @Autowired
     RecruitRepository recruitRepository;
-    @Autowired
-
 
     @GetMapping("/main")
     String recruiterPage(){
@@ -29,16 +26,16 @@ public class RecruiterController {
 
     @PostMapping("/addFullRecruit")
     @ResponseBody
-    public String addFullRecruit(@RequestBody FullRecruitDTO dto){     //TODO:Refactor
+    public String addFullRecruit(@RequestPart FullRecruitDTO dto,@RequestPart FullRecruitDTO dto2){     //TODO:Refactor
         recruiterFacade.addNewRecruit(dto);
         return "W bazie danych zapisano:"+ dto.getFirstName();
     }
 
     @PostMapping("/addFullApplication")
     @ResponseBody
-    public String addFullApplication(@RequestBody FullApplicationDto dto){     //TODO:Refactor
-        recruiterFacade.addNewApplication(dto);
-        return "W bazie danych zapisano:"+ dto.getFirstName();
+    public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart RecruitAttributesDTO attributesDTO){     //TODO:Refactor
+        System.out.println("aaaa");
+        return "ok";    //TODO: Refactor
     }
 
 
