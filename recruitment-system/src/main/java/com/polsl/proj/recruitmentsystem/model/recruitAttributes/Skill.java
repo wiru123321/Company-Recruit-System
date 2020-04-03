@@ -20,13 +20,37 @@ public class Skill {
     private Long skillId;
 
     private String skillName;
-    private skillLevel skillLevel;
+    private SkillLevel skillLevel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
 
+    public void setSkillLevel(String skillLevelDesc) {
+        switch (skillLevelDesc) {
+            case "poczatkujacy": {
+                this.skillLevel = SkillLevel.beginner;
+                break;
+            }
+            case "srednio-zaawansowany": {
+                this.skillLevel = SkillLevel.intermediate;
+                break;
+            }
+            case "zaawansowany": {
+                this.skillLevel = SkillLevel.advanced;
+                break;
+            }
+            case "ekspert": {
+                this.skillLevel = SkillLevel.expert;
+                break;
+            }
+            default: {
+                this.skillLevel = SkillLevel.invalid;
+                break;
+            }
+        }
+    }
 }
 
- enum skillLevel{
-    beginner, intermediate, advanced, expert
+ enum SkillLevel{
+    invalid,beginner, intermediate, advanced, expert
 }

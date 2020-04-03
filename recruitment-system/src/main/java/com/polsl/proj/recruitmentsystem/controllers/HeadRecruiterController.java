@@ -13,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/head")
+@CrossOrigin
 public class HeadRecruiterController {
 
     @Autowired

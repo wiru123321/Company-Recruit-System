@@ -8,9 +8,7 @@ import com.polsl.proj.recruitmentsystem.model.recruitAttributes.EmpolymentExperi
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Skill;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.model.recruitmentParams.JobApplication;
-import com.polsl.proj.recruitmentsystem.model.recruitmentParams.Rate;
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -24,7 +22,7 @@ import java.util.List;
 public class Recruit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String firstName;
     private String lastName;
@@ -52,50 +50,42 @@ public class Recruit {
     @OneToOne(mappedBy = "recruit")
     private JobApplication jobApplication;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
+    public Recruit(String firstName, String lastName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
         this.lastName = lastName;
+        educations = new LinkedList<>();
+        empolymentExperiences = new LinkedList<>();
+        skills = new LinkedList<>();
+        trainings = new LinkedList<>();
     }
 
-    public void addTraining(Training training){
-        if(this.trainings==null){
+    public void addTraining(Training training) {
+        if (this.trainings == null) {
             trainings = new LinkedList<>();
         }
         this.trainings.add(training);
         training.setRecruit(this);
     }
 
-
-    public RecruitOutDTO dto(){
+    public RecruitOutDTO dto() {
 
         List<TrainingOutDTO> trainingsDTO = new LinkedList<>();
-        for(Training training : this.trainings){
-            trainingsDTO.add(new TrainingOutDTO(training.getName(),training.getDescription(),training.getDate()));
+        for (Training training : this.trainings) {
+            trainingsDTO.add(new TrainingOutDTO(training.getName(), training.getDescription(), training.getDate()));
         }
-
-        return  RecruitOutDTO.builder()
+        return RecruitOutDTO.builder()
                 .firstName(this.firstName)
                 .lastName(this.lastName)
                 .trainings(trainingsDTO)
                 .build();
+    }
+
+    public void addEducation(Education education) {
+        if (this.educations == null) {
+            educations = new LinkedList<>();
+        }
+        this.educations.add(education);
+       // education.setRecruit(this);
     }
 }

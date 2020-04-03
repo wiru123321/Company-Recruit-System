@@ -22,9 +22,30 @@ public class Education {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
+
+    public void setDegree(String degree) {       //TODO Refactor
+        switch (degree) {
+            case "srednie": {
+                this.degree = EduDegree.secondary;
+                break;
+            }
+            case "zawodowe": {
+                this.degree = EduDegree.vocational;
+                break;
+            }
+            case "wyzsze": {
+                this.degree = EduDegree.higher;
+                break;
+            }
+            default: {
+                this.degree = EduDegree.invalid;
+                break;
+            }
+        }
+    }
 }
 
 
 enum EduDegree {
-    secondary, vocational, higher
+    invalid, secondary, vocational, higher
 }
