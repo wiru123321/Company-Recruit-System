@@ -10,8 +10,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DecissionDTO {
+public class FullDecissionDTO {
     private String description;
     private Long jobApplicationID;
     private Integer result;
+    private String rate;
 }

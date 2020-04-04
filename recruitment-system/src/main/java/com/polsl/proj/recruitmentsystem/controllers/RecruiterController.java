@@ -3,18 +3,17 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 import com.polsl.proj.recruitmentsystem.facedes.RecruiterFacade;
 import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.*;
-import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/recruiter")
 @CrossOrigin
+@AllArgsConstructor
 public class RecruiterController {
 
-    @Autowired
-    RecruiterFacade recruiterFacade;
+    private final RecruiterFacade recruiterFacade;
 
     @GetMapping("/main")
     String recruiterPage(){
@@ -34,7 +33,6 @@ public class RecruiterController {
         recruiterFacade.addNewApplication(recruitDTO,attributesDTO);
         return "ok";    //TODO: Refactor
     }
-
 
     @PostMapping("/addTraining")
     public String addTraining(@RequestBody TrainingDTO dto){

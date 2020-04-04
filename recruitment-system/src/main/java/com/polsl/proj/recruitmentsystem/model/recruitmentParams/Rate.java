@@ -1,10 +1,7 @@
 package com.polsl.proj.recruitmentsystem.model.recruitmentParams;
 
 import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.RateOutDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor    // RequiredArgs działają tylko z annotacją @NotNull
 public class Rate {
 
     @Id

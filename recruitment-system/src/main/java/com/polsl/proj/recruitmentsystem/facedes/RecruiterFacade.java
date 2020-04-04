@@ -18,29 +18,21 @@ import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.SkillRepos
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 @AllArgsConstructor
-@NoArgsConstructor
 public class RecruiterFacade {
 
-    @Autowired // Autowired jest wymagany dla POSTMAN / INSOMNIA
-    public RecruitRepository recruitRepository;
-    @Autowired
-    public TrainingRepository trainingRepository;
-    @Autowired
-    public JobApplicationRepository jobApplicationRepository;
-    @Autowired
-    public EducationRepository educationRepository;
-    @Autowired
-    public SkillRepository skillRepository;
-    @Autowired
-    public ExperienceRepository experienceRepository;
+   // Autowired jest wymagany dla POSTMAN / INSOMNIA  up: final tez dziala
+    public final RecruitRepository recruitRepository;
+    public final TrainingRepository trainingRepository;
+    public final JobApplicationRepository jobApplicationRepository;
+    public final EducationRepository educationRepository;
+    public final SkillRepository skillRepository;
+    public final ExperienceRepository experienceRepository;
 
 
     public void addNewRecruit(FullRecruitDTO dto) {

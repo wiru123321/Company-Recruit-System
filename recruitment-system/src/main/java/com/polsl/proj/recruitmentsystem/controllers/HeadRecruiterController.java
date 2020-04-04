@@ -2,10 +2,10 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.facedes.HeadRecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.DecissionDTO;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullDecissionDTO;
 import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.JobOutDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +14,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/head")
 @CrossOrigin
+@AllArgsConstructor
 public class HeadRecruiterController {
 
-    @Autowired
-    HeadRecruiterFacade headRecruiterFacade;
+    private final HeadRecruiterFacade headRecruiterFacade;
 
     @GetMapping("/main")
     String headPage(){
@@ -31,7 +31,7 @@ public class HeadRecruiterController {
     }
 
     @PostMapping("/addDecission")
-    public void addDecission(@RequestBody DecissionDTO dto){
+    public void addDecission(@RequestBody FullDecissionDTO dto){
         headRecruiterFacade.addDecission(dto);
     }
 
