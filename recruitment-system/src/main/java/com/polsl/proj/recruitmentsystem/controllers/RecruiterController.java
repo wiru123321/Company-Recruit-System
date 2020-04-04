@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/recruiter")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class RecruiterController {
 
@@ -22,9 +22,9 @@ public class RecruiterController {
 
     @PostMapping("/addFullRecruit")
     @ResponseBody
-    public String addFullRecruit(@RequestPart FullRecruitDTO dto){
-        recruiterFacade.addNewRecruit(dto);
-        return "W bazie danych zapisano:"+ dto.getFirstName();
+    public String addFullRecruit(@RequestPart FullRecruitDTO fullRecruitDTO){
+        recruiterFacade.addNewRecruit(fullRecruitDTO);
+        return "W bazie danych zapisano:"+ fullRecruitDTO.getFirstName();
     }
 
     @PostMapping("/addFullApplication")
