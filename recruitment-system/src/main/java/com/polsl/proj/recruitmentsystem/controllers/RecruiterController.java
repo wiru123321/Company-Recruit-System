@@ -20,23 +20,23 @@ public class RecruiterController {
         return "recruiter/main";
     }
 
-    @PostMapping("/addFullRecruit")
+  /*  @PostMapping("/addFullRecruit")
     @ResponseBody
-    public String addFullRecruit(@RequestPart FullRecruitDTO fullRecruitDTO){
+    public String addFullRecruit(@RequestPart FullRecruitDTO fullRecruitDTO){ TODO:Inne DTO
         recruiterFacade.addNewRecruit(fullRecruitDTO);
         return "W bazie danych zapisano:"+ fullRecruitDTO.getFirstName();
-    }
+    }*/
 
     @PostMapping("/addFullApplication")
     @ResponseBody
-    public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart RecruitAttributesDTO attributesDTO){
+    public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart InputRecruitAttributesDTO attributesDTO){
         recruiterFacade.addNewApplication(recruitDTO,attributesDTO);
         return "ok";    //TODO: Refactor
     }
 
-    @PostMapping("/addTraining")
-    public String addTraining(@RequestBody TrainingDTO dto){
+ /*   @PostMapping("/addTraining")
+    public String addTraining(@RequestBody TrainingPOJO dto){ TODO: Inne DTO
         recruiterFacade.addTraining(dto);
         return "recruiter/main";
-    }
+    }*/
 }

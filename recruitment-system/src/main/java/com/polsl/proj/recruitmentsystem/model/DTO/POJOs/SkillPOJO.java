@@ -1,4 +1,4 @@
-package com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.POJOs;
+package com.polsl.proj.recruitmentsystem.model.DTO.POJOs;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

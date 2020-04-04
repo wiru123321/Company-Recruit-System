@@ -20,7 +20,7 @@ public class JobApplication {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long applicationId;
 
-private String position;
+public String position;
 private String status;
 
     @OneToOne(mappedBy = "jobApplication")
@@ -31,5 +31,13 @@ private String status;
 
     @OneToOne
     private Recruit recruit;
+
+
+    public JobApplication(String position,String status,Integer result,String rate){
+        this.position=position;
+        this.status=status;
+        this.decission = new Decission(result);
+        this.rate= new Rate(rate);
+    }
 
 }

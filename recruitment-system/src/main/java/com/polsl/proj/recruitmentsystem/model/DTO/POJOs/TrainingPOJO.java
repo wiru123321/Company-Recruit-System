@@ -1,5 +1,4 @@
-package com.polsl.proj.recruitmentsystem.model.DTO.InputDTO;
-
+package com.polsl.proj.recruitmentsystem.model.DTO.POJOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +11,10 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FullApplicationDto {
+public class TrainingPOJO {
 
-    private String firstName;
-    private String lastName;
     private String trainingName;
-    private String description;
+    private String trainingDescription;
     private Date trainingDate;
-    private String applicationPosition;
+    private Long recruitID;
 }

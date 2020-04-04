@@ -20,6 +20,11 @@ public class Education {
     private Long educationId;
     private EduDegree degree;
 
+    public String getEduDegree(){
+        return degree.toString();
+    }
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
 

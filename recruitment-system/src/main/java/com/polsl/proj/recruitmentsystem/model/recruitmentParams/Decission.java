@@ -23,6 +23,10 @@ public class Decission {
     private Integer result; // TODO podmienić na enum
     private String description;
 
+    Decission(Integer result){
+        this.result=result;
+    }
+
     @OneToOne
     private JobApplication jobApplication;
 

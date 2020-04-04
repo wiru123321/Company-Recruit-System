@@ -1,6 +1,8 @@
 package com.polsl.proj.recruitmentsystem.model.people;
 
 
+import com.polsl.proj.recruitmentsystem.model.DTO.POJOs.ExperiencePOJO;
+import com.polsl.proj.recruitmentsystem.model.DTO.POJOs.SkillPOJO;
 import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.RecruitOutDTO;
 import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.TrainingOutDTO;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Education;
@@ -74,10 +76,26 @@ public class Recruit {
         for (Training training : this.trainings) {
             trainingsDTO.add(new TrainingOutDTO(training.getName(), training.getDescription(), training.getDate()));
         }
+        List<SkillPOJO> skillsDTO = new LinkedList<>();
+        for (Skill skill : this.skills) {
+            skillsDTO.add(new SkillPOJO(skill.getSkillName(), skill.getSkillLevel()));
+        }
+        List<ExperiencePOJO> experiencesDTO = new LinkedList<>();
+        for (EmpolymentExperience experience : this.empolymentExperiences) {
+            experiencesDTO.add(new ExperiencePOJO(experience.getDateFrom(),experience.getDateTo(),experience.getPosition()));
+        }
+        List<String> educationsDTO = new LinkedList<>();
+        for (Education education : this.educations) {
+            educationsDTO.add(education.getEduDegree());
+        }
+
         return RecruitOutDTO.builder()
                 .firstName(this.firstName)
                 .lastName(this.lastName)
                 .trainings(trainingsDTO)
+                .skills(skillsDTO)
+                .empolymentExperiences(experiencesDTO)
+                .educations(educationsDTO)
                 .build();
     }
 

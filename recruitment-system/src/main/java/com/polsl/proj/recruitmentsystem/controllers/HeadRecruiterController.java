@@ -2,7 +2,8 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.facedes.HeadRecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.FullDecissionDTO;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.JobOutDTO;
 
 import lombok.AllArgsConstructor;
@@ -30,11 +31,14 @@ public class HeadRecruiterController {
        return headRecruiterFacade.getAll();
     }
 
-    @PostMapping("/addDecission")
-    public void addDecission(@RequestBody FullDecissionDTO dto){
-        headRecruiterFacade.addDecission(dto);
+    @PostMapping("/parametrizedApplications")
+    @ResponseBody
+    List<JobOutDTO> getParametrizedApplications(@RequestPart SearchParametersDTO dto){      //TODO Zmienić na RequestBody
+        return headRecruiterFacade.getFiltered(dto);
     }
 
-
-
+    @PostMapping("/addDecission")
+    public void addDecission(@RequestBody InputDecissionDTO dto){
+        headRecruiterFacade.addDecission(dto);
+    }
 }

@@ -20,9 +20,15 @@ public class Rate {
     @OneToOne
     private JobApplication jobApplication;
 
+    Rate(String rate){
+        this.rate=rate;
+    }
+
     public RateOutDTO dto() {
         return RateOutDTO.builder()
                 .rate(this.rate)
                 .build();
     }
+
+
 }

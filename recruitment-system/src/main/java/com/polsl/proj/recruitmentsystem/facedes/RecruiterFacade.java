@@ -2,9 +2,9 @@ package com.polsl.proj.recruitmentsystem.facedes;
 
 
 import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.*;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.POJOs.ExperiencePOJO;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.POJOs.SkillPOJO;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.POJOs.TrainingPOJO;
+import com.polsl.proj.recruitmentsystem.model.DTO.POJOs.ExperiencePOJO;
+import com.polsl.proj.recruitmentsystem.model.DTO.POJOs.SkillPOJO;
+import com.polsl.proj.recruitmentsystem.model.DTO.POJOs.TrainingPOJO;
 import com.polsl.proj.recruitmentsystem.model.people.Recruit;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Education;
 import com.polsl.proj.recruitmentsystem.model.recruitAttributes.EmpolymentExperience;
@@ -35,20 +35,20 @@ public class RecruiterFacade {
     public final ExperienceRepository experienceRepository;
 
 
-    public void addNewRecruit(FullRecruitDTO dto) {
-        Training training = new Training();
+    public void addNewRecruit(RecruitDTO dto) {
+        /*Training training = new Training();
         training.setDate(dto.getTrainingDate());
         training.setDescription(dto.getDescription());
         training.setName(dto.getTrainingName());
-        trainingRepository.save(training);
+        trainingRepository.save(training);*/
         Recruit recruit = new Recruit();
         recruit.setFirstName(dto.getFirstName());
         recruit.setLastName(dto.getLastName());
-        recruit.addTraining(training);
+        //recruit.addTraining(training);
         recruitRepository.save(recruit);
     }
 
-    public void addNewApplication(RecruitDTO recruitDTO, RecruitAttributesDTO attributesDTO) {
+    public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
         Recruit recruit = new Recruit();
         recruit.setLastName(recruitDTO.getLastName());
         recruit.setFirstName(recruitDTO.getFirstName());
@@ -77,8 +77,8 @@ public class RecruiterFacade {
 
     }
 
-    private void saveTrainings(List<TrainingPOJO> trainings, Recruit recruit) {
-        for (TrainingPOJO trainingValue : trainings) {
+    private void saveTrainings(List<com.polsl.proj.recruitmentsystem.model.DTO.POJOs.TrainingPOJO> trainings, Recruit recruit) {
+        for (com.polsl.proj.recruitmentsystem.model.DTO.POJOs.TrainingPOJO trainingValue : trainings) {
             Training training = new Training();
             training.setName(trainingValue.getTrainingName());
             training.setDescription(trainingValue.getTrainingDescription());
@@ -108,11 +108,11 @@ public class RecruiterFacade {
         }
     }
 
-    public void addTraining(TrainingDTO dto) {
+    public void addTraining(TrainingPOJO dto) {
         Training training = new Training();
-        training.setDate(dto.getDate());
-        training.setDescription(dto.getDescription());
-        training.setName(dto.getName());
+        training.setDate(dto.getTrainingDate());
+        training.setDescription(dto.getTrainingDescription());
+        training.setName(dto.getTrainingName());
         Recruit recruit = recruitRepository.findById(dto.getRecruitID());
         recruit.addTraining(training);
         trainingRepository.save(training);

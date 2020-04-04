@@ -25,6 +25,11 @@ public class Skill {
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
 
+
+    public  String getSkillLevel(){
+        return  this.skillLevel.toString();
+    }
+
     public void setSkillLevel(String skillLevelDesc) {
         switch (skillLevelDesc) {
             case "poczatkujacy": {

@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RateOutDTO {
+public class RateOutDTO {       // do POJOs
 
     private String rate;
 }
