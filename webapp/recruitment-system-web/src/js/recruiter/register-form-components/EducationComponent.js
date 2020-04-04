@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  Formik,
-  ErrorMessage,
-  Field,
-  FieldArray,
-  setNestedObjectValues,
-} from 'formik';
+import {Form, Formik, Field} from 'formik';
 
 const EducationComponent = () => {
   return (
