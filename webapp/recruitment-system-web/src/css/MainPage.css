@@ -1,4 +1,3 @@
-
 /* NavBar */
 ul.navBar {
     margin-left: 0;
@@ -9,18 +8,16 @@ ul.navBar {
     list-style-type: none;
     margin: 0;
     overflow: hidden;
-    background-color: gold;
+    background-color: wheat;
 }
 
 li.navBar {
-
-    padding: 4px;
+    padding: 20px;
 }
 
 li.navBar a.navBar {
-
     display: block;
-    background-color: dodgerblue;
+    background-color: blue;
     border-radius: 15px;
     color: white;
     text-align: center;
@@ -34,97 +31,102 @@ li.navBar a.navBar:hover {
 }
 
 li.navBarToLeft {
-    margin: 0 0px;
     float: left;
 }
 
 li.navBarToRight {
-    margin: 0 4px;
     float: right;
 }
 
 button.loginButton {
+    font-size: 15px;
     margin-right: 4px;
-    background-color: dodgerblue;
-    color: white;
-    border-radius: 15px;
+    background-color: blue;
+    color: wheat;
+    border-radius: 5px;
     border: 0;
     text-align: center;
-    padding: 8px 16px;
+    padding: 10px 23px;
     text-decoration: none;
+}
+
+input.loginInput{
+    font-size: 15px;
+    margin-right: 2px;
+    background-color: dodgerblue;
+    color: black;
+    border-radius: 5px;
+    border: 0;
+    text-align: center;
+    padding: 10px 23px;
+    text-decoration: none;
+}
+
+a.navPanel{
+    background-color: blue;
+    color: wheat;
+    border-radius: 5px;
+    padding: 15px 30px;
 }
 
 /* Login button. */
 button.loginButton:hover {
     background-color: white;
-    color: dodgerblue;
+    color: blue;
 }
 
 button.loginButton:focus{
     outline: none;
 }
 
-/* Page content styles. */
-p.pageContent {
-    margin: 70px 180px 20px;
-    padding: 18px 20px;
-    border-radius: 5px;
-    height: 780px;
-    background-color: lightgray;
+p.appTitle{
+    margin-top: 15px;
+    font-size: 30px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Page content styles. */
+div.pageContent {
+    box-sizing: border-box;
+    margin-top: 0px;
+    width: 100%;
+    height:1800px;
+    background-color: rgb(33, 28, 87);
+}
+
+p.mainContent{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    float: left;
+    font-size: 30px;
+    margin-top: 119px;
+    margin-left: 5%;
+    width: 60%;
+    color: wheat;
+}
+
+img.networkImg{
+    margin-top: 250px;
+    width: 300px;
+    height: 300px;
+}
+
+/* Footer */
 p.footerSection {
     box-sizing: border-box;
     width: 100%;
-    margin: 30px 0 0 0;
+    margin: 0;
     padding: 5px;
-    background-color: gold;
+    background-color: wheat;
 }
 
 footer.footerSection {
+    font-family:  Arial, Helvetica, sans-serif;
     margin: 0;
     box-sizing: border-box;
     width: 100%;
-    background-color: lightgray;
-    height: 140px;
-}
-
-
-/* Slideshow styles*/
-
-div.slide{
-    margin: 60px 160px 20px;
-    padding: 18px 20px;
-    border-radius: 5px;
-    height: 700px;
-    background-color: lightgray;
-}
-
-.next{
-    margin-top: 330px;
-    float: right;
-}
-
-.prev{
-    margin-top: 330px;
-    float: left;
-}
-
-.next, .prev{
-    border: 0;
-    border-radius: 4px;
-}
-
-button.next:hover, button.prev:hover{
-    background-color: lightgray;
-}
-
-button.next:focus, button.prev:focus {
-    outline: none;
-}
-.dot{
-    margin: 0 4px;
-    background-color: lightgray;
-    padding: 1px 10px;
-    border-radius: 10px;
+    background-color: black;
+    color: white;
+    height: 100px;
 }
