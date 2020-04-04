@@ -22,10 +22,11 @@ const NameComponent = () => {
             endDate: '',
           },
         ],
-        courses: [
+        trainings: [
           {
-            courseName: '',
-            courseDate: '',
+            trainingName: '',
+            trainingDate: '',
+            description: '',
           },
         ],
         skills: [
@@ -39,15 +40,16 @@ const NameComponent = () => {
       validate={values => {
         let errors = {};
 
-        if (!values.firstName) {
+        /*if (!values.firstName) {
           errors.firstName = 'Należy podać imie.';
         } else if (!values.lastName) {
           errors.lastName = 'Należy podać nazwisko.';
         } else {
-          for (var i = 0; i < values.courses.length; i++) {
+          for (var i = 0; i < values.trainings.length; i++) {
             if (
-              !values.courses[i].courseName ||
-              !values.courses[i].courseDate
+              !values.trainings[i].trainingDate ||
+              !values.trainings[i].trainingName ||
+              !values.trainings[i].description
             ) {
               errors.courseName = 'Pole nie moze być puste.';
             }
@@ -61,7 +63,7 @@ const NameComponent = () => {
               }
             }
           }
-        }
+        }*/
 
         return errors;
       }}
@@ -70,10 +72,9 @@ const NameComponent = () => {
         CallApi.recruit (
           values.firstName,
           values.lastName,
-          values.courses,
-          values.experiences,
-          values.skills,
-          values.education
+          values.trainings[0].trainingName,
+          values.trainings[0].description,
+          values.trainings[0].trainingDate
         );
       }}
     >
@@ -101,7 +102,7 @@ const NameComponent = () => {
               {errors.firstName}
               {errors.lastName}
             </div>
-            <FieldArray name="courses">
+            <FieldArray name="trainings">
               {({push, remove}) => (
                 <div>
                   <div>
@@ -110,28 +111,37 @@ const NameComponent = () => {
                       type="button"
                       onClick={event =>
                         push ({
-                          courseName: '',
-                          courseDate: '',
+                          trainingName: '',
+                          trainingDate: '',
+                          description: '',
                         })}
                     >
                       +
                     </button>
                   </div>
                   <div>
-                    {values.courses.map ((c, index) => {
+                    {values.trainings.map ((t, index) => {
                       return (
-                        <div key={c.id}>
+                        <div key={t.id}>
                           <Field
-                            name={`courses[${index}].courseName`}
-                            value={c.courseName}
+                            name={`trainings[${index}].trainingName`}
+                            value={t.trainingName}
                             onChange={handleChange}
                             type="text"
                             placeholder="Kurs"
                             as="input"
                           />
                           <Field
-                            name={`courses[${index}].courseDate`}
-                            value={c.courseDate}
+                            name={`trainings[${index}].description`}
+                            value={t.description}
+                            onChange={handleChange}
+                            type="text"
+                            placeholder="Opis"
+                            as="input"
+                          />
+                          <Field
+                            name={`trainings[${index}].trainingDate`}
+                            value={t.trainingDate}
                             onChange={handleChange}
                             type="date"
                             placeholder="Data"
@@ -140,7 +150,7 @@ const NameComponent = () => {
                           <button
                             type="button"
                             onClick={() => {
-                              if (values.courses.length > 1) remove ();
+                              if (values.trainings.length > 1) remove ();
                             }}
                           >
                             -
