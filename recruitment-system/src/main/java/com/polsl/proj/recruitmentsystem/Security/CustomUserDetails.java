@@ -1,7 +1,7 @@
 package com.polsl.proj.recruitmentsystem.Security;
 
-import com.polsl.proj.recruitmentsystem.model.people.HeadRecruiter;
-import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
+import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

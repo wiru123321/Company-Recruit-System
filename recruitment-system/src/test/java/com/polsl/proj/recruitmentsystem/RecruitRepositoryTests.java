@@ -1,24 +1,19 @@
 package com.polsl.proj.recruitmentsystem;
 
 
-import com.polsl.proj.recruitmentsystem.model.people.Recruit;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Education;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Skill;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Training;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
+import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)

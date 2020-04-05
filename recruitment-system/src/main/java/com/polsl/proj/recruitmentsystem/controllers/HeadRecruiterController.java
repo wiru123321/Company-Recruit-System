@@ -1,10 +1,10 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
 
-import com.polsl.proj.recruitmentsystem.facedes.HeadRecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.InputDecissionDTO;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.SearchParametersDTO;
-import com.polsl.proj.recruitmentsystem.model.DTO.OutputDTO.JobOutDTO;
+import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

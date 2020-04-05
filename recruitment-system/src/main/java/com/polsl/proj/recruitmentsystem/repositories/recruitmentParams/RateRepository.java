@@ -1,7 +1,6 @@
 package com.polsl.proj.recruitmentsystem.repositories.recruitmentParams;
 
-import com.polsl.proj.recruitmentsystem.model.recruitmentParams.JobApplication;
-import com.polsl.proj.recruitmentsystem.model.recruitmentParams.Rate;
+import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

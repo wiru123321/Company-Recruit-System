@@ -1,7 +1,7 @@
 package com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes;
 
-import com.polsl.proj.recruitmentsystem.model.people.Recruit;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.EmpolymentExperience;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
+import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.EmpolymentExperience;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
