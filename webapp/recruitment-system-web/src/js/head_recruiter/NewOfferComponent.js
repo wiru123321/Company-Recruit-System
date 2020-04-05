@@ -3,7 +3,11 @@ import '../../css/HeadRecruiterPage.css';
 
 class NewOfferComponent extends React.Component {
   render () {
-    return;
+    return (
+      <div>
+        Nowe stanowsiko
+      </div>
+    );
   }
 }
 

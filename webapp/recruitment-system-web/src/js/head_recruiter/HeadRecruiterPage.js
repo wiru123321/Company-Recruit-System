@@ -20,41 +20,37 @@ class HeadRecruiterPage extends React.Component {
   render () {
     return (
       <div>
-        <div className="sidenav">
-          <a>
-            <NavLink to="/head/surveyRecruits">Przeglądaj rekrutów</NavLink>
-          </a>
-          <a>
-            <NavLink to="/head/surveyOffers">
-              Przegladaj oferty zatrudnienia
-            </NavLink>
-          </a>
-          <a>
-            <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
-          </a>
-          <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
-          <a className="logout"><NavLink to="/login">Wyloguj</NavLink></a>
-        </div>
-        <div className="main">
-          <Router>
+        <Router>
+          <div className="sidenav">
+            <a>
+              <NavLink to="/head/surveyRecruits">Przeglądaj rekrutów</NavLink>
+            </a>
+            <a>
+              <NavLink to="/head/surveyOffers">
+                Przegladaj oferty zatrudnienia
+              </NavLink>
+            </a>
+            <a>
+              <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
+            </a>
+            <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
+            <a className="logout"><NavLink to="/login">Wyloguj</NavLink></a>
+          </div>
+          <div className="main">
+
             <Route
               path="/head/surveyRecruits"
-              render={routeProps => <RecruitsSurveyComponent {...routeProps} />}
+              component={RecruitsSurveyComponent}
             />
             <Route
               path="/head/surveyOffers"
-              render={routeProps => <OffersSurveyComponent {...routeProps} />}
+              component={OffersSurveyComponent}
             />
-            <Route
-              path="/head/addOffer"
-              render={routeProps => <NewOfferComponent {...routeProps} />}
-            />
-            <Route
-              path="/head/help"
-              render={routeProps => <HelpComponent {...routeProps} />}
-            />
-          </Router>
-        </div>
+            <Route path="/head/addOffer" component={NewOfferComponent} />
+            <Route path="/head/help" component={HelpComponent} />
+
+          </div>
+        </Router>
       </div>
     );
   }

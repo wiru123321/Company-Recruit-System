@@ -3,7 +3,11 @@ import '../../css/HeadRecruiterPage.css';
 
 class RecruitSurveyComponent extends React.Component {
   render () {
-    return;
+    return (
+      <div>
+        asdasd
+      </div>
+    );
   }
 }
 

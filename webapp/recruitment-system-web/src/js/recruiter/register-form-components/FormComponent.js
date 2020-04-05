@@ -17,9 +17,9 @@ const NameComponent = () => {
         lastName: '',
         experiences: [
           {
-            jobName: '',
-            beginDate: '',
-            endDate: '',
+            position: '',
+            dateFrom: '',
+            dateTo: '',
           },
         ],
         trainings: [
@@ -31,8 +31,8 @@ const NameComponent = () => {
         ],
         skills: [
           {
-            skill: '',
-            skillRating: '',
+            skillName: '',
+            skillLevel: '',
           },
         ],
         education: 0,
@@ -69,12 +69,14 @@ const NameComponent = () => {
       }}
       onSubmit={values => {
         console.log ('submit');
-        CallApi.recruit (
+
+        CallApi.fullApplication (
           values.firstName,
           values.lastName,
-          values.trainings[0].trainingName,
-          values.trainings[0].description,
-          values.trainings[0].trainingDate
+          values.education,
+          values.skills,
+          values.trainings,
+          values.experiences
         );
       }}
     >
@@ -171,9 +173,9 @@ const NameComponent = () => {
                       type="button"
                       onClick={event =>
                         push ({
-                          jobName: '',
-                          beginDate: '',
-                          endDate: '',
+                          position: '',
+                          dateFrom: '',
+                          dateTo: '',
                         })}
                     >
                       +
@@ -184,8 +186,8 @@ const NameComponent = () => {
                       return (
                         <div key={exp.id}>
                           <Field
-                            name={`experiences[${index}].jobName`}
-                            value={exp.jobName}
+                            name={`experiences[${index}].position`}
+                            value={exp.position}
                             onChange={handleChange}
                             type="text"
                             placeholder="Zawód"
@@ -193,16 +195,16 @@ const NameComponent = () => {
                           />
 
                           <Field
-                            name={`experiences[${index}].beginDate`}
-                            value={exp.beginDate}
+                            name={`experiences[${index}].dateFrom`}
+                            value={exp.dateFrom}
                             onChange={handleChange}
                             type="date"
                             placeholder="Data"
                             as="input"
                           />
                           <Field
-                            name={`experiences[${index}].endDate`}
-                            value={exp.endDate}
+                            name={`experiences[${index}].dateTo`}
+                            value={exp.dateTo}
                             onChange={handleChange}
                             type="date"
                             placeholder="Data"
@@ -224,7 +226,6 @@ const NameComponent = () => {
                 </div>
               )}
             </FieldArray>
-
             <Field
               name="education"
               as="select"
@@ -232,11 +233,9 @@ const NameComponent = () => {
               onChange={handleChange}
               value={values.education}
             >
-              <option value="0"> brak </option>
-              <option value="1">Podstawowe</option>
-              <option value="2">Średnie</option>
-              <option value="3">Zawodowe</option>
-              <option value="4">Wyższe</option>
+              <option value="zawodowe"> srednie </option>
+              <option value="srednie">Podstawowe</option>
+              <option value="wyzsze">Średnie</option>
             </Field>
             <FieldArray name="skills">
               {({push, remove}) => {
@@ -261,26 +260,22 @@ const NameComponent = () => {
                             <Field
                               as="input"
                               type="text"
-                              name={`s[${index}].skill`}
-                              value={s.skill}
+                              name={`skills[${index}].skillName`}
+                              value={s.skillName}
                               onChange={handleChange}
                             />
                             <Field
-                              name={`s[${index}].skillRating`}
-                              value={s.skillRating}
+                              name={`skills[${index}].skillLevel`}
+                              value={s.skillLevel}
                               onChange={handleChange}
                               as="select"
                             >
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="8">8</option>
-                              <option value="9">9</option>
-                              <option value="10">10</option>
+                              <option value="poczatkujacy">poczatkujacy</option>
+                              <option value="srednio-zaawansowany">
+                                srednio-zaawansowany
+                              </option>
+                              <option value="zaawansowany">zaawansowany</option>
+                              <option value="ekspert">ekspert</option>
                             </Field>
                             <button
                               type="button"

@@ -3,7 +3,11 @@ import '../../css/HeadRecruiterPage.css';
 
 class HelpComponent extends React.Component {
   render () {
-    return;
+    return (
+      <div>
+        help
+      </div>
+    );
   }
 }
 
