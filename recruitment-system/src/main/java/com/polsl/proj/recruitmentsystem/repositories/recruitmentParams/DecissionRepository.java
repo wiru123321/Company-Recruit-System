@@ -1,6 +1,6 @@
 package com.polsl.proj.recruitmentsystem.repositories.recruitmentParams;
 
-import com.polsl.proj.recruitmentsystem.model.recruitmentParams.Decission;
+import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Decission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

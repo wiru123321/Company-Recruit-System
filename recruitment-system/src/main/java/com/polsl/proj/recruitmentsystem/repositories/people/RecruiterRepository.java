@@ -1,6 +1,6 @@
 package com.polsl.proj.recruitmentsystem.repositories.people;
 
-import com.polsl.proj.recruitmentsystem.model.people.Recruiter;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

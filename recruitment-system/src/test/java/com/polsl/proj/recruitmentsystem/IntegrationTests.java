@@ -1,8 +1,7 @@
 package com.polsl.proj.recruitmentsystem;
 
 
-import com.polsl.proj.recruitmentsystem.model.people.Recruit;
-import com.polsl.proj.recruitmentsystem.model.recruitAttributes.Training;
+import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRepository;

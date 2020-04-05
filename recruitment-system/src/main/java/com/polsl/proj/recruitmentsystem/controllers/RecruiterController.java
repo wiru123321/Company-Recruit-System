@@ -1,8 +1,9 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
 
-import com.polsl.proj.recruitmentsystem.facedes.RecruiterFacade;
-import com.polsl.proj.recruitmentsystem.model.DTO.InputDTO.*;
+
+import com.polsl.proj.recruitmentsystem.business.services.RecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
