@@ -37,10 +37,11 @@ const NameComponent = () => {
         ],
         education: 0,
       }}
+      /** WALIDACJA */
       validate={values => {
         let errors = {};
 
-        /*if (!values.firstName) {
+        if (!values.firstName) {
           errors.firstName = 'Należy podać imie.';
         } else if (!values.lastName) {
           errors.lastName = 'Należy podać nazwisko.';
@@ -52,21 +53,35 @@ const NameComponent = () => {
               !values.trainings[i].description
             ) {
               errors.courseName = 'Pole nie moze być puste.';
+              return errors;
             }
-            for (var i = 0; i < values.experiences.length; i++) {
-              if (
-                !values.experiences[i].jobName ||
-                !values.experiences[i].beginDate ||
-                !values.experiences[i].endDate
-              ) {
-                errors.jobName = 'Pole nie może być puste';
+          }
+          for (var i = 0; i < values.experiences.length; i++) {
+            if (
+              !values.experiences[i].position ||
+              !values.experiences[i].dateFrom ||
+              !values.experiences[i].dateTo
+            ) {
+              errors.jobName = 'Pole nie może być puste';
+              return errors;
+            }
+          }
+          if (!values.education) {
+            errors.education = 'Nalezy wybrac odpowiednie pole.';
+            return errors;
+          } else {
+            for (var i = 0; i < values.skills.length; i++) {
+              if (!values.skills[i].skillName || !values.skills[i].skillLevel) {
+                errors.trainings = 'Pole nie może być puste';
+                return errors;
               }
             }
           }
-        }*/
+        }
 
         return errors;
       }}
+      /** REAKCJA NA SUBMIT */
       onSubmit={values => {
         console.log ('submit');
 
@@ -164,6 +179,9 @@ const NameComponent = () => {
                 </div>
               )}
             </FieldArray>
+            <div>
+              {errors.courseName}
+            </div>
             <FieldArray name="experiences">
               {({push, remove}) => (
                 <div>
@@ -226,6 +244,9 @@ const NameComponent = () => {
                 </div>
               )}
             </FieldArray>
+            <div>
+              {errors.jobName}
+            </div>
             <Field
               name="education"
               as="select"
@@ -237,6 +258,9 @@ const NameComponent = () => {
               <option value="srednie">Podstawowe</option>
               <option value="wyzsze">Średnie</option>
             </Field>
+            <div>
+              {errors.education}
+            </div>
             <FieldArray name="skills">
               {({push, remove}) => {
                 return (
@@ -294,14 +318,12 @@ const NameComponent = () => {
               }}
             </FieldArray>
             <div>
+              {errors.trainings}
+            </div>
+            <div>
               <button type="submit">
                 Submit
               </button>
-            </div>
-            <div>
-              <pre>
-                {JSON.stringify (values, null, 2)}
-              </pre>
             </div>
           </Form>
         </div>
