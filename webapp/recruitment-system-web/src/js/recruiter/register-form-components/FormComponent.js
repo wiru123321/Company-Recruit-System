@@ -8,6 +8,7 @@ import {
   FieldArray,
   setNestedObjectValues,
 } from 'formik';
+import '../../../css/RegisterForm.css';
 /*TO DO: WALIDACJA */
 const NameComponent = () => {
   return (
@@ -96,9 +97,11 @@ const NameComponent = () => {
       }}
     >
       {({values, errors, handleChange}) => (
-        <div>
+        <div className="form">
+          <label>Dane osobowe.</label>
           <Form name="names">
             <Field
+              className="field"
               as="input"
               value={values.firstName}
               onChange={handleChange}
@@ -107,6 +110,7 @@ const NameComponent = () => {
               placeholder="Imie"
             />
             <Field
+              className="field"
               as="input"
               value={values.lastName}
               onChange={handleChange}
@@ -115,27 +119,15 @@ const NameComponent = () => {
               placeholder="Nazwisko"
             />
 
-            <div>
+            <div className="errors">
               {errors.firstName}
               {errors.lastName}
             </div>
+            <label>Kursy</label>
             <FieldArray name="trainings">
               {({push, remove}) => (
                 <div>
-                  <div>
 
-                    <button
-                      type="button"
-                      onClick={event =>
-                        push ({
-                          trainingName: '',
-                          trainingDate: '',
-                          description: '',
-                        })}
-                    >
-                      +
-                    </button>
-                  </div>
                   <div>
                     {values.trainings.map ((t, index) => {
                       return (
@@ -153,9 +145,11 @@ const NameComponent = () => {
                             value={t.description}
                             onChange={handleChange}
                             type="text"
-                            placeholder="Opis"
+                            placeholder="Opis kursu"
                             as="input"
                           />
+                          <br />
+                          <label>Data odbycia kursu: </label>
                           <Field
                             name={`trainings[${index}].trainingDate`}
                             value={t.trainingDate}
@@ -176,29 +170,29 @@ const NameComponent = () => {
                       );
                     })}
                   </div>
-                </div>
-              )}
-            </FieldArray>
-            <div>
-              {errors.courseName}
-            </div>
-            <FieldArray name="experiences">
-              {({push, remove}) => (
-                <div>
                   <div>
-
                     <button
                       type="button"
                       onClick={event =>
                         push ({
-                          position: '',
-                          dateFrom: '',
-                          dateTo: '',
+                          trainingName: '',
+                          trainingDate: '',
+                          description: '',
                         })}
                     >
                       +
                     </button>
                   </div>
+                </div>
+              )}
+            </FieldArray>
+            <div className="errors">
+              {errors.courseName}
+            </div>
+            <label>Doświadczenie zawodowe.</label>
+            <FieldArray name="experiences">
+              {({push, remove}) => (
+                <div>
                   <div>
                     {values.experiences.map ((exp, index) => {
                       return (
@@ -211,7 +205,6 @@ const NameComponent = () => {
                             placeholder="Zawód"
                             as="input"
                           />
-
                           <Field
                             name={`experiences[${index}].dateFrom`}
                             value={exp.dateFrom}
@@ -240,13 +233,26 @@ const NameComponent = () => {
                       );
                     })}
                   </div>
-
+                  <div>
+                    <button
+                      type="button"
+                      onClick={event =>
+                        push ({
+                          position: '',
+                          dateFrom: '',
+                          dateTo: '',
+                        })}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               )}
             </FieldArray>
-            <div>
+            <div className="errors">
               {errors.jobName}
             </div>
+            <label>Wykształcenie</label>
             <Field
               name="education"
               as="select"
@@ -258,25 +264,14 @@ const NameComponent = () => {
               <option value="srednie">Podstawowe</option>
               <option value="wyzsze">Średnie</option>
             </Field>
-            <div>
+            <div className="errors">
               {errors.education}
             </div>
+            <label>Umiejętności</label>
             <FieldArray name="skills">
               {({push, remove}) => {
                 return (
                   <div>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={event =>
-                          push ({
-                            skill: '',
-                            skillRating: '',
-                          })}
-                      >
-                        +
-                      </button>
-                    </div>
                     <div>
                       {values.skills.map ((s, index) => {
                         return (
@@ -287,6 +282,7 @@ const NameComponent = () => {
                               name={`skills[${index}].skillName`}
                               value={s.skillName}
                               onChange={handleChange}
+                              placeholder="Umiejętność"
                             />
                             <Field
                               name={`skills[${index}].skillLevel`}
@@ -313,11 +309,23 @@ const NameComponent = () => {
                         );
                       })}
                     </div>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={event =>
+                          push ({
+                            skill: '',
+                            skillRating: '',
+                          })}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 );
               }}
             </FieldArray>
-            <div>
+            <div className="errors">
               {errors.trainings}
             </div>
             <div>
