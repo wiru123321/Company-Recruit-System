@@ -1,6 +1,7 @@
 import React from 'react';
 import CallApi from './search-component/CallApi';
 import '../../css/HeadRecruiterPage.css';
+import '../../css/SurveyOffers.css';
 
 class OffersSurveyComponent extends React.Component {
   constructor (props) {
@@ -60,61 +61,71 @@ class OffersSurveyComponent extends React.Component {
   render () {
     return (
       <div>
-        <div>
+        <div className="container">
           <form>
-            <input
-              name="position"
-              value={this.state.searchParams.position}
-              onChange={this.handleChange}
-            />
-            <input
-              name="status"
-              value={this.state.searchParams.status}
-              onChange={this.handleChange}
-            />
-            <input
-              name="result"
-              value={this.state.searchParams.result}
-              onChange={this.handleChange}
-            />
-            <input
-              name="rate"
-              value={this.state.searchParams.rate}
-              onChange={this.handleChange}
-            />
-            <button type="button" onClick={this.getApplicationsBySearchParams}>
-              Znajdz
-            </button>
-            <button type="button" onClick={this.getAllApplicationsFromApi}>
-              Wszyscy
-            </button>
+            <div className="searchParamsForm">
+              <label>Wyszukaj</label>
+              <input
+                className="searchParamsForm"
+                name="position"
+                placeholder="Stanowisko"
+                value={this.state.searchParams.position}
+                onChange={this.handleChange}
+              />
+              <input
+                className="searchParamsForm"
+                name="status"
+                placeholder="Status"
+                value={this.state.searchParams.status}
+                onChange={this.handleChange}
+              />
+              <input
+                className="searchParamsForm"
+                name="result"
+                placeholder="Wynik"
+                value={this.state.searchParams.result}
+                onChange={this.handleChange}
+              />
+              <input
+                className="searchParamsForm"
+                name="rate"
+                placeholder="Ocena"
+                value={this.state.searchParams.rate}
+                onChange={this.handleChange}
+              />
+              <button
+                className="searchParamsForm"
+                type="button"
+                onClick={this.getApplicationsBySearchParams}
+              >
+                Znajdz
+              </button>
+              <button
+                className="searchParamsForm"
+                type="button"
+                onClick={this.getAllApplicationsFromApi}
+              >
+                Wszyscy
+              </button>
+            </div>
           </form>
         </div>
         <div>
           <table>
-            <thead>
+            <tr>
+              <th>Numer</th>
+              <th>Imie</th>
+              <th>Nazwisko</th>
+              <th>Status</th>
+            </tr>
+            {this.state.container.map ((json, id) => (
               <tr>
-                <th>Id</th>
-                <th>Imie</th>
-                <th>Nazwisko</th>
-                <th>Stanowisko</th>
-                <th>Status</th>
-                <th>Wyksztalcenie</th>
+                <td>{id}</td>
+                <td>{json.recruit.firstName}</td>
+                <td>{json.recruit.lastName}</td>
+                <td>{json.status}</td>
               </tr>
-            </thead>
-            <tbody>
-              {this.state.container.map ((json, id) => (
-                <tr>
-                  <td>{id}</td>
-                  <td>{json.recruit.firstName}</td>
-                  <td>{json.recruit.lastName}</td>
-                  <td>{json.position}</td>
-                  <td>{json.status}</td>
-                  <td>{json.recruit.educations}</td>
-                </tr>
-              ))}
-
-            </tbody>
+            ))}
           </table>
         </div>
       </div>

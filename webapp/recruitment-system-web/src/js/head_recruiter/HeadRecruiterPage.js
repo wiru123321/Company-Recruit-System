@@ -37,7 +37,6 @@ class HeadRecruiterPage extends React.Component {
             <a className="logout"><NavLink to="/login">Wyloguj</NavLink></a>
           </div>
           <div className="main">
-
             <Route
               path="/head/surveyRecruits"
               component={RecruitsSurveyComponent}
