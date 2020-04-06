@@ -10,23 +10,22 @@ class OffersSurveyComponent extends React.Component {
         position: '',
         status: '',
         result: '',
-        rate: '',
+        Rate: '',
       },
 
       container: [
         {
-          json: {
-            position: '',
-            status: '',
-            decission: '',
-            rate: '',
-            recruit: '',
-          },
+          position: '',
+          status: '',
+          decission: '',
+          rate: '',
+          recruit: '',
         },
       ],
     };
 
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
+    this.renderApplications = this.renderApplications.bind (this);
     this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (
       this
     );
@@ -37,10 +36,15 @@ class OffersSurveyComponent extends React.Component {
     this.setState ({[event.target.name]: event.target.value});
   }
 
+  renderApplications () {
+    return <div />;
+  }
+
   getAllApplicationsFromApi () {
-    CallApi.getAllApplications ().then (response =>
-      this.setState ((this.state.container = response.data))
-    );
+    CallApi.getAllApplications ().then (response => {
+      this.setState ((this.state.container = response.data));
+      console.log (response.data);
+    });
   }
 
   getApplicationsBySearchParams () {
@@ -52,6 +56,7 @@ class OffersSurveyComponent extends React.Component {
   componentDidMount () {
     this.getAllApplicationsFromApi ();
   }
+
   render () {
     return (
       <div>
@@ -86,7 +91,31 @@ class OffersSurveyComponent extends React.Component {
           </form>
         </div>
         <div>
-          {JSON.stringify (this.state.container)}
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Stanowisko</th>
+                <th>Status</th>
+                <th>Wyksztalcenie</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.container.map ((json, id) => (
+                <tr>
+                  <td>{id}</td>
+                  <td>{json.recruit.firstName}</td>
+                  <td>{json.recruit.lastName}</td>
+                  <td>{json.position}</td>
+                  <td>{json.status}</td>
+                  <td>{json.recruit.educations}</td>
+                </tr>
+              ))}
+
+            </tbody>
+          </table>
         </div>
       </div>
     );
