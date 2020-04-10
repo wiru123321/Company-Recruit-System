@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../css/MainPage.css';
-import {withRouter} from 'react-router-dom';
-
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import RecruiterPage from '../recruiter/RecruiterPage';
+import HeadRecruiterPage from '../head_recruiter/HeadRecruiterPage';
+import Auth from '../serivce/AuthenticationSerivce.js';
 class LoginComponent extends React.Component {
   constructor (props) {
     super (props);
@@ -28,11 +30,19 @@ class LoginComponent extends React.Component {
     console.log (this.state.username, this.state.password);
     if (this.state.username === 'rekruter' && this.state.password === 'admin') {
       this.props.history.push ('/recruiter');
+      Auth.registerSuccessfullRecruiterLogin (
+        this.state.username,
+        this.state.passowrd
+      );
     } else if (
       this.state.username === 'kierownik' &&
       this.state.password === 'admin'
     ) {
-      this.props.history.push ('head');
+      this.props.history.push ('/head');
+      Auth.registerSuccessfullHeadLogin (
+        this.state.username,
+        this.state.passowrd
+      );
     } else {
       this.setState ({hasLoginFailed: true});
     }
@@ -41,34 +51,36 @@ class LoginComponent extends React.Component {
   render () {
     return (
       <div>
-        <form>
-          <li className="navBar navBarToRight">
-            <button onClick={this.handleLogInClick} className="loginButton">
-              Zaloguj się
-            </button>
-          </li>
-          <li className="navBar navBarToRight">
-            <input
-              name="password"
-              value={this.state.passowrd}
-              onChange={this.handleChange}
-              className="loginInput"
-              placeholder="hasło"
-              type="password"
-            />
-          </li>
-          <li className="navBar navBarToRight">
-            <input
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              className="loginInput"
-              placeholder="login"
-              type="login"
-            />
-          </li>
-        </form>
-        <OnLoginFailed hasLoginFailed={this.state.hasLoginFailed} />
+        <div>
+          <form>
+            <li className="navBar navBarToRight">
+              <button onClick={this.handleLogInClick} className="loginButton">
+                Zaloguj się
+              </button>
+            </li>
+            <li className="navBar navBarToRight">
+              <input
+                name="password"
+                value={this.state.passowrd}
+                onChange={this.handleChange}
+                className="loginInput"
+                placeholder="hasło"
+                type="password"
+              />
+            </li>
+            <li className="navBar navBarToRight">
+              <input
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                className="loginInput"
+                placeholder="login"
+                type="login"
+              />
+            </li>
+          </form>
+          <OnLoginFailed hasLoginFailed={this.state.hasLoginFailed} />
+        </div>
       </div>
     );
   }

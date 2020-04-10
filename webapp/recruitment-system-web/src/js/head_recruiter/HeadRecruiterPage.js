@@ -5,16 +5,9 @@ import RecruitsSurveyComponent from './RecruitsSurveyComponent';
 import OffersSurveyComponent from './OffersSurveyComponent';
 import NewOfferComponent from './NewOfferComponent';
 import HelpComponent from './HelpComponent';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink,
-  useRouteMatch,
-  useParams,
-  useHistory,
-} from 'react-router-dom';
+import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
+import Auth from '../serivce/AuthenticationSerivce.js';
+import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
 /* Strona kierownika */
 class HeadRecruiterPage extends React.Component {
   render () {
@@ -34,19 +27,19 @@ class HeadRecruiterPage extends React.Component {
               <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
             </a>
             <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
-            <a className="logout"><NavLink to="/login">Wyloguj</NavLink></a>
+            <a className="logout" href="/login" onClick={Auth.logoutHead} />
           </div>
           <div className="main">
-            <Route
+            <AuthRoute
               path="/head/surveyRecruits"
               component={RecruitsSurveyComponent}
             />
-            <Route
+            <AuthRoute
               path="/head/surveyOffers"
               component={OffersSurveyComponent}
             />
-            <Route path="/head/addOffer" component={NewOfferComponent} />
-            <Route path="/head/help" component={HelpComponent} />
+            <AuthRoute path="/head/addOffer" component={NewOfferComponent} />
+            <AuthRoute path="/head/help" component={HelpComponent} />
 
           </div>
         </Router>
@@ -55,4 +48,4 @@ class HeadRecruiterPage extends React.Component {
   }
 }
 
-export default HeadRecruiterPage;
+export default withRouter (HeadRecruiterPage);

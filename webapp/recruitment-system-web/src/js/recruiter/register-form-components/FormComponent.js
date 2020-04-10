@@ -79,7 +79,6 @@ const NameComponent = () => {
             }
           }
         }
-
         return errors;
       }}
       /** REAKCJA NA SUBMIT */
@@ -118,7 +117,6 @@ const NameComponent = () => {
               type="text"
               placeholder="Nazwisko"
             />
-
             <div className="errors">
               {errors.firstName}
               {errors.lastName}
@@ -127,7 +125,6 @@ const NameComponent = () => {
             <FieldArray name="trainings">
               {({push, remove}) => (
                 <div>
-
                   <div>
                     {values.trainings.map ((t, index) => {
                       return (
@@ -336,7 +333,6 @@ const NameComponent = () => {
           </Form>
         </div>
       )}
-
     </Formik>
   );
 };

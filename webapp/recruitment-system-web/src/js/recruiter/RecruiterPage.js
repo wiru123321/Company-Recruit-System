@@ -3,19 +3,17 @@ import '../../css/RecruiterPage.css';
 import RegisterForm from './register-form-components/RegisterForm';
 import FindRecruitForm from './FindRecruitForm';
 import HelpComponent from './HelpComponent';
+import AuthRoute from '../serivce/RecruiterAuthenticatedRoute';
+import Auth from '../serivce/AuthenticationSerivce.js';
 import reg from '../../resources/register.png';
 import find from '../../resources/search.png';
 import help from '../../resources/question.png';
 import logout from '../../resources/logout.png';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   NavLink,
-  useRouteMatch,
-  useParams,
-  useHistory,
+  withRouter,
 } from 'react-router-dom';
 /* Strona rekrutera dostepna pod /recruiter*/
 class RecruiterPage extends React.Component {
@@ -47,7 +45,11 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="navContainer">
-                <a className="logout" href="/login">
+                <a
+                  className="logout"
+                  href="/login"
+                  onClick={Auth.logoutRecruiter}
+                >
                   <img className="imgSize" src={logout} /> Wyloguj
                 </a>
               </li>
@@ -59,11 +61,9 @@ class RecruiterPage extends React.Component {
             </ul>
           </div>
           <div>
-
-            <Route path="/recruiter/register" component={RegisterForm} />
-            <Route path="/recruiter/find" component={FindRecruitForm} />
-            <Route path="/recruiter/help" component={HelpComponent} />
-
+            <AuthRoute path="/recruiter/register" component={RegisterForm} />
+            <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
+            <AuthRoute path="/recruiter/help" component={HelpComponent} />
           </div>
         </Router>
       </div>
@@ -71,4 +71,4 @@ class RecruiterPage extends React.Component {
   }
 }
 
-export default RecruiterPage;
+export default withRouter (RecruiterPage);

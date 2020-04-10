@@ -2,7 +2,7 @@ import React from 'react';
 import ContentComponent from './ContentComponent';
 import LoginCompnent from './LoginComponent';
 import '../../css/MainPage.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 /* Strona główna dostępna pod /main */
 class MainPage extends React.Component {
   render () {
