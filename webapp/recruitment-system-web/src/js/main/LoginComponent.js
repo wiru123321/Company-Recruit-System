@@ -46,21 +46,6 @@ class LoginComponent extends React.Component {
       this.setState ({hasLoginFailed: true});
     }
   }
-  /**
-   *           <div className="col-2">
-            <form>
-              <ul>
-                <li><input placeholder="login" /></li>
-                <li><input placeholder="hasło" /></li>
-                <li>
-                  <button>Zaloguj się</button>
-                  <input className="checkbox" type="checkbox" />
-                  <p className="checkbox">Zapamiętaj</p>
-                </li>
-              </ul>
-            </form>
-          </div>
-   */
 
   render () {
     return (

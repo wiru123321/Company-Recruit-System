@@ -11,8 +11,8 @@ import help from '../../resources/question.png';
 import logout from '../../resources/logout.png';
 import {
   BrowserRouter as Router,
-  Route,
   NavLink,
+  Link,
   withRouter,
 } from 'react-router-dom';
 /* Strona rekrutera dostepna pod /recruiter*/
@@ -21,49 +21,49 @@ class RecruiterPage extends React.Component {
     return (
       <div>
         <Router>
-          <div>
-            <ul className="navContainer menuFontStyle">
-              <li>
-                <ul className="personalInfoStyle">
-                  <li><label>Imie</label></li>
-                  <li><label>Nazwisko</label></li>
-                </ul>
-              </li>
-              <li className="navContainer">
+          <div class="col-3 r-menu">
+            <label>Kamil Susek</label>
+            <ul>
+              <li className="interactive">
                 <NavLink to="/recruiter/register">
-                  <img className="imgSize" src={reg} /> Zarejestruj
+                  <img src={reg} /> Zarejestruj
                 </NavLink>
               </li>
-              <li className="navContainer">
+              <li className="interactive">
                 <NavLink to="/recruiter/find">
                   <img className="imgSize" src={find} /> Wyszukaj
                 </NavLink>
               </li>
-              <li className="navContainer">
-                <NavLink className="help" to="/recruiter/help">
-                  <img className="imgSize" src={help} /> Pomoc
+              <li className="interactive">
+                <NavLink to="/recruiter/help">
+                  <img src={help} /> Pomoc
                 </NavLink>
               </li>
-              <li className="navContainer">
-                <a
-                  className="logout"
-                  href="/login"
-                  onClick={Auth.logoutRecruiter}
-                >
+              <li className="interactive">
+                <a href="/login" onClick={Auth.logoutRecruiter}>
                   <img className="imgSize" src={logout} /> Wyloguj
                 </a>
               </li>
               <li>
-                <footer style={{marginTop: '150%', fontSize: 20}}>
+                <footer style={{marginTop: '100%', fontSize: 20}}>
                   &#9400; 2020 - System Obsługi Rekrutacji
                 </footer>
               </li>
             </ul>
           </div>
-          <div>
-            <AuthRoute path="/recruiter/register" component={RegisterForm} />
-            <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
-            <AuthRoute path="/recruiter/help" component={HelpComponent} />
+
+          <div className="r-row">
+            <div>
+              <div>
+                <AuthRoute
+                  path="/recruiter/register"
+                  component={RegisterForm}
+                />
+                <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
+                <AuthRoute path="/recruiter/help" component={HelpComponent} />
+              </div>
+            </div>
+
           </div>
         </Router>
       </div>

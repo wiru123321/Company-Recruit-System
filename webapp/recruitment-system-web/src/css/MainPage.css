@@ -58,6 +58,9 @@
   .form input{
       width: 100%;
       background-color: darkturquoise;
+      border-radius: 6px;
+      padding: 6px;
+      border: none;
   }
 
   input.checkbox{
@@ -78,13 +81,18 @@
       color: wheat;
       width: 60%;
       float: left;
+      border-radius: 6px;
+      padding: 7px;
+      border: none;
+  }
+
+  .form button:hover{
+    background-color: rgb(10, 5, 83);
   }
 
   .info{
       background-color: blue;
       color: wheat;
-
-
   }
   .info p{
     margin-top: 100px;
@@ -94,7 +102,6 @@
     margin-right: 20px;
   }
   
-
   .footer{
       background-color: black;
       color: white;

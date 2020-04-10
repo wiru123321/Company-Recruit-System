@@ -8,7 +8,8 @@ import {
   FieldArray,
   setNestedObjectValues,
 } from 'formik';
-import '../../../css/RegisterForm.css';
+import '../../../css/RecruiterPage.css';
+
 /*TO DO: WALIDACJA */
 const NameComponent = () => {
   return (
@@ -96,208 +97,145 @@ const NameComponent = () => {
       }}
     >
       {({values, errors, handleChange}) => (
-        <div className="form">
-          <label>Dane osobowe.</label>
+        <div>
+
           <Form name="names">
-            <Field
-              className="field"
-              as="input"
-              value={values.firstName}
-              onChange={handleChange}
-              name="firstName"
-              type="text"
-              placeholder="Imie"
-            />
-            <Field
-              className="field"
-              as="input"
-              value={values.lastName}
-              onChange={handleChange}
-              name="lastName"
-              type="text"
-              placeholder="Nazwisko"
-            />
-            <div className="errors">
-              {errors.firstName}
-              {errors.lastName}
-            </div>
-            <label>Kursy</label>
-            <FieldArray name="trainings">
-              {({push, remove}) => (
-                <div>
-                  <div>
-                    {values.trainings.map ((t, index) => {
-                      return (
-                        <div key={t.id}>
-                          <Field
-                            name={`trainings[${index}].trainingName`}
-                            value={t.trainingName}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="Kurs"
-                            as="input"
-                          />
-                          <Field
-                            name={`trainings[${index}].description`}
-                            value={t.description}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="Opis kursu"
-                            as="input"
-                          />
-                          <br />
-                          <label>Data odbycia kursu: </label>
-                          <Field
-                            name={`trainings[${index}].trainingDate`}
-                            value={t.trainingDate}
-                            onChange={handleChange}
-                            type="date"
-                            placeholder="Data"
-                            as="input"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (values.trainings.length > 1) remove ();
-                            }}
-                          >
-                            -
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={event =>
-                        push ({
-                          trainingName: '',
-                          trainingDate: '',
-                          description: '',
-                        })}
-                    >
-                      +
-                    </button>
-                  </div>
+            <div className="r-row col-9 r-content">
+              <label>Dane osobowe.</label>
+              <div className="r-row col-4 r-content">
+                <Field
+                  className="field"
+                  as="input"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  name="firstName"
+                  type="text"
+                  placeholder="Imie"
+                />
+                <Field
+                  className="field"
+                  as="input"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  name="lastName"
+                  type="text"
+                  placeholder="Nazwisko"
+                />
+                <div className="errors">
+                  {errors.firstName}
+                  {errors.lastName}
                 </div>
-              )}
-            </FieldArray>
-            <div className="errors">
-              {errors.courseName}
+              </div>
             </div>
-            <label>Doświadczenie zawodowe.</label>
-            <FieldArray name="experiences">
-              {({push, remove}) => (
-                <div>
-                  <div>
-                    {values.experiences.map ((exp, index) => {
-                      return (
-                        <div key={exp.id}>
-                          <Field
-                            name={`experiences[${index}].position`}
-                            value={exp.position}
-                            onChange={handleChange}
-                            type="text"
-                            placeholder="Zawód"
-                            as="input"
-                          />
-                          <Field
-                            name={`experiences[${index}].dateFrom`}
-                            value={exp.dateFrom}
-                            onChange={handleChange}
-                            type="date"
-                            placeholder="Data"
-                            as="input"
-                          />
-                          <Field
-                            name={`experiences[${index}].dateTo`}
-                            value={exp.dateTo}
-                            onChange={handleChange}
-                            type="date"
-                            placeholder="Data"
-                            as="input"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (values.experiences.length > 1) remove ();
-                            }}
-                          >
-                            -
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={event =>
-                        push ({
-                          position: '',
-                          dateFrom: '',
-                          dateTo: '',
+            <div className="r-row col-9 r-content">
+              <label>Kursy</label>
+              <div>
+                <FieldArray name="trainings">
+                  {({push, remove}) => (
+                    <div>
+                      <div>
+                        {values.trainings.map ((t, index) => {
+                          return (
+                            <div key={t.id}>
+                              <div className="r-row col-8 r-content">
+                                <Field
+                                  name={`trainings[${index}].trainingName`}
+                                  value={t.trainingName}
+                                  onChange={handleChange}
+                                  type="text"
+                                  placeholder="Kurs"
+                                  as="input"
+                                />
+                                <Field
+                                  name={`trainings[${index}].description`}
+                                  value={t.description}
+                                  onChange={handleChange}
+                                  type="text"
+                                  placeholder="Opis kursu"
+                                  as="input"
+                                />
+                                <label>Data odbycia kursu: </label>
+                                <Field
+                                  name={`trainings[${index}].trainingDate`}
+                                  value={t.trainingDate}
+                                  onChange={handleChange}
+                                  type="date"
+                                  placeholder="Data"
+                                  as="input"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (values.trainings.length > 1) remove ();
+                                  }}
+                                >
+                                  -
+                                </button>
+                              </div>
+                            </div>
+                          );
                         })}
-                    >
-                      +
-                    </button>
-                  </div>
+
+                      </div>
+
+                      <div>
+                        <button
+                          type="button"
+                          onClick={event =>
+                            push ({
+                              trainingName: '',
+                              trainingDate: '',
+                              description: '',
+                            })}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </FieldArray>
+                <div className="errors">
+                  {errors.courseName}
                 </div>
-              )}
-            </FieldArray>
-            <div className="errors">
-              {errors.jobName}
+              </div>
             </div>
-            <label>Wykształcenie</label>
-            <Field
-              name="education"
-              as="select"
-              placeholder="Wykształcenie"
-              onChange={handleChange}
-              value={values.education}
-            >
-              <option value="zawodowe"> srednie </option>
-              <option value="srednie">Podstawowe</option>
-              <option value="wyzsze">Średnie</option>
-            </Field>
-            <div className="errors">
-              {errors.education}
-            </div>
-            <label>Umiejętności</label>
-            <FieldArray name="skills">
-              {({push, remove}) => {
-                return (
+            <div className="r-row col-9 r-content">
+              <label>Doświadczenie zawodowe.</label>
+              <FieldArray name="experiences">
+                {({push, remove}) => (
                   <div>
                     <div>
-                      {values.skills.map ((s, index) => {
+                      {values.experiences.map ((exp, index) => {
                         return (
-                          <div key={s.id}>
+                          <div key={exp.id}>
                             <Field
-                              as="input"
-                              type="text"
-                              name={`skills[${index}].skillName`}
-                              value={s.skillName}
+                              name={`experiences[${index}].position`}
+                              value={exp.position}
                               onChange={handleChange}
-                              placeholder="Umiejętność"
+                              type="text"
+                              placeholder="Zawód"
+                              as="input"
                             />
                             <Field
-                              name={`skills[${index}].skillLevel`}
-                              value={s.skillLevel}
+                              name={`experiences[${index}].dateFrom`}
+                              value={exp.dateFrom}
                               onChange={handleChange}
-                              as="select"
-                            >
-                              <option value="poczatkujacy">poczatkujacy</option>
-                              <option value="srednio-zaawansowany">
-                                srednio-zaawansowany
-                              </option>
-                              <option value="zaawansowany">zaawansowany</option>
-                              <option value="ekspert">ekspert</option>
-                            </Field>
+                              type="date"
+                              placeholder="Data"
+                              as="input"
+                            />
+                            <Field
+                              name={`experiences[${index}].dateTo`}
+                              value={exp.dateTo}
+                              onChange={handleChange}
+                              type="date"
+                              placeholder="Data"
+                              as="input"
+                            />
                             <button
                               type="button"
-                              onClick={event => {
-                                if (values.skills.length > 1) remove ();
+                              onClick={() => {
+                                if (values.experiences.length > 1) remove ();
                               }}
                             >
                               -
@@ -311,24 +249,111 @@ const NameComponent = () => {
                         type="button"
                         onClick={event =>
                           push ({
-                            skill: '',
-                            skillRating: '',
+                            position: '',
+                            dateFrom: '',
+                            dateTo: '',
                           })}
                       >
                         +
                       </button>
                     </div>
                   </div>
-                );
-              }}
-            </FieldArray>
-            <div className="errors">
-              {errors.trainings}
+                )}
+              </FieldArray>
+              <div className="errors">
+                {errors.jobName}
+              </div>
             </div>
-            <div>
-              <button type="submit">
-                Submit
-              </button>
+            <div className="r-row col-9 r-content">
+              <label>Wykształcenie</label>
+              <Field
+                name="education"
+                as="select"
+                placeholder="Wykształcenie"
+                onChange={handleChange}
+                value={values.education}
+              >
+                <option value="zawodowe"> srednie </option>
+                <option value="srednie">Podstawowe</option>
+                <option value="wyzsze">Średnie</option>
+              </Field>
+              <div className="errors">
+                {errors.education}
+              </div>
+            </div>
+            <div className="r-row col-9 r-content">
+              <label>Umiejętności</label>
+              <FieldArray name="skills">
+                {({push, remove}) => {
+                  return (
+                    <div>
+                      <div>
+                        {values.skills.map ((s, index) => {
+                          return (
+                            <div key={s.id}>
+                              <Field
+                                as="input"
+                                type="text"
+                                name={`skills[${index}].skillName`}
+                                value={s.skillName}
+                                onChange={handleChange}
+                                placeholder="Umiejętność"
+                              />
+                              <Field
+                                name={`skills[${index}].skillLevel`}
+                                value={s.skillLevel}
+                                onChange={handleChange}
+                                as="select"
+                              >
+                                <option value="poczatkujacy">
+                                  poczatkujacy
+                                </option>
+                                <option value="srednio-zaawansowany">
+                                  srednio-zaawansowany
+                                </option>
+                                <option value="zaawansowany">
+                                  zaawansowany
+                                </option>
+                                <option value="ekspert">ekspert</option>
+                              </Field>
+                              <button
+                                type="button"
+                                onClick={event => {
+                                  if (values.skills.length > 1) remove ();
+                                }}
+                              >
+                                -
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div>
+                        <button
+                          type="button"
+                          onClick={event =>
+                            push ({
+                              skill: '',
+                              skillRating: '',
+                            })}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }}
+              </FieldArray>
+              <div className="errors">
+                {errors.trainings}
+              </div>
+            </div>
+            <div className="r-row col-9 r-content">
+              <div>
+                <button type="submit">
+                  Submit
+                </button>
+              </div>
             </div>
           </Form>
         </div>

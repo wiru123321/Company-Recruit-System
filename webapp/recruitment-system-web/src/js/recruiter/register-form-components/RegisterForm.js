@@ -5,8 +5,6 @@ import '../../../css/RecruiterPage.css';
 class RegisterForm extends React.Component {
   constructor (props) {
     super (props);
-
-    this.state = {};
   }
 
   render () {
