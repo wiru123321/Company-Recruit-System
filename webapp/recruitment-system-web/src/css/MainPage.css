@@ -1,132 +1,102 @@
-/* NavBar */
-ul.navBar {
-    margin-left: 0;
+* {
     box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col-"] {
+    float: left;
+    padding: 4px;
+  }
+  
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+  
+  html {
+    font-family: "Lucida Sans", sans-serif;
+  }
+  .logo{
+      
+      width: auto;
+      height: auto;
+  }
+  
+  .header {
+    background-color: wheat;
+    color: black;
+    padding: 15px;
+    position: sticky;
+  }
+  
+  .form ul {
     list-style-type: none;
     margin: 0;
-    overflow: hidden;
-    background-color: wheat;
-}
+    padding: 0;
+  }
+  
+  .form li {
+    padding: 6px;
+    margin-bottom: 4px;
+    color: #ffffff;
+   /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+  }
 
-li.navBar {
-    padding: 20px;
-}
+  .form input{
+      width: 100%;
+      background-color: darkturquoise;
+  }
 
-li.navBar a.navBar {
-    display: block;
-    background-color: blue;
-    border-radius: 15px;
-    color: white;
-    text-align: center;
-    padding: 8px 16px;
-    text-decoration: none;
-}
+  input.checkbox{
+    width: 4%;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
 
-li.navBar a.navBar:hover {
-    color: dodgerblue;
-    background-color: white;
-}
-
-li.navBarToLeft {
-    float: left;
-}
-
-li.navBarToRight {
-    float: right;
-}
-
-button.loginButton {
-    font-size: 15px;
-    margin-right: 4px;
-    background-color: blue;
-    color: wheat;
-    border-radius: 5px;
-    border: 0;
-    text-align: center;
-    padding: 10px 23px;
-    text-decoration: none;
-}
-
-input.loginInput{
-    font-size: 15px;
-    margin-right: 2px;
-    background-color: dodgerblue;
-    color: black;
-    border-radius: 5px;
-    border: 0;
-    text-align: center;
-    padding: 10px 23px;
-    text-decoration: none;
-}
-
-a.navPanel{
-    background-color: blue;
-    color: wheat;
-    border-radius: 5px;
-    padding: 15px 30px;
-}
-
-/* Login button. */
-button.loginButton:hover {
-    background-color: white;
+  p.checkbox{
+    padding: 0;
+    margin-top: 0;
     color: blue;
-}
+  }
 
-button.loginButton:focus{
-    outline: none;
-}
+  .form button{
+      background-color: blue;
+      color: wheat;
+      width: 60%;
+      float: left;
+  }
 
-p.appTitle{
-    margin-top: 15px;
-    font-size: 30px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-}
+  .info{
+      background-color: blue;
+      color: wheat;
 
-/* Page content styles. */
-div.pageContent {
-    box-sizing: border-box;
-    margin-top: 0px;
-    width: 100%;
-    height:1800px;
-    background-color: rgb(33, 28, 87);
-}
 
-p.mainContent{
-    font-family: Arial, Helvetica, sans-serif;
+  }
+  .info p{
+    margin-top: 100px;
+    margin-left: 20px;
+    font-size: 35px;
     text-align: left;
-    float: left;
-    font-size: 30px;
-    margin-top: 119px;
-    margin-left: 5%;
-    width: 60%;
-    color: wheat;
-}
+    margin-right: 20px;
+  }
+  
 
-img.networkImg{
-    margin-top: 250px;
-    width: 300px;
-    height: 300px;
-}
-
-/* Footer */
-p.footerSection {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-    background-color: wheat;
-}
-
-footer.footerSection {
-    font-family:  Arial, Helvetica, sans-serif;
-    margin: 0;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: black;
-    color: white;
-    height: 100px;
-}
+  .footer{
+      background-color: black;
+      color: white;
+      padding: 50px;
+  }

@@ -2,31 +2,21 @@ import React from 'react';
 import ContentComponent from './ContentComponent';
 import LoginCompnent from './LoginComponent';
 import '../../css/MainPage.css';
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import logo from '../../resources/logo.png';
+
 /* Strona główna dostępna pod /main */
 class MainPage extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          <ul className="navBar">
-            <li className="navBar navBarToLeft">
-              <p className="appTitle">
-                System Obsługi Rekrutacji
-              </p>
-            </li>
-            <li className="navBar navBarToRight">
-              <LoginCompnent />
-            </li>
-            <li className="navBar navBarToRight" />
-          </ul>
+        <div className="header col-12 form">
+          <div className="col-2" />
+          <div className="col-8">
+            <img className="logo" src={logo} />
+          </div>
+          <LoginCompnent />
         </div>
         <ContentComponent />
-        <div>
-          <footer className="footerSection">
-            <br /><br />© 2020 - System Obsługi Rekrutacji
-          </footer>
-        </div>
       </div>
     );
   }

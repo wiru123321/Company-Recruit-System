@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../css/MainPage.css';
 import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
-import RecruiterPage from '../recruiter/RecruiterPage';
-import HeadRecruiterPage from '../head_recruiter/HeadRecruiterPage';
 import Auth from '../serivce/AuthenticationSerivce.js';
+
 class LoginComponent extends React.Component {
   constructor (props) {
     super (props);
@@ -32,7 +31,7 @@ class LoginComponent extends React.Component {
       this.props.history.push ('/recruiter');
       Auth.registerSuccessfullRecruiterLogin (
         this.state.username,
-        this.state.passowrd
+        this.state.password
       );
     } else if (
       this.state.username === 'kierownik' &&
@@ -41,43 +40,58 @@ class LoginComponent extends React.Component {
       this.props.history.push ('/head');
       Auth.registerSuccessfullHeadLogin (
         this.state.username,
-        this.state.passowrd
+        this.state.password
       );
     } else {
       this.setState ({hasLoginFailed: true});
     }
   }
+  /**
+   *           <div className="col-2">
+            <form>
+              <ul>
+                <li><input placeholder="login" /></li>
+                <li><input placeholder="hasło" /></li>
+                <li>
+                  <button>Zaloguj się</button>
+                  <input className="checkbox" type="checkbox" />
+                  <p className="checkbox">Zapamiętaj</p>
+                </li>
+              </ul>
+            </form>
+          </div>
+   */
 
   render () {
     return (
       <div>
-        <div>
+        <div className="col-2">
           <form>
-            <li className="navBar navBarToRight">
-              <button onClick={this.handleLogInClick} className="loginButton">
-                Zaloguj się
-              </button>
-            </li>
-            <li className="navBar navBarToRight">
-              <input
-                name="password"
-                value={this.state.passowrd}
-                onChange={this.handleChange}
-                className="loginInput"
-                placeholder="hasło"
-                type="password"
-              />
-            </li>
-            <li className="navBar navBarToRight">
-              <input
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-                className="loginInput"
-                placeholder="login"
-                type="login"
-              />
-            </li>
+            <ul>
+              <li>
+                <input
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  placeholder="login"
+                  type="login"
+                />
+              </li>
+              <li>
+                <input
+                  name="password"
+                  value={this.state.passowrd}
+                  onChange={this.handleChange}
+                  placeholder="hasło"
+                  type="password"
+                />
+              </li>
+              <li>
+                <button onClick={this.handleLogInClick}>Zaloguj się</button>
+                <input className="checkbox" type="checkbox" />
+                <p className="checkbox">Zapamiętaj</p>
+              </li>
+            </ul>
           </form>
           <OnLoginFailed hasLoginFailed={this.state.hasLoginFailed} />
         </div>
