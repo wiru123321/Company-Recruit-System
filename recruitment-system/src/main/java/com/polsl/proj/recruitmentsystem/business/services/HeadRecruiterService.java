@@ -2,7 +2,9 @@ package com.polsl.proj.recruitmentsystem.business.services;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
+import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
+import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ import java.util.List;
 class HeadRecruiterService {
 
     private final EntityManager entityManager;
+    private final HeadRecruiterRepository headRecruiterRepository;
 
     List<JobApplication> getFilteredJobApplications(SearchParametersDTO dto) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -26,11 +29,11 @@ class HeadRecruiterService {
         Root<JobApplication> root = query.from(JobApplication.class);
         Predicate hasPosition,hasStatus,hasResult, hasRate;
         List<Predicate> predicates = new LinkedList<>();
-        if (dto.getPosition() != null) {                        //TODO refactor if
+        if (dto.getPosition() != null && !dto.getPosition().equals("")) {                        //TODO refactor if
             hasPosition = builder.equal(root.get("position"), dto.getPosition());
             predicates.add(hasPosition);
         }
-        if (dto.getStatus() != null) {
+        if (dto.getStatus() != null &&  !dto.getStatus().equals("")) {
             hasStatus = builder.equal(root.get("status"), dto.getStatus());
             predicates.add(hasStatus);
         }
@@ -45,5 +48,14 @@ class HeadRecruiterService {
         Predicate last = builder.and(predicates.toArray(new Predicate[0]));
         query.where(last);
         return entityManager.createQuery(query.select(root)).getResultList();
+    }
+
+    public HeadRecruiter findByName(String name) {
+        if(headRecruiterRepository.findByFirstName(name).isPresent()) {
+            return headRecruiterRepository.findByFirstName(name).get();
+        }
+        else {
+            return null;
+        }
     }
 }

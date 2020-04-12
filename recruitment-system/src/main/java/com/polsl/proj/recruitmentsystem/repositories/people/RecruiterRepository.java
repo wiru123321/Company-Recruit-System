@@ -9,7 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RecruiterRepository extends JpaRepository<Recruiter,Integer> {
 
-
-
-    Optional<Recruiter> findByFirstName(String firstName);
+   Optional<Recruiter> findByFirstName(String firstName);
 }

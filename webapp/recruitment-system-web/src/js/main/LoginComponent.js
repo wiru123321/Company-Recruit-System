@@ -40,7 +40,11 @@ class LoginComponent extends React.Component {
       console.log(redirect)
     })    
     .then(() => {
+      if(redirect=='recruiter')
       RecruiterAuthenticationService.registerSuccessfullRecruiterLogin(this.state.username,this.state.password)
+      else if(redirect=='head'){
+        RecruiterAuthenticationService.registerSuccessfullHeadLogin(this.state.username,this.state.password)
+      }
       this.props.history.push ('/'+ redirect);
     }).catch(() => {
       this.setState({hasLoginFailed: true})

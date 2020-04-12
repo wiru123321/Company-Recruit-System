@@ -6,12 +6,14 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ExperiencePOJO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.SkillPOJO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Education;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.EmpolymentExperience;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Skill;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
+import com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.EducationRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.ExperienceRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.SkillRepository;
@@ -27,12 +29,13 @@ import java.util.List;
 public class RecruiterFacade {
 
     // Autowired jest wymagany dla POSTMAN / INSOMNIA  up: final tez dziala
-    public final RecruitRepository recruitRepository;
-    public final TrainingRepository trainingRepository;
-    public final JobApplicationRepository jobApplicationRepository;
-    public final EducationRepository educationRepository;
-    public final SkillRepository skillRepository;
-    public final ExperienceRepository experienceRepository;
+    private final RecruitRepository recruitRepository;
+    private final TrainingRepository trainingRepository;
+    private final JobApplicationRepository jobApplicationRepository;
+    private final EducationRepository educationRepository;
+    private final SkillRepository skillRepository;
+    private final ExperienceRepository experienceRepository;
+    private final RecruiterRepository recruiterRepository;
 
 
     public void addNewRecruit(RecruitDTO dto) {
@@ -116,5 +119,9 @@ public class RecruiterFacade {
         Recruit recruit = recruitRepository.findById(dto.getRecruitID());
         recruit.addTraining(training);
         trainingRepository.save(training);
+    }
+
+    public Recruiter findByName(String name) {
+        return  recruiterRepository.findByFirstName(name).get();
     }
 }
