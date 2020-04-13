@@ -9,6 +9,8 @@ class CallHeadApi {
   }
 
   getSpecifiedAppliacations (searchParameters) {
+    console.log("SZMER")
+    console.log(searchParameters)
     const searchParametersDTO = {
       position: searchParameters.position,
       status: searchParameters.status,
@@ -16,6 +18,7 @@ class CallHeadApi {
       rate: searchParameters.rate,
     };
     console.log ('specifiedParams');
+    console.log (searchParametersDTO);
     var formData = new FormData ();
     const json = JSON.stringify (searchParametersDTO);
     var blob = new Blob ([json], {

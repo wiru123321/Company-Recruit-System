@@ -2,6 +2,7 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 
+import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
 import com.polsl.proj.recruitmentsystem.business.services.RecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import lombok.AllArgsConstructor;
@@ -35,9 +36,9 @@ public class RecruiterController {
         return "ok";    //TODO: Refactor
     }
 
- /*   @PostMapping("/addTraining")
-    public String addTraining(@RequestBody TrainingPOJO dto){ TODO: Inne DTO
+    @PostMapping("/addTraining")
+    public String addTraining(@RequestBody TrainingPOJO dto){
         recruiterFacade.addTraining(dto);
         return "recruiter/main";
-    }*/
+    }
 }

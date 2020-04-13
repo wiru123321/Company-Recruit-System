@@ -7,12 +7,18 @@ class OffersSurveyComponent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
+     
       searchParams: {
         position: '',
         status: '',
         result: '',
         Rate: '',
       },
+
+      position: '',     // Tymczasowe rozwiazanie
+      status: '',
+      result: '',
+      Rate: '',
 
       container: [
         {
@@ -27,14 +33,17 @@ class OffersSurveyComponent extends React.Component {
 
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
     this.renderApplications = this.renderApplications.bind (this);
-    this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (
-      this
-    );
+    this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (this);
     this.handleChange = this.handleChange.bind (this);
   }
 
   handleChange (event) {
-    this.setState ({[event.target.name]: event.target.value});
+    this.setState (
+      {  
+
+        [event.target.name]: event.target.value
+      }
+      );
   }
 
   renderApplications () {
@@ -49,7 +58,15 @@ class OffersSurveyComponent extends React.Component {
   }
 
   getApplicationsBySearchParams () {
-    CallApi.getSpecifiedAppliacations (this.state.searchParams)
+    var params  = {           //TYMCZASOWE
+      position: this.state.position,
+      status: this.state.status,
+      result: this.state.result,
+      rate: this.state.rate,
+    }
+    console.log("GEEEENG")
+    console.log(params)
+    CallApi.getSpecifiedAppliacations (params)  //TYMCZASOWE PARAMS
       .then (response => this.setState ((this.state.container = response.data)))
       .catch (e => console.log (e));
   }
@@ -69,28 +86,28 @@ class OffersSurveyComponent extends React.Component {
                 className="searchParamsForm"
                 name="position"
                 placeholder="Stanowisko"
-                value={this.state.searchParams.position}
+                value={this.state.position}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="status"
                 placeholder="Status"
-                value={this.state.searchParams.status}
+                value={this.state.status}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="result"
                 placeholder="Wynik"
-                value={this.state.searchParams.result}
+                value={this.state.result}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="rate"
                 placeholder="Ocena"
-                value={this.state.searchParams.rate}
+                value={this.state.rate}
                 onChange={this.handleChange}
               />
               <button

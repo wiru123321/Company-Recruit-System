@@ -6,6 +6,7 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOu
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO;
+import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Decission;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate;
@@ -62,5 +63,9 @@ public class HeadRecruiterFacade {
             dtos.add(new JobOutDTO(result.getPosition(),result.getStatus(),decissionOutDTO,rateOutDTO,recruitOutDTO));
         }
         return  dtos;
+    }
+
+    public HeadRecruiter findByName(String name) {
+        return headRecruiterService.findByName(name);
     }
 }

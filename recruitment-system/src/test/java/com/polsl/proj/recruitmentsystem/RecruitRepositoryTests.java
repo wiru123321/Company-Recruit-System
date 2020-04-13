@@ -46,7 +46,7 @@ public class RecruitRepositoryTests {
     @Test
     public void should_ReturnThreeRecruits_When_AllRecuitsRequested() {
         List<Recruit> result = recruitRepository.findAll();
-        Assert.assertEquals(3L, result.size());
+       Assert.assertEquals(3L, result.size());
     }
 
     @Test

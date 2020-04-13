@@ -6,7 +6,7 @@ import OffersSurveyComponent from './OffersSurveyComponent';
 import NewOfferComponent from './NewOfferComponent';
 import HelpComponent from './HelpComponent';
 import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
-import Auth from '../serivce/AuthenticationSerivce.js';
+import RecruiterAuthenticationService from '../serivce/AuthenticationSerivce.js';
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
 /* Strona kierownika */
 class HeadRecruiterPage extends React.Component {
@@ -27,7 +27,7 @@ class HeadRecruiterPage extends React.Component {
               <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
             </a>
             <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
-            <a className="logout" href="/login" onClick={Auth.logoutHead} />
+            <a className="logout" href="/login" onClick={RecruiterAuthenticationService.logoutHead} />
           </div>
           <div className="main">
             <AuthRoute
