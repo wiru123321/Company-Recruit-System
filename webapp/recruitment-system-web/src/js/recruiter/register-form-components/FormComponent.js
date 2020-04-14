@@ -347,6 +347,7 @@ const NameComponent = () => {
               <div className="errors">
                 {errors.trainings}
               </div>
+              <Field type="file" name="file" onChange={handleChange} />
             </div>
             <div className="r-row col-9 r-content">
               <div>
