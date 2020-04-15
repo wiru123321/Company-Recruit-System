@@ -45,7 +45,7 @@ class RecruiterPage extends React.Component {
                 </a>
               </li>
               <li>
-                <footer style={{marginTop: '100%', fontSize: 20}}>
+                <footer style={{marginTop: '100vh', fontSize: 20}}>
                   &#9400; 2020 - System Obsługi Rekrutacji
                 </footer>
               </li>
