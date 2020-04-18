@@ -9,6 +9,8 @@ import reg from '../../resources/register.png';
 import find from '../../resources/search.png';
 import help from '../../resources/question.png';
 import logout from '../../resources/logout.png';
+import logoRecruiter from '../../resources/logo.png';
+
 import {
   BrowserRouter as Router,
   NavLink,
@@ -24,8 +26,8 @@ class RecruiterPage extends React.Component {
           <div class="col-3 r-menu">
             <label>Kamil Susek</label>
             <ul>
-              <li className="interactive">
-                <NavLink to="/recruiter/register">
+              <li class="selected" className="interactive">
+                <NavLink to="/recruiter/register" >
                   <img src={reg} /> Zarejestruj
                 </NavLink>
               </li>
@@ -40,16 +42,16 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-                <a href="/login" onClick={Auth.logoutRecruiter}>
+                  <NavLink to="/resources/logout">
                   <img className="imgSize" src={logout} /> Wyloguj
-                </a>
-              </li>
-              <li>
-                <footer style={{marginTop: '100vh', fontSize: 20}}>
-                  &#9400; 2020 - System Obsługi Rekrutacji
-                </footer>
+                </NavLink>
               </li>
             </ul>
+              <img src={logoRecruiter} style={{width:720, height:151, backgroundColor: '#ffffff',position:'fixed'}}/>
+            <footer style={{marginTop: '100vh', fontSize: 20}}>
+
+                  &#9400; 2020 - System Obsługi Rekrutacji
+                </footer>
           </div>
 
           <div className="r-row">

@@ -39,47 +39,84 @@ html {
 
 .r-menu{
   height: 100vw;
-  background-color: black;
-  color: white;
+  background-color: #ffffff;
+  color: black;
   text-align: left;
 }
 
 .r-menu label{
   font-size: 50px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .r-menu ul {
   list-style-type: none;
   margin: 0;
   padding: 20px;
+  margin-bottom: 170px;
 }
 
 .r-menu a{
   font-size: 40px;
   text-decoration: none;
-  color: #ffffff;
+  color: black;
   transition: all 1s ease;
 }
 
 .r-menu li {
-  padding: 18px;
-  margin-bottom: 20px;
-  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  background-color: #ffffff;
   color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-left-color: red;
+  border-left-width: 3px;
+  border-left-style: solid;
+  display: block;
+  transition: all 0s ease;
 }
-
+.r-menu footer{
+  color: black;
+  position: fixed;
+  left: 20px;
+  top: -50px;
+}
+/*
 .r-menu li.interactive:hover {
   background-color: #0c0d0d;
 }
-
+*/
 .r-menu a:hover{
   color: royalblue;
 }
-.r-menu img{
-  width: 32px;
-  height: 32px;
+.r-menu li:hover{
+  border-bottom-color: red;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-top-color: red;
+  border-top-width: 3px;
+  border-top-style: solid;
+  border-right-color: red;
+  border-right-width: 3px;
+  border-right-style: solid;
+  border-left-color: white;
 }
+
+.r-menu img{
+  
+  width: 45px;
+  height: 45px;
+  background-color: royalblue;
+  padding: 5px;
+  display: inline-block;
+  
+}
+
 
 .r-content input{
   
