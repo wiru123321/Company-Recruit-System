@@ -5,22 +5,24 @@
 .r-row::after {
   content: "";
   clear: both;
-  display: table;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 [class*="col-"] {
-  float: left;
-  padding: 15px;
+  
+  padding: 10px;
 }
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
+.col-4 {width: 100%;}
 .col-5 {width: 41.66%;}
 .col-6 {width: 50%;}
 .col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
+.col-8 {width: 100%;}
 .col-9 {width: 75%;}
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
@@ -36,7 +38,7 @@ html {
 }
 
 .r-menu{
-  height: 100%;
+  height: 100vw;
   background-color: black;
   color: white;
   text-align: left;
@@ -56,6 +58,7 @@ html {
   font-size: 40px;
   text-decoration: none;
   color: #ffffff;
+  transition: all 1s ease;
 }
 
 .r-menu li {
@@ -71,7 +74,7 @@ html {
 }
 
 .r-menu a:hover{
-  color: green;
+  color: royalblue;
 }
 .r-menu img{
   width: 32px;
@@ -79,32 +82,45 @@ html {
 }
 
 .r-content input{
-  float: left;
+  
   background-color: rgb(46, 139, 226);
-  margin: 4px;
+  margin: 2px;
   padding: 10px;
   border-radius: 6px;
-  border: none;
+  border: solid;
+  border-color: royalblue;
+  border-width: 2px;
 }
 
 .r-content label{
-  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ font-size: 30px;
+  margin-bottom: 4px;
+  border-bottom-color: red;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
 }
 
 .r-content button{
-  float: left;
+ 
   background-color: rgb(46, 139, 226);
-  margin: 4px;
+  margin: 2px;
   padding: 10px;
   border-radius: 6px;
-  border: none;
+  border: solid;
+  border-color: royalblue;
+  border-width: 2px;
 }
 
 .r-content select{
-  float: left;
+ 
   background-color: rgb(46, 139, 226);
   margin: 4px;
   padding: 10px;
   border-radius: 6px;
-  border: none;
+  border: solid;
+  border-color: royalblue;
+  border-width: 2px;
 }

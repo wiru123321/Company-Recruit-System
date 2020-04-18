@@ -156,7 +156,7 @@ const NameComponent = () => {
                                   placeholder="Opis kursu"
                                   as="input"
                                 />
-                                <label>Data odbycia kursu: </label>
+                                
                                 <Field
                                   name={`trainings[${index}].trainingDate`}
                                   value={t.trainingDate}
@@ -165,34 +165,36 @@ const NameComponent = () => {
                                   placeholder="Data"
                                   as="input"
                                 />
+                                
                                 <button
                                   type="button"
                                   onClick={() => {
                                     if (values.trainings.length > 1) remove ();
                                   }}
                                 >
-                                  -
+                                  USUŃ
                                 </button>
+                                
                               </div>
                             </div>
                           );
                         })}
 
                       </div>
-
-                      <div>
-                        <button
-                          type="button"
-                          onClick={event =>
-                            push ({
-                              trainingName: '',
-                              trainingDate: '',
-                              description: '',
-                            })}
-                        >
-                          +
-                        </button>
-                      </div>
+                    <div>
+                      <button
+                                  type="button"
+                                 onClick={event =>
+                                  push ({
+                                     trainingName: '',
+                                     trainingDate: '',
+                                     description: '',
+                                      })}
+                                 >
+                                   DODAJ
+                                </button>
+                    </div>
+                      
                     </div>
                   )}
                 </FieldArray>
@@ -240,7 +242,7 @@ const NameComponent = () => {
                                 if (values.experiences.length > 1) remove ();
                               }}
                             >
-                              -
+                              USUŃ
                             </button>
                           </div>
                         );
@@ -256,7 +258,7 @@ const NameComponent = () => {
                             dateTo: '',
                           })}
                       >
-                        +
+                        DODAJ
                       </button>
                     </div>
                   </div>
@@ -275,9 +277,9 @@ const NameComponent = () => {
                 onChange={handleChange}
                 value={values.education}
               >
-                <option value="zawodowe"> srednie </option>
-                <option value="srednie">Podstawowe</option>
-                <option value="wyzsze">Średnie</option>
+                <option value="Wyzsze"> Wyższe </option>
+                <option value="Srednie"> Średnie </option>
+                <option value="Podstawowe"> Podstawowe </option>
               </Field>
               <div className="errors">
                 {errors.education}
@@ -324,7 +326,7 @@ const NameComponent = () => {
                                   if (values.skills.length > 1) remove ();
                                 }}
                               >
-                                -
+                                USUŃ
                               </button>
                             </div>
                           );
@@ -339,7 +341,7 @@ const NameComponent = () => {
                               skillRating: '',
                             })}
                         >
-                          +
+                          DODAJ
                         </button>
                       </div>
                     </div>
@@ -354,7 +356,7 @@ const NameComponent = () => {
             <div className="r-row col-9 r-content">
               <div>
                 <button type="submit">
-                  Submit
+                  ZATWIERDŹ
                 </button>
               </div>
             </div>
