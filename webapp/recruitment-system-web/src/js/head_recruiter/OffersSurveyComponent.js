@@ -3,19 +3,64 @@ import CallApi from './search-component/CallApi';
 import '../../css/HeadRecruiterPage.css';
 import '../../css/SurveyOffers.css';
 
-class ApplicationComponent extends React.Component {
+class DetailsComponent extends React.Component {
   constructor (props) {
     super (props);
+    this.state = {
+      recruit: props.recruit,
+      show: false,
+      dropText: 'rozwiń',
+    };
+
+    this.toggleShow = this.toggleShow.bind (this);
   }
+  //  TODO: refaktor
+  toggleShow = () => {
+    this.setState ({show: !this.state.show});
+    if (this.state.show == true) {
+      this.setState ({dropText: 'rozwiń'});
+    } else {
+      this.setState ({dropText: 'zwiń'});
+    }
+  };
 
   render () {
     return (
       <div>
-        q
+        <button className="dropButton" onClick={this.toggleShow}>
+          {this.state.dropText}
+        </button>
+        {this.state.show && getDetails (this.state.recruit)}
       </div>
     );
   }
 }
+
+const getDetails = recruit => {
+  return (
+    <div className="listing">
+
+      <label>Historia zatrudnienia: </label>
+      <br />
+      {recruit.empolymentExperiences.map ((exp, id) => (
+        <div>
+          Stanowisko: {exp.postion} Od {exp.dateFrom} do {exp.dateTo} <br />
+        </div>
+      ))}
+      <label>Wykształcenie: </label>{recruit.educations}
+      <label>Umiejętności: </label>
+      <br />
+      {recruit.skills.map ((s, id) => (
+        <div> {s.skillName} {s.skillLevel} <br /> </div>
+      ))}
+      <label>Szkolenia: </label>
+      <br />
+      {recruit.trainings.map ((t, id) => (
+        <div> {t.name} {t.description} {t.date} <br /> </div>
+      ))}
+    </div>
+  );
+};
 
 class OffersSurveyComponent extends React.Component {
   // #region members
@@ -38,9 +83,16 @@ class OffersSurveyComponent extends React.Component {
         {
           position: '',
           status: '',
-          decission: '',
+          decission: {result: '', description: ''},
           rate: '',
-          recruit: '',
+          recruit: {
+            firstName: '',
+            lastName: '',
+            educations: [''],
+            empolymentExperiences: [{dateFrom: '', dateTo: '', postion: ''}],
+            skills: [{skillName: '', skillLevel: ''}],
+            trainings: [{name: '', description: '', date: ''}],
+          },
         },
       ],
     };
@@ -92,6 +144,7 @@ class OffersSurveyComponent extends React.Component {
   componentDidMount () {
     this.getAllApplicationsFromApi ();
   }
+
   // #endregion members
 
   // #region render
@@ -148,22 +201,18 @@ class OffersSurveyComponent extends React.Component {
           </form>
         </div>
         <div>
-          <table>
-            <tr>
-              <th>Numer</th>
-              <th>Imie</th>
-              <th>Nazwisko</th>
-              <th>Status</th>
-            </tr>
-            {this.state.container.map ((json, id) => (
-              <tr>
-                <td>{id}</td>
-                <td>{json.recruit.firstName}</td>
-                <td>{json.recruit.lastName}</td>
-                <td>{json.status}</td>
-              </tr>
-            ))}
-          </table>
+          {this.state.container.map ((json, id) => {
+            return (
+              <div className="listing">
+                <label>{json.recruit.firstName}</label>
+                <label>{json.recruit.lastName}</label>
+                <br />
+                <label>Status: {json.status}</label>
+                <label>Ocena: {json.rate.rate}</label>
+                <DetailsComponent recruit={json.recruit} />
+              </div>
+            );
+          })}
         </div>
       </div>
     );
