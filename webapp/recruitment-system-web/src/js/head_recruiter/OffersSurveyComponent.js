@@ -3,19 +3,33 @@ import CallApi from './search-component/CallApi';
 import '../../css/HeadRecruiterPage.css';
 import '../../css/SurveyOffers.css';
 
+class ApplicationComponent extends React.Component {
+  constructor (props) {
+    super (props);
+  }
+
+  render () {
+    return (
+      <div>
+        q
+      </div>
+    );
+  }
+}
+
 class OffersSurveyComponent extends React.Component {
+  // #region members
   constructor (props) {
     super (props);
     this.state = {
-     
       searchParams: {
         position: '',
         status: '',
         result: '',
-        Rate: '',
+        rate: '',
       },
 
-      position: '',     // Tymczasowe rozwiazanie
+      position: '', // Tymczasowe rozwiazanie
       status: '',
       result: '',
       Rate: '',
@@ -33,17 +47,16 @@ class OffersSurveyComponent extends React.Component {
 
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
     this.renderApplications = this.renderApplications.bind (this);
-    this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (this);
+    this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (
+      this
+    );
     this.handleChange = this.handleChange.bind (this);
   }
 
   handleChange (event) {
-    this.setState (
-      {  
-
-        [event.target.name]: event.target.value
-      }
-      );
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
   }
 
   renderApplications () {
@@ -51,22 +64,27 @@ class OffersSurveyComponent extends React.Component {
   }
 
   getAllApplicationsFromApi () {
-    CallApi.getAllApplications ().then (response => {
-      this.setState ((this.state.container = response.data));
-      console.log (response.data);
-    });
+    CallApi.getAllApplications ()
+      .then (response => {
+        this.setState ((this.state.container = response.data));
+        console.log (response.data);
+      })
+      .catch (e => {
+        console.log (e);
+      });
   }
 
   getApplicationsBySearchParams () {
-    var params  = {           //TYMCZASOWE
+    var params = {
+      //TYMCZASOWE
       position: this.state.position,
       status: this.state.status,
       result: this.state.result,
       rate: this.state.rate,
-    }
-    console.log("GEEEENG")
-    console.log(params)
-    CallApi.getSpecifiedAppliacations (params)  //TYMCZASOWE PARAMS
+    };
+    console.log ('GEEEENG');
+    console.log (params);
+    CallApi.getSpecifiedAppliacations (params) //TYMCZASOWE PARAMS
       .then (response => this.setState ((this.state.container = response.data)))
       .catch (e => console.log (e));
   }
@@ -74,7 +92,9 @@ class OffersSurveyComponent extends React.Component {
   componentDidMount () {
     this.getAllApplicationsFromApi ();
   }
+  // #endregion members
 
+  // #region render
   render () {
     return (
       <div>
@@ -148,6 +168,7 @@ class OffersSurveyComponent extends React.Component {
       </div>
     );
   }
+  // #endregion render
 }
 
 export default OffersSurveyComponent;
