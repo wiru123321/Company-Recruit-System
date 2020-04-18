@@ -63,7 +63,7 @@ tr:nth-child(even) {
       width: 100%;
       text-align: left;
       background-color: teal;
-      border: 2px solid white;
+      border: none;
   }
 
   .listing label{
@@ -73,12 +73,32 @@ tr:nth-child(even) {
 
   button.dropButton{
       width: 100%;
-      background-color: tomato;
+      background-color: wheat;
       border: none;
-      color: teal;
+      color: black;
   }
 
   button.dropButton:hover{
     background-color: white;
     color: black;
+  }
+
+  button.addDecision{
+    font-size: large;
+    width: 100%;
+    border: none;
+    background-color: wheat;
+    color: black;
+  }
+
+  button.addDecision:hover{
+    background-color: white;
+    color: black;
+  }
+
+  textarea.description{
+    margin-left: 5%;
+    width: 80%;
+    height: 100px;
+    padding: 0;
   }

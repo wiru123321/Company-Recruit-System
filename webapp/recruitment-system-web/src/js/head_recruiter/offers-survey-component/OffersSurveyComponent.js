@@ -1,7 +1,59 @@
 import React from 'react';
-import CallApi from './search-component/CallApi';
-import '../../css/HeadRecruiterPage.css';
-import '../../css/SurveyOffers.css';
+import CallApi from '../search-component/CallApi';
+import '../../../css/HeadRecruiterPage.css';
+import '../../../css/SurveyOffers.css';
+
+class DecisionFormComponent extends React.Component {
+  constructor (props) {
+    super (props);
+    this.state = {
+      result: '',
+      description: '',
+
+      show: false,
+    };
+    this.handleChange = this.handleChange.bind (this);
+  }
+
+  handleChange (event) {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  render () {
+    return (
+      <div>
+        <button
+          className="addDecision"
+          onClick={() => this.setState ({show: !this.state.show})}
+        >
+          Oceń rekruta
+        </button>
+        {this.state.show &&
+          <div>
+            <label> Oceń rekruta</label>
+            <form>
+              <textarea
+                className="description"
+                name="description"
+                value={this.state.description}
+                placeholder="Opis"
+                onChange={this.handleChange}
+              />
+              <input
+                name="result"
+                value={this.state.result}
+                placeholder="Ocena"
+                onChange={this.handleChange}
+              />
+              <button>Prześlij ocenę</button>
+            </form>
+          </div>}
+      </div>
+    );
+  }
+}
 
 class DetailsComponent extends React.Component {
   constructor (props) {
@@ -210,6 +262,7 @@ class OffersSurveyComponent extends React.Component {
                 <label>Status: {json.status}</label>
                 <label>Ocena: {json.rate.rate}</label>
                 <DetailsComponent recruit={json.recruit} />
+                <DecisionFormComponent />
               </div>
             );
           })}
