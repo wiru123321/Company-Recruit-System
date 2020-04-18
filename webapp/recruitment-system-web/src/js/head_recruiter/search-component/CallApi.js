@@ -3,14 +3,16 @@ import axios from 'axios';
 
 class CallHeadApi {
   getAllApplications () {
-    var responseData = {};
     console.log ('get');
-    return axios.get ('http://localhost:8080/head/allApplications');
+    return axios ({
+      method: 'get',
+      url: `http://localhost:8080/head/allApplications`,
+    });
   }
 
   getSpecifiedAppliacations (searchParameters) {
-    console.log("SZMER")
-    console.log(searchParameters)
+    console.log ('SZMER');
+    console.log (searchParameters);
     const searchParametersDTO = {
       position: searchParameters.position,
       status: searchParameters.status,

@@ -44,3 +44,61 @@ tr:nth-child(even) {
     margin-left: 4px;
         border: none;
   }
+
+  ul.list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  ul.list > li{
+    display: inline-table;
+    margin-left: 20px;
+  }
+
+
+  div.listing{
+
+      width: 100%;
+      text-align: left;
+      background-color: teal;
+      border: none;
+  }
+
+  .listing label{
+    margin-left: 10px;
+    font-size: large;
+  }
+
+  button.dropButton{
+      width: 100%;
+      background-color: wheat;
+      border: none;
+      color: black;
+  }
+
+  button.dropButton:hover{
+    background-color: white;
+    color: black;
+  }
+
+  button.addDecision{
+    font-size: large;
+    width: 100%;
+    border: none;
+    background-color: wheat;
+    color: black;
+  }
+
+  button.addDecision:hover{
+    background-color: white;
+    color: black;
+  }
+
+  textarea.description{
+    margin-left: 5%;
+    width: 80%;
+    height: 100px;
+    padding: 0;
+  }

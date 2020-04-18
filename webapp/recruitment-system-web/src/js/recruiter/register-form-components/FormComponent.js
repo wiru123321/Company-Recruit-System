@@ -8,6 +8,7 @@ import {
   FieldArray,
   setNestedObjectValues,
 } from 'formik';
+
 import '../../../css/RecruiterPage.css';
 
 /*TO DO: WALIDACJA */
@@ -96,9 +97,10 @@ const NameComponent = () => {
         );
       }}
     >
-      {({values, errors, handleChange}) => (
+      {(
+        {values, errors, handleChange} //#region html
+      ) => (
         <div>
-
           <Form name="names">
             <div className="r-row col-9 r-content">
               <label>Dane osobowe.</label>
@@ -360,7 +362,9 @@ const NameComponent = () => {
             </div>
           </Form>
         </div>
-      )}
+      )
+      //#endregion html
+      }
     </Formik>
   );
 };

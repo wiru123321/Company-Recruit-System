@@ -2,7 +2,8 @@ import React from 'react';
 import '../../css/HeadRecruiterPage.css';
 import search from '../../resources/search_list.png';
 import RecruitsSurveyComponent from './RecruitsSurveyComponent';
-import OffersSurveyComponent from './OffersSurveyComponent';
+import OffersSurveyComponent
+  from './offers-survey-component/OffersSurveyComponent.js';
 import NewOfferComponent from './NewOfferComponent';
 import HelpComponent from './HelpComponent';
 import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
