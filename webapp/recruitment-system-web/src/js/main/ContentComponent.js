@@ -7,10 +7,11 @@ import help from '../../resources/help.png';
 class ContentComponent extends React.Component {
   render () {
     return (
-      <div>
+      <div class="allComponent">
         <div class="row info">
           <div class="col-8">
-            <p>
+          <h1>Trochę o naszej aplikacji.</h1>
+          <p>
               Proces rekrutacji jest związany z gromadzeniem znacznej ilości danych związanych głównie
               z nadesłanymi CV. Aplikacja wspiera duże oraz małe przedsiębiorstwa pomagając
               zarządzać całym etapem rekrutacji odciążając tym samym zespół HR. Należy również
@@ -31,6 +32,7 @@ class ContentComponent extends React.Component {
             <img className="logo" src={idea} />
           </div>
           <div class="col-8">
+          <h1>Czym wyróżnia się nasza aplikacja.</h1>
             <p>
               Aplikacja wychodzi naprzeciw oczekiwaniom, które stawiane są przez zespoły HR trudniące
               się rekrutacją w szczególności na dużą skalę. Wszystkie czynności wykonywane podczas
@@ -42,6 +44,7 @@ class ContentComponent extends React.Component {
 
         <div class="row info">
           <div class="col-8">
+          <h1>Formalności załatwimy za Ciebie</h1>
             <p>
               Najważniejszą rzeczą podczas rekrutacji w szególności tej owocnej jest podpisanie
               stosownej umowy z kandydatem. Ten proces również został zautomatyzowany poprzez
