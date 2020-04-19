@@ -13,6 +13,7 @@ import logoRecruiter from '../../resources/logo.png';
 
 import {
   BrowserRouter as Router,
+  Route,
   NavLink,
   Link,
   withRouter,
@@ -26,7 +27,11 @@ class RecruiterPage extends React.Component {
           <div class="col-3 r-menu">
             <label>Kamil Susek</label>
             <ul>
+<<<<<<< HEAD
+              <li className="interactive">
+=======
               <li class="selected" className="interactive">
+>>>>>>> bfd5f9b51d73cd7e3053a7a591d3ab09680a123d
                 <NavLink to="/recruiter/register">
                   <img src={reg} /> Zarejestruj
                 </NavLink>
@@ -42,20 +47,20 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                <NavLink to="/resources/logout">
+<<<<<<< HEAD
+                <a href="/login" onClick={Auth.logoutRecruiter ()}>
+                  <img className="imgSize" src={logout} /> Wyloguj
+                </a>
 =======
+
+
                 <nav>
                   <a href="/login">
->>>>>>> Stashed changes
-=======
-                <nav>
-                  <a href="/login">
->>>>>>> Stashed changes
+
                   <img className="imgSize" src={logout} /> Wyloguj
                   </a>
                 </nav>
+>>>>>>> bfd5f9b51d73cd7e3053a7a591d3ab09680a123d
               </li>
             </ul>
             <img
@@ -76,10 +81,8 @@ class RecruiterPage extends React.Component {
           <div className="r-row">
             <div>
               <div>
-                <AuthRoute
-                  path="/recruiter/register"
-                  component={RegisterForm}
-                />
+                {/* TO DO: Naprawic autentykacje */}
+                <Route path="/recruiter/register" component={RegisterForm} />
                 <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
               </div>

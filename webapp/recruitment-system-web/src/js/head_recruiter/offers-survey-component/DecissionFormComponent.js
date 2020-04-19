@@ -21,7 +21,9 @@ class DecisionFormComponent extends React.Component {
   }
 
   handleDecissionSubmit () {
-    CallApi.sendDecission (this.state.decission).catch (e => console.log (e));
+    CallApi.sendDecission (this.state.decission)
+      .then (response => console.log (response.data))
+      .catch (e => console.log (e));
   }
 
   handleChange (event) {

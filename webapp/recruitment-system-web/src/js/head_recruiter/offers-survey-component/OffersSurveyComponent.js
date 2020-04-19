@@ -155,6 +155,16 @@ class OffersSurveyComponent extends React.Component {
                 <label>Ocena: {json.rate.rate}</label>
                 <DetailsComponent recruit={json.recruit} />
                 <DecisionFormComponent id={json.id} />
+
+                <button
+                  onClick={event => {
+                    event.preventDefault ();
+                    CallApi.createPDF ();
+                  }}
+                >
+                  PDF
+                </button>
+
               </div>
             );
           })}

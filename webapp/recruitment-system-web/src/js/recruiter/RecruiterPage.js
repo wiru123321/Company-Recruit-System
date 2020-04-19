@@ -18,6 +18,7 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
+import CallApi from '../head_recruiter/service/CallApi';
 /* Strona rekrutera dostepna pod /recruiter*/
 class RecruiterPage extends React.Component {
   render () {
@@ -46,11 +47,8 @@ class RecruiterPage extends React.Component {
 
                 <a href="/login" onClick={Auth.logoutRecruiter ()}>
 
-                
-                  
-
                   <img className="imgSize" src={logout} /> Wyloguj
-                
+
                 </a>
               </li>
             </ul>
@@ -76,6 +74,7 @@ class RecruiterPage extends React.Component {
                 <Route path="/recruiter/register" component={RegisterForm} />
                 <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
+
               </div>
             </div>
 
