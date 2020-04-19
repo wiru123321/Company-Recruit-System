@@ -42,11 +42,17 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-
-
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+                <NavLink to="/resources/logout">
+=======
                 <nav>
                   <a href="/login">
-
+>>>>>>> Stashed changes
+=======
+                <nav>
+                  <a href="/login">
+>>>>>>> Stashed changes
                   <img className="imgSize" src={logout} /> Wyloguj
                   </a>
                 </nav>
