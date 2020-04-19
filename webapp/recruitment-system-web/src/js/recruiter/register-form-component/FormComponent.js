@@ -156,7 +156,7 @@ const NameComponent = () => {
                                   placeholder="Opis kursu"
                                   as="input"
                                 />
-                                
+
                                 <Field
                                   name={`trainings[${index}].trainingDate`}
                                   value={t.trainingDate}
@@ -165,7 +165,7 @@ const NameComponent = () => {
                                   placeholder="Data"
                                   as="input"
                                 />
-                                
+
                                 <button
                                   type="button"
                                   onClick={() => {
@@ -174,27 +174,27 @@ const NameComponent = () => {
                                 >
                                   USUŃ
                                 </button>
-                                
+
                               </div>
                             </div>
                           );
                         })}
 
                       </div>
-                    <div>
-                      <button
-                                  type="button"
-                                 onClick={event =>
-                                  push ({
-                                     trainingName: '',
-                                     trainingDate: '',
-                                     description: '',
-                                      })}
-                                 >
-                                   DODAJ
-                                </button>
-                    </div>
-                      
+                      <div>
+                        <button
+                          type="button"
+                          onClick={event =>
+                            push ({
+                              trainingName: '',
+                              trainingDate: '',
+                              description: '',
+                            })}
+                        >
+                          DODAJ
+                        </button>
+                      </div>
+
                     </div>
                   )}
                 </FieldArray>
@@ -351,7 +351,12 @@ const NameComponent = () => {
               <div className="errors">
                 {errors.trainings}
               </div>
-              <Field type="file" name="file" onChange={handleChange} />
+              <Field
+                type="file"
+                name="file"
+                onChange={handleChange}
+                accept="image/jpeg, .pdf"
+              />
             </div>
             <div className="r-row col-9 r-content">
               <div>

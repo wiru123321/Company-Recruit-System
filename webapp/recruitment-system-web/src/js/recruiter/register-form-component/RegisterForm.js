@@ -10,7 +10,7 @@ class RegisterForm extends React.Component {
   render () {
     return (
       <div className="formContent">
-        <h1 style={{margin: 0}}>Rejstracja danych</h1>
+        <h2 style={{margin: 0,fontSize:38}}>Rejstracja danych</h2>
         <br />
         <FormComponent />
       </div>

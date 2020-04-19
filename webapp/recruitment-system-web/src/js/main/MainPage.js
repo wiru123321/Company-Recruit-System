@@ -8,7 +8,7 @@ import logo from '../../resources/logo.png';
 class MainPage extends React.Component {
   render () {
     return (
-      <div>
+      <div  class="allLogin">
         <div className="header col-12 form">
           <div className="col-2" />
           <div className="col-8">

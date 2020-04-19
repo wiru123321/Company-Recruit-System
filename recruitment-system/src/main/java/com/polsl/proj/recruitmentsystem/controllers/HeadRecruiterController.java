@@ -60,7 +60,8 @@ public class HeadRecruiterController {
     }
 
     @PostMapping("/addDecission")
-    public void addDecission(@RequestBody InputDecissionDTO dto){
+    public String addDecission(@RequestBody InputDecissionDTO dto){
         headRecruiterFacade.addDecission(dto);
+        return "ok";
     }
 }

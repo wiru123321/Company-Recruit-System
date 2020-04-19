@@ -18,7 +18,6 @@ import {
   Link,
   withRouter,
 } from 'react-router-dom';
-import CallApi from '../head_recruiter/service/CallApi';
 /* Strona rekrutera dostepna pod /recruiter*/
 class RecruiterPage extends React.Component {
   render () {
@@ -28,7 +27,11 @@ class RecruiterPage extends React.Component {
           <div class="col-3 r-menu">
             <label>Kamil Susek</label>
             <ul>
+<<<<<<< HEAD
               <li className="interactive">
+=======
+              <li class="selected" className="interactive">
+>>>>>>> bfd5f9b51d73cd7e3053a7a591d3ab09680a123d
                 <NavLink to="/recruiter/register">
                   <img src={reg} /> Zarejestruj
                 </NavLink>
@@ -44,12 +47,20 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-
+<<<<<<< HEAD
                 <a href="/login" onClick={Auth.logoutRecruiter ()}>
+                  <img className="imgSize" src={logout} /> Wyloguj
+                </a>
+=======
+
+
+                <nav>
+                  <a href="/login">
 
                   <img className="imgSize" src={logout} /> Wyloguj
-
-                </a>
+                  </a>
+                </nav>
+>>>>>>> bfd5f9b51d73cd7e3053a7a591d3ab09680a123d
               </li>
             </ul>
             <img
@@ -74,7 +85,6 @@ class RecruiterPage extends React.Component {
                 <Route path="/recruiter/register" component={RegisterForm} />
                 <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
-
               </div>
             </div>
 

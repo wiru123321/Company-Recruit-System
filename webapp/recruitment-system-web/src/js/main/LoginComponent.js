@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../css/MainPage.css';
 import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
-import RecruiterAuthenticationService from '../serivce/AuthenticationSerivce.js';
-
+import RecruiterAuthenticationService
+  from '../serivce/AuthenticationSerivce.js';
 
 var redirect = '';
 
@@ -27,29 +27,35 @@ class LoginComponent extends React.Component {
     });
   }
 
-
-
-
   handleLogInClick (event) {
     event.preventDefault ();
 
-    RecruiterAuthenticationService
-    .executeBasicAuthentication(this.state.username,this.state.password)
-    .then(function (response){
-      redirect=response.data
-      console.log(redirect)
-    })    
-    .then(() => {
-      if(redirect=='recruiter')
-      RecruiterAuthenticationService.registerSuccessfullRecruiterLogin(this.state.username,this.state.password)
-      else if(redirect=='head'){
-        RecruiterAuthenticationService.registerSuccessfullHeadLogin(this.state.username,this.state.password)
-      }
-      this.props.history.push ('/'+ redirect);
-    }).catch(() => {
-      this.setState({hasLoginFailed: true})
-    })
-  /*  console.log (this.state.username, this.state.password);
+    RecruiterAuthenticationService.executeBasicAuthentication (
+      this.state.username,
+      this.state.password
+    )
+      .then (function (response) {
+        redirect = response.data;
+        console.log (redirect);
+      })
+      .then (() => {
+        if (redirect == 'recruiter')
+          RecruiterAuthenticationService.registerSuccessfullRecruiterLogin (
+            this.state.username,
+            this.state.password
+          );
+        else if (redirect == 'head') {
+          RecruiterAuthenticationService.registerSuccessfullHeadLogin (
+            this.state.username,
+            this.state.password
+          );
+        }
+        this.props.history.push ('/' + redirect);
+      })
+      .catch (() => {
+        this.setState ({hasLoginFailed: true});
+      });
+    /*  console.log (this.state.username, this.state.password);
     if (this.state.username === 'rekruter' && this.state.password === 'admin') {
       this.props.history.push ('/recruiter');
       RecruiterAuthenticationService.registerSuccessfullRecruiterLogin (
