@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/RecruiterPage.css';
-import RegisterForm from './register-form-components/RegisterForm';
+import RegisterForm from './register-form-component/RegisterForm';
 import FindRecruitForm from './FindRecruitForm';
 import HelpComponent from './HelpComponent';
 import AuthRoute from '../serivce/RecruiterAuthenticatedRoute';
@@ -27,7 +27,7 @@ class RecruiterPage extends React.Component {
             <label>Kamil Susek</label>
             <ul>
               <li class="selected" className="interactive">
-                <NavLink to="/recruiter/register" >
+                <NavLink to="/recruiter/register">
                   <img src={reg} /> Zarejestruj
                 </NavLink>
               </li>
@@ -42,16 +42,24 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-                  <NavLink to="/resources/logout">
+                <NavLink to="/resources/logout">
                   <img className="imgSize" src={logout} /> Wyloguj
                 </NavLink>
               </li>
             </ul>
-              <img src={logoRecruiter} style={{width:720, height:151, backgroundColor: '#ffffff',position:'fixed'}}/>
+            <img
+              src={logoRecruiter}
+              style={{
+                width: 720,
+                height: 151,
+                backgroundColor: '#ffffff',
+                position: 'fixed',
+              }}
+            />
             <footer style={{marginTop: '100vh', fontSize: 20}}>
 
-                  &#9400; 2020 - System Obsługi Rekrutacji
-                </footer>
+              &#9400; 2020 - System Obsługi Rekrutacji
+            </footer>
           </div>
 
           <div className="r-row">
