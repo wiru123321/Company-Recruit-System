@@ -7,12 +7,21 @@ class DecisionFormComponent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      result: '',
-      description: '',
+      decission: {
+        result: '',
+        description: '',
+        id: props.id,
+        rate: '',
+      },
 
       show: false,
     };
     this.handleChange = this.handleChange.bind (this);
+    this.handleDecissionSubmit = this.handleDecissionSubmit.bind (this);
+  }
+
+  handleDecissionSubmit () {
+    CallApi.sendDecission (this.state.decission).catch (e => console.log (e));
   }
 
   handleChange (event) {
@@ -37,17 +46,24 @@ class DecisionFormComponent extends React.Component {
               <textarea
                 className="description"
                 name="description"
-                value={this.state.description}
+                value={this.state.decission.description}
                 placeholder="Opis"
                 onChange={this.handleChange}
               />
               <input
                 name="result"
-                value={this.state.result}
+                value={this.state.decission.result}
                 placeholder="Ocena"
                 onChange={this.handleChange}
               />
-              <button>Prześlij ocenę</button>
+              <button
+                onClick={event => {
+                  event.preventDefault ();
+                  this.handleDecissionSubmit ();
+                }}
+              >
+                Prześlij ocenę
+              </button>
             </form>
           </div>}
       </div>

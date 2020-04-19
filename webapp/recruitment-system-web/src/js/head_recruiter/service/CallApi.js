@@ -2,6 +2,21 @@ import React from 'react';
 import axios from 'axios';
 
 class CallHeadApi {
+  sendDecission (decission) {
+    let dto = {
+      description: decission.description, //decission.description,
+      jobApplicationID: decission.id, // decission.jobApplicationID,
+      result: decission.result,
+      rate: decission.rate,
+    };
+
+    return axios ({
+      method: 'post',
+      url: `http://localhost:8080/head/addDecission`,
+      data: dto,
+    });
+  }
+
   getAllApplications () {
     console.log ('get');
     return axios ({

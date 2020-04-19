@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobOutDTO {
+    private Long id;
     private String position;
     private String status;
 

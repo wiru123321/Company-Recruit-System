@@ -24,6 +24,7 @@ class OffersSurveyComponent extends React.Component {
 
       container: [
         {
+          id: '',
           position: '',
           status: '',
           decission: {result: '', description: ''},
@@ -153,7 +154,7 @@ class OffersSurveyComponent extends React.Component {
                 <label>Status: {json.status}</label>
                 <label>Ocena: {json.rate.rate}</label>
                 <DetailsComponent recruit={json.recruit} />
-                <DecisionFormComponent />
+                <DecisionFormComponent id={json.id} />
               </div>
             );
           })}
