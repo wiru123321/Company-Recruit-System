@@ -1,13 +1,12 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
 
-import com.itextpdf.text.Document;
 import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 
-import com.polsl.proj.recruitmentsystem.business.utils.PDFUtility;
+import com.polsl.proj.recruitmentsystem.business.utils.PDF.PDFUtility;
 import lombok.AllArgsConstructor;
 import lombok.var;
 import org.springframework.core.io.InputStreamResource;
@@ -15,12 +14,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLConnection;
 import java.util.List;
 
 @Controller

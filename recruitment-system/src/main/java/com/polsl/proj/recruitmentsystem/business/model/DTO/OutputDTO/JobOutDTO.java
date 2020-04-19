@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobOutDTO {
+public class  JobOutDTO {
     private String position;
     private String status;
 
