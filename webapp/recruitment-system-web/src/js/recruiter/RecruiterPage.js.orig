@@ -13,7 +13,6 @@ import logoRecruiter from '../../resources/logo.png';
 
 import {
   BrowserRouter as Router,
-  Route,
   NavLink,
   Link,
   withRouter,
@@ -27,7 +26,7 @@ class RecruiterPage extends React.Component {
           <div class="col-3 r-menu">
             <label>Kamil Susek</label>
             <ul>
-              <li className="interactive">
+              <li class="selected" className="interactive">
                 <NavLink to="/recruiter/register">
                   <img src={reg} /> Zarejestruj
                 </NavLink>
@@ -43,15 +42,20 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-
-                <a href="/login" onClick={Auth.logoutRecruiter ()}>
-
-                
-                  
-
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+                <NavLink to="/resources/logout">
+=======
+                <nav>
+                  <a href="/login">
+>>>>>>> Stashed changes
+=======
+                <nav>
+                  <a href="/login">
+>>>>>>> Stashed changes
                   <img className="imgSize" src={logout} /> Wyloguj
-                
-                </a>
+                  </a>
+                </nav>
               </li>
             </ul>
             <img
@@ -72,8 +76,10 @@ class RecruiterPage extends React.Component {
           <div className="r-row">
             <div>
               <div>
-                {/* TO DO: Naprawic autentykacje */}
-                <Route path="/recruiter/register" component={RegisterForm} />
+                <AuthRoute
+                  path="/recruiter/register"
+                  component={RegisterForm}
+                />
                 <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
               </div>
