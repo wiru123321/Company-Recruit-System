@@ -147,7 +147,7 @@ class OffersSurveyComponent extends React.Component {
         <div>
           {this.state.container.map ((json, id) => {
             return (
-              <div className="listing">
+              <div className="listing listing-a">
                 <label>{json.recruit.firstName}</label>
                 <label>{json.recruit.lastName}</label>
                 <br />
@@ -155,14 +155,14 @@ class OffersSurveyComponent extends React.Component {
                 <label>Ocena: {json.rate.rate}</label>
                 <DetailsComponent recruit={json.recruit} />
                 <DecisionFormComponent id={json.id} />
-
                 <button
+                  className="pdfButton"
                   onClick={event => {
                     event.preventDefault ();
                     CallApi.createPDF ();
                   }}
                 >
-                  PDF
+                  GENEREUJ UMOWĘ
                 </button>
 
               </div>

@@ -3,7 +3,9 @@ table{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     float: left;
-    font-size: 20px;
+    font-size: 15px;
+    background-color: #dddddd;
+    color: black;
 }
 
 table, th, td{
@@ -15,9 +17,9 @@ th, td{
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #818181;
   }
-  
+
   div.searchParamsForm{
         font-family: Arial, Helvetica, sans-serif;
         color: #818181;
@@ -42,7 +44,12 @@ tr:nth-child(even) {
     padding: 8px;
     border-radius: 6px;
     margin-left: 4px;
-        border: none;
+    border: none;
+  }
+
+  button.searchParamsForm:hover{
+    background-color: green;
+    color: white;
   }
 
   ul.list{
@@ -57,15 +64,20 @@ tr:nth-child(even) {
     margin-left: 20px;
   }
 
-
+  div.listing-a{
+    background-color: rgb(51, 52, 128);
+  }
   div.listing{
-
+      padding: 10px;
       width: 100%;
       text-align: left;
-      background-color: teal;
+      
       border: none;
+      color: white;
   }
-
+  div.listing-a:nth-child(even){
+    background-color: rgb(70, 72, 167);
+  }
   .listing label{
     margin-left: 10px;
     font-size: large;
@@ -98,7 +110,20 @@ tr:nth-child(even) {
 
   textarea.description{
     margin-left: 5%;
-    width: 80%;
+    width: 90%;
     height: 100px;
     padding: 0;
+  }
+
+  button.pdfButton{
+    margin-left: 90%;
+    background-color: #dddddd;
+    color: black;
+    padding: 8px;
+    border: none;
+    border-radius: 15px;
+  }
+  button.pdfButton:hover{
+    background-color: green;
+    color: white;
   }

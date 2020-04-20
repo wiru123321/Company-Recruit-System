@@ -277,9 +277,9 @@ const NameComponent = () => {
                 onChange={handleChange}
                 value={values.education}
               >
-                <option value="Wyzsze"> Wyższe </option>
-                <option value="Srednie"> Średnie </option>
-                <option value="Podstawowe"> Podstawowe </option>
+                <option value="wyzsze"> Wyższe </option>
+                <option value="srednie"> Średnie </option>
+                <option value="zawodowe"> Zawodowe </option>
               </Field>
               <div className="errors">
                 {errors.education}

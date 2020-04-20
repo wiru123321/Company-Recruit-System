@@ -39,11 +39,11 @@ class DecisionFormComponent extends React.Component {
           className="addDecision"
           onClick={() => this.setState ({show: !this.state.show})}
         >
-          Oceń rekruta
+          OCEŃ REKRUTA
         </button>
         {this.state.show &&
           <div>
-            <label> Oceń rekruta</label>
+            <label>Oceń rekruta</label>
             <form>
               <textarea
                 className="description"
@@ -58,13 +58,18 @@ class DecisionFormComponent extends React.Component {
                 placeholder="Ocena"
                 onChange={this.handleChange}
               />
+              <select>
+                <option value="2">brak</option>
+                <option value="1">Pozytywnie</option>{/*value="positive" */}
+                <option value="0">Negatywnie</option>{/*value="negative" */}
+              </select>
               <button
                 onClick={event => {
                   event.preventDefault ();
                   this.handleDecissionSubmit ();
                 }}
               >
-                Prześlij ocenę
+                PRZEŚLIJ OCENĘ
               </button>
             </form>
           </div>}

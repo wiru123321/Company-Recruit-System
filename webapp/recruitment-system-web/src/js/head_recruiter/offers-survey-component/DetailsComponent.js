@@ -41,24 +41,51 @@ const getDetails = recruit => {
     <div className="listing">
       <label>Historia zatrudnienia: </label>
       <br />
-      {recruit.empolymentExperiences.map ((exp, id) => (
-        <div>
-          <label>Stanowisko:</label>
-          {exp.position} Od {exp.dateFrom} do {exp.dateTo}
-          <br />
-        </div>
-      ))}
+      <table>
+        <tr>
+          <th>Stanowisko</th>
+          <th>Od</th>
+          <th>Do</th>
+        </tr>
+        {recruit.empolymentExperiences.map ((exp, id) => (
+          <tr>
+            <th>{exp.position}</th>
+            <th>{exp.dateFrom}</th>
+            <th>{exp.dateTo}</th>
+          </tr>
+        ))}
+      </table>
       <label>Wykształcenie: </label>{recruit.educations}
+      <br />
       <label>Umiejętności: </label>
+      <table>
+        <tr>
+          <th>Umiejętność</th>
+          <th>Poziom</th>
+        </tr>
+        {recruit.skills.map ((s, id) => (
+          <tr>
+            <th>{s.skillName}</th>
+            <th>{s.skillLevel}</th>
+          </tr>
+        ))}
+      </table>
       <br />
-      {recruit.skills.map ((s, id) => (
-        <div> {s.skillName} {s.skillLevel} <br /> </div>
-      ))}
       <label>Szkolenia: </label>
-      <br />
-      {recruit.trainings.map ((t, id) => (
-        <div> {t.name} {t.description} {t.date} <br /> </div>
-      ))}
+      <table>
+        <tr>
+          <th>Szkolenie</th>
+          <th>Opis</th>
+          <th>Data</th>
+        </tr>
+        {recruit.trainings.map ((t, id) => (
+          <tr>
+            <th>{t.name}</th>
+            <th>{t.description}</th>
+            <th>{t.date}</th>
+          </tr>
+        ))}
+      </table>
     </div>
   );
 };
