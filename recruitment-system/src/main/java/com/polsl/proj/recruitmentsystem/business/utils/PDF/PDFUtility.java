@@ -60,6 +60,14 @@ public class PDFUtility {
         chunk3.setAlignment(Element.ALIGN_JUSTIFIED);
         innsertEmptyLines(3, chunk3);
 
+        Paragraph warningsHeader = new Paragraph();
+        innsertEmptyLines(2, warningsHeader);
+        warningsHeader.add(new Paragraph("Obowiązki Zleceniobiorcy", boldFont));
+
+        Paragraph chunk4 = new Paragraph(contractTemplate.warnings(), standardFont);
+        chunk4.setAlignment(Element.ALIGN_JUSTIFIED);
+        innsertEmptyLines(3, chunk4);
+
 
         Paragraph chunkFinal = new Paragraph("data i podpis Zleceniodawcy                   data i podpis Zleceeniobiorcy",smallFont);
         chunkFinal.setAlignment(Element.ALIGN_RIGHT);
@@ -73,6 +81,8 @@ public class PDFUtility {
             document.add(list);
             document.add(obligations);
             document.add(chunk3);
+            document.add(chunk4);
+            document.add(chunk4);
             document.add(chunkFinal);
 
 
