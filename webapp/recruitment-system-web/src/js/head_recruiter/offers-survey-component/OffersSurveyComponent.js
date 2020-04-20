@@ -10,17 +10,10 @@ class OffersSurveyComponent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      searchParams: {
-        position: '',
-        status: '',
-        result: '',
-        rate: '',
-      },
-
-      position: '', // Tymczasowe rozwiazanie
-      status: '',
-      result: '',
-      Rate: '',
+      paramsPosition: '', // Tymczasowe rozwiazanie
+      paramsStatus: '',
+      paramsResult: '',
+      paramsRate: '',
 
       container: [
         {
@@ -39,6 +32,11 @@ class OffersSurveyComponent extends React.Component {
           },
         },
       ],
+
+      errors: {
+        descriptionIsEmpty: true,
+        resultIsNotSelected: true,
+      },
     };
 
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
@@ -60,6 +58,7 @@ class OffersSurveyComponent extends React.Component {
   }
 
   getAllApplicationsFromApi () {
+    console.log ('log');
     CallApi.getAllApplications ()
       .then (response => {
         this.setState ((this.state.container = response.data));
@@ -73,10 +72,10 @@ class OffersSurveyComponent extends React.Component {
   getApplicationsBySearchParams () {
     var params = {
       //TYMCZASOWE
-      position: this.state.position,
-      status: this.state.status,
-      result: this.state.result,
-      rate: this.state.rate,
+      position: this.state.paramsPosition,
+      status: this.state.paramsStatus,
+      result: this.state.paramsResult,
+      rate: parseInt (this.state.paramsRate, 10),
     };
     console.log ('GEEEENG');
     console.log (params);
@@ -89,6 +88,10 @@ class OffersSurveyComponent extends React.Component {
     this.getAllApplicationsFromApi ();
   }
 
+  getResult (result) {
+    if (result === '1') return 'Przyjety';
+    else return 'Nieprzyjety';
+  }
   // #endregion members
 
   // #region render
@@ -103,28 +106,28 @@ class OffersSurveyComponent extends React.Component {
                 className="searchParamsForm"
                 name="position"
                 placeholder="Stanowisko"
-                value={this.state.position}
+                value={this.state.paramsPosition}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="status"
                 placeholder="Status"
-                value={this.state.status}
+                value={this.state.paramsStatus}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="result"
                 placeholder="Wynik"
-                value={this.state.result}
+                value={this.state.paramsResult}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
                 name="rate"
                 placeholder="Ocena"
-                value={this.state.rate}
+                value={this.state.paramsRate}
                 onChange={this.handleChange}
               />
               <button
@@ -148,13 +151,31 @@ class OffersSurveyComponent extends React.Component {
           {this.state.container.map ((json, id) => {
             return (
               <div className="listing listing-a">
-                <label>{json.recruit.firstName}</label>
-                <label>{json.recruit.lastName}</label>
+                <label style={{fontSize: '40px'}}>
+                  {json.recruit.firstName}
+                </label>
+                <label style={{fontSize: '40px'}}>
+                  {json.recruit.lastName}
+                </label>
                 <br />
-                <label>Status: {json.status}</label>
-                <label>Ocena: {json.rate.rate}</label>
+                {/*<label>Status: {json.status}</label>
+                <label>Ocena: {json.rate.rate}</label>*/}
                 <DetailsComponent recruit={json.recruit} />
-                <DecisionFormComponent id={json.id} />
+                {!json.rate.rate &&
+                  <DecisionFormComponent
+                    id={json.id}
+                    reload={this.getApplicationsBySearchParams}
+                  />}
+                {json.rate.rate &&
+                  <div style={{marginTop: '2%'}}>
+                    <p>
+                      Decyzja: {this.getResult (json.rate.rate)}
+                    </p>
+                    <p>Uzasadnienie: </p>
+                    <p style={{fontSize: '20px'}}>
+                      {json.decission.description}
+                    </p>
+                  </div>}
                 <button
                   className="pdfButton"
                   onClick={event => {
@@ -162,7 +183,7 @@ class OffersSurveyComponent extends React.Component {
                     CallApi.createPDF ();
                   }}
                 >
-                  GENEREUJ UMOWĘ
+                  GENERUJ UMOWĘ
                 </button>
 
               </div>

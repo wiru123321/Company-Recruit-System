@@ -7,7 +7,9 @@ table{
     background-color: #dddddd;
     color: black;
 }
-
+tbody{
+ background-color:  #ada5a5;
+}
 table, th, td{
     border-collapse: collapse;
 }
@@ -65,7 +67,7 @@ tr:nth-child(even) {
   }
 
   div.listing-a{
-    background-color: rgb(51, 52, 128);
+    background-color: wheat;
   }
   div.listing{
       padding: 10px;
@@ -73,10 +75,10 @@ tr:nth-child(even) {
       text-align: left;
       
       border: none;
-      color: white;
+      color: black;
   }
   div.listing-a:nth-child(even){
-    background-color: rgb(70, 72, 167);
+    background-color: rgb(247, 203, 123);
   }
   .listing label{
     margin-left: 10px;
@@ -85,32 +87,33 @@ tr:nth-child(even) {
 
   button.dropButton{
       width: 100%;
-      background-color: wheat;
+      background-color: blue;
       border: none;
-      color: black;
+      color: white;
   }
 
   button.dropButton:hover{
-    background-color: white;
-    color: black;
+    background-color: blue;
+    color: white;
   }
 
   button.addDecision{
     font-size: large;
     width: 100%;
     border: none;
-    background-color: wheat;
-    color: black;
+    background-color: blue;
+    color: white;
   }
 
   button.addDecision:hover{
-    background-color: white;
-    color: black;
+    background-color: blue;
+    color: white;
   }
 
   textarea.description{
-    margin-left: 5%;
-    width: 90%;
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 96%;
     height: 100px;
     padding: 0;
   }

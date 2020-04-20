@@ -187,8 +187,8 @@ const NameComponent = () => {
                           onClick={event =>
                             push ({
                               trainingName: '',
-                              trainingDate: '',
                               description: '',
+                              trainingDate: '',
                             })}
                         >
                           DODAJ
