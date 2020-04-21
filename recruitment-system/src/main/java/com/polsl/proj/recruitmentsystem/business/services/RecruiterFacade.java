@@ -21,7 +21,11 @@ import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRe
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Component
@@ -37,6 +41,7 @@ public class RecruiterFacade {
     private final ExperienceRepository experienceRepository;
     private final RecruiterRepository recruiterRepository;
 
+    private final String serverUrl = "F:\\serwer\\files";
 
     public void addNewRecruit(RecruitDTO dto) {
         /*Training training = new Training();
@@ -123,5 +128,11 @@ public class RecruiterFacade {
 
     public Recruiter findByName(String name) {
         return  recruiterRepository.findByFirstName(name).get();
+    }
+
+    public void saveFile(MultipartFile file) throws Exception{
+        byte[] bytes = file.getBytes();
+        Path path = Paths.get(serverUrl+file.getOriginalFilename());
+        Files.write(path,bytes);
     }
 }

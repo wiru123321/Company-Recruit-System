@@ -84,7 +84,7 @@ const getDetails = recruit => {
         <thead>
           <tr>
             <th>Szkolenie</th>
-            <th>Opis</th>
+            {/*<th>Opis</th>*/}
             <th>Data</th>
           </tr>
         </thead>
@@ -92,7 +92,7 @@ const getDetails = recruit => {
           {recruit.trainings.map ((t, id) => (
             <tr>
               <th>{t.name}</th>
-              <th>{t.description}</th>
+              {/*<th>{t.description}</th>*/}
               <th>{t.date}</th>
             </tr>
           ))}

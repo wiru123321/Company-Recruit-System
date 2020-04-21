@@ -6,7 +6,6 @@ import '../../../css/HeadRecruiterPage.css';
 import '../../../css/SurveyOffers.css';
 
 class OffersSurveyComponent extends React.Component {
-  // #region members
   constructor (props) {
     super (props);
     this.state = {
@@ -92,7 +91,6 @@ class OffersSurveyComponent extends React.Component {
     if (result === '1') return 'Przyjety';
     else return 'Nieprzyjety';
   }
-  // #endregion members
 
   // #region render
   render () {
@@ -104,28 +102,28 @@ class OffersSurveyComponent extends React.Component {
               <label>Wyszukaj</label>
               <input
                 className="searchParamsForm"
-                name="position"
+                name="paramsPosition"
                 placeholder="Stanowisko"
                 value={this.state.paramsPosition}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
-                name="status"
+                name="paramsStatus"
                 placeholder="Status"
                 value={this.state.paramsStatus}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
-                name="result"
+                name="paramsResult"
                 placeholder="Wynik"
                 value={this.state.paramsResult}
                 onChange={this.handleChange}
               />
               <input
                 className="searchParamsForm"
-                name="rate"
+                name="paramsRate"
                 placeholder="Ocena"
                 value={this.state.paramsRate}
                 onChange={this.handleChange}
