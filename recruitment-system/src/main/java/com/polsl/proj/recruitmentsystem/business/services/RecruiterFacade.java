@@ -12,6 +12,7 @@ import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Empolym
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Skill;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
+import com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.EducationRepository;
@@ -40,8 +41,8 @@ public class RecruiterFacade {
     private final SkillRepository skillRepository;
     private final ExperienceRepository experienceRepository;
     private final RecruiterRepository recruiterRepository;
+    private final FileUtility fileUtils;
 
-    private final String serverUrl = "F:\\serwer\\files";
 
     public void addNewRecruit(RecruitDTO dto) {
         /*Training training = new Training();
@@ -131,8 +132,6 @@ public class RecruiterFacade {
     }
 
     public void saveFile(MultipartFile file) throws Exception{
-        byte[] bytes = file.getBytes();
-        Path path = Paths.get(serverUrl+file.getOriginalFilename());
-        Files.write(path,bytes);
+        fileUtils.save(file,0);
     }
 }

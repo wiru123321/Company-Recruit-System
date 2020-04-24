@@ -25,7 +25,7 @@ class DecisionFormComponent extends React.Component {
   }
 
   reload () {
-    this.props.reload ();
+    // this.props.reload ();
   }
 
   handleDecissionSubmit () {
@@ -37,14 +37,14 @@ class DecisionFormComponent extends React.Component {
       var decission = {
         result: this.state.result,
         description: this.state.description,
-        jobApplicationId: this.state.id,
+        jobApplicationId: this.props.id,
         rate: parseInt (this.state.result, 10), // TO DO : POPRAWIC
       };
       console.log (JSON.stringify (decission));
       CallApi.sendDecission (decission)
         .then (response => console.log (response.data))
         .catch (e => console.log (e));
-      this.reload ();
+      // this.reload ();
     } else {
       //erros
     }
