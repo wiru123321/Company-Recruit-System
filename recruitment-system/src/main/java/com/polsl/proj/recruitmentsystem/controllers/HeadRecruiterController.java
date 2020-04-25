@@ -73,7 +73,7 @@ public class HeadRecruiterController {
 
         ByteArrayResource resource = fileUtility.read("plik.jpg");
         var headers = new HttpHeaders();
-        headers.add("attachment", "filename=umowa.jpg");
+        headers.add("attachment", "inline; filename = umowa.jpg");
         return  ResponseEntity
                 .ok()
                 .headers(headers)

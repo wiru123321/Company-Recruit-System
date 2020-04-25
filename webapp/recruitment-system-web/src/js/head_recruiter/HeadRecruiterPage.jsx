@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
 import search from '../../resources/search_list.png';
-import RecruitsSurvey from './RecruitsSurvey.jsx';
 import OffersSurvey from './offers-survey/OffersSurvey.jsx';
 import NewOffer from './NewOffer.jsx';
 import Help from './Help';
@@ -17,9 +16,6 @@ class HeadRecruiterPage extends React.Component {
       <div>
         <Router>
           <div className="sidenav">
-            <a>
-              <NavLink to="/head/surveyRecruits">Przeglądaj rekrutów</NavLink>
-            </a>
             <a>
               <NavLink to="/head/surveyOffers">
                 Przegladaj oferty zatrudnienia
@@ -38,7 +34,6 @@ class HeadRecruiterPage extends React.Component {
             </a>
           </div>
           <div className="main">
-            <AuthRoute path="/head/surveyRecruits" component={RecruitsSurvey} />
             <AuthRoute path="/head/surveyOffers" component={OffersSurvey} />
             <AuthRoute path="/head/addOffer" component={NewOffer} />
             <AuthRoute path="/head/help" component={Help} />

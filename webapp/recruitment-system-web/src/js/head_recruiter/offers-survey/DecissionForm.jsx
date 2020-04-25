@@ -9,9 +9,7 @@ class DecisionFormComponent extends React.Component {
     this.state = {
       result: '',
       description: '',
-      id: props.id,
       rate: '',
-
       show: false,
 
       errors: {

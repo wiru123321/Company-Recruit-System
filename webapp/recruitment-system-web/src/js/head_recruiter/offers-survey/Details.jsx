@@ -45,7 +45,7 @@ class DetailsComponent extends React.Component {
           href=""
           onClick={event => {
             event.preventDefault ();
-            CallApi.getFile ().then ().catch (e => console.log (e));
+            CallApi.getFile ();
           }}
         >
           GetFILE

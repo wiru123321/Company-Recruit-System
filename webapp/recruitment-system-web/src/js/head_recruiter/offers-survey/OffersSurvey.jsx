@@ -3,6 +3,7 @@ import CallApi from '../service/CallApi';
 import DecisionFormComponent from './DecissionForm';
 import DetailsComponent from './Details';
 import SearchParamsComponent from './SearchParams';
+import GeneratePDF from './GeneratePDF';
 import '../../../css/HeadRecruiterPage.css';
 import '../../../css/SurveyOffers.css';
 
@@ -10,6 +11,12 @@ class OffersSurveyComponent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
+      searchParams: {
+        paramsPosition: '', // Tymczasowe rozwiazanie
+        paramsStatus: '',
+        paramsResult: '',
+        paramsRate: '',
+      },
       container: [
         {
           id: '',
@@ -31,8 +38,28 @@ class OffersSurveyComponent extends React.Component {
 
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
     this.handleChange = this.handleChange.bind (this);
+    this.callbackOnPositionChange = this.callbackOnPositionChange.bind (this);
   }
 
+  callbackOnPositionChange (id, param) {
+    switch (id) {
+      case 0:
+        this.setState ({paramsPosition: param});
+        break;
+      case 1:
+        this.setState ({paramsStatus: param});
+        break;
+      case 2:
+        this.setState ({paramsResult: param});
+        break;
+      case 3:
+        this.setState ({paramsRate: param});
+        break;
+      default:
+        break;
+    }
+  }
+  //reload()
   handleChange (event) {
     this.setState ({
       [event.target.name]: event.target.value,
@@ -69,7 +96,11 @@ class OffersSurveyComponent extends React.Component {
     return (
       <div>
         <div className="container" />
-        <SearchParamsComponent callback={this.searchParamsCallback} />
+        <SearchParamsComponent
+          callback={this.searchParamsCallback}
+          callbackChange={this.callbackOnPositionChange}
+          searchParams={this.state.searchParams}
+        />
         <div>
           {this.state.container.map ((json, id) => {
             return (
@@ -90,15 +121,9 @@ class OffersSurveyComponent extends React.Component {
                       {json.decission.description}
                     </p>
                   </div>}
-                <button
-                  className="pdfButton"
-                  onClick={event => {
-                    event.preventDefault ();
-                    CallApi.createPDF ();
-                  }}
-                >
-                  GENERUJ UMOWĘ
-                </button>
+                <div>
+                  <GeneratePDF />
+                </div>
               </div>
             );
           })}

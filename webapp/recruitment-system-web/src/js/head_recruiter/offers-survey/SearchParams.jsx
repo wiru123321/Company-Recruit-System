@@ -10,24 +10,24 @@ class SearchParamsComponent extends React.Component {
       paramsResult: '',
       paramsRate: '',
     };
-    this.handleChange = this.handleChange.bind (this);
     this.getApplicationsBySearchParams = this.getApplicationsBySearchParams.bind (
       this
     );
+    this.handleChange = this.handleChange.bind (this);
   }
-
-  handleChange (event) {
+  handleChange (id, event) {
     this.setState ({
       [event.target.name]: event.target.value,
     });
+    this.props.callbackChange (id, event.target.value);
   }
   getApplicationsBySearchParams () {
     var params = {
       //TYMCZASOWE
-      position: this.state.paramsPosition,
-      status: this.state.paramsStatus,
-      result: this.state.paramsResult,
-      rate: parseInt (this.state.paramsRate, 10),
+      position: this.props.searchParams.paramsPosition,
+      status: this.props.searchParamsparamsStatus,
+      result: this.props.searchParamsparamsResult,
+      rate: parseInt (this.props.searchParams.paramsRate, 10),
     };
     console.log ('GEEEENG');
     console.log (params);
@@ -45,28 +45,28 @@ class SearchParamsComponent extends React.Component {
             name="paramsPosition"
             placeholder="Stanowisko"
             value={this.state.paramsPosition}
-            onChange={this.handleChange}
+            onChange={event => this.handleChange (0, event)}
           />
           <input
             className="searchParamsForm"
             name="paramsStatus"
             placeholder="Status"
             value={this.state.paramsStatus}
-            onChange={this.handleChange}
+            onChange={event => this.handleChange (1, event)}
           />
           <input
             className="searchParamsForm"
             name="paramsResult"
             placeholder="Wynik"
             value={this.state.paramsResult}
-            onChange={this.handleChange}
+            onChange={event => this.handleChange (2, event)}
           />
           <input
             className="searchParamsForm"
             name="paramsRate"
             placeholder="Ocena"
             value={this.state.paramsRate}
-            onChange={this.handleChange}
+            onChange={event => this.handleChange (3, event)}
           />
           <button
             className="searchParamsForm"
