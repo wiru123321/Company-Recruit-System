@@ -42,7 +42,7 @@ class DecisionFormComponent extends React.Component {
       CallApi.sendDecission (decission)
         .then (response => console.log (response.data))
         .catch (e => console.log (e));
-      // this.reload ();
+      this.props.reload ();
     } else {
       //erros
     }

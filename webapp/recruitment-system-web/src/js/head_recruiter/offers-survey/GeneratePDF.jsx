@@ -8,7 +8,6 @@ class GeneratePDF extends React.Component {
       agreement: '',
       salary: '',
       position: '',
-
       agreementErrors: '',
       salaryErrors: '',
       positionErrors: '',

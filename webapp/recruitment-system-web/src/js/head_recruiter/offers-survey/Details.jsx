@@ -41,7 +41,7 @@ class DetailsComponent extends React.Component {
         <button className="dropButton" onClick={this.toggleShow}>
           {this.state.dropText}
         </button>
-        <a
+        {/*<a
           href=""
           onClick={event => {
             event.preventDefault ();
@@ -49,7 +49,7 @@ class DetailsComponent extends React.Component {
           }}
         >
           GetFILE
-        </a>
+        </a>*/}
         {this.state.show && getDetails (this.props.recruit)}
       </div>
     );

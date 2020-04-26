@@ -39,6 +39,7 @@ class OffersSurveyComponent extends React.Component {
     this.getAllApplicationsFromApi = this.getAllApplicationsFromApi.bind (this);
     this.handleChange = this.handleChange.bind (this);
     this.callbackOnPositionChange = this.callbackOnPositionChange.bind (this);
+    this.reloadOnDecissionSubmit = this.reloadOnDecissionSubmit.bind (this);
   }
 
   callbackOnPositionChange (id, param) {
@@ -91,6 +92,16 @@ class OffersSurveyComponent extends React.Component {
     this.setState ({container: childJSON});
   };
 
+  reloadOnDecissionSubmit () {
+    console.log ('callback');
+    CallApi.getSpecifiedAppliacations (
+      this.state.searchParams
+    ).then (response => {
+      this.setState ({container: response.data});
+      console.log (response.data);
+    });
+  }
+
   // #region render
   render () {
     return (
@@ -109,7 +120,7 @@ class OffersSurveyComponent extends React.Component {
                 {!json.rate.rate &&
                   <DecisionFormComponent
                     id={json.id}
-                    // reload={this.getApplicationsBySearchParams}
+                    reload={this.reloadOnDecissionSubmit}
                   />}
                 {json.rate.rate &&
                   <div style={{marginTop: '2%'}}>
