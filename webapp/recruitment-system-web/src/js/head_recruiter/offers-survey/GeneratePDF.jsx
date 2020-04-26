@@ -8,6 +8,7 @@ class GeneratePDF extends React.Component {
       agreement: '',
       salary: '',
       position: '',
+      dateFrom: '',
       agreementErrors: '',
       salaryErrors: '',
       positionErrors: '',
@@ -41,6 +42,14 @@ class GeneratePDF extends React.Component {
         <p>{this.state.salaryErrors}</p>
         <input
           type="text"
+          name="dateFrom"
+          placeholder="Data od"
+          value={this.state.dateFrom}
+          onChange={this.handleChange}
+        />
+        <p></p>
+        <input
+          type="text"
           name="position"
           placeholder="Stanowisko"
           value={this.state.position}
@@ -56,7 +65,7 @@ class GeneratePDF extends React.Component {
               this.state.salary &&
               this.state.position
             ) {
-              CallApi.createPDF ();
+              CallApi.createPDF (this.state);
               this.setState ({
                 agreementErrors: '',
                 salaryErrors: '',
