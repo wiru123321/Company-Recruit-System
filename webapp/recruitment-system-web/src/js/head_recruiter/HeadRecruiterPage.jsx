@@ -1,11 +1,9 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
 import search from '../../resources/search_list.png';
-import RecruitsSurveyComponent from './RecruitsSurveyComponent';
-import OffersSurveyComponent
-  from './offers-survey-component/OffersSurveyComponent.js';
-import NewOfferComponent from './NewOfferComponent';
-import HelpComponent from './HelpComponent';
+import OffersSurvey from './offers-survey/OffersSurvey.jsx';
+import NewOffer from './NewOffer.jsx';
+import Help from './Help';
 import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
@@ -18,9 +16,6 @@ class HeadRecruiterPage extends React.Component {
       <div>
         <Router>
           <div className="sidenav">
-            <a>
-              <NavLink to="/head/surveyRecruits">Przeglądaj rekrutów</NavLink>
-            </a>
             <a>
               <NavLink to="/head/surveyOffers">
                 Przegladaj oferty zatrudnienia
@@ -39,16 +34,9 @@ class HeadRecruiterPage extends React.Component {
             </a>
           </div>
           <div className="main">
-            <AuthRoute
-              path="/head/surveyRecruits"
-              component={RecruitsSurveyComponent}
-            />
-            <AuthRoute
-              path="/head/surveyOffers"
-              component={OffersSurveyComponent}
-            />
-            <AuthRoute path="/head/addOffer" component={NewOfferComponent} />
-            <AuthRoute path="/head/help" component={HelpComponent} />
+            <AuthRoute path="/head/surveyOffers" component={OffersSurvey} />
+            <AuthRoute path="/head/addOffer" component={NewOffer} />
+            <AuthRoute path="/head/help" component={Help} />
 
           </div>
         </Router>

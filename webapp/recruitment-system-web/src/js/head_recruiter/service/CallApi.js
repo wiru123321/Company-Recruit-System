@@ -2,6 +2,10 @@ import React from 'react';
 import axios from 'axios';
 
 class CallHeadApi {
+  getFile () {
+    window.open (`http://localhost:8080/head/getFile`);
+  }
+
   createPDF () {
     window.open (`http://localhost:8080/head/generatePDF`);
   }

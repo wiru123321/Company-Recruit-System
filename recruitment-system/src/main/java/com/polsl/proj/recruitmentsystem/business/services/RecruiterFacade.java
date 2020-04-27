@@ -12,6 +12,7 @@ import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Empolym
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Skill;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
+import com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.EducationRepository;
@@ -21,7 +22,11 @@ import com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRe
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Component
@@ -36,6 +41,7 @@ public class RecruiterFacade {
     private final SkillRepository skillRepository;
     private final ExperienceRepository experienceRepository;
     private final RecruiterRepository recruiterRepository;
+    private final FileUtility fileUtils;
 
 
     public void addNewRecruit(RecruitDTO dto) {
@@ -123,5 +129,9 @@ public class RecruiterFacade {
 
     public Recruiter findByName(String name) {
         return  recruiterRepository.findByFirstName(name).get();
+    }
+
+    public void saveFile(MultipartFile file) throws Exception{
+        fileUtils.save(file,0);
     }
 }

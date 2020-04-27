@@ -55,25 +55,6 @@ class LoginComponent extends React.Component {
       .catch (() => {
         this.setState ({hasLoginFailed: true});
       });
-    /*  console.log (this.state.username, this.state.password);
-    if (this.state.username === 'rekruter' && this.state.password === 'admin') {
-      this.props.history.push ('/recruiter');
-      RecruiterAuthenticationService.registerSuccessfullRecruiterLogin (
-        this.state.username,
-        this.state.password
-      );
-    } else if (
-      this.state.username === 'kierownik' &&
-      this.state.password === 'admin'
-    ) {
-      this.props.history.push ('/head');
-      RecruiterAuthenticationService.registerSuccessfullHeadLogin (
-        this.state.username,
-        this.state.password
-      );
-    } else {
-      this.setState ({hasLoginFailed: true});
-    }*/
   }
 
   render () {

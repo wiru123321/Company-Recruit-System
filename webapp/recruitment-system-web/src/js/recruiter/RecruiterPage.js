@@ -72,7 +72,7 @@ class RecruiterPage extends React.Component {
               <div>
                 {/* TO DO: Naprawic autentykacje */}
                 <Route path="/recruiter/register" component={RegisterForm} />
-                <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
+                <Route path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
 
               </div>

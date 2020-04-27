@@ -8,6 +8,9 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/recruiter")
@@ -40,5 +43,14 @@ public class RecruiterController {
     public String addTraining(@RequestBody TrainingPOJO dto){
         recruiterFacade.addTraining(dto);
         return "recruiter/main";
+    }
+
+    @PostMapping("/addFiles")
+    public void addFiles(@RequestParam MultipartFile file){
+        try {
+            recruiterFacade.saveFile(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
