@@ -6,19 +6,10 @@ class CallHeadApi {
     window.open (`http://localhost:8080/head/getFile`);
   }
 
-  /*createPDF () {
-    window.open (`http://localhost:8080/head/generatePDF`);
-  }*/
-  createPDF (contractParams) {
-    let dto = {
-      contract: contractParams.agreement,
-      salary: contractParams.salary,
-      dateFrom: contractParams.dateFrom,
-      dateTo: "27 kwietnia 2020"
-    }
-     axios ({
+  /* generatePDF (contractParams) {
+    return axios({
       method: 'post',
-      url: `http://localhost:8080/head/generatePDF`,
+      url: 'http://localhost:8080/head/generatePDF',
       data: dto,
       header: {
         Accept: 'application/json',
@@ -27,6 +18,25 @@ class CallHeadApi {
     }).then(() => {
       window.open (`http://localhost:8080/head/recievePDF`);
     });   
+  }*/
+  createPDF (contractParams) {
+    let dto = {
+      contract: contractParams.contract,
+      salary: contractParams.salary,
+      dateFrom: contractParams.dateFrom,
+      dateTo: contractParams.dateTo,
+    };
+    axios ({
+      method: 'post',
+      url: `http://localhost:8080/head/generatePDF`,
+      data: dto,
+      header: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then (() => {
+      window.open (`http://localhost:8080/head/recievePDF`);
+    });
   }
 
   sendDecission (decission) {

@@ -5,13 +5,12 @@ class GeneratePDF extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      agreement: '',
+      contract: '',
       salary: '',
-      position: '',
       dateFrom: '',
-      agreementErrors: '',
-      salaryErrors: '',
-      positionErrors: '',
+      dateTo: '',
+      show: false,
+      didSubmit: false,
     };
     this.handleChange = this.handleChange.bind (this);
   }
@@ -24,65 +23,90 @@ class GeneratePDF extends React.Component {
   render () {
     return (
       <div>
-        <input
-          type="text"
-          name="agreement"
-          placeholder="Umowa"
-          value={this.state.agreement}
-          onChange={this.handleChange}
-        />
-        <p>{this.state.agreementErrors}</p>
-        <input
-          type="number"
-          name="salary"
-          placeholder="Płaca"
-          value={this.state.salary}
-          onChange={this.handleChange}
-        />
-        <p>{this.state.salaryErrors}</p>
-        <input
-          type="text"
-          name="dateFrom"
-          placeholder="Data od"
-          value={this.state.dateFrom}
-          onChange={this.handleChange}
-        />
-        <p></p>
-        <input
-          type="text"
-          name="position"
-          placeholder="Stanowisko"
-          value={this.state.position}
-          onChange={this.handleChange}
-        />
-        <p>{this.state.positionErrors}</p>
         <button
-          className="pdfButton"
-          onClick={event => {
-            event.preventDefault ();
-            if (
-              this.state.agreement &&
-              this.state.salary &&
-              this.state.position
-            ) {
-              CallApi.createPDF (this.state);
-              this.setState ({
-                agreementErrors: '',
-                salaryErrors: '',
-                positionErrors: '',
-              });
-            } else {
-              if (this.state.agreement === '')
-                this.setState ({agreementErrors: 'Pole nie moze byc puste'});
-              if (this.state.salary === '')
-                this.setState ({salaryErrors: 'Pole nie moze byc puste'});
-              if (this.state.position === '')
-                this.setState ({positionErrors: 'Pole nie moze byc puste'});
-            }
+          className="addDecision"
+          onClick={() => {
+            this.setState ({show: !this.state.show});
           }}
         >
-          GENERUJ UMOWĘ
+          Generuj umowę
         </button>
+        {this.state.show &&
+          <div>
+            <select
+              value={this.state.contract}
+              name="contract"
+              onChange={this.handleChange}
+            >
+              <option value="">-</option>
+              <option value="zlecenie">Zlecenie</option>
+              <option value="praca">Umowa o pracę</option>
+              <option value="dzielo">Umowa o dzieło</option>
+              <option value="staz">Staż</option>
+            </select>
+            {this.state.didSubmit &&
+              !this.state.contract &&
+              <p style={{fontSize: '12px', color: 'red'}}>
+                Należy wybrać rodzaj zatrudnienia.
+              </p>}
+            <br />
+            <input
+              type="number"
+              name="salary"
+              placeholder="Płaca"
+              value={this.state.salary}
+              onChange={this.handleChange}
+            />
+            {this.state.didSubmit &&
+              !this.state.salary &&
+              <p style={{fontSize: '12px', color: 'red'}}>
+                Należy wybrać wysokość pensji.
+              </p>}
+            <br />
+            <input
+              type="date"
+              name="dateFrom"
+              placeholder="Data rozpoczęcia"
+              value={this.state.dateFrom}
+              onChange={this.handleChange}
+            />
+            {this.state.didSubmit &&
+              !this.state.dateFrom &&
+              <p style={{fontSize: '12px', color: 'red'}}>
+                Należy wybrać datę rozpoczęcia umowy.
+              </p>}
+            <br />
+            <input
+              type="date"
+              name="dateTo"
+              placeholder="Data zakończenia"
+              value={this.state.dateTo}
+              onChange={this.handleChange}
+            />
+            {this.state.didSubmit &&
+              !this.state.dateTo &&
+              <p style={{fontSize: '12px', color: 'red'}}>
+                Należy wybrać datę zakończenia umowy.
+              </p>}
+            <br />
+            <button
+              className="pdfButton"
+              onClick={event => {
+                event.preventDefault ();
+                this.setState ({didSubmit: true});
+                if (
+                  this.state.contract &&
+                  this.state.salary &&
+                  this.state.dateFrom &&
+                  this.state.dateTo
+                ) {
+                  CallApi.createPDF (this.state);
+                }
+              }}
+            >
+              GENERUJ UMOWĘ
+            </button>
+          </div>}
       </div>
     );
   }
