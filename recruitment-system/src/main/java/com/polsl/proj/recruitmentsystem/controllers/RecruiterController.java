@@ -25,13 +25,6 @@ public class RecruiterController {
         return "recruiter/main";
     }
 
-  /*  @PostMapping("/addFullRecruit")
-    @ResponseBody
-    public String addFullRecruit(@RequestPart FullRecruitDTO fullRecruitDTO){ TODO:Inne DTO
-        recruiterFacade.addNewRecruit(fullRecruitDTO);
-        return "W bazie danych zapisano:"+ fullRecruitDTO.getFirstName();
-    }*/
-
     @PostMapping("/addFullApplication")
     @ResponseBody
     public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart InputRecruitAttributesDTO attributesDTO){
