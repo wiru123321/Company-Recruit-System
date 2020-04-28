@@ -17,6 +17,7 @@ class ContractTemplate {
 
     private String salary = "10";
     private String employmnetType;
+    private String duration =  "na czas nieokreślony.";
 
     void contractTitle(String contract) {
         switch (contract) {
@@ -44,7 +45,7 @@ class ContractTemplate {
     }
 
     String contractingPartiesInfo() {
-        return "Zawarta w dniu  19.04.2020 pomiędzy RecruitmentSystem Sp. z o.o, ul.Starościńska 1, 82-200 Malbork, NIP: 6578930274819 reprezentowana przez kierownika działu kadr Jana Zatrudniacza, zwanego dalej Zleceniodawcą a Kasią Zatrudnianą, PESEL 380513875934 zwanej dalej Zleceniobiorcą na czas nieokreślony.";
+        return "Zawarta w dniu  19.04.2020 pomiędzy RecruitmentSystem Sp. z o.o, ul.Starościńska 1, 82-200 Malbork, NIP: 6578930274819 reprezentowana przez kierownika działu kadr Jana Zatrudniacza, zwanego dalej Zleceniodawcą a Kasią Zatrudnianą, PESEL 380513875934 zwanej dalej Zleceniobiorcą "+ duration;
     }
 
     List<String> employeeResponibilities() {
@@ -68,5 +69,8 @@ class ContractTemplate {
     public void selectOptions(ContractPOJO dto) {
         this.salary = dto.getSalary();
         this.contractTitle(dto.getContract());
+        if(!dto.getDateFrom().equals("") && !dto.getDateTo().equals("")){
+            duration = "w okresie od "+dto.getDateFrom()+" do "+dto.getDateTo();
+        }
     }
 }

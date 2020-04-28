@@ -18,75 +18,37 @@ import java.io.*;
 public class PDFUtility {
 
     private final ContractTemplate contractTemplate = new ContractTemplate();
-    private  ByteArrayInputStream contractFile;
-    private Document document = new Document();
+
+    private static Font headFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 25, Font.BOLD);
+    private static Font standardFont, boldFont, smallFont;
+    private BaseFont helvetica;
+    {
+        try {
+            helvetica = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
+            smallFont = new Font(helvetica, 9);
+            standardFont = new Font(helvetica, 12);
+            boldFont = new Font(helvetica, 12, Font.BOLD);
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public ByteArrayInputStream createSimplePDFFile() {
-        Document  document = new Document();
+        Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Font headFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 25, Font.BOLD);
         try {
             PdfWriter.getInstance(document, out);
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        BaseFont helvetica = null;
-        try {
-            helvetica = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
-        } catch (DocumentException | IOException e) {
-            e.printStackTrace();
-        }
-        Font standardFont = new Font(helvetica, 12);
-        Font boldFont = new Font(helvetica, 12,Font.BOLD);
-        Font smallFont = new Font(helvetica, 9);
-
-        Paragraph chunk = new Paragraph(contractTemplate.getEmploymnetType(), headFont);
-        insertEmptyLines(2, chunk);
-        chunk.setAlignment(Element.ALIGN_CENTER);
-        Paragraph chunk2 = new Paragraph(contractTemplate.contractingPartiesInfo(), standardFont);
-        chunk2.setAlignment(Element.ALIGN_JUSTIFIED);
-        insertEmptyLines(3, chunk2);
-
-        Paragraph responsibilities = new Paragraph("Obowiązki Zleceniobiorcy", boldFont);
-
-        Chunk bullet = new Chunk("\u2022");
-        List list = new List(List.UNORDERED);
-        list.setListSymbol(bullet);
-
-        for (String responsibility : contractTemplate.employeeResponibilities()) {
-            list.add(responsibility);
-        }
-
-        Paragraph obligations = new Paragraph();
-        insertEmptyLines(2, obligations);
-        obligations.add(new Paragraph("Obowiązki Zleceniobiorcy", boldFont));
-
-        Paragraph chunk3 = new Paragraph(contractTemplate.employerObligations(), standardFont);
-        chunk3.setAlignment(Element.ALIGN_JUSTIFIED);
-        insertEmptyLines(3, chunk3);
-
-        Paragraph warningsHeader = new Paragraph();
-        insertEmptyLines(2, warningsHeader);
-        warningsHeader.add(new Paragraph("Obowiązki Zleceniobiorcy", boldFont));
-
-        Paragraph chunk4 = new Paragraph(contractTemplate.warnings(), standardFont);
-        chunk4.setAlignment(Element.ALIGN_JUSTIFIED);
-        insertEmptyLines(3, chunk4);
-
-        Paragraph chunkFinal = new Paragraph("data i podpis Zleceniodawcy                   data i podpis Zleceeniobiorcy",smallFont);
-        chunkFinal.setAlignment(Element.ALIGN_RIGHT);
-
         document.open();
         try {
-            document.add(chunk);
-            document.add(chunk2);
-            document.add(responsibilities);
-            document.add(list);
-            document.add(obligations);
-            document.add(chunk3);
-            document.add(chunk4);
-            document.add(chunk4);
-            document.add(chunkFinal);
+            addHeader(document);
+            addInitials(document);
+            addEmployeeDuties(document);
+            addEmployerObligations(document);
+            addLawIssues(document);
+            addFinals(document);
         } catch (DocumentException e) {
             e.printStackTrace();
         }
@@ -94,6 +56,61 @@ public class PDFUtility {
         return new ByteArrayInputStream(out.toByteArray());
     }
 
+    private void addHeader(Document document) throws DocumentException {
+        Paragraph chunk = new Paragraph(contractTemplate.getEmploymnetType(), headFont);
+        insertEmptyLines(2, chunk);
+        chunk.setAlignment(Element.ALIGN_CENTER);
+        document.add(chunk);
+    }
+
+    private void addInitials(Document document) throws DocumentException {
+        Paragraph chunk2 = new Paragraph(contractTemplate.contractingPartiesInfo(), standardFont);
+        chunk2.setAlignment(Element.ALIGN_JUSTIFIED);
+        insertEmptyLines(3, chunk2);
+        document.add(chunk2);
+    }
+    private void addEmployeeDuties(Document document) throws DocumentException {
+        Paragraph responsibilities = new Paragraph("Obowiązki Zleceniobiorcy", boldFont);
+
+        Chunk bullet = new Chunk("\u2022");
+        List list = new List(List.UNORDERED);
+        list.setListSymbol(bullet);
+        for (String responsibility : contractTemplate.employeeResponibilities()) {
+            list.add(responsibility);
+        }
+        document.add(responsibilities);
+        document.add(list);
+    }
+
+    private void addEmployerObligations(Document document) throws DocumentException {
+        Paragraph obligations = new Paragraph();
+        insertEmptyLines(2, obligations);
+        obligations.add(new Paragraph("Zobowiązania Zleceniodawcy", boldFont));
+
+        Paragraph chunk3 = new Paragraph(contractTemplate.employerObligations(), standardFont);
+        chunk3.setAlignment(Element.ALIGN_JUSTIFIED);
+        insertEmptyLines(3, chunk3);
+        document.add(obligations);
+        document.add(chunk3);
+    }
+
+    private void addLawIssues(Document document) throws DocumentException {
+        Paragraph warningsHeader = new Paragraph();
+        insertEmptyLines(2, warningsHeader);
+        warningsHeader.add(new Paragraph("Obostrzenia prawne", boldFont));
+
+        Paragraph chunk4 = new Paragraph(contractTemplate.warnings(), standardFont);
+        chunk4.setAlignment(Element.ALIGN_JUSTIFIED);
+        insertEmptyLines(3, chunk4);
+        document.add(warningsHeader);
+        document.add(chunk4);
+    }
+
+    private void addFinals(Document document) throws DocumentException {
+        Paragraph chunkFinal = new Paragraph("data i podpis Zleceniodawcy                   data i podpis Zleceeniobiorcy", smallFont);
+        chunkFinal.setAlignment(Element.ALIGN_RIGHT);
+        document.add(chunkFinal);
+    }
 
     private void insertEmptyLines(int count, Paragraph paragraph) {
         for (int i = 0; i < count; i++) {
