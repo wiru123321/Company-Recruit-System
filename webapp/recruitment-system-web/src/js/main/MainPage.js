@@ -12,9 +12,10 @@ class MainPage extends React.Component {
         <div className="header col-12 form">
           <div className="col-2" />
           <div className="col-8">
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt="logo" />
           </div>
-          <LoginCompnent />
+            <LoginCompnent />
+        
         </div>
         <ContentComponent />
       </div>
