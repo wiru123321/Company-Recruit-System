@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 @NoArgsConstructor
 public class FileUtility {
 
-    private final String serverUrl = "F:\\serwer\\files\\";
+    private final String serverUrl = "C:\\UmowyProjekt\\";
 
     public void save(MultipartFile file, int id) throws IOException {
         byte[] bytes = file.getBytes();
