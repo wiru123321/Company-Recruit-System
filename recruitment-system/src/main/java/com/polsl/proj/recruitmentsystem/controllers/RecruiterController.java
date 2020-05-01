@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/recruiter")
@@ -25,12 +24,6 @@ public class RecruiterController {
         return "recruiter/main";
     }
 
-  /*  @PostMapping("/addFullRecruit")
-    @ResponseBody
-    public String addFullRecruit(@RequestPart FullRecruitDTO fullRecruitDTO){ TODO:Inne DTO
-        recruiterFacade.addNewRecruit(fullRecruitDTO);
-        return "W bazie danych zapisano:"+ fullRecruitDTO.getFirstName();
-    }*/
 
     @PostMapping("/addFullApplication")
     @ResponseBody
