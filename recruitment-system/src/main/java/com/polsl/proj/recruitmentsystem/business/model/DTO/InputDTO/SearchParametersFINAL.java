@@ -10,10 +10,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecruiterDTO {
+public class SearchParametersFINAL {
 
+    private String position;
+    private String status;
+    private Integer result;
+    private String rate;
     private String firstName;
     private String lastName;
-    private String password;
-    private String type;
 }

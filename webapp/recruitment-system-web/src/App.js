@@ -6,6 +6,8 @@ import RecruiterAuthRoute from './js/serivce/RecruiterAuthenticatedRoute';
 import HeadAuthRoute from './js/serivce/HeadAuthenticatedRoute';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import AdminAuthenticatedRoute from './js/serivce/AdminAuthenticatedRoute.js';
+import AdminPage from './js/admin/AdminPage.jsx';
 
 class App extends React.Component {
   constructor (props) {
@@ -20,6 +22,7 @@ class App extends React.Component {
             <Route path="/login" component={MainPage} />
             <RecruiterAuthRoute path="/recruiter" component={RecruiterPage} />
             <HeadAuthRoute path="/head" component={HeadRecruiterPage} />
+            <AdminAuthenticatedRoute path="/admin" component={AdminPage} />
           </Switch>
         </Router>
       </div>

@@ -2,6 +2,7 @@ package com.polsl.proj.recruitmentsystem.business.services;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
@@ -30,14 +31,16 @@ import java.util.List;
 @AllArgsConstructor
 class HeadRecruiterService {
 
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
     private final HeadRecruiterRepository headRecruiterRepository;
     private final JobApplicationRepository jobApplicationRepository;
     private final RateRepository rateRepository;
     private final DecissionRepository decissionRepository;
+    private CriteriaBuilder builder;
+
+
 
     List<JobOutDTO> getFilteredJobApplications(SearchParametersDTO dto) {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
         Predicate hasPosition,hasStatus,hasResult, hasRate;
@@ -63,7 +66,7 @@ class HeadRecruiterService {
         return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
     }
 
-    public void addDecission(InputDecissionDTO dto) {
+     void addDecission(InputDecissionDTO dto) {
         JobApplication jobApplication = jobApplicationRepository.getByApplicationId(dto.getJobApplicationID());
         Decission decission = new Decission();
         decission.setDescription(dto.getDescription());
@@ -77,7 +80,7 @@ class HeadRecruiterService {
     }
 
 
-    public HeadRecruiter findByName(String name) {
+     HeadRecruiter findByName(String name) {
         if(headRecruiterRepository.findByFirstName(name).isPresent()) {
             return headRecruiterRepository.findByFirstName(name).get();
         }
@@ -86,7 +89,7 @@ class HeadRecruiterService {
         }
     }
 
-    public List<JobOutDTO> findAll() {
+     List<JobOutDTO> findAll() {
         List<JobApplication> results =   jobApplicationRepository.findAll();
         return createJobOutDTOFromResult(results);
     }
@@ -100,5 +103,9 @@ class HeadRecruiterService {
             dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(),result.getStatus(),decissionOutDTO,rateOutDTO,recruitOutDTO));
         }
         return  dtos;
+    }
+
+     void startNewRecrutation(NewRecrutationDTO dto) {
+        // TODO IMPLEMENT
     }
 }

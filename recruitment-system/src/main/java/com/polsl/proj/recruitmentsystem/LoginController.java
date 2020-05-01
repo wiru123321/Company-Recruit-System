@@ -5,6 +5,7 @@ import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.services.AdminFacade;
 import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.services.RecruiterFacade;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +16,12 @@ import java.security.Principal;
 
 @CrossOrigin(origins = { "http://localhost:3000","http://localhost:4200" })
 @RestController
+@AllArgsConstructor
 public class LoginController {
 
-    @Autowired
-    HeadRecruiterFacade headRecruiterFacade;
-    @Autowired
-    RecruiterFacade recruiterFacade;
-    @Autowired
-    AdminFacade adminFacade;
+    private  final  HeadRecruiterFacade headRecruiterFacade;
+    private  final RecruiterFacade recruiterFacade;
+    private  final AdminFacade adminFacade;
 
     @GetMapping(path = "/login")
     public String loginSuccessful(Principal principal){
@@ -30,7 +29,12 @@ public class LoginController {
         Object user;
         user =  headRecruiterFacade.findByName(name);
          if(user == null){
-            user= recruiterFacade.findByName(name);
+            try {
+                user = recruiterFacade.findByName(name);
+            }
+            catch(NullPointerException e){
+                e.printStackTrace();
+            }
         }
          if(user == null){
              user= adminFacade.findByName(name);

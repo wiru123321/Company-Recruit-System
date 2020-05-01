@@ -2,6 +2,7 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
@@ -94,6 +95,13 @@ public class HeadRecruiterController {
     @ResponseBody
     public String addDecission(@RequestBody InputDecissionDTO dto) {
         headRecruiterFacade.addDecission(dto);
+        return "ok";
+    }
+
+    @PostMapping("/startRecrutation")
+    @ResponseBody
+    public String startNewRecrutation(@RequestBody NewRecrutationDTO dto) {
+        headRecruiterFacade.startNewRecrutation(dto);
         return "ok";
     }
 }

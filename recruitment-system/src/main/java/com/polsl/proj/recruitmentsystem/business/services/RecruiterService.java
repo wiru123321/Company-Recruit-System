@@ -2,9 +2,16 @@ package com.polsl.proj.recruitmentsystem.business.services;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputRecruitAttributesDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.RecruitDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ExperiencePOJO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.SkillPOJO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
+import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Education;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.EmpolymentExperience;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Skill;
@@ -22,6 +29,12 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -35,8 +48,10 @@ public class RecruiterService {
     private final SkillRepository skillRepository;
     private final ExperienceRepository experienceRepository;
     private final RecruiterRepository recruiterRepository;
+    private final EntityManager entityManager;
+    private  CriteriaBuilder builder;
 
-    public boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
+     boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
         Recruit recruit = new Recruit();
         recruit.setLastName(recruitDTO.getLastName());
         recruit.setFirstName(recruitDTO.getFirstName());
@@ -95,5 +110,65 @@ public class RecruiterService {
             educationRepository.save(education);
             recruit.addEducation(education);
         }
+    }
+
+    List<JobOutDTO> findAllMatching(SearchParametersFINAL dto) {
+        builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
+        Root<JobApplication> root = query.from(JobApplication.class);
+        Predicate hasFirstName,hasLastName,hasPosition,hasStatus,hasResult, hasRate;
+        List<Predicate> predicates = new LinkedList<>();
+        if (dto.getFirstName() != null && !dto.getFirstName().equals("")) {
+            hasFirstName = builder.equal(root.get("first_name"), dto.getFirstName());
+            predicates.add(hasFirstName);
+        }
+        if (dto.getLastName() != null && !dto.getLastName().equals("")) {
+            hasLastName = builder.equal(root.get("position"), dto.getLastName());
+            predicates.add(hasLastName);
+        }
+        if (dto.getPosition() != null && !dto.getPosition().equals("")) {                        //TODO refactor if
+            hasPosition = builder.equal(root.get("position"), dto.getPosition());
+            predicates.add(hasPosition);
+        }
+        if (dto.getStatus() != null &&  !dto.getStatus().equals("")) {
+            hasStatus = builder.equal(root.get("status"), dto.getStatus());
+            predicates.add(hasStatus);
+        }
+        if (dto.getResult() != null) {
+            hasResult = builder.equal(root.get("result"), dto.getResult());
+            predicates.add(hasResult);
+        }
+        if (dto.getRate() != null) {
+            hasRate = builder.equal(root.get("rate"), dto.getRate());
+            predicates.add(hasRate);
+        }
+        Predicate last = builder.and(predicates.toArray(new Predicate[0]));
+        query.where(last);
+        return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
+    }
+
+    private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results) {
+        List<JobOutDTO> dtos = new LinkedList<>();
+        for(JobApplication result: results){
+            RecruitOutDTO recruitOutDTO = result.getRecruit().dto();
+            DecissionOutDTO decissionOutDTO = (result.getDecission()!=null)? result.getDecission().dto(): new DecissionOutDTO();
+            RateOutDTO rateOutDTO = (result.getRate()!=null) ? result.getRate().dto() : new RateOutDTO();
+            dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(),result.getStatus(),decissionOutDTO,rateOutDTO,recruitOutDTO));
+        }
+        return  dtos;
+    }
+
+     void addTraining(TrainingPOJO dto) {
+         Training training = new Training();
+         training.setDate(dto.getTrainingDate());
+         training.setDescription(dto.getTrainingDescription());
+         training.setName(dto.getTrainingName());
+         Recruit recruit = recruitRepository.findById(dto.getRecruitID());
+         recruit.addTraining(training);
+         trainingRepository.save(training);
+    }
+
+     Recruiter findByName(String name) {
+         return recruiterRepository.findByFirstName(name).get();
     }
 }

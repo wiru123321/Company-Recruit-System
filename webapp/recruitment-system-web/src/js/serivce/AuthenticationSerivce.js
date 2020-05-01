@@ -2,6 +2,7 @@ import axios from "axios";
 
 const recruiter = 'authUserAsRecruiter';
 const head = 'authUserAsHead';
+const admin = 'authUserAsAdmin';
 const API_URL = 'http://localhost:8080'
 /**
  * TO DO: ZABEZPIECZYC PRZED PODWOJNYM LOGOWANIEM
@@ -22,6 +23,11 @@ class RecruiterAuthenticationService {
     this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
   }
 
+  registerSuccessfullAdminLogin (username, password) {
+    sessionStorage.setItem (admin, username);
+    this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
+  }
+
   setupAxiosInterceptors(token){
     axios.interceptors.request.use(
       (config) => {
@@ -38,10 +44,22 @@ class RecruiterAuthenticationService {
     if (user === null) return false;
     return true;
   }
- 
+
   logoutHead () {
     sessionStorage.removeItem (head);
   }
+
+  isAdminLoggedIn () {
+    let user = sessionStorage.getItem(admin);
+    if (user === null) return false;
+    return true;
+  }
+
+  logoutAdmin() {
+    sessionStorage.removeItem (admin);
+  }
+ 
+
 
   isRecruiterLoggedIn () {
     let user = sessionStorage.getItem (recruiter);
