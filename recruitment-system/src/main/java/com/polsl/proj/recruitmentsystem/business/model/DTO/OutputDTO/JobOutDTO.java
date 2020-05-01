@@ -10,12 +10,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-<<<<<<< HEAD
+
 public class  JobOutDTO {
-=======
-public class JobOutDTO {
     private Long id;
->>>>>>> a273dbbdc96e34cfd698800bf54cf2ea543f56c8
+
     private String position;
     private String status;
 
