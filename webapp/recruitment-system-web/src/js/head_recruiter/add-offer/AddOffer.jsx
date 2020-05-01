@@ -1,4 +1,5 @@
 import React, {useState, useContext, createContext} from 'react';
+import '../../../css/PositionsPage.css';
 
 const PositionContext = createContext ();
 
@@ -14,12 +15,18 @@ const PositionProvider = () => {
 
   return (
     <PositionContext.Provider
-      value={
-        ([showPositions, setShowPositions], [positionParam, setPositionParam], [
-          position,
-          setPosition,
-        ], [description, setDescription], [listOfPositions, setListOfPositions])
-      }
+      value={{
+        showPositions,
+        setShowPositions,
+        positionParam,
+        setPositionParam,
+        position,
+        setPosition,
+        description,
+        setDescription,
+        listOfPositions,
+        setListOfPositions,
+      }}
     >
       <PostionsNavigation />
       <AddPosition />
@@ -39,38 +46,55 @@ class PostionManagement extends React.Component {
 }
 
 const PositionsListing = () => {
-  const [listOfPositions, setListOfPositions] = useContext (PositionContext);
-  const [showPositions, setShowPositions] = useContext (PositionContext);
-  if (!showPositions && Array.isArray (listOfPositions))
+  const {listOfPositions} = useContext (PositionContext);
+  const {showPositions, setShowPositions} = useContext (PositionContext);
+  if (!showPositions)
     return (
       <div>
-        {listOfPositions.map ((elem, id) => {
-          return (
-            <div>
-              <label>{id}</label>
-              <label>{elem.position}</label>
-              <label>{elem.description}</label>
-              <button
-                onClick={event => {
-                  event.preventDefault ();
-                  // CallApi.deletePosition
-                }}
-              >
-                x
-              </button>
-            </div>
-          );
-        })}
+        <div>
+          <table className="pos-list">
+            <thead>
+              <tr>
+                <th>Nr</th>
+                <th>Stanowisko</th>
+                <th>Opis</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {listOfPositions.map ((elem, id) => {
+                return (
+                  <tr>
+                    <td>{id}</td>
+                    <td>{elem.position}</td>
+                    <td>{elem.description}</td>
+                    <td>
+                      <button
+                        onClick={event => {
+                          event.preventDefault ();
+                          // CallApi.deletePosition
+                        }}
+                      >
+                        X
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
       </div>
     );
   else return <div />;
 };
 
 const PostionsNavigation = () => {
-  const [showPositions, setShowPositions] = useContext (PositionContext);
-  const [positionParam, setPositionParam] = useContext (PositionContext);
+  const {showPositions, setShowPositions} = useContext (PositionContext);
+  const {positionParam, setPositionParam} = useContext (PositionContext);
   return (
-    <div>
+    <div className="pos-nav">
       <button
         onClick={event => {
           event.preventDefault ();
@@ -111,12 +135,12 @@ const PostionsNavigation = () => {
 };
 
 const AddPosition = () => {
-  const [position, setPosition] = useContext (PositionContext);
-  const [description, setDescription] = useContext (PositionContext);
-  const [showPositions, setShowPositions] = useContext (PositionContext);
+  const {position, setPosition} = useContext (PositionContext);
+  const {description, setDescription} = useContext (PositionContext);
+  const {showPositions, setShowPositions} = useContext (PositionContext);
   if (showPositions)
     return (
-      <div>
+      <div className="pos-add">
         <input
           placeholder="Stanowisko"
           name="position"

@@ -1,7 +1,5 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
-import search from '../../resources/search_list.png';
-import RecruitsSurveyComponent from './RecruitsSurveyComponent';
 import OffersSurveyComponent
   from './offers-survey-component/OffersSurveyComponent.js';
 import NewOfferComponent from './NewOfferComponent';
@@ -10,7 +8,6 @@ import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
-import CallApi from './service/CallApi';
 /* Strona kierownika */
 class HeadRecruiterPage extends React.Component {
   render () {
@@ -18,18 +15,13 @@ class HeadRecruiterPage extends React.Component {
       <div>
         <Router>
           <div className="sidenav">
-            <a>
-              <NavLink to="/head/surveyRecruits">Przeglądaj rekrutów</NavLink>
+            <a href="/head/surveyOffers">
+              Przegladaj oferty zatrudnienia
             </a>
-            <a>
-              <NavLink to="/head/surveyOffers">
-                Przegladaj oferty zatrudnienia
-              </NavLink>
+            <a href="/head/addOffer">
+              Dodaj ofertę zatrudnienia
             </a>
-            <a>
-              <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
-            </a>
-            <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
+            <a className="help" href="/head/help">Pomoc</a>
             <a
               className="logout"
               href="/login"
@@ -40,16 +32,11 @@ class HeadRecruiterPage extends React.Component {
           </div>
           <div className="main">
             <AuthRoute
-              path="/head/surveyRecruits"
-              component={RecruitsSurveyComponent}
-            />
-            <AuthRoute
               path="/head/surveyOffers"
               component={OffersSurveyComponent}
             />
             <AuthRoute path="/head/addOffer" component={NewOfferComponent} />
             <AuthRoute path="/head/help" component={HelpComponent} />
-
           </div>
         </Router>
       </div>
