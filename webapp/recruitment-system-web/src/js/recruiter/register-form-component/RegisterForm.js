@@ -1,5 +1,5 @@
 import React from 'react';
-import FormComponent from './FormComponent';
+import FormComponent from './Form.jsx';
 import '../../../css/RecruiterPage.css';
 
 class RegisterForm extends React.Component {
@@ -10,7 +10,7 @@ class RegisterForm extends React.Component {
   render () {
     return (
       <div className="formContent">
-        <h2 style={{margin: 0,fontSize:38}}>Rejstracja danych</h2>
+        <h2 style={{margin: 0, fontSize: 38}}>Rejstracja danych</h2>
         <br />
         <FormComponent />
       </div>

@@ -35,4 +35,8 @@ import java.util.List;
     String employerObligations(){
          return "Za wykonywane efekty pracy Zleceniodawca zobowiązuje się wykonać przelew na konto Zleceniobiorcy wynagrodzenie w wysokości 28 złotych brutto za każdą przepracowaną godzinę zegarową, w przeciągu niedłuższym niż 7 dni od złożenia przez Zleceniobiorcę miesięcznego raportu czasu pracy.";
     }
+
+     String warnings() {
+        return "Zleceniodawca zastrzega sobie prawo do natychmiastowego zerwania umowy w przypadku dokonania przez Zleceniobiorcę któregoś z następujących zachowań: kradzież własności intelektualnej (udostępnianie osobom trzecim kodu źródłowego, sposobów imprementacji, szczegółów projektowych lub innych informacji mogących działać na szkodę Zleceniodawcy), wykazywanie uprzedzeń wobec innyc pracowników (seksizm,homofobia,rasizm,ksenofobia) w działaniach i/lub słowach, umyślne niszczenie mienia Zleceniodawcy, oraz inne czyny łąmiące zabronione przez Kodeks Karny Rzeczypospolitej Polskiej.";
+    }
 }

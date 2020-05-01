@@ -14,10 +14,6 @@ public interface JobApplicationRepository extends JpaRepository<JobApplication,I
     @Query("SELECT ja FROM JobApplication ja WHERE ja.applicationId = :id")
     JobApplication getByApplicationId(@Param("id") Long id);
 
-
     @Query("SELECT ja FROM JobApplication ja WHERE ja.position = :position AND ja.status = :status")
     List<JobApplication> findAllByParams(@Param("position")String position,@Param("status") String status);
-
-
-
 }

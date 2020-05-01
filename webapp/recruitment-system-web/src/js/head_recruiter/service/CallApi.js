@@ -2,16 +2,20 @@ import React from 'react';
 import axios from 'axios';
 
 class CallHeadApi {
+  getFile () {
+    window.open (`http://localhost:8080/head/getFile`);
+  }
+
   createPDF () {
-    const win = window.open (`http://localhost:8080/head/generatePDF`);
+    window.open (`http://localhost:8080/head/generatePDF`);
   }
 
   sendDecission (decission) {
     let dto = {
-      description: 'ok', //decission.description,
-      jobApplicationID: 7, // decission.jobApplicationID,
-      result: 3,
-      rate: 'ok',
+      description: decission.description, //decission.description,
+      jobApplicationID: decission.jobApplicationId, // decission.jobApplicationID,
+      result: decission.result,
+      rate: decission.rate,
     };
 
     return axios ({

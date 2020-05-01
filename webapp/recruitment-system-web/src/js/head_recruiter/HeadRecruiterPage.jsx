@@ -1,10 +1,9 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
-import OffersSurveyComponent
-  from './offers-survey-component/OffersSurveyComponent.js';
-import NewOfferComponent from './NewOfferComponent';
-import HelpComponent from './HelpComponent';
-import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
+import OffersSurvey from './offers-survey/OffersSurvey.jsx';
+import NewOffer from './NewOffer.jsx';
+import Help from './Help.jsx';
+import {BrowserRouter as Router, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
@@ -31,12 +30,9 @@ class HeadRecruiterPage extends React.Component {
             </a>
           </div>
           <div className="main">
-            <AuthRoute
-              path="/head/surveyOffers"
-              component={OffersSurveyComponent}
-            />
-            <AuthRoute path="/head/addOffer" component={NewOfferComponent} />
-            <AuthRoute path="/head/help" component={HelpComponent} />
+            <AuthRoute path="/head/surveyOffers" component={OffersSurvey} />
+            <AuthRoute path="/head/addOffer" component={NewOffer} />
+            <AuthRoute path="/head/help" component={Help} />
           </div>
         </Router>
       </div>
