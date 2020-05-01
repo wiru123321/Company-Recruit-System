@@ -37,85 +37,15 @@ public class RecruiterFacade {
     private final RecruitRepository recruitRepository;
     private final TrainingRepository trainingRepository;
     private final JobApplicationRepository jobApplicationRepository;
-    private final EducationRepository educationRepository;
-    private final SkillRepository skillRepository;
-    private final ExperienceRepository experienceRepository;
+    private final RecruiterService service;
     private final RecruiterRepository recruiterRepository;
     private final FileUtility fileUtils;
 
 
-    public void addNewRecruit(RecruitDTO dto) {
-        /*Training training = new Training();
-        training.setDate(dto.getTrainingDate());
-        training.setDescription(dto.getDescription());
-        training.setName(dto.getTrainingName());
-        trainingRepository.save(training);*/
-        Recruit recruit = new Recruit();
-        recruit.setFirstName(dto.getFirstName());
-        recruit.setLastName(dto.getLastName());
-        //recruit.addTraining(training);
-        recruitRepository.save(recruit);
-    }
-
     public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
-        Recruit recruit = new Recruit();
-        recruit.setLastName(recruitDTO.getLastName());
-        recruit.setFirstName(recruitDTO.getFirstName());
-        recruitRepository.save(recruit);
-        saveEducations(attributesDTO.getEducationDegrees(), recruit);
-        saveSkills(attributesDTO.getSkills(), recruit);
-        saveTrainings(attributesDTO.getTrainings(), recruit);
-        saveExperience(attributesDTO.getExperiences(), recruit);
-        JobApplication jobApplication = new JobApplication();
-        jobApplication.setStatus("nierozpatrzony");
-        jobApplication.setPosition("Refactor");
-        jobApplication.setRecruit(recruit);
-        jobApplicationRepository.save(jobApplication);
-
+       service.addNewApplication(recruitDTO,attributesDTO);
     }
 
-    private void saveExperience(List<ExperiencePOJO> experiencePOJOS, Recruit recruit) {
-        for (ExperiencePOJO experienceValue : experiencePOJOS) {
-            EmpolymentExperience experience = new EmpolymentExperience();
-            experience.setPosition(experienceValue.getPosition());
-            experience.setDateFrom(experienceValue.getDateFrom());
-            experience.setDateTo(experienceValue.getDateTo());
-            experience.setRecruit(recruit);
-            experienceRepository.save(experience);
-        }
-
-    }
-
-    private void saveTrainings(List<com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO> trainings, Recruit recruit) {
-        for (com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO trainingValue : trainings) {
-            Training training = new Training();
-            training.setName(trainingValue.getTrainingName());
-            training.setDescription(trainingValue.getTrainingDescription());
-            training.setDate(trainingValue.getTrainingDate());
-            training.setRecruit(recruit);
-            trainingRepository.save(training);
-        }
-    }
-
-    private void saveSkills(List<SkillPOJO> skills, Recruit recruit) {
-        for (SkillPOJO skillValue : skills) {
-            Skill skill = new Skill();
-            skill.setSkillName(skillValue.getSkillName());
-            skill.setSkillLevel(skillValue.getSkillLevel());
-            skill.setRecruit(recruit);
-            skillRepository.save(skill);
-        }
-    }
-
-    private void saveEducations(List<String> educations, Recruit recruit) {
-        for (String educationValue : educations) {
-            Education education = new Education();
-            education.setDegree(educationValue);
-            education.setRecruit(recruit);
-            educationRepository.save(education);
-            recruit.addEducation(education);
-        }
-    }
 
     public void addTraining(TrainingPOJO dto) {
         Training training = new Training();
@@ -128,10 +58,10 @@ public class RecruiterFacade {
     }
 
     public Recruiter findByName(String name) {
-        return  recruiterRepository.findByFirstName(name).get();
+        return recruiterRepository.findByFirstName(name).get();
     }
 
-    public void saveFile(MultipartFile file) throws Exception{
-        fileUtils.save(file,0);
+    public void saveFile(MultipartFile file) throws Exception {
+        fileUtils.save(file, 0);
     }
 }

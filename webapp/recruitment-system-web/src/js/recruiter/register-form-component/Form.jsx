@@ -174,8 +174,9 @@ const NameComponent = () => {
               <div className="errors">
                 {errors.trainings}
               </div>
+              <FileUpload />
             </div>
-            <FileUpload />
+
             <div className="r-row col-9 r-content">
               <div>
                 <button type="submit">
