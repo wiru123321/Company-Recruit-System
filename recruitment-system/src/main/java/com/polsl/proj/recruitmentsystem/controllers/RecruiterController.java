@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/recruiter")
@@ -24,6 +23,7 @@ public class RecruiterController {
     String recruiterPage(){
         return "recruiter/main";
     }
+
 
     @PostMapping("/addFullApplication")
     @ResponseBody

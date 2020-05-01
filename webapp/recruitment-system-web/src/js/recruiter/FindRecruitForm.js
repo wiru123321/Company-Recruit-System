@@ -14,7 +14,17 @@ class Json {
     },
   ];
 
-  filterByFirstName (firstName) {}
+  getAll () {
+    return this.json;
+  }
+
+  filterByFirstName (firstName) {
+    var result;
+    this.json.map (item => {
+      if (item.recruit.firstName === firstName) result.put (item.recruit);
+    });
+    console.log (result);
+  }
 
   filterByLastName (lastName) {}
 
