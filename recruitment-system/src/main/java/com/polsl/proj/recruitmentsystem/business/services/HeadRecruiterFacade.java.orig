@@ -47,6 +47,10 @@ public class HeadRecruiterFacade {
     }
 
     public void startNewRecrutation(NewRecrutationDTO dto) {
+<<<<<<< HEAD
+        headRecruiterService.startNewRecrutation(dto);
+=======
        // headRecruiterService.startNewRecrutation(dto);
+>>>>>>> branch_reanimacja
     }
 }

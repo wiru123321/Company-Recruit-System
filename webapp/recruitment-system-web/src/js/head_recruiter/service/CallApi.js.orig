@@ -10,6 +10,7 @@ class CallHeadApi {
   createPDF (contractParams) {
     let dto = {
       contract: contractParams.contract,
+<<<<<<< HEAD
       salary: contractParams.salary,
       dateFrom: contractParams.dateFrom,
       dateTo: contractParams.dateTo,
@@ -20,14 +21,26 @@ class CallHeadApi {
       data: dto,
       header: {
         Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
-    }).then (() => {
-      window.open (`http://localhost:8080/head/recievePDF`);
-    });
+=======
+
+      salary: contractParams.salary,
+
+      dateFrom: contractParams.dateFrom,
+
+      dateTo: contractParams.dateTo,
+    };
+
+    axios ({
+      method: 'post',
+
+      url: `http://localhost:8080/head/generatePDF`,
+
+      data: dto,
+
       header: {
         Accept: 'application/json',
 
+>>>>>>> branch_reanimacja
         'Content-Type': 'multipart/form-data',
       },
     }).then (() => {
@@ -56,8 +69,12 @@ class CallHeadApi {
   }
 
   getAllApplications () {
+<<<<<<< HEAD
     console.log ('getAll');
+=======
+    console.log ('get');
 
+>>>>>>> branch_reanimacja
     return axios ({
       method: 'get',
 
@@ -74,9 +91,15 @@ class CallHeadApi {
       position: searchParameters.position,
 
       status: searchParameters.status,
+<<<<<<< HEAD
       result: searchParameters.result, // to powinien byc int
       Rate: searchParameters.rate, // DTO tez ma duzą literę
+=======
 
+      result: searchParameters.result,
+
+      rate: searchParameters.rate,
+>>>>>>> branch_reanimacja
     };
 
     console.log ('specifiedParams');

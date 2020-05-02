@@ -1,6 +1,9 @@
 import React, {useState, useContext} from 'react';
 import Decission from './Decission.jsx';
+<<<<<<< HEAD
+=======
 import GeneratePDF from './GeneratePDF.jsx';
+>>>>>>> branch_reanimacja
 import {SurveyContext} from '../context/SurveyContext.js';
 
 import '../../../../css/Applications.css';
@@ -20,7 +23,10 @@ const Applications = () => {
             <Status status={app.status} />
             <RecruitInfo recruit={app.recruit} />
             <Decission showForm={app.rate} id={app.id} />
+<<<<<<< HEAD
+=======
             <GeneratePDF />
+>>>>>>> branch_reanimacja
           </div>
         );
       })}

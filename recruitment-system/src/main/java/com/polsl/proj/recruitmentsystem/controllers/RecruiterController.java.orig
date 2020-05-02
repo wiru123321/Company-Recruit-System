@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch_reanimacja
 
 @Controller
 @RequestMapping("/recruiter")
@@ -27,6 +30,10 @@ public class RecruiterController {
         return "recruiter/main";
     }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch_reanimacja
     @PostMapping("/addFullApplication")
     @ResponseBody
     public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart InputRecruitAttributesDTO attributesDTO){
@@ -48,9 +55,12 @@ public class RecruiterController {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
     @PostMapping("/getRecruitInfo")
     public List<JobOutDTO> getAllMatchingRecruits(@RequestBody SearchParametersFINAL dto){
         return recruiterFacade.findAllMatchingRecruits(dto);
     }
+=======
+>>>>>>> branch_reanimacja
 }
