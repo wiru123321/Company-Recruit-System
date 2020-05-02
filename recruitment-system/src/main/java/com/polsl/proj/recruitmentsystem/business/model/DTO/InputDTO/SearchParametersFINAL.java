@@ -1,4 +1,4 @@
-package com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO;
+package com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO;
 
 
 import lombok.AllArgsConstructor;
@@ -10,14 +10,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class JobOutDTO {
-    private Long id;
+public class SearchParametersFINAL {
 
     private String position;
     private String status;
-
-    private DecissionOutDTO decission;
-    private RateOutDTO rate;
-    private RecruitOutDTO recruit;
+    private Integer result;
+    private String rate;
+    private String firstName;
+    private String lastName;
 }

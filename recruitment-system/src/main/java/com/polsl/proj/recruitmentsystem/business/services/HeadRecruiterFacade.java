@@ -1,6 +1,7 @@
 package com.polsl.proj.recruitmentsystem.business.services;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
@@ -43,5 +44,9 @@ public class HeadRecruiterFacade {
 
     public HeadRecruiter findByName(String name) {
         return headRecruiterService.findByName(name);
+    }
+
+    public void startNewRecrutation(NewRecrutationDTO dto) {
+        headRecruiterService.startNewRecrutation(dto);
     }
 }
