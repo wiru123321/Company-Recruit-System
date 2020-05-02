@@ -50,6 +50,12 @@ class LoginComponent extends React.Component {
             this.state.password
           );
         }
+        else if (redirect == 'admin') {
+          RecruiterAuthenticationService.registerSuccessfullAdminLogin (
+            this.state.username,
+            this.state.password
+          );
+        }
         this.props.history.push ('/' + redirect);
       })
       .catch (() => {

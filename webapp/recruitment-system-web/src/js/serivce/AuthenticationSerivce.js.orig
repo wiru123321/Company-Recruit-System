@@ -2,8 +2,12 @@ import axios from 'axios';
 
 const recruiter = 'authUserAsRecruiter';
 const head = 'authUserAsHead';
+<<<<<<< HEAD
 const admin = 'authUserAsAdmin';
 const API_URL = 'http://localhost:8080'
+=======
+const API_URL = 'http://localhost:8080';
+>>>>>>> master
 /**
  * TO DO: ZABEZPIECZYC PRZED PODWOJNYM LOGOWANIEM
  */
@@ -25,15 +29,25 @@ class RecruiterAuthenticationService {
     );
   }
 
+<<<<<<< HEAD
   registerSuccessfullAdminLogin (username, password) {
     sessionStorage.setItem (admin, username);
     this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
   }
 
+  setupAxiosInterceptors(token){
+    axios.interceptors.request.use(
+      (config) => {
+          if(this.isHeadLoggedIn()){
+            config.headers.authorization = token
+          }
+          return config
+=======
   setupAxiosInterceptors (token) {
     axios.interceptors.request.use (config => {
       if (this.isHeadLoggedIn ()) {
         config.headers.authorization = token;
+>>>>>>> master
       }
       return config;
     });
