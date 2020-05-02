@@ -14,7 +14,8 @@
   }
   
   .col-1 {width: 8.33%;}
-  .col-2 {width: 45%;}
+  .col-2 {width: 45%;
+  float: right;}
   .col-3 {width: 25%;}
   .col-4 {width: 33.33%;}
   .col-5 {width: 41.66%;}
@@ -30,7 +31,6 @@
     font-family: "Lucida Sans", sans-serif;
   }
   .logo{
-      
       width: auto;
       height: auto;
   }
@@ -40,15 +40,12 @@
     color: black;
     padding: 15px;
   }
-  
   .form ul {
     list-style-type: none;
     margin: 0;
     padding: 20px;
     padding-bottom: 0px;
     padding-top: 10px;
-    position: relative;
-    left: 1000px;
     width: 270px;
     border-radius: 10%;
     border-color: red;
@@ -103,15 +100,12 @@
   }
 
   .info{
-      background-color: blue;
+      background-color: #3399CC;
       color: wheat;
   }
 
   .allComponent{
     padding: 0 0px;
-  }
-  .allLogin{
-    padding: 0 300px;
   }
   h1{
     margin-bottom: -45px;

@@ -10,10 +10,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class JobOutDTO {
     private Long id;
+
     private String position;
     private String status;
+
     private DecissionOutDTO decission;
     private RateOutDTO rate;
     private RecruitOutDTO recruit;

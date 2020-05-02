@@ -7,30 +7,50 @@ class DetailsComponent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      recruit: props.recruit,
       show: false,
       dropText: 'rozwiń',
+      file: '',
     };
 
     this.toggleShow = this.toggleShow.bind (this);
   }
+
+  componentDidMount () {}
   //  TODO: refaktor
-  toggleShow = () => {
+  toggleShow () {
     this.setState ({show: !this.state.show});
     if (this.state.show == true) {
       this.setState ({dropText: 'rozwiń'});
     } else {
       this.setState ({dropText: 'zwiń'});
     }
-  };
+  }
 
   render () {
     return (
       <div>
+        <label style={{fontSize: '40px'}}>
+          {this.props.recruit.firstName}
+        </label>
+        <label style={{fontSize: '40px'}}>
+          {this.props.recruit.lastName}
+        </label>
+        <br />
+        {/*<label>Status: {json.status}</label>
+                <label>Ocena: {json.rate.rate}</label>*/}
         <button className="dropButton" onClick={this.toggleShow}>
           {this.state.dropText}
         </button>
-        {this.state.show && getDetails (this.state.recruit)}
+        {/*<a
+          href=""
+          onClick={event => {
+            event.preventDefault ();
+            CallApi.getFile ();
+          }}
+        >
+          GetFILE
+        </a>*/}
+        {this.state.show && getDetails (this.props.recruit)}
       </div>
     );
   }
@@ -84,7 +104,7 @@ const getDetails = recruit => {
         <thead>
           <tr>
             <th>Szkolenie</th>
-            <th>Opis</th>
+            {/*<th>Opis</th>*/}
             <th>Data</th>
           </tr>
         </thead>
@@ -92,7 +112,7 @@ const getDetails = recruit => {
           {recruit.trainings.map ((t, id) => (
             <tr>
               <th>{t.name}</th>
-              <th>{t.description}</th>
+              {/*<th>{t.description}</th>*/}
               <th>{t.date}</th>
             </tr>
           ))}

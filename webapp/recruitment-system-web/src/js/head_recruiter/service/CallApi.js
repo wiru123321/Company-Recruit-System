@@ -2,8 +2,28 @@ import React from 'react';
 import axios from 'axios';
 
 class CallHeadApi {
-  createPDF () {
-    window.open (`http://localhost:8080/head/generatePDF`);
+  getFile () {
+    window.open (`http://localhost:8080/head/getFile`);
+  }
+
+  createPDF (contractParams) {
+    let dto = {
+      contract: contractParams.contract,
+      salary: contractParams.salary,
+      dateFrom: contractParams.dateFrom,
+      dateTo: contractParams.dateTo,
+    };
+    axios ({
+      method: 'post',
+      url: `http://localhost:8080/head/generatePDF`,
+      data: dto,
+      header: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then (() => {
+      window.open (`http://localhost:8080/head/recievePDF`);
+    });
   }
 
   sendDecission (decission) {
@@ -22,7 +42,7 @@ class CallHeadApi {
   }
 
   getAllApplications () {
-    console.log ('get');
+    console.log ('getAll');
     return axios ({
       method: 'get',
       url: `http://localhost:8080/head/allApplications`,
@@ -35,8 +55,8 @@ class CallHeadApi {
     const searchParametersDTO = {
       position: searchParameters.position,
       status: searchParameters.status,
-      result: searchParameters.result,
-      rate: searchParameters.rate,
+      result: searchParameters.result, // to powinien byc int
+      Rate: searchParameters.rate, // DTO tez ma duzą literę
     };
     console.log ('specifiedParams');
     console.log (searchParametersDTO);

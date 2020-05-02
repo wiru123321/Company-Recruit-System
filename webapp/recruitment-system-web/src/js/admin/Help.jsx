@@ -1,14 +1,14 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
 
-class RecruitSurveyComponent extends React.Component {
+class HelpComponent extends React.Component {
   render () {
     return (
       <div>
-        asdasd
+        help - admin
       </div>
     );
   }
 }
 
-export default RecruitSurveyComponent;
+export default HelpComponent;

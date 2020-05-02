@@ -26,7 +26,7 @@ class RecruiterPage extends React.Component {
       <div>
         <Router>
           <div class="col-3 r-menu">
-            <label>Kamil Susek</label>
+            <label>{Auth.getRecruiterName ()}</label>
             <ul>
               <li className="interactive">
                 <NavLink to="/recruiter/register">
@@ -72,7 +72,7 @@ class RecruiterPage extends React.Component {
               <div>
                 {/* TO DO: Naprawic autentykacje */}
                 <Route path="/recruiter/register" component={RegisterForm} />
-                <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
+                <Route path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
 
               </div>

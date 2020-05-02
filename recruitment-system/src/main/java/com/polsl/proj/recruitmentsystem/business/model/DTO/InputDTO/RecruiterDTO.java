@@ -15,4 +15,5 @@ public class RecruiterDTO {
     private String firstName;
     private String lastName;
     private String password;
+    private String type;
 }

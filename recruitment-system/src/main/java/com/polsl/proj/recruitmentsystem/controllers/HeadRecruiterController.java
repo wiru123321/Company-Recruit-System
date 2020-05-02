@@ -1,22 +1,27 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
 
-import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
-
+import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
+import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.utils.PDF.PDFUtility;
+import com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility;
 import lombok.AllArgsConstructor;
 import lombok.var;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -26,23 +31,37 @@ import java.util.List;
 public class HeadRecruiterController {
 
     private final HeadRecruiterFacade headRecruiterFacade;
-    private  final PDFUtility pdfUtility;
+    private final PDFUtility pdfUtility;
+    private final FileUtility fileUtility;
 
     @GetMapping("/main")
-    String headPage(){
+    String headPage() {
         return "head/main";
     }
 
-   @GetMapping("/allApplications")
+    @GetMapping("/allApplications")
     @ResponseBody
-    List<JobOutDTO> getAllApplications(){
-       pdfUtility.createSimplePDFFile();
+    List<JobOutDTO> getAllApplications() {
         return headRecruiterFacade.getAll();
     }
 
-    @GetMapping(value="/generatePDF")
+    @PostMapping(value = "/generatePDF")
     @ResponseBody
-    public ResponseEntity<InputStreamResource> generatePDF() {
+    public ResponseEntity<InputStreamResource> generatePDF(@RequestBody ContractPOJO dto) {
+        pdfUtility.setContractParams(dto);
+        ByteArrayInputStream bis = pdfUtility.createSimplePDFFile();
+        var headers = new HttpHeaders();
+        headers.add("attachment", "inline; filename=umowa.pdf");
+        return ResponseEntity                           // todo refactor
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
+    }
+
+    @GetMapping(value = "/recievePDF")
+    @ResponseBody
+    public ResponseEntity<InputStreamResource> recievePDF() {
         ByteArrayInputStream bis = pdfUtility.createSimplePDFFile();
         var headers = new HttpHeaders();
         headers.add("attachment", "inline; filename=umowa.pdf");
@@ -55,13 +74,34 @@ public class HeadRecruiterController {
 
     @PostMapping("/parametrizedApplications")
     @ResponseBody
-    List<JobOutDTO> getParametrizedApplications(@RequestPart SearchParametersDTO dto){      //TODO Zmienić na RequestBody
+    List<JobOutDTO> getParametrizedApplications(@RequestPart SearchParametersDTO dto) {      //TODO Zmienić na RequestBody
         return headRecruiterFacade.getFiltered(dto);
     }
 
+    @GetMapping("/getFile")
+    @ResponseBody
+    public ResponseEntity<Resource> getFile() throws IOException {
+        ByteArrayResource resource = fileUtility.read("plik.jpg");
+        var headers = new HttpHeaders();
+        headers.add("attachment", "inline; filename = umowa.jpg");
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(resource);
+    }
+
     @PostMapping("/addDecission")
-    public String addDecission(@RequestBody InputDecissionDTO dto){
+    @ResponseBody
+    public String addDecission(@RequestBody InputDecissionDTO dto) {
         headRecruiterFacade.addDecission(dto);
+        return "ok";
+    }
+
+    @PostMapping("/startRecrutation")
+    @ResponseBody
+    public String startNewRecrutation(@RequestBody NewRecrutationDTO dto) {
+        headRecruiterFacade.startNewRecrutation(dto);
         return "ok";
     }
 }

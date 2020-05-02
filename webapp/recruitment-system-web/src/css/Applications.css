@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+  }
+
+  div.app-list{
+      background-color: steelblue;
+      padding: 12px;
+  }
+  div.app-list:nth-child(even){
+      background-color: tan;
+  }
+  .app-list h2,h3{
+    margin-top: 6px;
+    margin-left: 1%;
+    text-align: left;
+  }
+  .app-list button{
+    width: 100%;
+    border: 1px solid black;
+    padding: 6px;
+  }
+
+  .app-list button:hover{
+    background-color: green;
+  }
+
+  .app-list button.exit:hover{
+    background-color: red;
+    color: white;
+  }
+
+  button.submit {
+    width: 25%;
+    margin-left: 70%;
+  }
+
+  button.submit:hover{
+      background-color: green;
+  }
+
+  div.show{
+      margin-top: 4px;
+      border: 1px solid black;
+      padding: 6px;
+  }
+
+  .dec p{
+      text-align: center;
+  }
+
+  .dec textarea{
+      width: 100%;
+      height: 120px;
+  }
+
+  .dec input, select{
+      border-radius: 10px;
+      padding: 4px;
+  }
