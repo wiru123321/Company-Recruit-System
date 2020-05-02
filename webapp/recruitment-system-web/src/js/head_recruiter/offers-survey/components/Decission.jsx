@@ -53,7 +53,7 @@ const Decission = props => {
                 decission.rate !== ''
               ) {
                 CallApi.sendDecission (decission).then (response =>
-                  console.log ('ok')
+                  console.log ('okk')
                 );
               }
             }}
