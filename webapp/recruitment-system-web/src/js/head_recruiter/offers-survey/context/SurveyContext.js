@@ -1,5 +1,6 @@
 import React, {useState, useContext, createContext, useEffect} from 'react';
 //import Search from '../components/Search.jsx';
+import Applications from '../components/Applications.jsx';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/SurveyOffers.css';
 
@@ -24,19 +25,18 @@ export const SurveyContext = createContext ();
 const SurveyContextProvider = () => {
   const [paramsPosition, setParamsPosition] = useState ('');
   const [paramsStatus, setParamsStatus] = useState ('');
-  const [paramsResult, setParamsResult] = useState ('');
+  const [paramsResult, setParamsResult] = useState (0);
   const [paramsRate, setParamsRate] = useState ('');
   const [applications, setApplication] = useState ([]);
   async function getAllApps () {
     if (applications)
       CallApi.getAllApplications ().then (response => {
         setApplication (applications => [...response.data]);
-        console.log ('getx', applications);
+        console.log ('getx', response.data);
       });
   }
   useEffect (() => {
     getAllApps ();
-    //getAllApps ();
   }, []);
 
   const getAppsBySearchParams = () => {
@@ -78,7 +78,7 @@ const SurveyContextProvider = () => {
       }}
     >
       <Search />
-      <Application />
+      <Applications />
     </SurveyContext.Provider>
   );
 };
@@ -106,6 +106,7 @@ const Search = () => {
       <input
         placeholder="Wynik"
         name="result"
+        type="number"
         onChange={event => {
           setParamsResult (event.target.value);
         }}
@@ -132,18 +133,6 @@ const Search = () => {
       >
         ZNAJDŹ WSZYSTKIE
       </button>
-    </div>
-  );
-};
-
-const Application = () => {
-  const {applications, setApplication} = useContext (SurveyContext);
-
-  return (
-    <div>
-      {applications.map ((app, id) => {
-        return <div><label>{app.recruit.firstName}</label></div>;
-      })}
     </div>
   );
 };
