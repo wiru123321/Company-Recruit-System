@@ -2,48 +2,13 @@ import React from 'react';
 
 import axios from 'axios';
 
-
-
 class CallHeadApi {
-
   getFile () {
-
     window.open (`http://localhost:8080/head/getFile`);
-
   }
 
-
-
-  /* generatePDF (contractParams) {
-
-    return axios({
-
-      method: 'post',
-
-      url: 'http://localhost:8080/head/generatePDF',
-
-      data: dto,
-
-      header: {
-
-        Accept: 'application/json',
-
-        'Content-Type': 'multipart/form-data',
-
-      },
-
-    }).then(() => {
-
-      window.open (`http://localhost:8080/head/recievePDF`);
-
-    });   
-
-  }*/
-
   createPDF (contractParams) {
-
     let dto = {
-
       contract: contractParams.contract,
 
       salary: contractParams.salary,
@@ -51,11 +16,9 @@ class CallHeadApi {
       dateFrom: contractParams.dateFrom,
 
       dateTo: contractParams.dateTo,
-
     };
 
     axios ({
-
       method: 'post',
 
       url: `http://localhost:8080/head/generatePDF`,
@@ -63,77 +26,51 @@ class CallHeadApi {
       data: dto,
 
       header: {
-
         Accept: 'application/json',
 
         'Content-Type': 'multipart/form-data',
-
       },
-
     }).then (() => {
-
       window.open (`http://localhost:8080/head/recievePDF`);
-
     });
-
   }
 
-
-
   sendDecission (decission) {
-
     let dto = {
-
       description: decission.description, //decission.description,
 
-      jobApplicationID: decission.jobApplicationId, // decission.jobApplicationID,
+      jobApplicationID: decission.jobApplicationID, // decission.jobApplicationID,
 
       result: decission.result,
 
       rate: decission.rate,
-
     };
 
-
-
     return axios ({
-
       method: 'post',
 
       url: `http://localhost:8080/head/addDecission`,
 
       data: dto,
-
     });
-
   }
 
-
-
   getAllApplications () {
-
     console.log ('get');
 
     return axios ({
-
       method: 'get',
 
       url: `http://localhost:8080/head/allApplications`,
-
     });
-
   }
 
-
-
   getSpecifiedAppliacations (searchParameters) {
-
     console.log ('SZMER');
 
     console.log (searchParameters);
 
     const searchParametersDTO = {
-
       position: searchParameters.position,
 
       status: searchParameters.status,
@@ -141,7 +78,6 @@ class CallHeadApi {
       result: searchParameters.result,
 
       rate: searchParameters.rate,
-
     };
 
     console.log ('specifiedParams');
@@ -153,19 +89,12 @@ class CallHeadApi {
     const json = JSON.stringify (searchParametersDTO);
 
     var blob = new Blob ([json], {
-
       type: 'application/json',
-
     });
-
-
 
     formData.append ('dto', blob);
 
-
-
     return axios ({
-
       method: 'post',
 
       url: `http://localhost:8080/head/parametrizedApplications`,
@@ -173,19 +102,12 @@ class CallHeadApi {
       data: formData,
 
       header: {
-
         Accept: 'application/json',
 
         'Content-Type': 'multipart/form-data',
-
       },
-
     });
-
   }
-
 }
-
-
 
 export default new CallHeadApi ();

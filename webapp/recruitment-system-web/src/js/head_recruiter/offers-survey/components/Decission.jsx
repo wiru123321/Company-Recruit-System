@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/Applications.css';
-
+import {SurveyContext} from '../context/SurveyContext.js';
 function isEqual (value, to) {
   return value === to;
 }
 
 const Decission = props => {
   const [isShown, toggleShow] = useState (false);
-
   const [description, setDescription] = useState ('');
   const [jobApplicationID, setJobApplicationID] = useState (props.id);
   const [result, setResult] = useState ('0');
   const [rate, setRate] = useState (0);
+  const {getAppsBySearchParams} = useContext (SurveyContext);
   if (
     !props.showForm.rate // POPRAWIĆ
   )
@@ -62,12 +62,13 @@ const Decission = props => {
                 rate !== '' &&
                 result !== '0'
               ) {
-                CallApi.sendDecission (decission).then (response =>
-                  console.log (decission, 'ok')
-                );
+                CallApi.sendDecission (decission).then (response => {
+                  console.log (decission, 'ok');
+                });
               } else {
                 console.log (decission, 'not ok');
               }
+              getAppsBySearchParams ();
             }}
           >
             PRZEŚLIJ DECYZJĘ

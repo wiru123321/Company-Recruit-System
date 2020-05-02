@@ -25,7 +25,7 @@ export const SurveyContext = createContext ();
 const SurveyContextProvider = () => {
   const [paramsPosition, setParamsPosition] = useState ('');
   const [paramsStatus, setParamsStatus] = useState ('');
-  const [paramsResult, setParamsResult] = useState (0);
+  const [paramsResult, setParamsResult] = useState ('');
   const [paramsRate, setParamsRate] = useState ('');
   const [applications, setApplication] = useState ([]);
   async function getAllApps () {
@@ -43,8 +43,8 @@ const SurveyContextProvider = () => {
     let searchParams = {
       position: paramsPosition,
       status: paramsStatus,
-      result: paramsResult,
-      rate: paramsRate,
+      result: parseInt (paramsResult),
+      Rate: paramsRate,
     };
     CallApi.getSpecifiedAppliacations (searchParams).then (response => {
       console.log (response.data);
@@ -108,7 +108,7 @@ const Search = () => {
         name="result"
         type="number"
         onChange={event => {
-          setParamsResult (event.target.value);
+          setParamsResult (parseInt (event.target.value));
         }}
       />
       <input
