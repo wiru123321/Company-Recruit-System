@@ -1,95 +1,42 @@
 import React from 'react';
-
 import '../../css/HeadRecruiterPage.css';
-
-import search from '../../resources/search_list.png';
-
-import OffersSurvey from './offers-survey/OffersSurvey.jsx';
-
-import NewOffer from './NewOffer.jsx';
-
 import Help from './Help';
-
 import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
-
 import RecruiterAuthenticationService
-
   from '../serivce/AuthenticationSerivce.js';
-
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
-
-import CallApi from './service/CallApi';
-
-/* Strona kierownika */
-
-class HeadRecruiterPage extends React.Component {
-
+/* Strona administratora */
+class AdminPage extends React.Component {
   render () {
-
     return (
-
       <div>
-
         <Router>
-
           <div className="sidenav">
-
             <a>
-
               <NavLink to="/head/surveyOffers">
-
-                Przegladaj oferty zatrudnienia
-
+                Przeglądaj pracowników
               </NavLink>
-
             </a>
-
             <a>
-
-              <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
-
+              <NavLink to="/head/addOffer">Dodaj pracownika</NavLink>
             </a>
-
-            <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
-
+            <a className="help"><NavLink to="/admin/help">Pomoc</NavLink></a>
             <a
-
               className="logout"
-
               href="/login"
-
-              onClick={RecruiterAuthenticationService.logoutHead}
-
+              onClick={RecruiterAuthenticationService.logoutAdmin}
             >
-
               Wyloguj
-
             </a>
-
           </div>
-
           <div className="main">
-
-            <AuthRoute path="/head/surveyOffers" component={OffersSurvey} />
-
-            <AuthRoute path="/head/addOffer" component={NewOffer} />
-
             <AuthRoute path="/head/help" component={Help} />
 
-
-
           </div>
-
         </Router>
-
       </div>
-
     );
-
   }
-
 }
 
-
-
-export default withRouter (HeadRecruiterPage);
+export default withRouter (AdminPage);
