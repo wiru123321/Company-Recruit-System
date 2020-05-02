@@ -1,6 +1,6 @@
 import React, {useState, useContext, createContext} from 'react';
 import PositionContext from '../context/PositionContext.js';
-import '../../../../css/PositionsPage.css';
+//import '../../../../css/PositionsPage.css';
 
 const AddPosition = () => {
   const {position, setPosition} = useContext (PositionContext);

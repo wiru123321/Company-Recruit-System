@@ -6,19 +6,6 @@ class CallHeadApi {
     window.open (`http://localhost:8080/head/getFile`);
   }
 
-  /* generatePDF (contractParams) {
-    return axios({
-      method: 'post',
-      url: 'http://localhost:8080/head/generatePDF',
-      data: dto,
-      header: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
-    }).then(() => {
-      window.open (`http://localhost:8080/head/recievePDF`);
-    });   
-  }*/
   createPDF (contractParams) {
     let dto = {
       contract: contractParams.contract,
@@ -55,7 +42,7 @@ class CallHeadApi {
   }
 
   getAllApplications () {
-    console.log ('get');
+    console.log ('getAll');
     return axios ({
       method: 'get',
       url: `http://localhost:8080/head/allApplications`,
@@ -68,8 +55,8 @@ class CallHeadApi {
     const searchParametersDTO = {
       position: searchParameters.position,
       status: searchParameters.status,
-      result: searchParameters.result,
-      rate: searchParameters.rate,
+      result: searchParameters.result, // to powinien byc int
+      Rate: searchParameters.rate, // DTO tez ma duzą literę
     };
     console.log ('specifiedParams');
     console.log (searchParametersDTO);

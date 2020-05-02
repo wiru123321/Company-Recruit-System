@@ -1,7 +1,7 @@
 import React, {useState, useContext, createContext} from 'react';
 import PositionsNavigation from '../components/PositionsNavigation.jsx';
-import AddPosition from '../components/AddPosition';
-import PositionsListing from '../components/PositionsListing';
+import AddPosition from '../components/AddPosition.jsx';
+import PositionsListing from '../components/PositionsListing.jsx';
 import '../../../../css/PositionsPage.css';
 
 export const PositionContext = createContext ();

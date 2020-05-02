@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/HeadRecruiterPage.css';
-import OffersSurvey from './offers-survey/OffersSurvey.jsx';
+import OffersSurvey from './offers-survey/Survey.jsx';
 import NewOffer from './NewOffer.jsx';
 import Help from './Help.jsx';
 import {BrowserRouter as Router, withRouter} from 'react-router-dom';
