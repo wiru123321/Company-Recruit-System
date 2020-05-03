@@ -4,6 +4,7 @@ package com.polsl.proj.recruitmentsystem.controllers;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
 import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
@@ -47,16 +48,9 @@ public class HeadRecruiterController {
 
     @PostMapping(value = "/generatePDF")
     @ResponseBody
-    public ResponseEntity<InputStreamResource> generatePDF(@RequestBody ContractPOJO dto) {
+    public String  generatePDF(@RequestBody ContractPOJO dto) {
         pdfUtility.setContractParams(dto);
-        ByteArrayInputStream bis = pdfUtility.createSimplePDFFile();
-        var headers = new HttpHeaders();
-        headers.add("attachment", "inline; filename=umowa.pdf");
-        return ResponseEntity                           // todo refactor
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
+        return "ok";
     }
 
     @GetMapping(value = "/recievePDF")
@@ -74,7 +68,7 @@ public class HeadRecruiterController {
 
     @PostMapping("/parametrizedApplications")
     @ResponseBody
-    List<JobOutDTO> getParametrizedApplications(@RequestPart SearchParametersDTO dto) {      //TODO Zmienić na RequestBody
+    List<JobOutDTO> getParametrizedApplications(@RequestBody SearchParametersFINAL dto) {
         return headRecruiterFacade.getFiltered(dto);
     }
 

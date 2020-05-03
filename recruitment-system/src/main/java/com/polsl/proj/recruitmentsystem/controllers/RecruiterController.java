@@ -50,6 +50,7 @@ public class RecruiterController {
     }
 
     @PostMapping("/getRecruitInfo")
+    @ResponseBody
     public List<JobOutDTO> getAllMatchingRecruits(@RequestBody SearchParametersFINAL dto){
         return recruiterFacade.findAllMatchingRecruits(dto);
     }

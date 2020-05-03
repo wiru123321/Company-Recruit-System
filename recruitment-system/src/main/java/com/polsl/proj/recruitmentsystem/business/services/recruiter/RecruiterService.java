@@ -36,8 +36,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -51,9 +53,9 @@ public class RecruiterService {
     private final ExperienceRepository experienceRepository;
     private final RecruiterRepository recruiterRepository;
     private final EntityManager entityManager;
-    private  CriteriaBuilder builder;
+    private CriteriaBuilder builder;
 
-     boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
+    boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
         Recruit recruit = new Recruit();
         recruit.setLastName(recruitDTO.getLastName());
         recruit.setFirstName(recruitDTO.getFirstName());
@@ -62,15 +64,15 @@ public class RecruiterService {
         saveSkills(attributesDTO.getSkills(), recruit);
         saveTrainings(attributesDTO.getTrainings(), recruit);
         saveExperience(attributesDTO.getExperiences(), recruit);
-        JobApplication jobApplication = new JobApplication("Refactor","nierozpatrzony",recruit);
+        JobApplication jobApplication = new JobApplication("Refactor", "nierozpatrzony", recruit);
         jobApplicationRepository.save(jobApplication);
-        return  true;
+        return true;
     }
 
 
     private void saveExperience(List<ExperiencePOJO> experiencePOJOS, Recruit recruit) {
         for (ExperiencePOJO experienceValue : experiencePOJOS) {
-            EmpolymentExperience experience = new EmpolymentExperience(experienceValue.getDateFrom(),experienceValue.getDateTo(),experienceValue.getPosition(),recruit);
+            EmpolymentExperience experience = new EmpolymentExperience(experienceValue.getDateFrom(), experienceValue.getDateTo(), experienceValue.getPosition(), recruit);
             experienceRepository.save(experience);
         }
 
@@ -78,7 +80,7 @@ public class RecruiterService {
 
     private void saveTrainings(List<com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO> trainings, Recruit recruit) {
         for (com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO trainingValue : trainings) {
-            Training training = new Training(trainingValue.getTrainingName(),"opisRefactor",trainingValue.getTrainingDate());
+            Training training = new Training(trainingValue.getTrainingName(), "opisRefactor", trainingValue.getTrainingDate());
             training.setRecruit(recruit);
             trainingRepository.save(training);
         }
@@ -104,25 +106,87 @@ public class RecruiterService {
         }
     }
 
+
     List<JobOutDTO> findAllMatching(SearchParametersFINAL dto) {
+        Map<String, Object> predicatesValues = createPredicatesMap(dto);
         builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
-        Predicate hasFirstName,hasLastName,hasPosition,hasStatus,hasResult, hasRate;
+        List<Predicate> predicates = new LinkedList<>();
+        for (Map.Entry<String, Object> entry : predicatesValues.entrySet()) {
+            predicates.add(builder.equal(root.get(entry.getKey()), entry.getValue()));
+        }
+        Predicate last = builder.and(predicates.toArray(new Predicate[0]));
+        query.where(last);
+        return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
+    }
+
+    private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results) {
+        List<JobOutDTO> dtos = new LinkedList<>();
+        for (JobApplication result : results) {
+            RecruitOutDTO recruitOutDTO = result.getRecruit().dto();
+            DecissionOutDTO decissionOutDTO = (result.getDecission() != null) ? result.getDecission().dto() : new DecissionOutDTO();
+            RateOutDTO rateOutDTO = (result.getRate() != null) ? result.getRate().dto() : new RateOutDTO();
+            dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(), result.getStatus(), decissionOutDTO, rateOutDTO, recruitOutDTO));
+        }
+        return dtos;
+    }
+
+    void addTraining(TrainingPOJO dto) {
+        Training training = new Training(dto.getTrainingName(), dto.getTrainingDescription(), dto.getTrainingDate());
+        Recruit recruit = recruitRepository.findById(dto.getRecruitID());
+        recruit.addTraining(training);
+        trainingRepository.save(training);
+    }
+
+    Recruiter findByName(String name) {
+        return recruiterRepository.findByFirstName(name).get();
+    }
+
+    List<EmployeeDTO> getAllRecruiters() {
+        List<Recruiter> recruiters = recruiterRepository.findAll();
+        List<EmployeeDTO> result = new LinkedList<>();
+        for (Recruiter recruiter : recruiters) {
+            EmployeeDTO dto = new EmployeeDTO(recruiter.getFirstName(), recruiter.getLastName(), null, "recruiter");
+            result.add(dto);
+        }
+        return result;
+    }
+
+
+    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("first_name", dto.getFirstName());
+        result.put("last_name", dto.getLastName());
+        result.put("position", dto.getPosition());
+        result.put("status", dto.getStatus());
+        result.put("result", dto.getResult());
+        result.put("rate", dto.getRate());
+        while (result.values().remove(null)) ;
+        return result;
+    }
+
+
+    /* PARAMETRYZOWANE SZUKANIE - ZAPASOWY ORYGINAŁ */
+    List<JobOutDTO> findAllMatchingOLD(SearchParametersFINAL dto) {
+        builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
+        Root<JobApplication> root = query.from(JobApplication.class);
+        Predicate hasFirstName, hasLastName, hasPosition, hasStatus, hasResult, hasRate;
         List<Predicate> predicates = new LinkedList<>();
         if (dto.getFirstName() != null && !dto.getFirstName().equals("")) {
             hasFirstName = builder.equal(root.get("first_name"), dto.getFirstName());
             predicates.add(hasFirstName);
         }
         if (dto.getLastName() != null && !dto.getLastName().equals("")) {
-            hasLastName = builder.equal(root.get("position"), dto.getLastName());
+            hasLastName = builder.equal(root.get("last_name"), dto.getLastName());
             predicates.add(hasLastName);
         }
         if (dto.getPosition() != null && !dto.getPosition().equals("")) {                        //TODO refactor if
             hasPosition = builder.equal(root.get("position"), dto.getPosition());
             predicates.add(hasPosition);
         }
-        if (dto.getStatus() != null &&  !dto.getStatus().equals("")) {
+        if (dto.getStatus() != null && !dto.getStatus().equals("")) {
             hasStatus = builder.equal(root.get("status"), dto.getStatus());
             predicates.add(hasStatus);
         }
@@ -137,37 +201,5 @@ public class RecruiterService {
         Predicate last = builder.and(predicates.toArray(new Predicate[0]));
         query.where(last);
         return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
-    }
-
-    private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results) {
-        List<JobOutDTO> dtos = new LinkedList<>();
-        for(JobApplication result: results){
-            RecruitOutDTO recruitOutDTO = result.getRecruit().dto();
-            DecissionOutDTO decissionOutDTO = (result.getDecission()!=null)? result.getDecission().dto(): new DecissionOutDTO();
-            RateOutDTO rateOutDTO = (result.getRate()!=null) ? result.getRate().dto() : new RateOutDTO();
-            dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(),result.getStatus(),decissionOutDTO,rateOutDTO,recruitOutDTO));
-        }
-        return  dtos;
-    }
-
-     void addTraining(TrainingPOJO dto) {
-         Training training = new Training(dto.getTrainingName(),dto.getTrainingDescription(),dto.getTrainingDate());
-         Recruit recruit = recruitRepository.findById(dto.getRecruitID());
-         recruit.addTraining(training);
-         trainingRepository.save(training);
-    }
-
-     Recruiter findByName(String name) {
-         return recruiterRepository.findByFirstName(name).get();
-    }
-
-     List<EmployeeDTO> getAllRecruiters() {
-         List<Recruiter> recruiters = recruiterRepository.findAll();
-         List<EmployeeDTO> result = new LinkedList<>();
-         for(Recruiter recruiter: recruiters){
-             EmployeeDTO dto = new EmployeeDTO(recruiter.getFirstName(),recruiter.getLastName(),null,"recruiter");
-             result.add(dto);
-         }
-         return result;
     }
 }

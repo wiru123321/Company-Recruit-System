@@ -1,10 +1,7 @@
 package com.polsl.proj.recruitmentsystem.business.services.headRecruiter;
 
 
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO;
@@ -25,8 +22,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -41,26 +40,14 @@ class HeadRecruiterService {
 
 
 
-    List<JobOutDTO> getFilteredJobApplications(SearchParametersDTO dto) {
+    List<JobOutDTO> getFilteredJobApplications(SearchParametersFINAL dto) {
+        Map<String, Object> predicatesValues = createPredicatesMap(dto);
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
         Predicate hasPosition,hasStatus,hasResult, hasRate;
         List<Predicate> predicates = new LinkedList<>();
-        if (dto.getPosition() != null && !dto.getPosition().equals("")) {                        //TODO refactor if
-            hasPosition = builder.equal(root.get("position"), dto.getPosition());
-            predicates.add(hasPosition);
-        }
-        if (dto.getStatus() != null &&  !dto.getStatus().equals("")) {
-            hasStatus = builder.equal(root.get("status"), dto.getStatus());
-            predicates.add(hasStatus);
-        }
-        if (dto.getResult() != null) {
-            hasResult = builder.equal(root.get("result"), dto.getResult());
-            predicates.add(hasResult);
-        }
-        if (dto.getRate() != null) {
-            hasRate = builder.equal(root.get("rate"), dto.getRate());
-            predicates.add(hasRate);
+        for (Map.Entry<String, Object> entry : predicatesValues.entrySet()) {
+            predicates.add(builder.equal(root.get(entry.getKey()), entry.getValue()));
         }
         Predicate last = builder.and(predicates.toArray(new Predicate[0]));
         query.where(last);
@@ -112,6 +99,16 @@ class HeadRecruiterService {
             EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(),headRecruiter.getLastName(),null,"headrecruiter");
             result.add(dto);
         }
+        return result;
+    }
+
+    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("position", dto.getPosition());
+        result.put("status", dto.getStatus());
+        result.put("result", dto.getResult());
+        result.put("rate", dto.getRate());
+        while (result.values().remove(null)) ;
         return result;
     }
 }
