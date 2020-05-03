@@ -37,7 +37,7 @@ const SurveyContextProvider = () => {
   }
   useEffect (() => {
     getAllApps ();
-  }, []);
+  });
 
   const getAppsBySearchParams = () => {
     let searchParams = {

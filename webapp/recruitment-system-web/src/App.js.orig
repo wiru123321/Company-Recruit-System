@@ -22,10 +22,7 @@ class App extends React.Component {
             <Route path="/login" component={MainPage} />
             <RecruiterAuthRoute path="/recruiter" component={RecruiterPage} />
             <HeadAuthRoute path="/head" component={HeadRecruiterPage} />
-<<<<<<< HEAD
             <AdminAuthenticatedRoute path="/admin" component={AdminPage} />
-=======
->>>>>>> branch_reanimacja
           </Switch>
         </Router>
       </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/Applications.css';
 import {SurveyContext} from '../context/SurveyContext.js';
@@ -12,7 +12,8 @@ const Decission = props => {
   const [jobApplicationID, setJobApplicationID] = useState (props.id);
   const [result, setResult] = useState ('0');
   const [rate, setRate] = useState (0);
-  //const {getAppsBySearchParams} = useContext(SurveyContext); NAPRAWIĆ
+  const {getAppsBySearchParams} = useContext (SurveyContext);
+  //NAPRAWIĆ;
   if (
     !props.showForm.rate // POPRAWIĆ
   )
@@ -68,7 +69,7 @@ const Decission = props => {
               } else {
                 console.log (decission, 'not ok');
               }
-              //getAppsBySearchParams ();  NAPRAWIĆ
+              getAppsBySearchParams (); //NAPRAWIĆ
             }}
           >
             PRZEŚLIJ DECYZJĘ
