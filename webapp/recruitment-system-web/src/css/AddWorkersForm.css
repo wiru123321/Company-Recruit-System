@@ -1,0 +1,35 @@
+div.add-worker-form{
+    width: 60%;
+    height: 750px;
+    margin-left: 20%;
+    background-color: ghostwhite;
+    
+}
+input.type-field{
+    margin-top: 2%;
+    width: 60%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 0.5px solid black;
+    font-size: large;
+}
+select.type-field{
+    margin-top: 3%;
+    width: 60%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 0.5px solid black;
+    font-size: large;
+}
+button.submit-field{
+    margin-top: 4%;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid black;
+    font-size: large;
+}
+
+button.submit-field:hover{
+    background-color: green;
+    color: honeydew;
+}
