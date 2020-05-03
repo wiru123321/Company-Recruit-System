@@ -6,7 +6,7 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutati
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
-import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.utils.PDF.PDFUtility;
 import com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility;
 import lombok.AllArgsConstructor;
@@ -42,7 +42,7 @@ public class HeadRecruiterController {
     @GetMapping("/allApplications")
     @ResponseBody
     List<JobOutDTO> getAllApplications() {
-        return headRecruiterFacade.getAll();
+        return headRecruiterFacade.getAllJobApplications();
     }
 
     @PostMapping(value = "/generatePDF")

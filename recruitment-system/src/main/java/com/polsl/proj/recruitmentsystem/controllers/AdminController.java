@@ -1,7 +1,8 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.RecruiterDTO;
-import com.polsl.proj.recruitmentsystem.business.services.AdminFacade;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
+import com.polsl.proj.recruitmentsystem.business.model.wrappers.EmployeesWrapper;
+import com.polsl.proj.recruitmentsystem.business.services.admin.AdminFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final AdminFacade adminFacade;
 
-        @PostMapping("/addEmployee")
-    public void addNewEmployee(@RequestBody RecruiterDTO dto) {
+    @PostMapping("/addEmployee")
+    public void addNewEmployee(@RequestBody EmployeeDTO dto) {
         adminFacade.addNewInternalEmployee(dto);
+    }
+
+    @GetMapping("/getAllEmployes")
+    public EmployeesWrapper getAllEmployees() {
+        return adminFacade.getAllEmployees();
     }
 }

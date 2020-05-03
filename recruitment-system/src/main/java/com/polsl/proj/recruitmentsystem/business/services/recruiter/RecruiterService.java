@@ -1,5 +1,6 @@
-package com.polsl.proj.recruitmentsystem.business.services;
+package com.polsl.proj.recruitmentsystem.business.services.recruiter;
 
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputRecruitAttributesDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.RecruitDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL;
@@ -10,6 +11,7 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutD
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ExperiencePOJO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.SkillPOJO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
+import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Education;
@@ -170,5 +172,18 @@ public class RecruiterService {
 
      Recruiter findByName(String name) {
          return recruiterRepository.findByFirstName(name).get();
+    }
+
+     List<EmployeeDTO> getAllRecruiters() {
+         List<Recruiter> recruiters = recruiterRepository.findAll();
+         List<EmployeeDTO> result = new LinkedList<>();
+         for(Recruiter recruiter: recruiters){
+             EmployeeDTO dto = new EmployeeDTO();
+             dto.setFirstName(recruiter.getFirstName());
+             dto.setLastName(recruiter.getLastName());
+             dto.setType("recruiter");
+             result.add(dto);
+         }
+         return result;
     }
 }

@@ -1,4 +1,4 @@
-package com.polsl.proj.recruitmentsystem.business.services;
+package com.polsl.proj.recruitmentsystem.business.services.recruiter;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
@@ -20,7 +20,6 @@ public class RecruiterFacade {
 
     // Autowired jest wymagany dla POSTMAN / INSOMNIA  up: final tez dziala
     private final FileUtility fileUtils;
-
     private final RecruiterService service;
 
     public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
@@ -47,4 +46,7 @@ public class RecruiterFacade {
     }
 
 
+    public List<EmployeeDTO> getAllRecruiters() {
+       return  service.getAllRecruiters();
+    }
 }

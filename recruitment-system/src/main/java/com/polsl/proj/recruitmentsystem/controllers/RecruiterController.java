@@ -4,7 +4,7 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
-import com.polsl.proj.recruitmentsystem.business.services.RecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

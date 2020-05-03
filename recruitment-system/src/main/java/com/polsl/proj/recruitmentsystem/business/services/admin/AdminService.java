@@ -1,9 +1,8 @@
-package com.polsl.proj.recruitmentsystem.business.services;
+package com.polsl.proj.recruitmentsystem.business.services.admin;
 
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.RecruiterDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
 import com.polsl.proj.recruitmentsystem.business.model.people.Admin;
 import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
-import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruiter;
 import com.polsl.proj.recruitmentsystem.repositories.people.AdminRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
@@ -27,7 +26,7 @@ public class AdminService {
         }
     }
 
-    void addNewInternalEmployee(RecruiterDTO dto) {
+    void addNewInternalEmployee(EmployeeDTO dto) {
         if (dto.getType().equals("recruiter")) {
             Recruiter recruiter = new Recruiter();
             recruiter.setFirstName(dto.getFirstName());
