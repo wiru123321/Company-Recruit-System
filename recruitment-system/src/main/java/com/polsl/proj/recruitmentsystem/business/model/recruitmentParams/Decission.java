@@ -2,10 +2,7 @@ package com.polsl.proj.recruitmentsystem.business.model.recruitmentParams;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,13 +11,16 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Decission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long decissionId;
 
+    @NonNull
     private Integer result; // TODO podmienić na enum
+    @NonNull
     private String description;
 
     Decission(Integer result){
@@ -28,6 +28,7 @@ public class Decission {
     }
 
     @OneToOne
+    @NonNull
     private JobApplication jobApplication;
 
     public DecissionOutDTO dto() {

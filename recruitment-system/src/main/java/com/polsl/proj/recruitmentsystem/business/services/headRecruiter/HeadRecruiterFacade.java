@@ -1,9 +1,6 @@
 package com.polsl.proj.recruitmentsystem.business.services.headRecruiter;
 
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import lombok.AllArgsConstructor;
@@ -26,9 +23,8 @@ public class HeadRecruiterFacade {
         return headRecruiterService.getAllJobApplications();
     }
 
-    public List<JobOutDTO> getFiltered(SearchParametersDTO dto) {
+    public List<JobOutDTO> getFiltered(SearchParametersFINAL dto) {
         return headRecruiterService.getFilteredJobApplications(dto);
-    //    return createJobOutDTOFromResult(results);
     }
 
     public HeadRecruiter findByName(String name) {

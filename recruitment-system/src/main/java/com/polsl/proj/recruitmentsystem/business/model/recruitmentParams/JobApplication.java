@@ -2,10 +2,7 @@ package com.polsl.proj.recruitmentsystem.business.model.recruitmentParams;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,13 +11,16 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class JobApplication {
 
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long applicationId;
 
+@NonNull
 public String position;
+@NonNull
 private String status;
 
     @OneToOne(mappedBy = "jobApplication")
@@ -30,6 +30,7 @@ private String status;
     private Rate rate;
 
     @OneToOne
+    @NonNull
     private Recruit recruit;
 
 
