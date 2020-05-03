@@ -29,7 +29,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
         Optional<Recruiter> user = recruiterRepository.findByFirstName(firstName);
         if(!user.isPresent()){
-            Optional<HeadRecruiter> headUser =  headRecruiterRepository.findByFirstName(firstName);
+            Optional<HeadRecruiter> headUser = null;
+          try {
+              headUser  = headRecruiterRepository.findByFirstName(firstName);
+          }catch (Exception e){
+              e.printStackTrace();
+          }
             if(!headUser.isPresent()){
                 Optional<Admin> admin =  adminRepository.findByFirstName(firstName);
                 return admin.map(CustomUserDetails::new).get();
