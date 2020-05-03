@@ -28,7 +28,6 @@ public class HeadRecruiterFacade {
 
     public List<JobOutDTO> getFiltered(SearchParametersDTO dto) {
         return headRecruiterService.getFilteredJobApplications(dto);
-    //    return createJobOutDTOFromResult(results);
     }
 
     public HeadRecruiter findByName(String name) {

@@ -12,14 +12,18 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Training {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long trainingId;
 
+    @NonNull
     private String name;
+    @NonNull
     private String description;
+    @NonNull
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -62,10 +62,7 @@ public class RecruiterService {
         saveSkills(attributesDTO.getSkills(), recruit);
         saveTrainings(attributesDTO.getTrainings(), recruit);
         saveExperience(attributesDTO.getExperiences(), recruit);
-        JobApplication jobApplication = new JobApplication();
-        jobApplication.setStatus("nierozpatrzony");
-        jobApplication.setPosition("Refactor");
-        jobApplication.setRecruit(recruit);
+        JobApplication jobApplication = new JobApplication("Refactor","nierozpatrzony",recruit);
         jobApplicationRepository.save(jobApplication);
         return  true;
     }
@@ -73,11 +70,7 @@ public class RecruiterService {
 
     private void saveExperience(List<ExperiencePOJO> experiencePOJOS, Recruit recruit) {
         for (ExperiencePOJO experienceValue : experiencePOJOS) {
-            EmpolymentExperience experience = new EmpolymentExperience();
-            experience.setPosition(experienceValue.getPosition());
-            experience.setDateFrom(experienceValue.getDateFrom());
-            experience.setDateTo(experienceValue.getDateTo());
-            experience.setRecruit(recruit);
+            EmpolymentExperience experience = new EmpolymentExperience(experienceValue.getDateFrom(),experienceValue.getDateTo(),experienceValue.getPosition(),recruit);
             experienceRepository.save(experience);
         }
 
@@ -85,10 +78,7 @@ public class RecruiterService {
 
     private void saveTrainings(List<com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO> trainings, Recruit recruit) {
         for (com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO trainingValue : trainings) {
-            Training training = new Training();
-            training.setName(trainingValue.getTrainingName());
-            training.setDescription(trainingValue.getTrainingDescription());
-            training.setDate(trainingValue.getTrainingDate());
+            Training training = new Training(trainingValue.getTrainingName(),"opisRefactor",trainingValue.getTrainingDate());
             training.setRecruit(recruit);
             trainingRepository.save(training);
         }
@@ -161,10 +151,7 @@ public class RecruiterService {
     }
 
      void addTraining(TrainingPOJO dto) {
-         Training training = new Training();
-         training.setDate(dto.getTrainingDate());
-         training.setDescription(dto.getTrainingDescription());
-         training.setName(dto.getTrainingName());
+         Training training = new Training(dto.getTrainingName(),dto.getTrainingDescription(),dto.getTrainingDate());
          Recruit recruit = recruitRepository.findById(dto.getRecruitID());
          recruit.addTraining(training);
          trainingRepository.save(training);
@@ -178,10 +165,7 @@ public class RecruiterService {
          List<Recruiter> recruiters = recruiterRepository.findAll();
          List<EmployeeDTO> result = new LinkedList<>();
          for(Recruiter recruiter: recruiters){
-             EmployeeDTO dto = new EmployeeDTO();
-             dto.setFirstName(recruiter.getFirstName());
-             dto.setLastName(recruiter.getLastName());
-             dto.setType("recruiter");
+             EmployeeDTO dto = new EmployeeDTO(recruiter.getFirstName(),recruiter.getLastName(),null,"recruiter");
              result.add(dto);
          }
          return result;

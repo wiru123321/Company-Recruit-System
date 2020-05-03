@@ -2,6 +2,7 @@ package com.polsl.proj.recruitmentsystem.business.model.people;
 
 
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
@@ -17,10 +18,15 @@ public class HeadRecruiter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String password;
+    @NonNull
     private boolean active;
+    @NonNull
     private String roles;
 
     public HeadRecruiter(String firstName, String lastName) {

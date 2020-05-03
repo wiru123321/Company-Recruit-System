@@ -69,13 +69,8 @@ class HeadRecruiterService {
 
      void addDecission(InputDecissionDTO dto) {
         JobApplication jobApplication = jobApplicationRepository.getByApplicationId(dto.getJobApplicationID());
-        Decission decission = new Decission();
-        decission.setDescription(dto.getDescription());
-        decission.setResult(dto.getResult());
-        decission.setJobApplication(jobApplication);
-        Rate rate = new Rate();
-        rate.setRate(dto.getRate());
-        rate.setJobApplication(jobApplication);
+        Decission decission = new Decission(dto.getResult(),dto.getDescription(),jobApplication);
+        Rate rate = new Rate(dto.getRate(),jobApplication);
         decissionRepository.save(decission);
         rateRepository.save(rate);
     }
@@ -114,10 +109,7 @@ class HeadRecruiterService {
         List<HeadRecruiter> headRecruiters = headRecruiterRepository.findAll();
         List<EmployeeDTO> result = new LinkedList<>();
         for(HeadRecruiter headRecruiter: headRecruiters){
-            EmployeeDTO dto = new EmployeeDTO();
-            dto.setFirstName(headRecruiter.getFirstName());
-            dto.setLastName(headRecruiter.getLastName());
-            dto.setType("headrecruiter");
+            EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(),headRecruiter.getLastName(),null,"headrecruiter");
             result.add(dto);
         }
         return result;
