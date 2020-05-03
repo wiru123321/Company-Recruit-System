@@ -25,15 +25,9 @@ class CallHeadApi {
     }).then (() => {
       window.open (`http://localhost:8080/head/recievePDF`);
     });
-      header: {
-        Accept: 'application/json',
-
-        'Content-Type': 'multipart/form-data',
-      },
-    }).then (() => {
-      window.open (`http://localhost:8080/head/recievePDF`);
-    });
   }
+  
+
 
   sendDecission (decission) {
     let dto = {

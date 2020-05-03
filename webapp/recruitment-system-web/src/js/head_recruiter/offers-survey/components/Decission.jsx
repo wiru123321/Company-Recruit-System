@@ -12,7 +12,7 @@ const Decission = props => {
   const [jobApplicationID, setJobApplicationID] = useState (props.id);
   const [result, setResult] = useState ('0');
   const [rate, setRate] = useState (0);
-  const {getAppsBySearchParams} = useContext (SurveyContext);
+  //const {getAppsBySearchParams} = useContext(SurveyContext); NAPRAWIĆ
   if (
     !props.showForm.rate // POPRAWIĆ
   )
@@ -68,7 +68,7 @@ const Decission = props => {
               } else {
                 console.log (decission, 'not ok');
               }
-              getAppsBySearchParams ();
+              //getAppsBySearchParams ();  NAPRAWIĆ
             }}
           >
             PRZEŚLIJ DECYZJĘ
