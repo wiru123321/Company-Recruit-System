@@ -1,7 +1,6 @@
 import React from 'react';
-import '../../css/HeadRecruiterPage.css';
-import Help from './Help';
-import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
+import '../../css/AdminPage.css';
+import {BrowserRouter as Router, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
@@ -11,28 +10,26 @@ class AdminPage extends React.Component {
     return (
       <div>
         <Router>
-          <div className="sidenav">
-            <a>
-              <NavLink to="/head/surveyOffers">
+          <ul className="top-nav">
+            <li>
+              <a>
                 Przeglądaj pracowników
-              </NavLink>
-            </a>
-            <a>
-              <NavLink to="/head/addOffer">Dodaj pracownika</NavLink>
-            </a>
-            <a className="help"><NavLink to="/admin/help">Pomoc</NavLink></a>
-            <a
-              className="logout"
-              href="/login"
-              onClick={RecruiterAuthenticationService.logoutAdmin}
-            >
-              Wyloguj
-            </a>
-          </div>
-          <div className="main">
-            <AuthRoute path="/head/help" component={Help} />
-
-          </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                Dodaj pracownika
+              </a>
+            </li>
+            <li className="logout">
+              <a
+                href="/login"
+                onClick={RecruiterAuthenticationService.logoutAdmin}
+              >
+                Wyloguj
+              </a>
+            </li>
+          </ul>
         </Router>
       </div>
     );
