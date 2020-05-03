@@ -2,14 +2,12 @@ package com.polsl.proj.recruitmentsystem;
 
 import com.polsl.proj.recruitmentsystem.business.model.people.Admin;
 import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
-import com.polsl.proj.recruitmentsystem.business.services.AdminFacade;
-import com.polsl.proj.recruitmentsystem.business.services.HeadRecruiterFacade;
-import com.polsl.proj.recruitmentsystem.business.services.RecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.services.admin.AdminFacade;
+import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
+import com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterFacade;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;

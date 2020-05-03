@@ -1,14 +1,14 @@
-package com.polsl.proj.recruitmentsystem.business.services;
+package com.polsl.proj.recruitmentsystem.business.services.headRecruiter;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -22,8 +22,8 @@ public class HeadRecruiterFacade {
         headRecruiterService.addDecission(dto);
     }
 
-    public List<JobOutDTO> getAll(){
-        return headRecruiterService.findAll();
+    public List<JobOutDTO> getAllJobApplications(){
+        return headRecruiterService.getAllJobApplications();
     }
 
     public List<JobOutDTO> getFiltered(SearchParametersDTO dto) {
@@ -37,5 +37,9 @@ public class HeadRecruiterFacade {
 
     public void startNewRecrutation(NewRecrutationDTO dto) {
        // headRecruiterService.startNewRecrutation(dto);
+    }
+
+    public List<EmployeeDTO> getAllHeadRecruiters(){
+        return  headRecruiterService.getAllHeadRecruiters();
     }
 }

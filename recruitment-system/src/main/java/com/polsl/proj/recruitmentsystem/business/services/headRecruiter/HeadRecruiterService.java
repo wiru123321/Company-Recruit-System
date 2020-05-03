@@ -1,8 +1,9 @@
-package com.polsl.proj.recruitmentsystem.business.services;
+package com.polsl.proj.recruitmentsystem.business.services.headRecruiter;
 
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
+import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
@@ -89,7 +90,7 @@ class HeadRecruiterService {
         }
     }
 
-     List<JobOutDTO> findAll() {
+     List<JobOutDTO> getAllJobApplications() {
         List<JobApplication> results =   jobApplicationRepository.findAll();
         return createJobOutDTOFromResult(results);
     }
@@ -107,5 +108,18 @@ class HeadRecruiterService {
 
      void startNewRecrutation(NewRecrutationDTO dto) {
         // TODO IMPLEMENT
+    }
+
+    List<EmployeeDTO> getAllHeadRecruiters() {
+        List<HeadRecruiter> headRecruiters = headRecruiterRepository.findAll();
+        List<EmployeeDTO> result = new LinkedList<>();
+        for(HeadRecruiter headRecruiter: headRecruiters){
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.setFirstName(headRecruiter.getFirstName());
+            dto.setLastName(headRecruiter.getLastName());
+            dto.setType("headrecruiter");
+            result.add(dto);
+        }
+        return result;
     }
 }
