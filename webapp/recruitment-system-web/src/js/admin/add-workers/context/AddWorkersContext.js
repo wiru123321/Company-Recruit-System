@@ -104,8 +104,8 @@ const AddWorkerForm = () => {
           }}
         >
           <option value="">-</option>
-          <option value="RECRUITER">Rekruter</option>
-          <option value="HEAD">Kierownik</option>
+          <option value="ROLE_RECRUITER">Rekruter</option>
+          <option value="ROLE_HEAD">Kierownik</option>
         </select>
         {didSubmit &&
           type === '' &&
@@ -122,20 +122,21 @@ const AddWorkerForm = () => {
               type: type,
             };
             setDidSubmit (true);
-            /*  if (
+            if (
               firstName !== '' &&
               lastName !== '' &&
               password !== '' &&
               rewritePassword !== '' &&
               type !== ''
             ) {
-              if (password === rewritePassword) {*/
-            console.log ('Worker', worker);
-            //CallApi.createWorker (worker);
-            console.log ('4200 hi');
-            CallApi.hi ();
-            reset ();
-            /* } }*/
+              if (password === rewritePassword) {
+                console.log ('Worker', worker);
+                CallApi.createWorker (worker);
+                console.log ('4200 hi');
+                //CallApi.hi ();
+                reset ();
+              }
+            }
           }}
         >
           DODAJ

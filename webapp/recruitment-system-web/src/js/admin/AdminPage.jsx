@@ -6,7 +6,8 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import AdminAuthenticationService from '../serivce/AuthenticationSerivce.js';
+import RecruiterAuthenticationService
+  from '../serivce/AuthenticationSerivce.js';
 import WorkersSurvey from './workers-survey/WorkersSurvey.jsx';
 import AddWorkers from './add-workers/AddWorkers.jsx';
 import AuthRoute from '../serivce/AdminAuthenticatedRoute.js';
@@ -31,7 +32,7 @@ class AdminPage extends React.Component {
               <li className="logout">
                 <a
                   href="/login"
-                  onClick={AdminAuthenticationService.logoutAdmin}
+                  onClick={RecruiterAuthenticationService.logoutAdmin}
                 >
                   Wyloguj
                 </a>

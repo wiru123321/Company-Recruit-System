@@ -3,15 +3,18 @@ import axios from 'axios';
 const recruiter = 'authUserAsRecruiter';
 const head = 'authUserAsHead';
 const admin = 'authUserAsAdmin';
-const API_URL = 'http://localhost:8080'
+const API_URL = 'http://localhost:8080';
 /**
  * TO DO: ZABEZPIECZYC PRZED PODWOJNYM LOGOWANIEM
  */
 class RecruiterAuthenticationService {
   executeBasicAuthentication (username, password) {
     return axios.get (`${API_URL}/login`, {
-      headers: {authorization: this.createBasicAuthToken (username, password)},
+      headers: {
+        authorization: this.createBasicAuthToken (username, password),
+      },
     });
+    //.then (response => console.log (response.data));
   }
 
   createBasicAuthToken (username, password) {
@@ -27,12 +30,14 @@ class RecruiterAuthenticationService {
 
   registerSuccessfullAdminLogin (username, password) {
     sessionStorage.setItem (admin, username);
-    this.setupAxiosInterceptors(this.createBasicAuthToken(username,password))
+    this.setupAxiosInterceptors (
+      this.createBasicAuthToken (username, password)
+    );
   }
 
   setupAxiosInterceptors (token) {
     axios.interceptors.request.use (config => {
-      if (this.isHeadLoggedIn ()) {
+      if (this.isHeadLoggedIn () || this.isAdminLoggedIn ()) {
         config.headers.authorization = token;
       }
       return config;
@@ -50,16 +55,14 @@ class RecruiterAuthenticationService {
   }
 
   isAdminLoggedIn () {
-    let user = sessionStorage.getItem(admin);
+    let user = sessionStorage.getItem (admin);
     if (user === null) return false;
     return true;
   }
 
-  logoutAdmin() {
+  logoutAdmin () {
     sessionStorage.removeItem (admin);
   }
- 
-
 
   isRecruiterLoggedIn () {
     let user = sessionStorage.getItem (recruiter);
