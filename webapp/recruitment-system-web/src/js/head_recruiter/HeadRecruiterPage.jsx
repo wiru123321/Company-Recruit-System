@@ -25,53 +25,28 @@ class HeadRecruiterPage extends React.Component {
   render () {
     return (
       <div>
-
         <Router>
-
           <div className="sidenav">
-
-            <a>
-
-              <NavLink to="/head/surveyOffers">
-
-                Przegladaj oferty zatrudnienia
-
-              </NavLink>
-
-            </a>
-
-            <a>
-
-              <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
-
-            </a>
+            <NavLink to="/head/surveyOffers">
+              Przegladaj oferty zatrudnienia
+            </NavLink>
+            <NavLink to="/head/addOffer">Dodaj ofertę zatrudnienia</NavLink>
 
             <a className="help"><NavLink to="/head/help">Pomoc</NavLink></a>
-
             <a
               className="logout"
               href="/login"
               onClick={RecruiterAuthenticationService.logoutHead}
             >
-
               Wyloguj
-
             </a>
-
           </div>
-
           <div className="main">
-
             <AuthRoute path="/head/surveyOffers" component={OffersSurvey} />
-
             <AuthRoute path="/head/addOffer" component={NewOffer} />
-
             <AuthRoute path="/head/help" component={Help} />
-
           </div>
-
         </Router>
-
       </div>
     );
   }

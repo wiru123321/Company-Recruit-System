@@ -7,16 +7,15 @@ class AdminAuthenticatedRoute extends React.Component {
     super (props);
   }
   render () {
-    if (Auth.isAdminLoggedIn()) {
+    if (Auth.isAdminLoggedIn ()) {
       return <Route {...this.props} />;
     } else {
       if (Auth.isRecruiterLoggedIn ()) {
         return <Redirect to="/recruiter" />;
       }
-        if (Auth.isHeadLoggedIn ()) {
-          return <Redirect to="/head" />;
-        }  
-      else {
+      if (Auth.isHeadLoggedIn ()) {
+        return <Redirect to="/head" />;
+      } else {
         return <Redirect to="/login" />;
       }
     }
