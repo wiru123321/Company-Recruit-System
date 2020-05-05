@@ -1,11 +1,16 @@
 import React from 'react';
 import '../../css/AdminPage.css';
-import {BrowserRouter as Router, withRouter, Route} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  withRouter,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import WorkersSurvey from './workers-survey/WorkersSurvey.jsx';
 import AddWorkers from './add-workers/AddWorkers.jsx';
-import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
+import AuthRoute from '../serivce/AdminAuthenticatedRoute.js';
 /* Strona administratora */
 class AdminPage extends React.Component {
   render () {
@@ -15,14 +20,14 @@ class AdminPage extends React.Component {
           <div>
             <ul className="top-nav">
               <li>
-                <a href="/admin/surveyWorkers">
+                <NavLink to="/admin/surveyWorkers">
                   Przeglądaj pracowników
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="/admin/addWorkers">
+                <NavLink to="/admin/addWorkers">
                   Dodaj pracownika
-                </a>
+                </NavLink>
               </li>
               <li className="logout">
                 <a
@@ -35,8 +40,8 @@ class AdminPage extends React.Component {
             </ul>
           </div>
           <div>
-            <Route path="/admin/surveyWorkers" component={WorkersSurvey} />
-            <Route path="/admin/addWorkers" component={AddWorkers} />
+            <AuthRoute path="/admin/surveyWorkers" component={WorkersSurvey} />
+            <AuthRoute path="/admin/addWorkers" component={AddWorkers} />
           </div>
         </Router>
 

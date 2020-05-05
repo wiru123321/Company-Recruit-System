@@ -27,7 +27,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/head")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200/*")
 @AllArgsConstructor
 public class HeadRecruiterController {
 
