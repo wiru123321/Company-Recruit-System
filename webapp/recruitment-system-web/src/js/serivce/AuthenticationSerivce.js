@@ -14,7 +14,6 @@ class RecruiterAuthenticationService {
         authorization: this.createBasicAuthToken (username, password),
       },
     });
-    //.then (response => console.log (response.data));
   }
 
   createBasicAuthToken (username, password) {

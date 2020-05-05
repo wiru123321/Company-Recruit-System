@@ -132,8 +132,6 @@ const AddWorkerForm = () => {
               if (password === rewritePassword) {
                 console.log ('Worker', worker);
                 CallApi.createWorker (worker);
-                console.log ('4200 hi');
-                //CallApi.hi ();
                 reset ();
               }
             }
