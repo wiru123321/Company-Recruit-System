@@ -3,77 +3,128 @@
   }
 
   div.pos-nav{
-      background-color: black;
-      padding: 20px;
+      background-color: #111;
+      padding: 10px;
   }
 
   .pos-nav button{
-      padding: 8px;
-      margin-left: 6px;
+      padding: 0;
+      margin-left: 0;
+      font-size: large;
       border: none;
       width: 30%;
+      color: #818181;
+      background-color: #111;
+      border-radius: 20px;
+      outline:none;
+  }
+
+  .pos-search img{
+    text-align: center;
+    width: 25px;
+    height: 25px;
+  }
+
+  button.pos-search {
+    margin-top: 1%;
+    margin-left: 1%;
+    padding: 8px;
+    width: auto;
+    border: 2px solid blue;
+    border-radius: 10px;
+    background-color: rgb(238, 236, 236);
+    outline: none;
+  }
+  button.pos-search:hover{
+    background-color: rgb(80, 95, 71);
   }
 
   .pos-nav button:hover{
-      background-color: green;
+      color: blue;
   }
 
-  .pos-nav input{
-    padding: 8px;
-    margin-left: 6px;
-    border: none;
+  .pos-search input{
+    background-color: rgb(238, 236, 236);
+    font-size: large;
+    color: black;
+    padding-left:20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border:1px  blue;
+    border-radius: 10px;
     width: 30%;
+    outline:none;
   }
 
   div.pos-add{
-    background-color:  grey;
-    padding: 20px;
+    margin-top: 10px;
+    height: 600px;
+    background-color: white
   }
 
   .pos-add input{
     float: left;
-    padding: 8px;
-    margin-left: 0;
+    padding: 14px;
+    font-size: large;
+    margin-top: 1%;
+    margin-left: 10%;
     border: none;
-    width: 30%;
+    width: 40%;
+    background-color: gainsboro;
+    border: 0.5px  blue;
+    border-radius: 10px;
+    outline:none;
+  }
+
+  .pos-add input[type='number']{
+    width: 20%;
+    margin-left: 10%;
+  }
+
+  .pos-add input[type='submit']{
+    width: 20%;
+    margin-left: 60%;
+    border: 2px solid blue;
   }
 
   .pos-add textarea{
     float: left;
-    padding: 8px;
-    margin-top: 8px;
-    border: none;
-    width: 100%;
-  }
-
-  .pos-add button{
-    margin-left: 70%;
-    padding: 8px;
-    margin-top: 8px;
-    border: none;
-    width: 30%;
-  }
-
-  .pos-add button:hover{
-    background-color: greenyellow;
-  }
-
-.pos-list thead{
-  background-color:  grey;
-  }
-
-  .pos-list button{
     font-size: large;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding: 8px;
+    margin-top: 1%;
+    margin-left: 10%;
+    border: none;
+    width: 70%;
+    height: 100px;
+    background-color: gainsboro;
+    border: 1px  blue;
     border-radius: 10px;
-    border: 4px solid black;
+    outline:none;
   }
 
-  .pos-list button:hover{
-    background-color: red;
-    color: white;
-    border: 4px solid red;
+  .pos-add p{
+    font-size: 40px;
+    float: left;
+    margin-left: 10%;
   }
+
+  input.submit {
+    font-size: large;
+    background-color: white;
+    color: blue;
+  }
+
+  input.submit:hover{
+    background-color: rgb(65, 207, 77);
+    color: white;
+  }
+
+  .pos-list thead{
+    font-size: xx-large;
+    background-color: white;
+  }
+
+  .pos-list tbody > tr{
+    font-size: large;
+    background-color: gainsboro;
+}

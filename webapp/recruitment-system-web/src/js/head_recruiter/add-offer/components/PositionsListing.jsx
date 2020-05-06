@@ -1,5 +1,5 @@
 import React, {useState, useContext, createContext} from 'react';
-import PositionContext from '../context/PositionContext.js';
+import {PositionContext} from '../context/PositionContext';
 import '../../../../css/PositionsPage.css';
 
 const PositionsListing = () => {
@@ -15,7 +15,6 @@ const PositionsListing = () => {
                 <th>Nr</th>
                 <th>Stanowisko</th>
                 <th>Opis</th>
-                <th />
               </tr>
             </thead>
             <tbody>
@@ -24,24 +23,13 @@ const PositionsListing = () => {
                   <tr>
                     <td>{id}</td>
                     <td>{elem.position}</td>
-                    <td>{elem.description}</td>
-                    <td>
-                      <button
-                        onClick={event => {
-                          event.preventDefault ();
-                          // CallApi.deletePosition
-                        }}
-                      >
-                        X
-                      </button>
-                    </td>
+                    <td style={{fontSize: 'small'}}>{elem.description}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
-
       </div>
     );
   else return <div />;

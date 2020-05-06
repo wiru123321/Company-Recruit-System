@@ -1,32 +1,35 @@
 import React, {useState, useContext, createContext} from 'react';
-import PositionContext from '../context/PositionContext.js';
+import {PositionContext} from '../context/PositionContext.js';
+import Find from '../../../../resources/search.png';
 //import '../../../../css/PositionsPage.css';
 
 const PostionsNavigation = () => {
   const {showPositions, setShowPositions} = useContext (PositionContext);
   const {positionParam, setPositionParam} = useContext (PositionContext);
   return (
-    <div className="pos-nav">
-      <button
-        onClick={event => {
-          event.preventDefault ();
-          setShowPositions (true);
-        }}
-      >
-        DODAJ OFERTĘ
-      </button>
-      <button
-        onClick={event => {
-          event.preventDefault ();
-          setShowPositions (false);
-        }}
-      >
-        PRZEGLĄDAJ OFERTY
-      </button>
+    <div>
+      <div className="pos-nav">
+        <button
+          onClick={event => {
+            event.preventDefault ();
+            setShowPositions (true);
+          }}
+        >
+          DODAJ OFERTĘ
+        </button>
+        <button
+          onClick={event => {
+            event.preventDefault ();
+            setShowPositions (false);
+          }}
+        >
+          PRZEGLĄDAJ OFERTY
+        </button>
+      </div>
       {!showPositions &&
-        <div>
+        <div className="pos-search">
           <input
-            placeholder="Stanowisko"
+            placeholder="Szukaj stanowiska"
             name="position"
             onChange={event => {
               console.log (positionParam);
@@ -34,12 +37,13 @@ const PostionsNavigation = () => {
             }}
           />
           <button
+            className="pos-search"
             onClick={event => {
               event.preventDefault ();
               //CallApi.getPositionsBySearchParams(positionParam)
             }}
           >
-            SZUKAJ
+            <img src={Find} />
           </button>
         </div>}
     </div>

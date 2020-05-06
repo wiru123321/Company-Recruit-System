@@ -11,6 +11,7 @@ const PositionProvider = () => {
   const [positionParam, setPositionParam] = useState ('');
   const [position, setPosition] = useState ('');
   const [description, setDescription] = useState ('');
+  const [limit, setLimit] = useState ('');
   const [listOfPositions, setListOfPositions] = useState ([
     {id: 0, position: 'a', description: 'asfass'},
     {id: 2, position: 'a', description: 'asfass'},
@@ -29,6 +30,8 @@ const PositionProvider = () => {
         setDescription,
         listOfPositions,
         setListOfPositions,
+        limit,
+        setLimit,
       }}
     >
       <PositionsNavigation />
