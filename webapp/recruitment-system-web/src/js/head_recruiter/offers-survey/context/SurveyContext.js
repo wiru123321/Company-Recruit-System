@@ -23,9 +23,11 @@ const applicationScheme = {
 export const SurveyContext = createContext ();
 
 const SurveyContextProvider = () => {
+  const [paramsFirstName, setParamsFirstName] = useState ('');
+  const [paramsLastName, setParamsLastName] = useState ('');
   const [paramsPosition, setParamsPosition] = useState ('');
   const [paramsStatus, setParamsStatus] = useState ('');
-  const [paramsResult, setParamsResult] = useState ('');
+  const [paramsResult, setParamsResult] = useState ('0');
   const [paramsRate, setParamsRate] = useState ('');
   const [applications, setApplication] = useState ([]);
   async function getAllApps () {
@@ -41,6 +43,8 @@ const SurveyContextProvider = () => {
 
   const getAppsBySearchParams = () => {
     let searchParams = {
+      firstName: paramsFirstName,
+      lastName: paramsLastName,
       position: paramsPosition,
       status: paramsStatus,
       result: parseInt (paramsResult),
@@ -51,7 +55,6 @@ const SurveyContextProvider = () => {
       setApplication (applications => [...response.data]);
     });
   };
-
   const getAll = () => {
     CallApi.getAllApplications ().then (response => {
       setApplication (applications => [...response.data]);
@@ -69,6 +72,10 @@ const SurveyContextProvider = () => {
         setParamsResult,
         paramsRate,
         setParamsRate,
+        paramsLastName,
+        setParamsLastName,
+        paramsFirstName,
+        setParamsFirstName,
         applications,
         setApplication,
         applications,
@@ -84,6 +91,8 @@ const SurveyContextProvider = () => {
 };
 
 const Search = () => {
+  const {paramsFirstName, setParamsFirstName} = useContext (SurveyContext);
+  const {paramsLastName, setParamsLastName} = useContext (SurveyContext);
   const {paramsPosition, setParamsPosition} = useContext (SurveyContext);
   const {paramsStatus, setParamsStatus} = useContext (SurveyContext);
   const {paramsResult, setParamsResult} = useContext (SurveyContext);
@@ -91,40 +100,67 @@ const Search = () => {
   const {getAll, getAppsBySearchParams} = useContext (SurveyContext);
   return (
     <div className="searchParamsForm">
-      <input
-        placeholder="Stanowisko"
-        name="position"
-        onChange={event => {
-          setParamsPosition (event.target.value);
-        }}
-      /><input
-        placeholder="Status"
-        onChange={event => {
-          setParamsStatus (event.target.value);
-        }}
-      />
-      <input
-        placeholder="Wynik"
-        name="result"
-        type="number"
-        onChange={event => {
-          setParamsResult (parseInt (event.target.value));
-        }}
-      />
-      <input
-        placeholder="Ocena"
-        name="rate"
-        onChange={event => {
-          setParamsRate (event.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
+      <form
+        onSubmit={event => {
+          event.preventDefault ();
           getAppsBySearchParams ();
         }}
       >
-        SZUKAJ
-      </button>
+        <input
+          placeholder="Imię"
+          value={paramsFirstName}
+          name="firstName"
+          onChange={event => {
+            setParamsFirstName (event.target.value);
+          }}
+        />
+        <input
+          placeholder="Nazwisko"
+          value={paramsLastName}
+          name="lastName"
+          onChange={event => {
+            setParamsLastName (event.target.value);
+          }}
+        />
+        <input
+          placeholder="Stanowisko"
+          value={paramsPosition}
+          name="position"
+          onChange={event => {
+            setParamsPosition (event.target.value);
+          }}
+        />
+        <input
+          placeholder="Status"
+          value={paramsStatus}
+          name="staus"
+          onChange={event => {
+            setParamsStatus (event.target.value);
+          }}
+        />
+        <label>Wynik </label>
+        <select
+          placeholder="Wynik"
+          value={paramsResult}
+          name="result"
+          onChange={event => {
+            setParamsResult (parseInt (event.target.value));
+          }}
+        >
+          <option value="0">-</option>
+          <option value="1">pozytywny</option>
+          <option value="2">negatywny</option>
+        </select>
+        <input
+          placeholder="Ocena"
+          value={paramsRate}
+          name="rate"
+          onChange={event => {
+            setParamsRate (event.target.value);
+          }}
+        />
+        <input type="submit" value="Szukaj" />
+      </form>
       <button
         onClick={event => {
           event.preventDefault ();

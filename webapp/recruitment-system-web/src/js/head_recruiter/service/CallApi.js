@@ -26,17 +26,12 @@ class CallHeadApi {
       window.open (`http://localhost:8080/head/recievePDF`);
     });
   }
-  
-
 
   sendDecission (decission) {
     let dto = {
       description: decission.description, //decission.description,
-
       jobApplicationID: decission.jobApplicationID, // decission.jobApplicationID,
-
       result: decission.result,
-
       rate: decission.rate,
     };
 
@@ -65,38 +60,28 @@ class CallHeadApi {
     console.log (searchParameters);
 
     const searchParametersDTO = {
+      firstName: searchParameters.firstName,
+      lastName: searchParameters.lastName,
       position: searchParameters.position,
-
       status: searchParameters.status,
-      result: searchParameters.result, // to powinien byc int
+      result: '', //searchParameters.result, // to powinien byc int
       Rate: searchParameters.rate, // DTO tez ma duzą literę
-
     };
 
     console.log ('specifiedParams');
-
     console.log (searchParametersDTO);
-
     var formData = new FormData ();
-
     const json = JSON.stringify (searchParametersDTO);
-
     var blob = new Blob ([json], {
       type: 'application/json',
     });
-
     formData.append ('dto', blob);
-
     return axios ({
       method: 'post',
-
       url: `http://localhost:8080/head/parametrizedApplications`,
-
       data: formData,
-
       header: {
         Accept: 'application/json',
-
         'Content-Type': 'multipart/form-data',
       },
     });

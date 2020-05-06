@@ -68,7 +68,7 @@ public class HeadRecruiterController {
 
     @PostMapping("/parametrizedApplications")
     @ResponseBody
-    List<JobOutDTO> getParametrizedApplications(@RequestBody SearchParametersFINAL dto) {
+    List<JobOutDTO> getParametrizedApplications(@RequestPart SearchParametersFINAL dto) { //TODO MultiPart czy nie multipart??
         return headRecruiterFacade.getFiltered(dto);
     }
 

@@ -35,21 +35,36 @@ tr:nth-child(even) {
         background-color: #111;
   }
 
-  input.searchParamsForm{
-        padding: 8px;
-        border-radius: 6px;
-        margin-left: 4px;
-        border: none;
-  }
-
-  button.searchParamsForm{
+.searchParamsForm input,select{
+    font-size: large;
     padding: 8px;
     border-radius: 6px;
-    margin-left: 4px;
+    margin-left: 10px;
     border: none;
+    outline: none;
   }
 
-  button.searchParamsForm:hover{
+  .searchParamsForm label{
+    color: white;
+    font-size: large;
+    padding: 8px;
+    border-radius: 6px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+  }
+
+  .searchParamsForm button{
+    margin-top: 2%;
+    font-size: large;
+    padding: 8px;
+    border-radius: 6px;
+    margin-left: 10px;
+    border: none;
+    outline: none;
+  }
+
+  .searchParamsForm button:hover{
     background-color: green;
     color: white;
   }
