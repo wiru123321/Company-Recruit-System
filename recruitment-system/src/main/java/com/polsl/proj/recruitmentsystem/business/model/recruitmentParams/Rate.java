@@ -9,20 +9,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor    // RequiredArgs działają tylko z annotacją @NotNull
+@NoArgsConstructor
+@RequiredArgsConstructor// RequiredArgs działają tylko z annotacją @NotNull
 public class Rate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long rateId;
+    @NonNull
     private String rate;
 
     @OneToOne
+    @NonNull
     private JobApplication jobApplication;
 
-    Rate(String rate){
+    public Rate(String rate) {
         this.rate=rate;
     }
+
 
     public RateOutDTO dto() {
         return RateOutDTO.builder()

@@ -1,0 +1,9 @@
+<h1> Recruitment System - dokumentacja etapu 4 </h1>
+
+
+
+
+
+<h3>1.Problemy w trakcie realizacji etapu</h3>
+
+<div style="text-align: justify">W trakcie realizacji tego etapu doszło do sytuacji, w której jeden z commitów niezauważenie zepsuł wcześniej działające funkcjonalności. Commit ten dotyczył części frontendowej aplikacji, a wprowadzone zmiany spowodowały problemy dotyczące komunikacji z backendem. Wyszło to jaw dopiero później, gdy osoby odpowiedzialne za część backendową zauważyły nieprawidłowość.Aby naprawić sytuację musieliśmy wycofać kilka commitów za pomocą polecenia <b>git reset HEAD~</b>, dzięki czemu przywróciliśmy repozytorium do stanu, w którym wcześniej działające funkcjonalności backendowe mogły być z powrotem obsługiwane przez frontend.Następnie osoby piszące frontend przeniosły pracę na oddzielny branch, aby spróbować wprowadzić swoje zmiany raz jeszcze, tym razem w bezpieczny sposób. Takie podejście do problemu pozwoliło nam opanować sytuację tak, aby projekt ponownie był funkcjonalny, jednakże kosztowało nas to sporo czasu oraz spowodowało utratę historii 11 commitów (zmiany w nich wprowadzone zostały wycofane, a następnie to co było możliwe - wprowadzone z powrotem w postacie 1 commita). Wnioskiem wynikającym z zaistniałej sytuacji jest, że dobrą praktyką tworzenia oprogramowania w kilkuosobowym zespole jest korzystanie z narzędzi Continous Integration - gdyby było to zastosowane w tym projekcie, wraz z dobrym pokryciem kodu testami jednostkowymi oraz testami integracyjnymi, problem zostałby wykryty od razu w momencie próby dodania do repozytorium wadliwego commita, co umożliwiłoby znacznie szybsze oraz łatwiejsze naprawienie go.<div>

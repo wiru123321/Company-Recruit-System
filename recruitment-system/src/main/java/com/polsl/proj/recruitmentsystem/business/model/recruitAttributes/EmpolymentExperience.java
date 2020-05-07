@@ -1,10 +1,7 @@
 package com.polsl.proj.recruitmentsystem.business.model.recruitAttributes;
 
 import com.polsl.proj.recruitmentsystem.business.model.people.Recruit;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,15 +11,20 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class EmpolymentExperience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long employmentId;
+    @NonNull
     private Date dateFrom;
+    @NonNull
     private Date dateTo;
+    @NonNull
     private String position;
 
+    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
 }

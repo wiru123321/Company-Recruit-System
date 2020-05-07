@@ -3,15 +3,14 @@
     height: 100%;
     width: 20%;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
+    overflow: hidden;
   }
   
   .sidenav a {
+    margin-top: 3%;
     text-align: left;
     font-size: 25px;
     padding: 6px 8px 6px 16px;
@@ -33,7 +32,7 @@
   }
   
   .main {
-    margin-left: 20%; /* Same as the width of the sidenav */
+    margin-left: 19.5%; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
     height: 100%;
