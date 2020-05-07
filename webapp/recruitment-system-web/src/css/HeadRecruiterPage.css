@@ -47,3 +47,29 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+  .helpComponentDiv{
+    background-color: blue;
+    width: 1260px;
+    height: 500px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .helpOption{
+    margin: 0;
+    padding: 0;
+    float: left;
+    background-color: royalblue;
+    margin: 25px;
+    width: 580px;
+    height: 450px;
+  }
+  .helpTitle{
+    font-size: 30px;
+  }
+  .helpContent{
+    font-size: 23px;
+    line-height: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }

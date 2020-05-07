@@ -61,19 +61,19 @@ class RecruiterPage extends React.Component {
                 position: 'fixed',
               }}
             />
+            
             <footer style={{marginTop: '100vh', fontSize: 20}}>
 
               &#9400; 2020 - System Obsługi Rekrutacji
             </footer>
           </div>
-
           <div className="r-row">
             <div>
               <div>
                 {/* TO DO: Naprawic autentykacje */}
                 <Route path="/recruiter/register" component={RegisterForm} />
                 <Route path="/recruiter/find" component={FindRecruitForm} />
-                <AuthRoute path="/recruiter/help" component={HelpComponent} />
+                <Route path="/recruiter/help" component={HelpComponent} />
 
               </div>
             </div>
