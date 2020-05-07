@@ -1,41 +1,30 @@
 import React, {useState, createContext, useEffect, useContext} from 'react';
-
+import CallApi from '../service/CallApi.js';
+import '../../../../css/WorkersList.css';
 export const WorkersContext = createContext ();
 
-function worker (id, active, firstName, lastName, password, role) {
-  return {
-    id: id,
-    active: active,
-    firstName: firstName,
-    lastName: lastName,
-    password: password,
-    role: role,
-  };
-}
-
-const workersArray = [
-  worker (1, true, 'Jan', 'Kowalski', '1337', 'RECRUIT'),
-  worker (2, true, 'Jan', 'Kowalski', '1337', 'HEAD'),
-  worker (3, true, 'Jan', 'Kowalski', '1337', 'RECRUIT'),
-  worker (4, true, 'Jan', 'Kowalski', '1337', 'HEAD'),
-  worker (5, true, 'Jan', 'Kowalski', '1337', 'RECRUIT'),
-  worker (6, true, 'Jan', 'Kowalski', '1337', 'HEAD'),
-];
-
 const WorkersContextProvider = () => {
-  const [workers, setWorkers] = useState ([]);
+  const [recruiters, setRecruiters] = useState ([]);
+  const [headRecruiters, setHeadRecruiters] = useState ([]);
 
   async function getAllWorkers () {
-    //CallApi.getAllWorkers()
-    setWorkers (workers => [...workersArray]);
+    CallApi.hi ();
+    CallApi.getWorkers ().then (response => {
+      console.log (response.data);
+      setRecruiters (response.data.recruiterList);
+      setHeadRecruiters (response.data.headRecruiterList);
+    });
   }
+
   useEffect (() => {
     getAllWorkers ();
   }, []);
 
   return (
     <div>
-      <WorkersContext.Provider value={{workers, setWorkers}}>
+      <WorkersContext.Provider
+        value={{recruiters, setRecruiters, headRecruiters, setHeadRecruiters}}
+      >
         <div style={{boxSizing: 'border-box'}}>
           <Filters />
           <WorkersListing />
@@ -57,7 +46,7 @@ const Filters = () => {
         boxSizing: 'border-box',
         width: '20%',
         height: '600px',
-        backgroundColor: 'white',
+        backgroundColor: 'gray',
       }}
     >
       Filtruj
@@ -109,7 +98,7 @@ const Filters = () => {
 };
 
 const WorkersListing = () => {
-  const {workers} = useContext (WorkersContext);
+  const {recruiters, headRecruiters} = useContext (WorkersContext);
   return (
     <div
       style={{
@@ -117,11 +106,26 @@ const WorkersListing = () => {
         boxSizing: 'border-box',
         width: '80%',
         height: '600px',
-        backgroundColor: 'gray',
+        backgroundColor: 'white',
       }}
     >
-      {workers.map ((elem, id) => {
-        return <div>{elem.firstName}</div>;
+      {headRecruiters.map ((elem, id) => {
+        return (
+          <div className="list-workers" key={id}>
+            <label>{elem.type} </label>
+            <label>{elem.firstName} </label>
+            <label>{elem.lastName} </label>
+          </div>
+        );
+      })}
+      {recruiters.map ((elem, id) => {
+        return (
+          <div className="list-workers" key={id}>
+            <label>{elem.type} </label>
+            <label>{elem.firstName} </label>
+            <label>{elem.lastName} </label>
+          </div>
+        );
       })}
     </div>
   );
