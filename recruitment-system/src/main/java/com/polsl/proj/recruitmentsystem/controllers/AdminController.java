@@ -25,7 +25,7 @@ public class AdminController {
         adminFacade.addNewInternalEmployee(dto);
     }
 
-    @GetMapping("/getAllEmployes")
+    @GetMapping("/getAllEmployees")
     public EmployeesWrapper getAllEmployees() {
         return adminFacade.getAllEmployees();
     }
