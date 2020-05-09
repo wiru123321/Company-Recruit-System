@@ -64,7 +64,7 @@ public class RecruiterService {
         saveSkills(attributesDTO.getSkills(), recruit);
         saveTrainings(attributesDTO.getTrainings(), recruit);
         saveExperience(attributesDTO.getExperiences(), recruit);
-        JobApplication jobApplication = new JobApplication("Refactor", "nierozpatrzony", recruit);
+        JobApplication jobApplication = new JobApplication("Refactor", "nierozpatrzony",recruitDTO.getDepartment(), recruit);
         jobApplicationRepository.save(jobApplication);
         return true;
     }
@@ -147,7 +147,7 @@ public class RecruiterService {
         List<Recruiter> recruiters = recruiterRepository.findAll();
         List<EmployeeDTO> result = new LinkedList<>();
         for (Recruiter recruiter : recruiters) {
-            EmployeeDTO dto = new EmployeeDTO(recruiter.getFirstName(), recruiter.getLastName(), null, "recruiter");
+            EmployeeDTO dto = new EmployeeDTO(recruiter.getFirstName(), recruiter.getLastName(), null, "recruiter",recruiter.getDepartment());
             result.add(dto);
         }
         return result;

@@ -44,7 +44,6 @@ class HeadRecruiterService {
         Map<String, Object> predicatesValues = createPredicatesMap(dto);
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
-        Predicate hasPosition,hasStatus,hasResult, hasRate;
         List<Predicate> predicates = new LinkedList<>();
         for (Map.Entry<String, Object> entry : predicatesValues.entrySet()) {
             predicates.add(builder.equal(root.get(entry.getKey()), entry.getValue()));
@@ -96,7 +95,7 @@ class HeadRecruiterService {
         List<HeadRecruiter> headRecruiters = headRecruiterRepository.findAll();
         List<EmployeeDTO> result = new LinkedList<>();
         for(HeadRecruiter headRecruiter: headRecruiters){
-            EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(),headRecruiter.getLastName(),null,"headrecruiter");
+            EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(),headRecruiter.getLastName(),null,"headrecruiter",headRecruiter.getDepartment());
             result.add(dto);
         }
         return result;

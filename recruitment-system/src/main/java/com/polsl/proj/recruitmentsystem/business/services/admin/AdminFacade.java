@@ -30,8 +30,6 @@ public class AdminFacade {
     public EmployeesWrapper getAllEmployees() {
         List<EmployeeDTO> headRecruiters = headRecruiterFacade.getAllHeadRecruiters();
         List<EmployeeDTO> recruiters = recruiterFacade.getAllRecruiters();
-
-        EmployeesWrapper result = new EmployeesWrapper(headRecruiters,recruiters);
-        return  result;
+        return new EmployeesWrapper(headRecruiters,recruiters);
     }
 }

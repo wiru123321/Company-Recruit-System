@@ -16,4 +16,5 @@ public class EmployeeDTO {
     private String lastName;
     private String password;
     private String type;
+    private String department;
 }

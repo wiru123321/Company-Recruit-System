@@ -22,6 +22,8 @@ private Long applicationId;
 public String position;
 @NonNull
 private String status;
+@NonNull
+private String department;
 
     @OneToOne(mappedBy = "jobApplication")
     private Decission decission;
@@ -34,11 +36,12 @@ private String status;
     private Recruit recruit;
 
 
-    public JobApplication(String position,String status,Integer result,String rate){
+    public JobApplication(String position,String status,Integer result,String rate,String department){
         this.position=position;
         this.status=status;
         this.decission = new Decission(result);
         this.rate= new Rate(rate);
+        this.department=department;
     }
 
 }
