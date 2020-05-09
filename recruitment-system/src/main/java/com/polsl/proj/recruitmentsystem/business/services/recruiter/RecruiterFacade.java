@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -37,12 +38,16 @@ public class RecruiterFacade {
         }
     }
 
-    public void saveFile(MultipartFile file) throws Exception {
-        fileUtils.save(file, 0);
+    public void saveFile(MultipartFile file) {
+        try {
+            fileUtils.save(file, 0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public List<JobOutDTO> findAllMatchingRecruits(SearchParametersFINAL dto) {
-       return service.findAllMatching(dto);
+    public List<JobOutDTO> findAllMatchingRecruits(SearchParametersFINAL dto, String name) {
+       return service.findAllMatching(dto,name);
     }
 
 

@@ -107,8 +107,8 @@ public class RecruiterService {
     }
 
 
-    List<JobOutDTO> findAllMatching(SearchParametersFINAL dto) {
-        Map<String, Object> predicatesValues = createPredicatesMap(dto);
+    List<JobOutDTO> findAllMatching(SearchParametersFINAL dto, String name) {
+        Map<String, Object> predicatesValues = createPredicatesMap(dto,name);
         builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
@@ -154,7 +154,8 @@ public class RecruiterService {
     }
 
 
-    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto) {
+    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto, String name) {
+        String department = recruiterRepository.getDepartmentForUser(name);
         Map<String, Object> result = new HashMap<>();
         result.put("first_name", dto.getFirstName());
         result.put("last_name", dto.getLastName());
@@ -162,6 +163,7 @@ public class RecruiterService {
         result.put("status", dto.getStatus());
         result.put("result", dto.getResult());
         result.put("rate", dto.getRate());
+        result.put("department",department);
         while (result.values().remove(null)) ;
         return result;
     }

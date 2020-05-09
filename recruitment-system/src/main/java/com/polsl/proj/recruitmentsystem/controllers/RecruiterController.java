@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -40,16 +41,12 @@ public class RecruiterController {
 
     @PostMapping("/addFiles")
     public void addFiles(@RequestParam MultipartFile file){
-        try {
             recruiterFacade.saveFile(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @PostMapping("/getRecruitInfo")
     @ResponseBody
-    public List<JobOutDTO> getAllMatchingRecruits(@RequestBody SearchParametersFINAL dto){
-        return recruiterFacade.findAllMatchingRecruits(dto);
+    public List<JobOutDTO> getAllMatchingRecruits(@RequestBody SearchParametersFINAL dto, Principal principal){
+        return recruiterFacade.findAllMatchingRecruits(dto,principal.getName());
     }
 }

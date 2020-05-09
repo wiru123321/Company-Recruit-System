@@ -40,8 +40,8 @@ class HeadRecruiterService {
 
 
 
-    List<JobOutDTO> getFilteredJobApplications(SearchParametersFINAL dto) {
-        Map<String, Object> predicatesValues = createPredicatesMap(dto);
+    List<JobOutDTO> getFilteredJobApplications(SearchParametersFINAL dto, String name) {
+        Map<String, Object> predicatesValues = createPredicatesMap(dto,name);
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
         List<Predicate> predicates = new LinkedList<>();
@@ -102,12 +102,14 @@ class HeadRecruiterService {
         return result;
     }
 
-    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto) {
+    private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto, String name) {
         Map<String, Object> result = new HashMap<>();
+        String department = headRecruiterRepository.getDepartmentForUser(name);
         result.put("position", dto.getPosition());
         result.put("status", dto.getStatus());
         result.put("result", dto.getResult());
         result.put("rate", dto.getRate());
+        result.put("department",department);
         while (result.values().remove(null)) ;
         return result;
     }
