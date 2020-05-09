@@ -3,7 +3,6 @@ package com.polsl.proj.recruitmentsystem.controllers;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO;
-import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
@@ -23,11 +22,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 @RequestMapping("/head")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @AllArgsConstructor
 public class HeadRecruiterController {
 
@@ -42,8 +42,8 @@ public class HeadRecruiterController {
 
     @GetMapping("/allApplications")
     @ResponseBody
-    List<JobOutDTO> getAllApplications() {
-        return headRecruiterFacade.getAllJobApplications();
+    List<JobOutDTO> getAllApplications(Principal principal) {
+        return headRecruiterFacade.getAllJobApplicationsForHeadRecruiter(principal.getName());
     }
 
     @PostMapping(value = "/generatePDF")

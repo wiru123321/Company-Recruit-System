@@ -1,7 +1,5 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
-
-
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO;
 import com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterFacade;
@@ -16,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/recruiter")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @AllArgsConstructor
 public class RecruiterController {
 

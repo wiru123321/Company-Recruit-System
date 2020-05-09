@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-@CrossOrigin(origins = { "http://localhost:3000","http://localhost:4200" })
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 public class LoginController {

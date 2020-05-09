@@ -71,8 +71,9 @@ class HeadRecruiterService {
         }
     }
 
-     List<JobOutDTO> getAllJobApplications() {
-        List<JobApplication> results =   jobApplicationRepository.findAll();
+     List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name) {
+        String department = headRecruiterRepository.getDepartmentForUser(name);
+        List<JobApplication> results =jobApplicationRepository.findAllByDepartment(department);
         return createJobOutDTOFromResult(results);
     }
 

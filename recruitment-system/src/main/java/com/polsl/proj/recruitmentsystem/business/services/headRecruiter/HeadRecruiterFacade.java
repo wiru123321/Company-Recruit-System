@@ -19,8 +19,8 @@ public class HeadRecruiterFacade {
         headRecruiterService.addDecission(dto);
     }
 
-    public List<JobOutDTO> getAllJobApplications(){
-        return headRecruiterService.getAllJobApplications();
+    public List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name){
+        return headRecruiterService.getAllJobApplicationsForHeadRecruiter(name);
     }
 
     public List<JobOutDTO> getFiltered(SearchParametersFINAL dto) {
