@@ -7,17 +7,67 @@ export const WorkersContext = createContext ();
 
 const WorkersContextProvider = () => {
   const [recruiters, setRecruiters] = useState ([]);
-  const [headRecruiters, setHeadRecruiters] = useState ([]);
+  const [head, setHead] = useState ([]);
+  const [filteredRecruiters, setFilteredRecruiters] = useState ([]);
+  const [filteredHeadRecruiters, setFilteredHeadRecruiters] = useState ([]);
 
   async function getAllWorkers () {
     CallApi.hi ();
     CallApi.getWorkers ().then (response => {
       console.log (response.data);
       setRecruiters (response.data.recruiterList);
-      setHeadRecruiters (response.data.headRecruiterList);
+      setHead (response.data.headRecruiterList);
+      setFilteredRecruiters (response.data.recruiterList);
+      setFilteredHeadRecruiters (response.data.headRecruiterList);
     });
   }
+  async function filterRecruiter (firstName, lastName) {
+    let filtered = recruiters.filter (worker => {
+      return (
+        worker.firstName.toLowerCase ().indexOf (firstName.toLowerCase ()) !==
+        -1
+      );
+    });
 
+    filtered = filtered.filter (worker => {
+      return (
+        worker.lastName.toLowerCase ().indexOf (lastName.toLowerCase ()) !== -1
+      );
+    });
+
+    setFilteredRecruiters (filtered);
+  }
+
+  async function filterHead (firstName, lastName) {
+    let filtered = head.filter (worker => {
+      return (
+        worker.firstName.toLowerCase ().indexOf (firstName.toLowerCase ()) !==
+        -1
+      );
+    });
+
+    filtered = filtered.filter (worker => {
+      return (
+        worker.lastName.toLowerCase ().indexOf (lastName.toLowerCase ()) !== -1
+      );
+    });
+
+    setFilteredHeadRecruiters (filtered);
+  }
+
+  async function filter (firstName, lastName, active, role) {
+    if (role === 'recruiter') {
+      filterRecruiter (firstName, lastName);
+      setFilteredHeadRecruiters (['']);
+    } else if (role === 'headrecruiter') {
+      filterHead (firstName, lastName);
+      setFilteredRecruiters (['']);
+    } else {
+      filterRecruiter (firstName, lastName);
+      filterHead (firstName, lastName);
+    }
+    console.log (firstName, lastName, active, role);
+  }
   useEffect (() => {
     getAllWorkers ();
   }, []);
@@ -25,7 +75,13 @@ const WorkersContextProvider = () => {
   return (
     <div>
       <WorkersContext.Provider
-        value={{recruiters, setRecruiters, headRecruiters, setHeadRecruiters}}
+        value={{
+          filteredRecruiters,
+          setFilteredRecruiters,
+          filteredHeadRecruiters,
+          setFilteredHeadRecruiters,
+          filter,
+        }}
       >
         <div>
           <Filters />

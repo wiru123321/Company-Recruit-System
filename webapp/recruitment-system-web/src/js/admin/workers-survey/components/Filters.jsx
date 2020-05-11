@@ -9,12 +9,14 @@ const Filters = () => {
   const [lastName, setLastName] = useState ('');
   const [active, setActive] = useState ('');
   const [role, setRole] = useState ('');
+  const {filter} = useContext (WorkersContext);
   return (
     <div className="filters-nav">
       <label style={{marginTop: '5%'}}>Filtruj</label>
       <form
         onSubmit={event => {
           event.preventDefault ();
+          filter (firstName, lastName, active, role);
         }}
       >
         <input
@@ -31,17 +33,6 @@ const Filters = () => {
             setLastName (event.target.value);
           }}
         />
-        <br /><label>Aktywny: </label>
-        <select
-          name="active"
-          onChange={event => {
-            setActive (event.target.value);
-          }}
-        >
-          <option value="">-</option>
-          <option value={true}>Aktywny</option>
-          <option value={false}>Nieaktywny</option>
-        </select>
         <br /><label>Rola: </label>
         <select
           name="role"
@@ -50,8 +41,8 @@ const Filters = () => {
           }}
         >
           <option value="">-</option>
-          <option value="HEAD">Kierownik</option>
-          <option value="RECRUITER">Rekruter</option>
+          <option value="headrecruiter">Kierownik</option>
+          <option value="recruiter">Rekruter</option>
         </select>
         <input className="submit" type="submit" value="Filtruj" />
       </form>

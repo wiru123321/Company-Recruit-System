@@ -5,24 +5,29 @@ import '../../../../css/WorkersList.css';
 import {WorkersContext} from '../context/WorkersContext.js';
 
 const WorkersListing = () => {
-  const {recruiters, headRecruiters} = useContext (WorkersContext);
+  const {filteredRecruiters, setFilteredRecruiters} = useContext (
+    WorkersContext
+  );
+  const {filteredHeadRecruiters, setFilteredHeadRecruiters} = useContext (
+    WorkersContext
+  );
   return (
     <div>
-      {headRecruiters.map ((elem, id) => {
+      {filteredRecruiters.map ((elem, id) => {
         return (
           <div className="list-workers" key={id}>
-            <label>{elem.type} </label>
             <label>{elem.firstName} </label>
             <label>{elem.lastName} </label>
+            <label>{elem.type} </label>
           </div>
         );
       })}
-      {recruiters.map ((elem, id) => {
+      {filteredHeadRecruiters.map ((elem, id) => {
         return (
           <div className="list-workers" key={id}>
-            <label>{elem.type} </label>
             <label>{elem.firstName} </label>
             <label>{elem.lastName} </label>
+            <label>{elem.type} </label>
           </div>
         );
       })}
