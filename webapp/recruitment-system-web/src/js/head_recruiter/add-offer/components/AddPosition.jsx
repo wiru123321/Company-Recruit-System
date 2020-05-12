@@ -1,5 +1,6 @@
 import React, {useState, useContext, createContext} from 'react';
 import {PositionContext} from '../context/PositionContext.js';
+import CallApi from '../../service/CallApi.js';
 import '../../../../css/PositionsPage.css';
 
 const AddPosition = () => {
@@ -16,10 +17,16 @@ const AddPosition = () => {
           className="pos-form"
           onSubmit={event => {
             event.preventDefault ();
+            console.log (position, description, limit);
+            if (position !== '' && description !== '' && limit !== '')
+              CallApi.startRecrutation (
+                position,
+                description,
+                parseInt (limit)
+              ).then (response => console.log (response.data));
             setPosition ('');
             setDescription ('');
             setLimit ('');
-            console.log (position, description, limit);
           }}
         >
           <input

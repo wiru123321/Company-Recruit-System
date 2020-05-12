@@ -12,26 +12,35 @@ const WorkersListing = () => {
     WorkersContext
   );
   return (
-    <div>
-      {filteredRecruiters.map ((elem, id) => {
-        return (
-          <div className="list-workers" key={id}>
-            <label>{elem.firstName} </label>
-            <label>{elem.lastName} </label>
-            <label>{elem.type} </label>
-          </div>
-        );
-      })}
-      {filteredHeadRecruiters.map ((elem, id) => {
-        return (
-          <div className="list-workers" key={id}>
-            <label>{elem.firstName} </label>
-            <label>{elem.lastName} </label>
-            <label>{elem.type} </label>
-          </div>
-        );
-      })}
-    </div>
+    <table style={{width: '80%'}}>
+      <thead>
+        <tr>
+          <th>Imie</th>
+          <th>Nazwisko</th>
+          <th>Rola</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredRecruiters.map ((elem, id) => {
+          return (
+            <tr key={id}>
+              <th>{elem.firstName} </th>
+              <th>{elem.lastName} </th>
+              <th>{elem.type} </th>
+            </tr>
+          );
+        })}
+        {filteredHeadRecruiters.map ((elem, id) => {
+          return (
+            <tr key={id}>
+              <th>{elem.firstName} </th>
+              <th>{elem.lastName} </th>
+              <th>{elem.type} </th>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 

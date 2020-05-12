@@ -42,3 +42,14 @@ input.submit:hover{
     background-color: green;
     color: white;
 }
+
+div.list-workers{
+    float: left;
+    font-size: large;
+    background-color: darkgrey;
+}
+
+.list-workers label{
+    margin-left: 5%;
+    width: 30%;
+}
