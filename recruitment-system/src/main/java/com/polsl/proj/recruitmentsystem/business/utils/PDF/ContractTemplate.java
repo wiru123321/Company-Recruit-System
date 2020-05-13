@@ -76,7 +76,7 @@ class ContractTemplate {
         String lastName= headRecruiterFacade.findByName(name).getLastName();
         this.hiringEmployee = name+" "+lastName;
         this.salary = dto.getSalary();
-        this.personalDetails=dto.getPersonalData();
+        this.personalDetails=dto.getFirstName()+" "+dto.getLastName();
         this.contractTitle(dto.getContract());
         if(!dto.getDateFrom().equals("") && !dto.getDateTo().equals("")){
             duration = "w okresie od "+dto.getDateFrom()+" do "+dto.getDateTo();
