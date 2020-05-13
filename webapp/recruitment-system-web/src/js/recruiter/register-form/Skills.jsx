@@ -12,6 +12,7 @@ const Skills = props => {
           setSkillName (event.target.value);
           props.onUpdate (id, event.target.value, skillLevel);
         }}
+        name="skillName"
         placeholder="Umiejętność"
         value={skillName}
       />
@@ -20,6 +21,7 @@ const Skills = props => {
           setSkillLevel (event.target.value);
           props.onUpdate (id, skillName, event.target.value);
         }}
+        name="skillLevel"
         placeholder="Poziom"
         value={skillLevel}
       />
