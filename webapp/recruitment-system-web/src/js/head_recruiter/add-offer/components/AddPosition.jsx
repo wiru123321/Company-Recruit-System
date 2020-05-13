@@ -23,7 +23,7 @@ const AddPosition = () => {
                 position,
                 description,
                 parseInt (limit)
-              ).then (response => console.log (response.data));
+              ).then (response => alert (response.data));
             setPosition ('');
             setDescription ('');
             setLimit ('');

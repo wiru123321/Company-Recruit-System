@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/RecruiterPage.css';
-import RegisterForm from './register-form-component/RegisterForm';
+import RegisterForm from './register-form/Form';
 import FindRecruitForm from './FindRecruitForm';
 import HelpComponent from './HelpComponent';
 import AuthRoute from '../serivce/RecruiterAuthenticatedRoute';
@@ -61,7 +61,7 @@ class RecruiterPage extends React.Component {
                 position: 'fixed',
               }}
             />
-            
+
             <footer style={{marginTop: '100vh', fontSize: 20}}>
 
               &#9400; 2020 - System Obsługi Rekrutacji
