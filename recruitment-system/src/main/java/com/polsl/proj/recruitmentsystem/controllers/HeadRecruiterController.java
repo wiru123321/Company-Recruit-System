@@ -6,6 +6,7 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutati
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
+import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
 import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.utils.PDF.PDFUtility;
 import com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility;
@@ -48,8 +49,8 @@ public class HeadRecruiterController {
 
     @PostMapping(value = "/generatePDF")
     @ResponseBody
-    public String  generatePDF(@RequestBody ContractPOJO dto) {
-        pdfUtility.setContractParams(dto);
+    public String  generatePDF(@RequestBody ContractPOJO dto,Principal principal) {
+        pdfUtility.setContractParams(dto,principal.getName());
         return "ok";
     }
 
@@ -94,8 +95,14 @@ public class HeadRecruiterController {
 
     @PostMapping("/startRecrutation")
     @ResponseBody
-    public String startNewRecrutation(@RequestBody NewRecrutationDTO dto) {
-        headRecruiterFacade.startNewRecrutation(dto);
+    public String startNewRecrutation(@RequestBody NewRecrutationDTO dto,Principal principal) {
+        headRecruiterFacade.startNewRecrutation(dto,principal.getName());
         return "ok";
+    }
+
+    @GetMapping("/getAllRecrutationProcesses")
+    @ResponseBody
+    public List<RecrutationProcess> getAllRecrutationProcesses(Principal principal) {
+        return headRecruiterFacade.getAllRecrutationProcesses(principal.getName());
     }
 }

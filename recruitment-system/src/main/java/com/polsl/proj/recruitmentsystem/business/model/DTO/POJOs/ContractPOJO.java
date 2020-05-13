@@ -14,4 +14,5 @@ public class ContractPOJO {
     private String salary;
     private String dateFrom;
     private String dateTo;
+    private String personalData;
 }

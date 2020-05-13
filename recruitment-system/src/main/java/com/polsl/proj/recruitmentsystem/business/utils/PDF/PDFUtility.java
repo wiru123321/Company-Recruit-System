@@ -118,7 +118,7 @@ public class PDFUtility {
         }
     }
 
-    public void setContractParams(ContractPOJO dto) {
-        contractTemplate.selectOptions(dto);
+    public void setContractParams(ContractPOJO dto, String name) {
+        contractTemplate.selectOptions(dto,name);
     }
 }

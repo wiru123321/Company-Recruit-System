@@ -50,7 +50,7 @@ class CallHeadApi {
     return axios ({
       method: 'get',
 
-      url: `http://localhost:8080/head/allApplications`,
+      url: `http://192.168.0.157:8080/head/allApplications`,
     });
   }
 

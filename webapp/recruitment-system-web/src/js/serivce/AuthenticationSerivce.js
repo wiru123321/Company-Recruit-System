@@ -3,7 +3,7 @@ import axios from 'axios';
 const recruiter = 'authUserAsRecruiter';
 const head = 'authUserAsHead';
 const admin = 'authUserAsAdmin';
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://192.168.0.157:8080';
 /**
  * TO DO: ZABEZPIECZYC PRZED PODWOJNYM LOGOWANIEM
  */
