@@ -73,7 +73,7 @@ public class HeadRecruiterController {
         return headRecruiterFacade.getFiltered(dto,principal.getName());
     }
 
-    @GetMapping("/getFile")
+    @GetMapping("/getFile/{liczba}")
     @ResponseBody
     public ResponseEntity<Resource> getFile() throws IOException {
         ByteArrayResource resource = fileUtility.read("plik.jpg");

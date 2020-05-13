@@ -50,8 +50,11 @@ public class RecruiterFacade {
        return service.findAllMatching(dto,name);
     }
 
-
     public List<EmployeeDTO> getAllRecruiters() {
        return  service.getAllRecruiters();
+    }
+
+    public boolean deleteRecruiter(String firstname) {
+        return  service.deleteRecruiter(firstname);
     }
 }

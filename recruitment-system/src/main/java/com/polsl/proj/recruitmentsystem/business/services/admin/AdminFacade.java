@@ -32,4 +32,13 @@ public class AdminFacade {
         List<EmployeeDTO> recruiters = recruiterFacade.getAllRecruiters();
         return new EmployeesWrapper(headRecruiters,recruiters);
     }
+
+    public void deleteEmployee(String firstname) {
+        boolean accountDeleted;
+       accountDeleted = headRecruiterFacade.deleteHeadRecruiter(firstname);
+       if(!accountDeleted){
+           recruiterFacade.deleteRecruiter(firstname);
+       }
+
+    }
 }

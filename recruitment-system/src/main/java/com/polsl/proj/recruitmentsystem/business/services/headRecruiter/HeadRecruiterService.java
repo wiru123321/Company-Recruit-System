@@ -91,7 +91,7 @@ class HeadRecruiterService {
 
     void startNewRecrutation(NewRecrutationDTO dto, String name) {
         String department = headRecruiterRepository.getDepartmentForUser(name);
-        RecrutationProcess recrutationProcess = new RecrutationProcess(dto.getRequirements(), dto.getExpectedRecruits(),department);
+        RecrutationProcess recrutationProcess = new RecrutationProcess(dto.getRequirements(), dto.getExpectedRecruits(), department);
         recrutationProcessesRepository.save(recrutationProcess);
 
     }
@@ -118,7 +118,11 @@ class HeadRecruiterService {
         return result;
     }
 
-    public String getDepartmentForHeadRecruiter(String name) {
+     String getDepartmentForHeadRecruiter(String name) {
         return headRecruiterRepository.getDepartmentForUser(name);
+    }
+
+    boolean deleteHeadRecruiter(String firstname) {
+        return headRecruiterRepository.deleteByFirstname(firstname) > 0;
     }
 }

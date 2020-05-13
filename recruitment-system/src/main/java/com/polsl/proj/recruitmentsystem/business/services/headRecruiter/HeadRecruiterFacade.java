@@ -22,12 +22,12 @@ public class HeadRecruiterFacade {
         headRecruiterService.addDecission(dto);
     }
 
-    public List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name){
+    public List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name) {
         return headRecruiterService.getAllJobApplicationsForHeadRecruiter(name);
     }
 
     public List<JobOutDTO> getFiltered(SearchParametersFINAL dto, String name) {
-        return headRecruiterService.getFilteredJobApplications(dto,name);
+        return headRecruiterService.getFilteredJobApplications(dto, name);
     }
 
     public HeadRecruiter findByName(String name) {
@@ -35,11 +35,15 @@ public class HeadRecruiterFacade {
     }
 
     public void startNewRecrutation(NewRecrutationDTO dto, String name) {
-        headRecruiterService.startNewRecrutation(dto,name);
+        headRecruiterService.startNewRecrutation(dto, name);
     }
 
-    public List<EmployeeDTO> getAllHeadRecruiters(){
-        return  headRecruiterService.getAllHeadRecruiters();
+    public List<EmployeeDTO> getAllHeadRecruiters() {
+        return headRecruiterService.getAllHeadRecruiters();
+    }
+
+    public boolean deleteHeadRecruiter(String firstname) {
+        return headRecruiterService.deleteHeadRecruiter(firstname);
     }
 
     public List<RecrutationProcess> getAllRecrutationProcesses(String name) {
