@@ -50,13 +50,11 @@ class CallHeadApi {
     return axios ({
       method: 'get',
 
-      url: `http://192.168.0.157:8080/head/allApplications`,
+      url: `http://localhost:8080/head/allApplications`,
     });
   }
 
   getSpecifiedAppliacations (searchParameters) {
-    console.log ('SZMER');
-
     console.log (searchParameters);
 
     const searchParametersDTO = {
@@ -68,7 +66,6 @@ class CallHeadApi {
       Rate: searchParameters.rate, // DTO tez ma duzą literę
     };
 
-    console.log ('specifiedParams');
     console.log (searchParametersDTO);
     var formData = new FormData ();
     const json = JSON.stringify (searchParametersDTO);
