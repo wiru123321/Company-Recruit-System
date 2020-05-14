@@ -97,7 +97,7 @@ public class HeadRecruiterController {
     @ResponseBody
     public String startNewRecrutation(@RequestBody NewRecrutationDTO dto,Principal principal) {
         headRecruiterFacade.startNewRecrutation(dto,principal.getName());
-        return "ok";
+        return "Rekrutacja rozpoczęta pomyślnie";
     }
 
     @GetMapping("/getAllRecrutationProcesses")

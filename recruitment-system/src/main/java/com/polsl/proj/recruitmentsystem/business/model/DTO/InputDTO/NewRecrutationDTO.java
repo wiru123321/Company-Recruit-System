@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewRecrutationDTO {
-    private String requirements;
-    private Integer expectedRecruits;
+    private String description;
+    private String position;
+    private Integer maxHires;
 }

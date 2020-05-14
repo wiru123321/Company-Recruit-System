@@ -14,7 +14,7 @@ public class RecrutationProcessService {
 
     private final RecrutationProcessesRepository recrutationProcessesRepository;
 
-    public List<RecrutationProcess> getAllRecrutationProcesses(String department) {
+     List<RecrutationProcess> getAllRecrutationProcesses(String department) {
         return recrutationProcessesRepository.findAllByDepartment(department);
     }
 }
