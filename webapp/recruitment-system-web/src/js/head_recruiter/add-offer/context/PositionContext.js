@@ -1,8 +1,9 @@
-import React, {useState, useContext, createContext} from 'react';
+import React, {useState, useContext, createContext, useEffect} from 'react';
 import PositionsNavigation from '../components/PositionsNavigation.jsx';
 import AddPosition from '../components/AddPosition.jsx';
 import PositionsListing from '../components/PositionsListing.jsx';
 import '../../../../css/PositionsPage.css';
+import CallApi from '../../service/CallApi.js';
 
 export const PositionContext = createContext ();
 
@@ -16,6 +17,15 @@ const PositionProvider = () => {
     {id: 0, position: 'a', description: 'asfass'},
     {id: 2, position: 'a', description: 'asfass'},
   ]);
+
+  /*function getAllProcesses () {
+    CallApi.getAllRecrutationProccesses ().then (response => {
+      setListOfPositions (...response.data);
+      console.log (response.data);
+    });
+  }
+
+  useEffect (getAllProcesses (), []);*/
 
   return (
     <PositionContext.Provider

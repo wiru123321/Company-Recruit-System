@@ -1,6 +1,7 @@
 import React, {useState, useContext, createContext} from 'react';
 import {PositionContext} from '../context/PositionContext.js';
 import Find from '../../../../resources/search.png';
+import CallApi from '../../service/CallApi.js';
 //import '../../../../css/PositionsPage.css';
 
 const PostionsNavigation = () => {
@@ -40,6 +41,9 @@ const PostionsNavigation = () => {
             className="pos-search"
             onClick={event => {
               event.preventDefault ();
+              CallApi.getAllRecrutationProccesses ().then (response =>
+                console.log (response.data)
+              );
               //CallApi.getPositionsBySearchParams(positionParam)
             }}
           >

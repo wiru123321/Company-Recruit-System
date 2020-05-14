@@ -18,6 +18,7 @@ const WorkersListing = () => {
           <th>Imie</th>
           <th>Nazwisko</th>
           <th>Rola</th>
+          <th>Stanowisko rekrutacji</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@ const WorkersListing = () => {
               <th>{elem.firstName} </th>
               <th>{elem.lastName} </th>
               <th>{elem.type} </th>
+              <th>{elem.department} </th>
             </tr>
           );
         })}
@@ -36,6 +38,7 @@ const WorkersListing = () => {
               <th>{elem.firstName} </th>
               <th>{elem.lastName} </th>
               <th>{elem.type} </th>
+              <th>{elem.department} </th>
             </tr>
           );
         })}

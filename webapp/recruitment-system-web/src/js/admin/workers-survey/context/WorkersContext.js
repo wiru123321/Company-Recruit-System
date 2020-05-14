@@ -21,7 +21,7 @@ const WorkersContextProvider = () => {
       setFilteredHeadRecruiters (response.data.headRecruiterList);
     });
   }
-  async function filterRecruiter (firstName, lastName) {
+  async function filterRecruiter (firstName, lastName, department) {
     let filtered = recruiters.filter (worker => {
       return (
         worker.firstName.toLowerCase ().indexOf (firstName.toLowerCase ()) !==
@@ -35,10 +35,17 @@ const WorkersContextProvider = () => {
       );
     });
 
+    filtered = recruiters.filter (worker => {
+      return (
+        worker.department.toLowerCase ().indexOf (department.toLowerCase ()) !==
+        -1
+      );
+    });
+
     setFilteredRecruiters (filtered);
   }
 
-  async function filterHead (firstName, lastName) {
+  async function filterHead (firstName, lastName, department) {
     let filtered = head.filter (worker => {
       return (
         worker.firstName.toLowerCase ().indexOf (firstName.toLowerCase ()) !==
@@ -52,21 +59,28 @@ const WorkersContextProvider = () => {
       );
     });
 
+    filtered = head.filter (worker => {
+      return (
+        worker.department.toLowerCase ().indexOf (department.toLowerCase ()) !==
+        -1
+      );
+    });
+
     setFilteredHeadRecruiters (filtered);
   }
 
-  async function filter (firstName, lastName, active, role) {
+  async function filter (firstName, lastName, role, department) {
     if (role === 'recruiter') {
-      filterRecruiter (firstName, lastName);
+      filterRecruiter (firstName, lastName, department);
       setFilteredHeadRecruiters (['']);
     } else if (role === 'headrecruiter') {
-      filterHead (firstName, lastName);
+      filterHead (firstName, lastName, department);
       setFilteredRecruiters (['']);
     } else {
-      filterRecruiter (firstName, lastName);
-      filterHead (firstName, lastName);
+      filterRecruiter (firstName, lastName, department);
+      filterHead (firstName, lastName, department);
     }
-    console.log (firstName, lastName, active, role);
+    console.log (firstName, lastName, role, department);
   }
   useEffect (() => {
     getAllWorkers ();

@@ -27,6 +27,7 @@ const AddWorkerForm = () => {
   const [password, setPassword] = useState ('');
   const [rewritePassword, setRewritePassword] = useState ('');
   const [type, setType] = useState ('');
+  const [department, setDepartment] = useState ('');
   const [didSubmit, setDidSubmit] = useState (false);
 
   const reset = () => {
@@ -57,6 +58,14 @@ const AddWorkerForm = () => {
           className="type-field"
           placeholder="Nazwisko"
           name="lastName"
+          onChange={event => {
+            setDepartment (event.target.value);
+          }}
+        />
+        <input
+          className="type-field"
+          placeholder="Stanowisko rekrutacji"
+          name="department"
           onChange={event => {
             setLastName (event.target.value);
           }}
@@ -117,6 +126,7 @@ const AddWorkerForm = () => {
             let worker = {
               firstName: firstName,
               lastName: lastName,
+              department: department,
               password: password,
               rewritePassword: rewritePassword,
               type: type,
@@ -125,6 +135,7 @@ const AddWorkerForm = () => {
             if (
               firstName !== '' &&
               lastName !== '' &&
+              department !== '' &&
               password !== '' &&
               rewritePassword !== '' &&
               type !== ''

@@ -96,6 +96,13 @@ class CallHeadApi {
       data: dto,
     });
   }
+
+  getAllRecrutationProccesses () {
+    return axios ({
+      method: 'get',
+      url: `http://localhost:8080/head/getAllRecrutationProcesses`,
+    });
+  }
 }
 
 export default new CallHeadApi ();
