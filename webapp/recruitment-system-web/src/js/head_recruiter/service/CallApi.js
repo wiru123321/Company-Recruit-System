@@ -34,24 +34,29 @@ class CallHeadApi {
       result: decission.result,
       rate: decission.rate,
     };
+
     return axios ({
       method: 'post',
+
       url: `http://localhost:8080/head/addDecission`,
+
       data: dto,
     });
   }
 
   getAllApplications () {
     console.log ('getAll');
+
     return axios ({
       method: 'get',
+
       url: `http://localhost:8080/head/allApplications`,
     });
   }
 
   getSpecifiedAppliacations (searchParameters) {
-    console.log ('SZMER');
     console.log (searchParameters);
+
     const searchParametersDTO = {
       firstName: searchParameters.firstName,
       lastName: searchParameters.lastName,
@@ -60,7 +65,7 @@ class CallHeadApi {
       result: '', //searchParameters.result, // to powinien byc int
       Rate: searchParameters.rate, // DTO tez ma duzą literę
     };
-    console.log ('specifiedParams');
+
     console.log (searchParametersDTO);
     var formData = new FormData ();
     const json = JSON.stringify (searchParametersDTO);

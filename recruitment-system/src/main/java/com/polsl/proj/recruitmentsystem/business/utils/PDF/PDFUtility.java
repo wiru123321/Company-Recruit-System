@@ -69,6 +69,7 @@ public class PDFUtility {
         insertEmptyLines(3, chunk2);
         document.add(chunk2);
     }
+
     private void addEmployeeDuties(Document document) throws DocumentException {
         Paragraph responsibilities = new Paragraph("Obowiązki Zleceniobiorcy", boldFont);
 
@@ -118,7 +119,7 @@ public class PDFUtility {
         }
     }
 
-    public void setContractParams(ContractPOJO dto) {
-        contractTemplate.selectOptions(dto);
+    public void setContractParams(ContractPOJO dto, String name) {
+        contractTemplate.selectOptions(dto,name);
     }
 }

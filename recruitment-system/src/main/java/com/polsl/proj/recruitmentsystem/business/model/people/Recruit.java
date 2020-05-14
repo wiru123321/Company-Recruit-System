@@ -52,7 +52,6 @@ public class Recruit {
     @OneToOne(mappedBy = "recruit")
     private JobApplication jobApplication;
 
-
     public Recruit(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

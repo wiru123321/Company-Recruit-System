@@ -29,4 +29,9 @@ public class AdminController {
     public EmployeesWrapper getAllEmployees() {
         return adminFacade.getAllEmployees();
     }
+
+    @DeleteMapping("deleteEmployee/{firstname}")
+    public void deleteEmployee(@PathVariable(name = "firstname") String firstname){
+        adminFacade.deleteEmployee(firstname);
+    }
 }

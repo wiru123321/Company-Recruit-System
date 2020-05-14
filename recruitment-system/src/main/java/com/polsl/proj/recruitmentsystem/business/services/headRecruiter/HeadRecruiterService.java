@@ -10,10 +10,12 @@ import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Decission;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate;
+import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
 import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.DecissionRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.RateRepository;
+import com.polsl.proj.recruitmentsystem.repositories.recrutationProcesses.RecrutationProcessesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +38,12 @@ class HeadRecruiterService {
     private final JobApplicationRepository jobApplicationRepository;
     private final RateRepository rateRepository;
     private final DecissionRepository decissionRepository;
+    private final RecrutationProcessesRepository recrutationProcessesRepository;
     private CriteriaBuilder builder;
 
 
-
     List<JobOutDTO> getFilteredJobApplications(SearchParametersFINAL dto, String name) {
-        Map<String, Object> predicatesValues = createPredicatesMap(dto,name);
+        Map<String, Object> predicatesValues = createPredicatesMap(dto, name);
         CriteriaQuery<JobApplication> query = builder.createQuery(JobApplication.class);
         Root<JobApplication> root = query.from(JobApplication.class);
         List<Predicate> predicates = new LinkedList<>();
@@ -53,50 +55,52 @@ class HeadRecruiterService {
         return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
     }
 
-     void addDecission(InputDecissionDTO dto) {
+    void addDecission(InputDecissionDTO dto) {
         JobApplication jobApplication = jobApplicationRepository.getByApplicationId(dto.getJobApplicationID());
-        Decission decission = new Decission(dto.getResult(),dto.getDescription(),jobApplication);
-        Rate rate = new Rate(dto.getRate(),jobApplication);
+        Decission decission = new Decission(dto.getResult(), dto.getDescription(), jobApplication);
+        Rate rate = new Rate(dto.getRate(), jobApplication);
         decissionRepository.save(decission);
         rateRepository.save(rate);
     }
 
 
-     HeadRecruiter findByName(String name) {
-        if(headRecruiterRepository.findByFirstName(name).isPresent()) {
+    HeadRecruiter findByName(String name) {
+        if (headRecruiterRepository.findByFirstName(name).isPresent()) {
             return headRecruiterRepository.findByFirstName(name).get();
-        }
-        else {
+        } else {
             return null;
         }
     }
 
-     List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name) {
+    List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name) {
         String department = headRecruiterRepository.getDepartmentForUser(name);
-        List<JobApplication> results =jobApplicationRepository.findAllByDepartment(department);
+        List<JobApplication> results = jobApplicationRepository.findAllByDepartment(department);
         return createJobOutDTOFromResult(results);
     }
 
     private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results) {
         List<JobOutDTO> dtos = new LinkedList<>();
-        for(JobApplication result: results){
+        for (JobApplication result : results) {
             RecruitOutDTO recruitOutDTO = result.getRecruit().dto();
-            DecissionOutDTO decissionOutDTO = (result.getDecission()!=null)? result.getDecission().dto(): new DecissionOutDTO();
-            RateOutDTO rateOutDTO = (result.getRate()!=null) ? result.getRate().dto() : new RateOutDTO();
-            dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(),result.getStatus(),decissionOutDTO,rateOutDTO,recruitOutDTO));
+            DecissionOutDTO decissionOutDTO = (result.getDecission() != null) ? result.getDecission().dto() : new DecissionOutDTO();
+            RateOutDTO rateOutDTO = (result.getRate() != null) ? result.getRate().dto() : new RateOutDTO();
+            dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(), result.getStatus(), decissionOutDTO, rateOutDTO, recruitOutDTO));
         }
-        return  dtos;
+        return dtos;
     }
 
-     void startNewRecrutation(NewRecrutationDTO dto) {
-        // TODO IMPLEMENT
+    void startNewRecrutation(NewRecrutationDTO dto, String name) {
+        String department = headRecruiterRepository.getDepartmentForUser(name);
+        RecrutationProcess recrutationProcess = new RecrutationProcess(dto.getRequirements(), dto.getExpectedRecruits(), department);
+        recrutationProcessesRepository.save(recrutationProcess);
+
     }
 
     List<EmployeeDTO> getAllHeadRecruiters() {
         List<HeadRecruiter> headRecruiters = headRecruiterRepository.findAll();
         List<EmployeeDTO> result = new LinkedList<>();
-        for(HeadRecruiter headRecruiter: headRecruiters){
-            EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(),headRecruiter.getLastName(),null,"headrecruiter",headRecruiter.getDepartment());
+        for (HeadRecruiter headRecruiter : headRecruiters) {
+            EmployeeDTO dto = new EmployeeDTO(headRecruiter.getFirstName(), headRecruiter.getLastName(), null, "headrecruiter", headRecruiter.getDepartment());
             result.add(dto);
         }
         return result;
@@ -109,8 +113,16 @@ class HeadRecruiterService {
         result.put("status", dto.getStatus());
         result.put("result", dto.getResult());
         result.put("rate", dto.getRate());
-        result.put("department",department);
+        result.put("department", department);
         while (result.values().remove(null)) ;
         return result;
+    }
+
+     String getDepartmentForHeadRecruiter(String name) {
+        return headRecruiterRepository.getDepartmentForUser(name);
+    }
+
+    boolean deleteHeadRecruiter(String firstname) {
+        return headRecruiterRepository.deleteByFirstname(firstname) > 0;
     }
 }

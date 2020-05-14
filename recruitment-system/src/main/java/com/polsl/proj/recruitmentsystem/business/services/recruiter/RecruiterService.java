@@ -204,4 +204,8 @@ public class RecruiterService {
         query.where(last);
         return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
     }
+
+    public boolean deleteRecruiter(String firstname) {
+        return recruiterRepository.deleteByFirstname(firstname) > 0;
+    }
 }
