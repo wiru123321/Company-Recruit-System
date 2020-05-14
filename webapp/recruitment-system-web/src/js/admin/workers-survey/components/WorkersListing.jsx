@@ -5,6 +5,7 @@ import '../../../../css/WorkersList.css';
 import {WorkersContext} from '../context/WorkersContext.js';
 
 const WorkersListing = () => {
+  const {update} = useContext (WorkersContext);
   const {filteredRecruiters, setFilteredRecruiters} = useContext (
     WorkersContext
   );
@@ -19,6 +20,7 @@ const WorkersListing = () => {
           <th>Nazwisko</th>
           <th>Rola</th>
           <th>Stanowisko rekrutacji</th>
+          <th />
         </tr>
       </thead>
       <tbody>
@@ -29,6 +31,15 @@ const WorkersListing = () => {
               <th>{elem.lastName} </th>
               <th>{elem.type} </th>
               <th>{elem.department} </th>
+              <button
+                onClick={event => {
+                  event.preventDefault ();
+                  CallApi.remove (elem.firstName);
+                  update ();
+                }}
+              >
+                USUŃ
+              </button>
             </tr>
           );
         })}
@@ -39,6 +50,15 @@ const WorkersListing = () => {
               <th>{elem.lastName} </th>
               <th>{elem.type} </th>
               <th>{elem.department} </th>
+              <button
+                onClick={event => {
+                  event.preventDefault ();
+                  CallApi.remove (elem.firstName);
+                  update ();
+                }}
+              >
+                USUŃ
+              </button>
             </tr>
           );
         })}

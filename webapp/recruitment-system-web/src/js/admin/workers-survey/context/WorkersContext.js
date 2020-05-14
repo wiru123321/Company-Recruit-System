@@ -10,6 +10,10 @@ const WorkersContextProvider = () => {
   const [head, setHead] = useState ([]);
   const [filteredRecruiters, setFilteredRecruiters] = useState ([]);
   const [filteredHeadRecruiters, setFilteredHeadRecruiters] = useState ([]);
+  const [firstName, setFirstName] = useState ('');
+  const [lastName, setLastName] = useState ('');
+  const [role, setRole] = useState ('');
+  const [department, setDepartment] = useState ('');
 
   async function getAllWorkers () {
     CallApi.hi ();
@@ -21,6 +25,12 @@ const WorkersContextProvider = () => {
       setFilteredHeadRecruiters (response.data.headRecruiterList);
     });
   }
+
+  async function update () {
+    getAllWorkers ();
+    filter (firstName, lastName, role, department);
+  }
+
   async function filterRecruiter (firstName, lastName, department) {
     let filtered = recruiters.filter (worker => {
       return (
@@ -94,7 +104,16 @@ const WorkersContextProvider = () => {
           setFilteredRecruiters,
           filteredHeadRecruiters,
           setFilteredHeadRecruiters,
+          firstName,
+          setFirstName,
+          lastName,
+          setLastName,
+          role,
+          setRole,
+          department,
+          setDepartment,
           filter,
+          update,
         }}
       >
         <div>

@@ -30,7 +30,7 @@ public class AdminController {
         return adminFacade.getAllEmployees();
     }
 
-    @DeleteMapping("deleteEmployee/{firstname}")
+    @DeleteMapping("/deleteEmployee/{firstname}")
     public void deleteEmployee(@PathVariable(name = "firstname") String firstname){
         adminFacade.deleteEmployee(firstname);
     }

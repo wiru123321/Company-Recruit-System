@@ -5,11 +5,10 @@ import '../../../../css/WorkersList.css';
 import {WorkersContext} from '../context/WorkersContext.js';
 
 const Filters = () => {
-  const [firstName, setFirstName] = useState ('');
-  const [lastName, setLastName] = useState ('');
-  const [active, setActive] = useState ('');
-  const [role, setRole] = useState ('');
-  const [department, setDepartment] = useState ('');
+  const {firstName, setFirstName} = useContext (WorkersContext);
+  const {lastName, setLastName} = useContext (WorkersContext);
+  const {role, setRole} = useContext (WorkersContext);
+  const {department, setDepartment} = useContext (WorkersContext);
   const {filter} = useContext (WorkersContext);
   return (
     <div className="filters-nav">
