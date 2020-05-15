@@ -5,7 +5,7 @@ const Education = props => {
 
   return (
     <div>
-      <select onChange={props.onChange} name="education">
+      <select onChange={props.onChange} name="education" required>
         <option value=""> - </option>
         <option value="wyzsze"> Wyższe </option>
         <option value="srednie"> Średnie </option>

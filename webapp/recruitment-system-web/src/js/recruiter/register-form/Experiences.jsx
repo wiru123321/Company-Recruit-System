@@ -16,6 +16,7 @@ const Experiences = props => {
         name="position"
         placeholder="Stanowisko"
         value={position}
+        required
       />
       <input
         onChange={event => {
@@ -26,6 +27,7 @@ const Experiences = props => {
         name="dateFrom"
         placeholder="Od"
         value={dateFrom}
+        required
       />
       <input
         onChange={event => {
@@ -36,6 +38,7 @@ const Experiences = props => {
         name="dateTo"
         placeholder="Do"
         value={dateTo}
+        required
       />
       <button
         onClick={event => {

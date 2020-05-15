@@ -15,6 +15,7 @@ const Skills = props => {
         name="skillName"
         placeholder="Umiejętność"
         value={skillName}
+        required
       />
       <input
         onChange={event => {
@@ -24,6 +25,7 @@ const Skills = props => {
         name="skillLevel"
         placeholder="Poziom"
         value={skillLevel}
+        required
       />
       <button
         onClick={event => {

@@ -21,6 +21,7 @@ const Trainings = props => {
         name="trainingName"
         placeholder="Kurs"
         value={trainingName}
+        required
       />
       <input
         onChange={event => {
@@ -30,6 +31,7 @@ const Trainings = props => {
         name="trainingDescription"
         placeholder="Opis"
         value={trainingDescription}
+        required
       />
       <input
         onChange={event => {
@@ -45,6 +47,7 @@ const Trainings = props => {
         type="date"
         placeholder="Data odbycia"
         value={trainingDate}
+        required
       />
       <button
         onClick={event => {

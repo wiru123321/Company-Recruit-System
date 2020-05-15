@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PersonalData from './PersonalData.jsx';
 import Education from './Education.jsx';
 import Skills from './Skills.jsx';
@@ -8,7 +8,7 @@ import FileUpload from './FileUpload.jsx';
 import CallApi from '../service/RecruitsFormService.js';
 import '../../../css/RecruiterPage.css';
 
-class Form extends React.Component {
+class FormContent extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
@@ -33,10 +33,29 @@ class Form extends React.Component {
     this.addExperiences = this.addExperiences.bind (this);
     this.removeExperiences = this.removeExperiences.bind (this);
     this.updateExperiences = this.updateExperiences.bind (this);
+    this.resetLists = this.resetLists.bind (this);
   }
 
   handleChange (event) {
     this.setState ({[event.target.name]: event.target.value});
+  }
+
+  resetLists () {
+    this.setState ({firstName: '', lastName: '', department: ''});
+    this.setState (state => {
+      const skills = [{skillName: '', skillLevel: ''}];
+      return skills;
+    });
+    this.setState (state => {
+      const trainings = [
+        {trainingName: '', trainingDescription: '', trainingDate: ''},
+      ];
+      return trainings;
+    });
+    this.setState (state => {
+      const experiences = [{position: '', dateFrom: '', dateTo: ''}];
+      return experiences;
+    });
   }
 
   updateEducation (event) {
@@ -171,6 +190,7 @@ class Form extends React.Component {
               this.state.trainings,
               this.state.experiences
             );
+            this.props.onReload ();
           }}
         >
           <label style={{fontSize: '80px', borderBottom: 'none'}}>
@@ -232,5 +252,25 @@ class Form extends React.Component {
     );
   }
 }
+
+const Form = props => {
+  const [reload, setReload] = useState (false);
+  return (
+    <div>
+      {reload &&
+        <FormContent
+          onReload={() => {
+            setReload (!reload);
+          }}
+        />}
+      {!reload &&
+        <FormContent
+          onReload={() => {
+            setReload (!reload);
+          }}
+        />}
+    </div>
+  );
+};
 
 export default Form;
