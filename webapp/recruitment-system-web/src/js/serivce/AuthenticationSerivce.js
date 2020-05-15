@@ -4,9 +4,7 @@ const recruiter = 'authUserAsRecruiter';
 const head = 'authUserAsHead';
 const admin = 'authUserAsAdmin';
 const API_URL = 'http://localhost:8080';
-/**
- * TO DO: ZABEZPIECZYC PRZED PODWOJNYM LOGOWANIEM
- */
+
 class RecruiterAuthenticationService {
   executeBasicAuthentication (username, password) {
     return axios.get (`${API_URL}/login`, {
@@ -36,7 +34,11 @@ class RecruiterAuthenticationService {
 
   setupAxiosInterceptors (token) {
     axios.interceptors.request.use (config => {
-      if (this.isHeadLoggedIn () || this.isAdminLoggedIn ()) {
+      if (
+        this.isHeadLoggedIn () ||
+        this.isAdminLoggedIn () ||
+        this.isRecruiterLoggedIn ()
+      ) {
         config.headers.authorization = token;
       }
       return config;
@@ -81,7 +83,7 @@ class RecruiterAuthenticationService {
   }
 
   getRecruiterName () {
-    return sessionStorage.getItem (recruiter);
+    return 'relruter';
   }
 
   getHeadName () {
