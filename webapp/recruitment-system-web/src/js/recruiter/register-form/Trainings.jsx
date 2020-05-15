@@ -42,6 +42,7 @@ const Trainings = props => {
           );
         }}
         name="trainingDate"
+        type="date"
         placeholder="Data odbycia"
         value={trainingDate}
       />

@@ -5,6 +5,8 @@ import Skills from './Skills.jsx';
 import Trainings from './Trainings.jsx';
 import Experiences from './Experiences.jsx';
 import FileUpload from './FileUpload.jsx';
+import CallApi from '../service/RecruitsFormService.js';
+import '../../../css/RecruiterPage.css';
 
 class Form extends React.Component {
   constructor (props) {
@@ -18,7 +20,7 @@ class Form extends React.Component {
       trainings: [
         {trainingName: '', trainingDescription: '', trainingDate: ''},
       ],
-      experiences: [{dateFrom: '', dateTo: '', position: ''}],
+      experiences: [{position: '', dateFrom: '', dateTo: ''}],
     };
     this.handleChange = this.handleChange.bind (this);
     this.updateEducation = this.updateEducation.bind (this);
@@ -121,7 +123,7 @@ class Form extends React.Component {
     this.setState (state => {
       const experiences = [
         ...state.experiences,
-        {dateFrom: '', dateTo: '', position: ''},
+        {position: '', dateFrom: '', dateTo: ''},
       ];
       return {
         experiences,
@@ -129,10 +131,10 @@ class Form extends React.Component {
     });
   }
 
-  updateExperiences (index, dateFrom, dateTo, position) {
+  updateExperiences (index, position, dateFrom, dateTo) {
     this.setState (state => {
       const experiences = state.experiences.map ((item, i) => {
-        if (index === i) return {dateFrom, dateTo, position};
+        if (index === i) return {position, dateFrom, dateTo};
         else return item;
       });
       return {
@@ -155,22 +157,38 @@ class Form extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="r-content">
+
         <form
           onSubmit={event => {
             event.preventDefault ();
-            console.log (this.state);
+            CallApi.fullApplication (
+              this.state.firstName,
+              this.state.lastName,
+              this.state.department,
+              this.state.education,
+              this.state.skills,
+              this.state.trainings,
+              this.state.experiences
+            );
           }}
         >
+          <label style={{fontSize: '80px', borderBottom: 'none'}}>
+            Podanie o pracę
+          </label>
+          <br />
+          <label>Identyfikacja</label>
           <PersonalData
             fName={this.state.firstName}
             lName={this.state.lastName}
             department={this.state.department}
             onChange={this.handleChange}
           />
-
+          <br />
+          <label>Wykształcenie</label>
           <Education onChange={this.updateEducation} />
-
+          <br />
+          <label>Umiejętności</label>
           {this.state.skills.map ((item, index) => {
             return (
               <Skills
@@ -181,7 +199,8 @@ class Form extends React.Component {
               />
             );
           })}
-
+          <br />
+          <label>Szkolenia</label>
           {this.state.trainings.map ((item, index) => {
             return (
               <Trainings
@@ -192,7 +211,8 @@ class Form extends React.Component {
               />
             );
           })}
-
+          <br />
+          <label>Doświadczenie zawodowe</label>
           {this.state.experiences.map ((item, index) => {
             return (
               <Experiences
@@ -203,8 +223,10 @@ class Form extends React.Component {
               />
             );
           })}
+          <br />
+          <label>Dodatkowe pliki</label>
           <FileUpload />
-          <input type="submit" />
+          <input className="sub" type="submit" value="Zatwierdź" />
         </form>
       </div>
     );

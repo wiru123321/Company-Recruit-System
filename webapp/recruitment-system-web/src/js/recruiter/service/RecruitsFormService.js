@@ -4,6 +4,7 @@ class CallApi {
   fullApplication (
     firstName,
     lastName,
+    department,
     education,
     skills,
     trainings,
@@ -12,10 +13,11 @@ class CallApi {
     const recruitDTO = {
       firstName: firstName,
       lastName: lastName,
+      department: department,
     };
 
     const attributesDTO = {
-      educationDegrees: [education],
+      educationDegrees: education,
       skills: skills,
       trainings: trainings,
       experiences: experiences,
@@ -23,7 +25,7 @@ class CallApi {
     var formData = new FormData ();
     const recruitJson = JSON.stringify (recruitDTO);
     const attributesJson = JSON.stringify (attributesDTO);
-
+    console.log (recruitDTO, attributesDTO);
     var blob = new Blob ([recruitJson], {
       type: 'application/json',
     });
@@ -44,6 +46,12 @@ class CallApi {
       },
     })
       .then (response => {
+        alert (
+          recruitDTO.firstName +
+            ' ' +
+            recruitDTO.firstName +
+            ' został dodany/a.'
+        );
         if (response.data != null) {
           console.log (response.data);
         }
