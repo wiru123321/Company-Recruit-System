@@ -11,10 +11,10 @@ class CallApi {
   }
 
   remove (firstName) {
-    axios ({
+    return axios ({
       method: 'DELETE',
       url: `http://localhost:8080/admin/deleteEmployee/${firstName}`,
-    }).then (response => console.log (response.data));
+    });
   }
 }
 

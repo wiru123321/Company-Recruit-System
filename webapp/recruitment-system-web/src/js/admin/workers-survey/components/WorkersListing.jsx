@@ -34,8 +34,9 @@ const WorkersListing = () => {
               <button
                 onClick={event => {
                   event.preventDefault ();
-                  CallApi.remove (elem.firstName);
-                  update ();
+                  CallApi.remove (elem.firstName).then (response => {
+                    update ();
+                  });
                 }}
               >
                 USUŃ
@@ -53,8 +54,9 @@ const WorkersListing = () => {
               <button
                 onClick={event => {
                   event.preventDefault ();
-                  CallApi.remove (elem.firstName);
-                  update ();
+                  CallApi.remove (elem.firstName).then (response => {
+                    update ();
+                  });
                 }}
               >
                 USUŃ

@@ -26,10 +26,20 @@ const WorkersContextProvider = () => {
     });
   }
 
-  async function update () {
-    getAllWorkers ();
+  const update = () => {
+    CallApi.getWorkers ().then (response => {
+      console.log ('Workers');
+      console.log (response.data);
+      setRecruiters (response.data.recruiterList);
+      setHead (response.data.headRecruiterList);
+      setFilteredRecruiters (response.data.recruiterList);
+      setFilteredHeadRecruiters (response.data.headRecruiterList);
+    });
+    console.log ('On update');
+    console.log (recruiters, head);
     filter (firstName, lastName, role, department);
-  }
+    console.log (filteredRecruiters, filteredHeadRecruiters);
+  };
 
   async function filterRecruiter (firstName, lastName, department) {
     let filtered = recruiters.filter (worker => {
