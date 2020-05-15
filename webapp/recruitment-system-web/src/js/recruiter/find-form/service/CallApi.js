@@ -10,7 +10,11 @@ class CallApi {
       status: status,
       position: position,
     };
-
+    return axios ({
+      method: 'post',
+      url: `http://localhost:8080/recruiter/getRecruitInfo`,
+      data: dto,
+    });
     return axios.post (`http://localhost:8080/recruiter/getRecruitInfo`, dto);
   }
 }

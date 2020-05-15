@@ -36,7 +36,7 @@ class RecruiterAuthenticationService {
 
   setupAxiosInterceptors (token) {
     axios.interceptors.request.use (config => {
-      if (this.isHeadLoggedIn () || this.isAdminLoggedIn ()) {
+      if (this.isHeadLoggedIn () || this.isAdminLoggedIn () || this.isRecruiterLoggedIn()) {
         config.headers.authorization = token;
       }
       return config;
@@ -65,7 +65,7 @@ class RecruiterAuthenticationService {
 
   isRecruiterLoggedIn () {
     let user = sessionStorage.getItem (recruiter);
-    if (user === null) return false;
+    //if (user === null) return false;
     return true;
   }
 
