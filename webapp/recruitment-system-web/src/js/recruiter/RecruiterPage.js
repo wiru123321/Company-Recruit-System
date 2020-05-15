@@ -45,7 +45,7 @@ class RecruiterPage extends React.Component {
               </li>
               <li className="interactive">
 
-                <a href="/login" onClick={Auth.logoutRecruiter ()}>
+                <a href="/login" onClick={Auth.logoutRecruiter}>
 
                   <img className="imgSize" src={logout} /> Wyloguj
 
@@ -71,9 +71,12 @@ class RecruiterPage extends React.Component {
             <div>
               <div>
                 {/* TO DO: Naprawic autentykacje */}
-                <Route path="/recruiter/register" component={RegisterForm} />
-                <Route path="/recruiter/find" component={FindRecruitForm} />
-                <Route path="/recruiter/help" component={HelpComponent} />
+                <AuthRoute
+                  path="/recruiter/register"
+                  component={RegisterForm}
+                />
+                <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
+                <AuthRoute path="/recruiter/help" component={HelpComponent} />
 
               </div>
             </div>

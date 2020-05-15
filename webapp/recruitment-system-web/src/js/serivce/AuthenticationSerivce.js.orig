@@ -34,11 +34,15 @@ class RecruiterAuthenticationService {
 
   setupAxiosInterceptors (token) {
     axios.interceptors.request.use (config => {
+<<<<<<< HEAD
+      if (this.isHeadLoggedIn () || this.isAdminLoggedIn () || this.isRecruiterLoggedIn()) {
+=======
       if (
         this.isHeadLoggedIn () ||
         this.isAdminLoggedIn () ||
         this.isRecruiterLoggedIn ()
       ) {
+>>>>>>> 79361204145b7d6afd89a7ba5bfea6dd10b348c5
         config.headers.authorization = token;
       }
       return config;
