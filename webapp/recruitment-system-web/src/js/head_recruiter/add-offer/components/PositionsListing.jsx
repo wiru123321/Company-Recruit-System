@@ -1,10 +1,25 @@
 import React, {useState, useContext, createContext} from 'react';
 import {PositionContext} from '../context/PositionContext';
+import CallApi from '../../service/CallApi.js';
 import '../../../../css/PositionsPage.css';
+import {useEffect} from 'react';
 
 const PositionsListing = () => {
   const {listOfPositions} = useContext (PositionContext);
   const {showPositions, setShowPositions} = useContext (PositionContext);
+  const [positions, setPositions] = useState ([]);
+
+  async function getPositions () {
+    CallApi.getAllRecrutationProccesses ().then (response => {
+      setPositions (response.data);
+      console.log (response.data);
+    });
+  }
+
+  useEffect (() => {
+    getPositions ();
+  }, []);
+
   if (!showPositions)
     return (
       <div>
@@ -14,16 +29,18 @@ const PositionsListing = () => {
               <tr>
                 <th>Nr</th>
                 <th>Stanowisko</th>
-                <th>Opis</th>
+                <th>Ilość miejsc</th>
+                <th>Wymagania</th>
               </tr>
             </thead>
             <tbody>
-              {listOfPositions.map ((elem, id) => {
+              {positions.map ((elem, id) => {
                 return (
                   <tr>
                     <td>{id}</td>
-                    <td>{elem.position}</td>
-                    <td style={{fontSize: 'small'}}>{elem.description}</td>
+                    <td>{elem.department}</td>
+                    <td style={{fontSize: 'small'}}>{elem.expectedRecruits}</td>
+                    <td>{elem.requirements}</td>
                   </tr>
                 );
               })}
