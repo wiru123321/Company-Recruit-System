@@ -92,6 +92,7 @@ const WorkersContextProvider = () => {
     }
     console.log (firstName, lastName, role, department);
   }
+
   useEffect (() => {
     getAllWorkers ();
   }, []);

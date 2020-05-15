@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/RecruiterPage.css';
 import RegisterForm from './register-form/Form';
-import FindRecruitForm from './FindRecruitForm';
+import FindRecruitForm from './find-form/FindRecruitForm';
 import HelpComponent from './HelpComponent';
 import AuthRoute from '../serivce/RecruiterAuthenticatedRoute';
 import Auth from '../serivce/AuthenticationSerivce.js';
