@@ -120,8 +120,8 @@ const AddWorkerForm = () => {
           value={type}
         >
           <option value="">-</option>
-          <option value="ROLE_RECRUITER">Rekruter</option>
-          <option value="ROLE_HEAD">Kierownik</option>
+          <option value="recruiter">Rekruter</option>
+          <option value="headrecruiter">Kierownik</option>
         </select>
         {didSubmit &&
           type === '' &&
