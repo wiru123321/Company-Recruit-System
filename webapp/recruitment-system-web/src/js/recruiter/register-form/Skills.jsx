@@ -17,7 +17,7 @@ const Skills = props => {
         value={skillName}
         required
       />
-      <input
+      <select
         onChange={event => {
           setSkillLevel (event.target.value);
           props.onUpdate (id, skillName, event.target.value);
@@ -26,7 +26,18 @@ const Skills = props => {
         placeholder="Poziom"
         value={skillLevel}
         required
-      />
+      >
+        <option value="poczatkujacy">
+          poczatkujacy
+        </option>
+        <option value="srednio-zaawansowany">
+          srednio-zaawansowany
+        </option>
+        <option value="zaawansowany">
+          zaawansowany
+        </option>
+        <option value="ekspert">ekspert</option>
+      </select>
       <button
         onClick={event => {
           event.preventDefault ();

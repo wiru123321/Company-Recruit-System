@@ -33,6 +33,7 @@ const AddWorkerForm = () => {
   const reset = () => {
     setFirstName ('');
     setLastName ('');
+    setDepartment ('');
     setPassword ('');
     setRewritePassword ('');
     setType ('');
@@ -47,6 +48,7 @@ const AddWorkerForm = () => {
           className="type-field"
           placeholder="Imie"
           name="firstName"
+          value={firstName}
           onChange={event => {
             setFirstName (event.target.value);
           }}
@@ -58,25 +60,28 @@ const AddWorkerForm = () => {
           className="type-field"
           placeholder="Nazwisko"
           name="lastName"
-          onChange={event => {
-            setDepartment (event.target.value);
-          }}
-        />
-        <input
-          className="type-field"
-          placeholder="Stanowisko rekrutacji"
-          name="department"
+          value={lastName}
           onChange={event => {
             setLastName (event.target.value);
           }}
         />
+        <input
+          className="type-field"
+          placeholder="Dziedzina rekrutacji"
+          name="lastName"
+          value={department}
+          onChange={event => {
+            setDepartment (event.target.value);
+          }}
+        />
         {didSubmit &&
           lastName === '' &&
-          <ErrorMessage message="Należy podać nazwisko pracownika." />}
+          <ErrorMessage message="Należy podać dziedzine rekrutacji." />}
         <input
           className="type-field"
           placeholder="Hasło"
           name="password"
+          value={password}
           onChange={event => {
             setPassword (event.target.value);
           }}
@@ -93,6 +98,7 @@ const AddWorkerForm = () => {
           className="type-field"
           placeholder="Powtórz hasło"
           name="rewritePassword"
+          value={rewritePassword}
           onChange={event => {
             setRewritePassword (event.target.value);
           }}
@@ -111,6 +117,7 @@ const AddWorkerForm = () => {
           onChange={event => {
             setType (event.target.value);
           }}
+          value={type}
         >
           <option value="">-</option>
           <option value="ROLE_RECRUITER">Rekruter</option>
@@ -142,6 +149,7 @@ const AddWorkerForm = () => {
             ) {
               if (password === rewritePassword) {
                 console.log ('Worker', worker);
+                alert (firstName + ' ' + lastName + 'został dodany/a.');
                 CallApi.createWorker (worker);
                 reset ();
               }
