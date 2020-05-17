@@ -52,7 +52,7 @@ class HeadRecruiterService {
         }
         Predicate last = builder.and(predicates.toArray(new Predicate[0]));
         query.where(last);
-        return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList());
+        return createJobOutDTOFromResult(entityManager.createQuery(query.select(root)).getResultList(),dto.getFirstName(),dto.getLastName());
     }
 
     void addDecission(InputDecissionDTO dto) {
@@ -75,13 +75,16 @@ class HeadRecruiterService {
     List<JobOutDTO> getAllJobApplicationsForHeadRecruiter(String name) {
         String department = headRecruiterRepository.getDepartmentForUser(name);
         List<JobApplication> results = jobApplicationRepository.findAllByDepartment(department);
-        return createJobOutDTOFromResult(results);
+        return createJobOutDTOFromResult(results, "","");
     }
 
-    private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results) {
+    private List<JobOutDTO> createJobOutDTOFromResult(List<JobApplication> results, String firstName, String lastName) {
         List<JobOutDTO> dtos = new LinkedList<>();
         for (JobApplication result : results) {
             RecruitOutDTO recruitOutDTO = result.getRecruit().dto();
+            if (!recruitOutDTO.getFirstName().equals(firstName) && !firstName.equals("") || (!recruitOutDTO.getLastName().equals(lastName) && !lastName.equals(""))){
+                continue;
+            }
             DecissionOutDTO decissionOutDTO = (result.getDecission() != null) ? result.getDecission().dto() : new DecissionOutDTO();
             RateOutDTO rateOutDTO = (result.getRate() != null) ? result.getRate().dto() : new RateOutDTO();
             dtos.add(new JobOutDTO(result.getApplicationId(), result.getPosition(), result.getStatus(), decissionOutDTO, rateOutDTO, recruitOutDTO));
@@ -111,10 +114,11 @@ class HeadRecruiterService {
         String department = headRecruiterRepository.getDepartmentForUser(name);
         result.put("position", dto.getPosition());
         result.put("status", dto.getStatus());
-        result.put("result", dto.getResult());
+ //       result.put("result", dto.getResult());
         result.put("rate", dto.getRate());
         result.put("department", department);
         while (result.values().remove(null)) ;
+        while (result.values().remove("")) ;
         return result;
     }
 
