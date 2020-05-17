@@ -73,7 +73,7 @@ class ContractTemplate {
     }
 
     public void selectOptions(ContractPOJO dto, String name) {
-        String lastName= headRecruiterFacade.findByName(name).getLastName();
+        String lastName = headRecruiterFacade.findByName(name).getLastName();
         this.hiringEmployee = name+" "+lastName;
         this.salary = dto.getSalary();
         this.personalDetails=dto.getFirstName()+" "+dto.getLastName();
