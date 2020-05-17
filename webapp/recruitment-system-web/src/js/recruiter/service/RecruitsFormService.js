@@ -47,10 +47,7 @@ class CallApi {
     })
       .then (response => {
         alert (
-          recruitDTO.firstName +
-            ' ' +
-            recruitDTO.firstName +
-            ' został dodany/a.'
+          recruitDTO.firstName + ' ' + recruitDTO.lastName + ' został dodany/a.'
         );
         if (response.data != null) {
           console.log (response.data);

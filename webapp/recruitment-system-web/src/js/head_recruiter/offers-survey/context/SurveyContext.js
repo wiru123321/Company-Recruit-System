@@ -51,7 +51,7 @@ const SurveyContextProvider = () => {
       Rate: paramsRate,
     };
     CallApi.getSpecifiedAppliacations (searchParams).then (response => {
-      console.log (response.data);
+      console.log ('specified', response.data);
       setApplication (applications => [...response.data]);
     });
   };
@@ -120,7 +120,7 @@ const Search = () => {
             setParamsLastName (event.target.value);
           }}
         />
-        <input
+        {/*<input
           placeholder="Stanowisko"
           value={paramsPosition}
           name="position"
@@ -135,7 +135,7 @@ const Search = () => {
           onChange={event => {
             setParamsStatus (event.target.value);
           }}
-        />
+        />*/}
         <label>Wynik </label>
         <select
           placeholder="Wynik"
@@ -149,14 +149,14 @@ const Search = () => {
           <option value="1">pozytywny</option>
           <option value="2">negatywny</option>
         </select>
-        <input
+        {/*<input
           placeholder="Ocena"
           value={paramsRate}
           name="rate"
           onChange={event => {
             setParamsRate (event.target.value);
           }}
-        />
+        />*/}
         <input type="submit" value="Szukaj" />
       </form>
       <button

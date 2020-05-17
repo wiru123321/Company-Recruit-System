@@ -19,9 +19,12 @@ const Applications = () => {
 
 const AppUI = props => {
   const [componentId, setComponentId] = useState (0);
+  async function resetForm () {
+    setComponentId (0);
+  }
   const RenderComponentByID = () => {
     if (componentId === 1) {
-      return <Decission id={props.id} />;
+      return <Decission id={props.id} reset={resetForm} />;
     } else if (componentId === 2) {
       return <div><DataPresentation item={props.item} /></div>;
     } else if (componentId === 3) {

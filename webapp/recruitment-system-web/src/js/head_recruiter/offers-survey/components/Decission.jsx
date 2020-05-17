@@ -60,16 +60,17 @@ const Decission = props => {
             result !== '2'
           ) {
             CallApi.sendDecission (dto).then (response => {
-              alert (
-                'Podanie o pracę zostało zweryfikowane ' + result === 0
-                  ? 'negatywnie'
-                  : 'pozytywnie'
-              );
+              const msg = () => {
+                if (result === 1) return 'negatywnie';
+                else return 'pozytywnie';
+              };
+              alert ('Podanie o pracę zostało zweryfikowane ' + msg ());
+              props.reset ();
+              getAppsBySearchParams ();
             });
           } else {
             console.log (dto, 'not ok');
           }
-          window.location.reload (false);
         }}
       >
         PRZEŚLIJ DECYZJĘ

@@ -21,10 +21,6 @@ class CallHeadApi {
       method: 'post',
       url: `http://localhost:8080/head/generatePDF`,
       data: dto,
-      /* header: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },*/
     }).then (() => {
       window.open (`http://localhost:8080/head/recievePDF`);
     });
@@ -45,10 +41,8 @@ class CallHeadApi {
 
   getAllApplications () {
     console.log ('getAll');
-
     return axios ({
       method: 'get',
-
       url: `http://localhost:8080/head/allApplications`,
     });
   }
@@ -58,13 +52,13 @@ class CallHeadApi {
 
     const dto = {
       firstName: searchParameters.firstName,
-      lastName: searchParameters.lastName,
-      position: searchParameters.position,
-      status: searchParameters.status,
-      result: '', //searchParameters.result, // to powinien byc int
-      Rate: searchParameters.rate, // DTO tez ma duzą literę
+      lastName: searchParameters.lastName, //searchParameters.lastName,
+      position: searchParameters.position, //searchParameters.position,
+      status: searchParameters.status, //searchParameters.status,
+      //result: 1, //searchParameters.result, // to powinien byc int
+      Rate: searchParameters.rate, //searchParameters.rate, // DTO tez ma duzą literę
     };
-
+    console.log ('DTO', JSON.stringify (dto));
     return axios ({
       method: 'post',
       url: `http://localhost:8080/head/parametrizedApplications`,
