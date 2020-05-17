@@ -6,6 +6,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -13,15 +14,16 @@ import java.io.*;
 @Component
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class PDFUtility {
 
-    private final ContractTemplate contractTemplate = new ContractTemplate();
+    @Autowired
+    private ContractTemplate contractTemplate;
 
     private static Font headFont = FontFactory.getFont(FontFactory.TIMES_ROMAN, 25, Font.BOLD);
     private static Font standardFont, boldFont, smallFont;
     private BaseFont helvetica;
+
     {
         try {
             helvetica = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
@@ -120,6 +122,6 @@ public class PDFUtility {
     }
 
     public void setContractParams(ContractPOJO dto, String name) {
-        contractTemplate.selectOptions(dto,name);
+        contractTemplate.selectOptions(dto, name);
     }
 }

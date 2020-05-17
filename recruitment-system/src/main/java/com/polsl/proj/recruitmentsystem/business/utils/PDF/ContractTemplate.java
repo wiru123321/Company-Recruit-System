@@ -2,10 +2,7 @@ package com.polsl.proj.recruitmentsystem.business.utils.PDF;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO;
 import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,17 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
 @Component
+@NoArgsConstructor
 class ContractTemplate {
 
-    private String salary = "10";
-    private String personalDetails = "Imie Nazwisko";
-    private String hiringEmployee= "Imie Nazwisko";
-    private String employmnetType;
-    private String duration =  "na czas nieokreślony.";
+    private  String salary = "10";
+    private  String personalDetails = "Imie Nazwisko";
+    private  String hiringEmployee= "Imie Nazwisko";
+    private  String employmnetType;
+    private  String duration =  "na czas nieokreślony.";
+
     @Autowired
-    private  HeadRecruiterFacade headRecruiterFacade;
+    private   HeadRecruiterFacade headRecruiterFacade;
+
 
     void contractTitle(String contract) {
         switch (contract) {

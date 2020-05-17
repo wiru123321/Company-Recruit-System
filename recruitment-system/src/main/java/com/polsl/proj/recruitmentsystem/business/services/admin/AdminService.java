@@ -28,7 +28,7 @@ public class AdminService {
 
     void addNewInternalEmployee(EmployeeDTO dto) {
         if (dto.getType().equals("recruiter")) {
-            Recruiter recruiter = new Recruiter(dto.getFirstName(),dto.getLastName(),dto.getPassword(),true,"ROLE_USER",dto.getDepartment());
+            Recruiter recruiter = new Recruiter(dto.getFirstName(),dto.getLastName(),dto.getPassword(),true,"ROLE_RECRUITER",dto.getDepartment());
             recruiterRepository.save(recruiter);
         } else {
             HeadRecruiter headRecruiter = new HeadRecruiter(dto.getFirstName(),dto.getLastName(),dto.getPassword(),true,"ROLE_HEAD",dto.getDepartment());

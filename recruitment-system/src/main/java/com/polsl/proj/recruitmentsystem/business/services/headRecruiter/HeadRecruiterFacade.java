@@ -6,13 +6,14 @@ import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
 import com.polsl.proj.recruitmentsystem.business.services.recrutationProcesses.RecrutationProcessFacade;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 @AllArgsConstructor
-
 public class HeadRecruiterFacade {
 
     private final HeadRecruiterService headRecruiterService;
