@@ -9,19 +9,22 @@ class CallHeadApi {
 
   createPDF (contractParams) {
     let dto = {
+      firstName: contractParams.firstName,
+      lastName: contractParams.lastName,
       contract: contractParams.contract,
       salary: contractParams.salary,
       dateFrom: contractParams.dateFrom,
       dateTo: contractParams.dateTo,
     };
+    console.log (dto);
     axios ({
       method: 'post',
       url: `http://localhost:8080/head/generatePDF`,
       data: dto,
-      header: {
+      /* header: {
         Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
-      },
+      },*/
     }).then (() => {
       window.open (`http://localhost:8080/head/recievePDF`);
     });
@@ -35,12 +38,8 @@ class CallHeadApi {
       rate: decission.rate,
     };
 
-    return axios ({
-      method: 'post',
-
-      url: `http://localhost:8080/head/addDecission`,
-
-      data: dto,
+    return axios.post (`http://localhost:8080/head/addDecission`, dto, {
+      headers: {'Content-Type': 'application/json'},
     });
   }
 
@@ -57,7 +56,7 @@ class CallHeadApi {
   getSpecifiedAppliacations (searchParameters) {
     console.log (searchParameters);
 
-    const searchParametersDTO = {
+    const dto = {
       firstName: searchParameters.firstName,
       lastName: searchParameters.lastName,
       position: searchParameters.position,
@@ -66,21 +65,10 @@ class CallHeadApi {
       Rate: searchParameters.rate, // DTO tez ma duzą literę
     };
 
-    console.log (searchParametersDTO);
-    var formData = new FormData ();
-    const json = JSON.stringify (searchParametersDTO);
-    var blob = new Blob ([json], {
-      type: 'application/json',
-    });
-    formData.append ('dto', blob);
     return axios ({
       method: 'post',
       url: `http://localhost:8080/head/parametrizedApplications`,
-      data: formData,
-      header: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
-      },
+      data: dto,
     });
   }
 

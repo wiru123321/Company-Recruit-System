@@ -1,59 +1,123 @@
-* {
-    box-sizing: border-box;
-  }
+div.application{
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
 
-  div.app-list{
-      background-color: steelblue;
-      padding: 12px;
-  }
-  div.app-list:nth-child(even){
-      background-color: tan;
-  }
-  .app-list h2,h3{
-    margin-top: 6px;
-    margin-left: 1%;
-    text-align: left;
-  }
-  .app-list button{
-    width: 100%;
-    border: 1px solid black;
-    padding: 6px;
-  }
+}
 
-  .app-list button:hover{
-    background-color: green;
-  }
+ul.application{
+  width: 100%;
+  margin-left: 0;
+  margin-top: 10px;
+  list-style-type: none;
+  text-align: left;
+  float: left;
+  
+}
 
-  .app-list button.exit:hover{
-    background-color: red;
-    color: white;
-  }
+ul.application > li{
+  box-sizing: border-box;
+  margin-top: 2px;
+}
 
-  button.submit {
-    width: 25%;
-    margin-left: 70%;
-  }
+ul.applicationNav{
+  width: 100%;
+  margin: 0;
+  margin-top: 4px;
+  list-style-type: none;
+  text-align: left;
+  float: left;
+  border: 0.5px solid black;
+  background-color: whitesmoke;
+}
 
-  button.submit:hover{
-      background-color: green;
-  }
+ul.applicationNav:hover{
+  background-color: gainsboro;
+}
 
-  div.show{
-      margin-top: 4px;
-      border: 1px solid black;
-      padding: 6px;
-  }
+ul.applicationNav > li{
+  margin: 0;
+  width: 25%;
+  display: inline-block;
+}
 
-  .dec p{
-      text-align: center;
-  }
+.applicationNav button{
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  border-radius: 25px;
+}
 
-  .dec textarea{
-      width: 100%;
-      height: 120px;
-  }
+.applicationNav button:hover{
+  background-color: #4CAF50;
+  color: white;
+}
 
-  .dec input, select{
-      border-radius: 10px;
-      padding: 4px;
-  }
+div.decission{
+  margin: 0;
+  margin-top: 1%;
+  width: 90%;
+  display: -ms-flexbox;
+}
+
+.decission > h4{
+  margin: 0;
+}
+
+.decission  input{
+  margin: 0;
+  border: 2px solid #008CBA;
+  padding: 8px 2px;
+  border-radius: 25px;
+  font-size: large;
+}
+
+.decission  select{
+  margin: 0;
+  border: 2px solid #008CBA;
+  padding: 8px 2px;
+  border-radius: 25px;
+  font-size: large;
+}
+
+.decission > textarea{
+  margin: 0;
+  width: 100%;
+  height: 80px;
+  max-height: 150px;
+  border: 2px solid #008CBA;
+  padding: 8px 2px;
+  border-radius: 25px;
+  font-size: large;
+}
+.decission > button{
+  border: 2px solid #008CBA;
+  background-color: white; 
+  color: black;
+}
+
+.decission > button:hover{
+  background-color: #008CBA;
+  color:  white;
+}
+
+div.simple{
+
+}
+
+.presentation div{
+  margin: 0;
+  font-size: medium;
+  display: inline-block;
+  width:30%;
+}

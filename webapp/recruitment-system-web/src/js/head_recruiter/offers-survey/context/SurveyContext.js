@@ -34,7 +34,7 @@ const SurveyContextProvider = () => {
     if (applications)
       CallApi.getAllApplications ().then (response => {
         setApplication (applications => [...response.data]);
-        console.log ('getx', response.data);
+        console.log (response.data);
       });
   }
   useEffect (() => {
@@ -76,8 +76,6 @@ const SurveyContextProvider = () => {
         setParamsLastName,
         paramsFirstName,
         setParamsFirstName,
-        applications,
-        setApplication,
         applications,
         setApplication,
         getAppsBySearchParams,

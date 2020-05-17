@@ -67,7 +67,7 @@ class RecruiterAuthenticationService {
 
   isRecruiterLoggedIn () {
     let user = sessionStorage.getItem (recruiter);
-    //if (user === null) return false;
+    if (user === null) return false;
     return true;
   }
 
@@ -83,7 +83,7 @@ class RecruiterAuthenticationService {
   }
 
   getRecruiterName () {
-    return 'relruter';
+    return sessionStorage.getItem (recruiter);
   }
 
   getHeadName () {

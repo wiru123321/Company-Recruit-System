@@ -4,135 +4,88 @@ import GeneratePDF from './GeneratePDF.jsx';
 import {SurveyContext} from '../context/SurveyContext.js';
 
 import '../../../../css/Applications.css';
+import DataPresentation from './DataPresentation.jsx';
 
 const Applications = () => {
   const {applications} = useContext (SurveyContext);
-
   return (
-    <div>
-      {applications.map ((app, id) => {
-        return (
-          <div className="app-list">
-            <PersonalData
-              firstName={app.recruit.firstName}
-              lastName={app.recruit.lastName}
-            />
-            <Status status={app.status} />
-            <RecruitInfo recruit={app.recruit} />
-            <Decission showForm={app.rate} id={app.id} />
-            <GeneratePDF />
-          </div>
-        );
+    <div className="application">
+      {applications.map ((item, index) => {
+        return <AppUI item={item} id={item.id} />;
       })}
     </div>
   );
 };
 
-const PersonalData = props => {
+const AppUI = props => {
+  const [componentId, setComponentId] = useState (0);
+  const RenderComponentByID = () => {
+    if (componentId === 1) {
+      return <Decission id={props.id} />;
+    } else if (componentId === 2) {
+      return <div><DataPresentation item={props.item} /></div>;
+    } else if (componentId === 3) {
+      return (
+        <GeneratePDF
+          firstName={props.item.recruit.firstName}
+          lastName={props.item.recruit.lastName}
+        />
+      );
+    } else {
+      return <div />;
+    }
+  };
+
   return (
     <div>
-      <h2>{props.firstName} {props.lastName}</h2>
+      <ul className="applicationNav">
+        <li style={{width: '40%'}}>
+          {props.item.recruit.firstName} {props.item.recruit.lastName}
+        </li>
+        <li style={{width: '30%'}}>
+          {props.item.decission.result === null
+            ? <button
+                onClick={event => {
+                  if (componentId === 1) setComponentId (0);
+                  else setComponentId (1);
+                }}
+              >
+                OCENA
+              </button>
+            : <div>
+                OCENIONO{' '}
+                {props.item.decission.result == 1 &&
+                  <span style={{color: 'green'}}>POZYTYWNIE</span>}
+                {props.item.decission.result == 0 &&
+                  <span style={{color: 'red'}}>NEGATYWNIE</span>}
+              </div>}
+        </li>
+        <li style={{width: '10%'}}>
+          <button
+            onClick={event => {
+              if (componentId === 2) setComponentId (0);
+              else setComponentId (2);
+            }}
+          >
+            DANE
+          </button>
+        </li>
+        <li style={{width: '15%'}}>
+          <button
+            onClick={event => {
+              if (componentId === 3) setComponentId (0);
+              else setComponentId (3);
+            }}
+          >
+            UMOWA PDF
+          </button>
+        </li>
+        <div className="simple">
+          <RenderComponentByID />
+        </div>
+      </ul>
     </div>
   );
-};
-
-const Status = props => {
-  const [isShown, toggleShow] = useState (false);
-  return (
-    <div>
-      {props.status === 'nierozpatrzony'
-        ? <h3 style={{fontSize: '25px'}}>Status: {props.status} </h3>
-        : <div> <h3>{props.status} </h3><button>SZCZEGÓŁY</button></div> //TO DO Dodac obsluge show
-      }
-    </div>
-  );
-};
-
-const RecruitInfo = props => {
-  const [isShown, toggleShow] = useState (false);
-  return isShown
-    ? <div className="show">
-        <h4>SZCZEGÓŁY</h4>
-        <h4>Wykształcenie: {props.recruit.educations[0]}</h4>
-        <h4>Doświadczenie zawodowe</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Stanowisko</th>
-              <th>Data rozpoczęcia</th>
-              <th>Data zakończenia</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.recruit.empolymentExperiences.map ((elem, id) => {
-              return (
-                <tr key={id}>
-                  <td>{elem.position}</td>
-                  <td>{elem.dateFrom}</td>
-                  <td>{elem.dateTo}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <h4>Umiejętności</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Umiejętność</th>
-              <th>Poziom</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.recruit.skills.map ((elem, id) => {
-              return (
-                <tr key={id}>
-                  <td>{elem.skillName}</td>
-                  <td>{elem.skillLevel}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <h4>Szkolenia</h4>
-        <table>
-          <thead>
-            <tr>
-              <th>Nazwa szkolenia</th>
-              <th>Data odbycia</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.recruit.trainings.map ((elem, id) => {
-              return (
-                <tr key={id}>
-                  <td>{elem.name}</td>
-                  <td>{elem.date}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <button
-          className="exit"
-          onClick={event => {
-            event.preventDefault ();
-            toggleShow (false);
-          }}
-        >
-          ZAMKNIJ
-        </button>
-      </div>
-    : <div>
-        <button
-          onClick={event => {
-            event.preventDefault ();
-            toggleShow (true);
-          }}
-        >
-          SZCZEGÓŁY
-        </button>
-      </div>;
 };
 
 export default Applications;
