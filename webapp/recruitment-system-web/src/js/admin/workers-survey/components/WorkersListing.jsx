@@ -25,44 +25,47 @@ const WorkersListing = () => {
       </thead>
       <tbody>
         {filteredRecruiters.map ((elem, id) => {
-          return (
-            <tr key={id}>
-              <th>{elem.firstName} </th>
-              <th>{elem.lastName} </th>
-              <th>{elem.type} </th>
-              <th>{elem.department} </th>
-              <button
-                onClick={event => {
-                  event.preventDefault ();
-                  CallApi.remove (elem.firstName).then (response => {
-                    update ();
-                  });
-                }}
-              >
-                USUŃ
-              </button>
-            </tr>
-          );
+          if (elem.firstName)
+            return (
+              <tr key={id}>
+                <th>{elem.firstName} </th>
+                <th>{elem.lastName} </th>
+                <th>{elem.type} </th>
+                <th>{elem.department} </th>
+                <button
+                  onClick={event => {
+                    event.preventDefault ();
+                    CallApi.remove (elem.firstName).then (response => {
+                      update ();
+                    });
+                  }}
+                >
+                  USUŃ
+                </button>
+              </tr>
+            );
         })}
         {filteredHeadRecruiters.map ((elem, id) => {
-          return (
-            <tr key={id}>
-              <th>{elem.firstName} </th>
-              <th>{elem.lastName} </th>
-              <th>{elem.type} </th>
-              <th>{elem.department} </th>
-              <button
-                onClick={event => {
-                  event.preventDefault ();
-                  CallApi.remove (elem.firstName).then (response => {
-                    update ();
-                  });
-                }}
-              >
-                USUŃ
-              </button>
-            </tr>
-          );
+          if (elem.firstName)
+            return (
+              <tr key={id}>
+                <th>{elem.firstName} </th>
+                <th>{elem.lastName} </th>
+                <th>{elem.type} </th>
+                <th>{elem.department} </th>
+
+                <button
+                  onClick={event => {
+                    event.preventDefault ();
+                    CallApi.remove (elem.firstName).then (response => {
+                      update ();
+                    });
+                  }}
+                >
+                  USUŃ
+                </button>
+              </tr>
+            );
         })}
       </tbody>
     </table>

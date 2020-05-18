@@ -26,7 +26,6 @@ class RecruiterPage extends React.Component {
       <div>
         <Router>
           <div class="col-3 r-menu">
-            <label>{Auth.getRecruiterName ()}</label>
             <ul>
               <li className="interactive">
                 <NavLink to="/recruiter/register">

@@ -55,7 +55,7 @@ const WorkersContextProvider = () => {
       );
     });
 
-    filtered = recruiters.filter (worker => {
+    filtered = filtered.filter (worker => {
       return (
         worker.department.toLowerCase ().indexOf (department.toLowerCase ()) !==
         -1
@@ -79,7 +79,7 @@ const WorkersContextProvider = () => {
       );
     });
 
-    filtered = head.filter (worker => {
+    filtered = filtered.filter (worker => {
       return (
         worker.department.toLowerCase ().indexOf (department.toLowerCase ()) !==
         -1

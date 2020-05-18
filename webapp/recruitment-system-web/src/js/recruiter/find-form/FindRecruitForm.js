@@ -21,7 +21,7 @@ const FindRecruitForm = () => {
             result,
             status,
             position
-          ).then (response => console.log (response.data));
+          ).then (response => setApplications (response.data));
         }}
       >
         <input
@@ -75,6 +75,42 @@ const FindRecruitForm = () => {
         />
         <input type="submit" value="Szukaj" />
       </form>
+      <div>
+        {applications.map ((item, index) => {
+          return <Recruit recruit={item.recruit} />;
+        })}
+      </div>
+    </div>
+  );
+};
+
+const Recruit = props => {
+  const [showDetails, setShowDetails] = useState (false);
+  return (
+    <div style={{textAlign: 'left'}}>
+      {props.recruit.firstName} {props.recruit.lastName} <button
+        onClick={event => {
+          event.preventDefault ();
+          setShowDetails (!showDetails);
+        }}
+      >
+        SZCZEGÓŁY
+      </button> <br />
+      {showDetails &&
+        <div>
+          Wykształcenie: {props.recruit.educations} <br />
+          Szkolenia: {props.recruit.trainings.map ((item, index) => {
+            return <li>{item.name} {item.date}</li>;
+          })}
+          Doświadczenie zawodowe:
+          {' '}
+          {props.recruit.empolymentExperiences.map ((item, index) => {
+            return <li>{item.position} {item.dateFrom} {item.dateTo}</li>;
+          })}
+          Umiejętności: {props.recruit.skills.map ((item, index) => {
+            return <li>{item.skillName} {item.skillLevel}</li>;
+          })}
+        </div>}
     </div>
   );
 };
