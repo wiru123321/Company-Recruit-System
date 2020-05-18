@@ -1,6 +1,8 @@
 package com.polsl.proj.recruitmentsystem.business.utils.file;
 
+import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,8 @@ import java.nio.file.Paths;
 public class FileUtility {
 
     private final String serverUrl = "C:\\UmowyProjekt\\";
+    @Autowired
+    private  HeadRecruiterFacade headRecruiterFacade;
 
     public void save(MultipartFile file, int id) throws IOException {
         byte[] bytes = file.getBytes();
@@ -22,8 +26,9 @@ public class FileUtility {
         Files.write(path, bytes);
     }
 
-    public ByteArrayResource read(String fileName) throws IOException {
-        Path path = Paths.get(serverUrl + fileName);
+    public ByteArrayResource read(String recruitID) throws IOException {
+        String databaseFilename = headRecruiterFacade.findRecruitByID(Long.valueOf(recruitID));
+        Path path = Paths.get(serverUrl + databaseFilename+".pdf");
         return new ByteArrayResource(Files.readAllBytes(path));
     }
 }

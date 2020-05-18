@@ -40,8 +40,10 @@ public class RecruiterController {
     }
 
     @PostMapping("/addFiles")
-    public void addFiles(@RequestParam MultipartFile file){
+    @ResponseBody
+    public String addFiles(@RequestParam MultipartFile file){
             recruiterFacade.saveFile(file);
+            return  "OK";
     }
 
     @PostMapping("/getRecruitInfo")

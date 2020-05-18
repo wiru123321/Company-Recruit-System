@@ -34,7 +34,11 @@ const AppUI = props => {
           lastName={props.item.recruit.lastName}
         />
       );
-    } else {
+    } 
+      else if(componentId === 4){
+        window.open(`http://localhost:8080/head/getFile/`+props.item.recruit.id);
+      }
+    else {
       return <div />;
     }
   };
@@ -73,6 +77,16 @@ const AppUI = props => {
             }}
           >
             DANE
+          </button>
+        </li>
+        <li style={{width: '10%'}}>
+          <button
+            onClick={event => {
+              if (componentId === 4) setComponentId (0);
+              else setComponentId (4);
+            }}
+          >
+            CV
           </button>
         </li>
         <li style={{width: '15%'}}>

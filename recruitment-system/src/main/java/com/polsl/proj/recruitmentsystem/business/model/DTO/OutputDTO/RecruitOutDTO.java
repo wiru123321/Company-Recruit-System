@@ -13,13 +13,14 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecruitOutDTO {        // duplikacja z RecruitDTO
+public class RecruitOutDTO {
 
     private String firstName;
     private String lastName;
+    private Long ID;
 
     private List<String> educations;
     private List<ExperiencePOJO> empolymentExperiences;
-    private List<SkillPOJO> skills;             //muszę się zdecydować czy POJO czy DTO jako nazwy
+    private List<SkillPOJO> skills;
     private List<TrainingOutDTO> trainings;
 }

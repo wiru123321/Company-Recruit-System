@@ -57,6 +57,7 @@ const SurveyContextProvider = () => {
   };
   const getAll = () => {
     CallApi.getAllApplications ().then (response => {
+      console.log(response);
       setApplication (applications => [...response.data]);
     });
   };

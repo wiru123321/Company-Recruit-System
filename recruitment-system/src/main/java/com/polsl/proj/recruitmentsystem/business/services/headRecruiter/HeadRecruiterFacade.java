@@ -51,4 +51,8 @@ public class HeadRecruiterFacade {
         String department = headRecruiterService.getDepartmentForHeadRecruiter(name);
         return recrutationProcessFacade.getAllRecrutationProcesses(department);
     }
+
+    public String findRecruitByID(Long id) {
+       return headRecruiterService.findRecruitByID(id);
+    }
 }
