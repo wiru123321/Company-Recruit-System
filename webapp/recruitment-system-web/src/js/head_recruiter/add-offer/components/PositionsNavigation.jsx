@@ -44,7 +44,6 @@ const PostionsNavigation = () => {
               CallApi.getAllRecrutationProccesses ().then (response =>
                 console.log (response.data)
               );
-              //CallApi.getPositionsBySearchParams(positionParam)
             }}
           >
             <img src={Find} />

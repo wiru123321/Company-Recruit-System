@@ -136,7 +136,7 @@ const Search = () => {
             setParamsStatus (event.target.value);
           }}
         />*/}
-        <label>Wynik </label>
+        {/*<label>Wynik </label>
         <select
           placeholder="Wynik"
           value={paramsResult}
@@ -148,15 +148,17 @@ const Search = () => {
           <option value="0">-</option>
           <option value="1">pozytywny</option>
           <option value="2">negatywny</option>
-        </select>
-        {/*<input
-          placeholder="Ocena"
-          value={paramsRate}
-          name="rate"
-          onChange={event => {
-            setParamsRate (event.target.value);
-          }}
-        />*/}
+        </select>*/}
+        {/*
+          <input
+            placeholder="Ocena"
+            value={paramsRate}
+            name="rate"
+            onChange={event => {
+              setParamsRate (event.target.value);
+            }}
+          />
+          */}
         <input type="submit" value="Szukaj" />
       </form>
       <button

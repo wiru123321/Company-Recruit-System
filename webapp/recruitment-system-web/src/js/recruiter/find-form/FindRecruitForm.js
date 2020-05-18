@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import CallApi from './service/CallApi.js';
+import '../../../css/RecruiterPage.css';
 
 const FindRecruitForm = () => {
   const [applications, setApplications] = useState ([]);
@@ -12,6 +13,7 @@ const FindRecruitForm = () => {
   return (
     <div>
       <form
+        className="params"
         onSubmit={event => {
           event.preventDefault ();
           CallApi.getAllMatchingResults (
@@ -87,28 +89,35 @@ const FindRecruitForm = () => {
 const Recruit = props => {
   const [showDetails, setShowDetails] = useState (false);
   return (
-    <div style={{textAlign: 'left'}}>
-      {props.recruit.firstName} {props.recruit.lastName} <button
+    <div className="recruits" style={{textAlign: 'left'}}>
+      <button
         onClick={event => {
           event.preventDefault ();
           setShowDetails (!showDetails);
         }}
       >
-        SZCZEGÓŁY
+        {props.recruit.firstName} {props.recruit.lastName}
       </button> <br />
       {showDetails &&
         <div>
-          Wykształcenie: {props.recruit.educations} <br />
-          Szkolenia: {props.recruit.trainings.map ((item, index) => {
-            return <li>{item.name} {item.date}</li>;
+          <label> Wykształcenie: {props.recruit.educations}</label> <br />
+          <label>Szkolenia: </label>
+          {props.recruit.trainings.map ((item, index) => {
+            return <li className="recruits">{item.name} {item.date}</li>;
           })}
           Doświadczenie zawodowe:
           {' '}
           {props.recruit.empolymentExperiences.map ((item, index) => {
-            return <li>{item.position} {item.dateFrom} {item.dateTo}</li>;
+            return (
+              <li className="recruits">
+                {item.position} {item.dateFrom} {item.dateTo}
+              </li>
+            );
           })}
           Umiejętności: {props.recruit.skills.map ((item, index) => {
-            return <li>{item.skillName} {item.skillLevel}</li>;
+            return (
+              <li className="recruits">{item.skillName} {item.skillLevel}</li>
+            );
           })}
         </div>}
     </div>

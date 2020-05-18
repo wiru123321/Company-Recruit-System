@@ -34,7 +34,7 @@ const PositionsListing = () => {
               </tr>
             </thead>
             <tbody>
-              {positions.map ((elem, id) => {
+              {listOfPositions.map ((elem, id) => {
                 return (
                   <tr>
                     <td>{id}</td>

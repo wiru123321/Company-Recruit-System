@@ -5,6 +5,7 @@ import '../../../../css/PositionsPage.css';
 
 const AddPosition = () => {
   const {position, setPosition} = useContext (PositionContext);
+  const {getAllProcesses} = useContext (PositionContext);
   const {description, setDescription} = useContext (PositionContext);
   const {limit, setLimit} = useContext (PositionContext);
   const {showPositions, setShowPositions} = useContext (PositionContext);
@@ -18,23 +19,26 @@ const AddPosition = () => {
           onSubmit={event => {
             event.preventDefault ();
             console.log (position, description, limit);
-            if (position !== '' && description !== '' && limit !== '')
+            if (description !== '' && limit !== '')
               CallApi.startRecrutation (
                 position,
                 description,
                 parseInt (limit)
-              ).then (response => alert (response.data));
+              ).then (response => {
+                alert (response.data);
+                getAllProcesses ();
+              });
             setPosition ('');
             setDescription ('');
             setLimit ('');
           }}
         >
           <input
-            placeholder="Stanowisko"
-            value={position}
-            name="position"
+            placeholder="Wymagania"
+            value={description}
+            name="description"
             type="text"
-            onChange={event => setPosition (event.target.value)}
+            onChange={event => setDescription (event.target.value)}
             required
           />
           <input
@@ -46,14 +50,7 @@ const AddPosition = () => {
             onChange={event => setLimit (event.target.value)}
             required
           />
-          <textarea
-            placeholder="Opis"
-            value={description}
-            name="description"
-            type="text"
-            onChange={event => setDescription (event.target.value)}
-            required
-          />
+
           <input className="submit" type="submit" value="Zatwierdź" />
         </form>
       </div>

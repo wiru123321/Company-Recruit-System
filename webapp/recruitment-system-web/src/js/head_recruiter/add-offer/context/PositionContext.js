@@ -13,19 +13,18 @@ const PositionProvider = () => {
   const [position, setPosition] = useState ('');
   const [description, setDescription] = useState ('');
   const [limit, setLimit] = useState ('');
-  const [listOfPositions, setListOfPositions] = useState ([
-    {id: 0, position: 'a', description: 'asfass'},
-    {id: 2, position: 'a', description: 'asfass'},
-  ]);
+  const [listOfPositions, setListOfPositions] = useState ([]);
 
-  /*function getAllProcesses () {
+  async function getAllProcesses () {
     CallApi.getAllRecrutationProccesses ().then (response => {
-      setListOfPositions (...response.data);
+      setListOfPositions (response.data);
       console.log (response.data);
     });
   }
 
-  useEffect (getAllProcesses (), []);*/
+  useEffect (() => {
+    getAllProcesses ();
+  }, []);
 
   return (
     <PositionContext.Provider
@@ -42,6 +41,7 @@ const PositionProvider = () => {
         setListOfPositions,
         limit,
         setLimit,
+        getAllProcesses,
       }}
     >
       <PositionsNavigation />
