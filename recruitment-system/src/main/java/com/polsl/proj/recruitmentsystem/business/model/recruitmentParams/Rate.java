@@ -23,16 +23,13 @@ public class Rate {
     @NonNull
     private JobApplication jobApplication;
 
-    public Rate(String rate) {
+     Rate(String rate) {
         this.rate=rate;
     }
-
 
     public RateOutDTO dto() {
         return RateOutDTO.builder()
                 .rate(this.rate)
                 .build();
     }
-
-
 }

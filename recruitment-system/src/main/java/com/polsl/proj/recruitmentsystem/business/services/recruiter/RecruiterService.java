@@ -106,7 +106,6 @@ public class RecruiterService {
         }
     }
 
-
     List<JobOutDTO> findAllMatching(SearchParametersFINAL dto, String name) {
         Map<String, Object> predicatesValues = createPredicatesMap(dto, name);
         builder = entityManager.getCriteriaBuilder();
@@ -135,13 +134,6 @@ public class RecruiterService {
         return dtos;
     }
 
-    void addTraining(TrainingPOJO dto) {
-        Training training = new Training(dto.getTrainingName(), dto.getTrainingDescription(), dto.getTrainingDate());
-        Recruit recruit = recruitRepository.findById(dto.getRecruitID());
-        recruit.addTraining(training);
-        trainingRepository.save(training);
-    }
-
     Recruiter findByName(String name) {
         return recruiterRepository.findByFirstName(name).get();
     }
@@ -155,7 +147,6 @@ public class RecruiterService {
         }
         return result;
     }
-
 
     private Map<String, Object> createPredicatesMap(SearchParametersFINAL dto, String name) {
         String department = recruiterRepository.getDepartmentForUser(name);

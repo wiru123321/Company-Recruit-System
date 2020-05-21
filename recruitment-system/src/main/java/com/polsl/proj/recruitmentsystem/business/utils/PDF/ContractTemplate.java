@@ -71,7 +71,7 @@ class ContractTemplate {
         return "Zleceniodawca zastrzega sobie prawo do natychmiastowego zerwania umowy w przypadku dokonania przez Zleceniobiorcę któregoś z następujących zachowań: kradzież własności intelektualnej (udostępnianie osobom trzecim kodu źródłowego, sposobów imprementacji, szczegółów projektowych lub innych informacji mogących działać na szkodę Zleceniodawcy), wykazywanie uprzedzeń wobec innyc pracowników (seksizm,homofobia,rasizm,ksenofobia) w działaniach i/lub słowach, umyślne niszczenie mienia Zleceniodawcy, oraz inne czyny łąmiące zabronione przez Kodeks Karny Rzeczypospolitej Polskiej.";
     }
 
-    public void selectOptions(ContractPOJO dto, String name) {
+     void selectOptions(ContractPOJO dto, String name) {
         String lastName = headRecruiterFacade.findByName(name).getLastName();
         this.hiringEmployee = name+" "+lastName;
         this.salary = dto.getSalary();

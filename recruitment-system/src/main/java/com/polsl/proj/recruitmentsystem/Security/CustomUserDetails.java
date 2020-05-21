@@ -32,7 +32,7 @@ public class CustomUserDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    CustomUserDetails(HeadRecruiter headUser) {             // TODO: Refactor Liskov
+    CustomUserDetails(HeadRecruiter headUser) {
         this.firstName = headUser.getFirstName();
         this.password = headUser.getPassword();
         this.active = headUser.isActive();
@@ -41,7 +41,7 @@ public class CustomUserDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    CustomUserDetails(Admin admin) {             // TODO: Refactor Liskov
+    CustomUserDetails(Admin admin) {
         this.firstName = admin.getFirstName();
         this.password = admin.getPassword();
         this.active = admin.isActive();

@@ -26,13 +26,9 @@ public class RecruiterFacade {
     public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
        service.addNewApplication(recruitDTO,attributesDTO);
     }
-    public void addTraining(TrainingPOJO dto) {
-        service.addTraining(dto);
-    }
     public Recruiter findByName(String name) {
         try {
-            Recruiter result = service.findByName(name);
-            return result;
+            return service.findByName(name);
         } catch (NoSuchElementException exception) {
             return null;
         }

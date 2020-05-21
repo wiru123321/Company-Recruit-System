@@ -19,7 +19,7 @@ public class Decission {
     private Long decissionId;
 
     @NonNull
-    private Integer result; // TODO podmienić na enum
+    private Integer result;
     @NonNull
     private String description;
 

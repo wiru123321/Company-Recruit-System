@@ -30,13 +30,7 @@ public class RecruiterController {
     @ResponseBody
     public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart InputRecruitAttributesDTO attributesDTO,Principal principal){
         recruiterFacade.addNewApplication(recruitDTO,attributesDTO);
-        return "ok";    //TODO: Refactor
-    }
-
-    @PostMapping("/addTraining")
-    public String addTraining(@RequestBody TrainingPOJO dto){
-        recruiterFacade.addTraining(dto);
-        return "recruiter/main";
+        return "ok";
     }
 
     @PostMapping("/addFiles")
@@ -49,6 +43,7 @@ public class RecruiterController {
     @PostMapping("/getRecruitInfo")
     @ResponseBody
     public List<JobOutDTO> getAllMatchingRecruits(@RequestBody SearchParametersFINAL dto, Principal principal){
-        return recruiterFacade.findAllMatchingRecruits(dto,"rekruter");
+        String name = principal.getName();
+        return recruiterFacade.findAllMatchingRecruits(dto,name);
     }
 }

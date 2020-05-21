@@ -35,7 +35,6 @@ private String department;
     @NonNull
     private Recruit recruit;
 
-
     public JobApplication(String position,String status,Integer result,String rate,String department){
         this.position=position;
         this.status=status;
