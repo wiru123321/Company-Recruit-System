@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/MainPage.css';
-import {BrowserRouter as withRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import Axios from 'axios';
