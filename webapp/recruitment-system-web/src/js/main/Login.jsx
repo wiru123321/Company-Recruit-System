@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/MainPage.css';
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter as withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import Axios from 'axios';
@@ -37,7 +37,6 @@ class LoginComponent extends React.Component {
     )
       .then (function (response) {
         redirect = response.data;
-        console.log (redirect);
       })
       .then (() => {
         if (redirect === 'recruiter')
@@ -55,9 +54,7 @@ class LoginComponent extends React.Component {
             this.state.username,
             this.state.password
           );
-          Axios.get ('http://localhost:8080/admin/hi').then (r =>
-            console.log (r.data)
-          );
+          Axios.get ('http://localhost:8080/admin/hi');
         }
         this.props.history.push ('/' + redirect);
       })

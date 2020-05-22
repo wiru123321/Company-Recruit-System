@@ -7,9 +7,6 @@ import {BrowserRouter as Router, NavLink, withRouter} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import AuthRoute from '../serivce/HeadAuthenticatedRoute.js';
-import CallApi from './service/CallApi';
-
-/* Strona kierownika */
 
 class HeadRecruiterPage extends React.Component {
   render () {

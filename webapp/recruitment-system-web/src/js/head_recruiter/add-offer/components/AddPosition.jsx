@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from 'react';
+import React, {useContext} from 'react';
 import {PositionContext} from '../context/PositionContext.js';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/PositionsPage.css';
@@ -8,7 +8,7 @@ const AddPosition = () => {
   const {getAllProcesses} = useContext (PositionContext);
   const {description, setDescription} = useContext (PositionContext);
   const {limit, setLimit} = useContext (PositionContext);
-  const {showPositions, setShowPositions} = useContext (PositionContext);
+  const {showPositions} = useContext (PositionContext);
 
   if (showPositions)
     return (
@@ -18,7 +18,6 @@ const AddPosition = () => {
           className="pos-form"
           onSubmit={event => {
             event.preventDefault ();
-            console.log (position, description, limit);
             if (description !== '' && limit !== '')
               CallApi.startRecrutation (
                 position,

@@ -83,7 +83,7 @@ class RecruiterAuthenticationService {
   }
 
   getRecruiterName () {
-    return 'a'; //sessionStorage.getItem (recruiter);
+    return sessionStorage.getItem (recruiter);
   }
 
   getHeadName () {

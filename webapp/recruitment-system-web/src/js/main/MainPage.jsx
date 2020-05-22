@@ -4,7 +4,6 @@ import LoginCompnent from './Login.jsx';
 import '../../css/MainPage.css';
 import logo from '../../resources/logo.png';
 
-/* Strona główna dostępna pod /main */
 class MainPage extends React.Component {
   render () {
     return (
@@ -14,8 +13,8 @@ class MainPage extends React.Component {
           <div className="col-8">
             <img className="logo" src={logo} alt="logo" />
           </div>
-            <LoginCompnent />
-        
+          <LoginCompnent />
+
         </div>
         <ContentComponent />
       </div>

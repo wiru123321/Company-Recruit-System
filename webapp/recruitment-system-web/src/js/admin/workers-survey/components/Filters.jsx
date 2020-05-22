@@ -1,5 +1,4 @@
-import React, {useState, createContext, useEffect, useContext} from 'react';
-import CallApi from '../service/CallApi.js';
+import React, {useContext} from 'react';
 import '../../../../css/WorkersList.css';
 
 import {WorkersContext} from '../context/WorkersContext.js';

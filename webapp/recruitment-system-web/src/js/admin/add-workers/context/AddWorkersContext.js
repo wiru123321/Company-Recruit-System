@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useState} from 'react';
 import '../../../../css/AddWorkersForm.css';
 import CallApi from '../service/CallApi.js';
 export const AddWorkersContext = createContext ();
@@ -148,7 +148,6 @@ const AddWorkerForm = () => {
               type !== ''
             ) {
               if (password === rewritePassword) {
-                console.log ('Worker', worker);
                 alert (firstName + ' ' + lastName + 'został dodany/a.');
                 CallApi.createWorker (worker);
                 reset ();

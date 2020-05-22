@@ -49,6 +49,7 @@ const AppUI = props => {
           {props.item.decission.result === null
             ? <button
                 onClick={event => {
+                  event.preventDefault ();
                   if (componentId === 1) setComponentId (0);
                   else setComponentId (1);
                 }}
@@ -66,6 +67,7 @@ const AppUI = props => {
         <li style={{width: '10%'}}>
           <button
             onClick={event => {
+              event.preventDefault ();
               if (componentId === 2) setComponentId (0);
               else setComponentId (2);
             }}
@@ -76,6 +78,7 @@ const AppUI = props => {
         <li style={{width: '15%'}}>
           <button
             onClick={event => {
+              event.preventDefault ();
               if (componentId === 3) setComponentId (0);
               else setComponentId (3);
             }}

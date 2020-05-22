@@ -1,5 +1,3 @@
-import React from 'react';
-
 import axios from 'axios';
 
 class CallHeadApi {
@@ -16,7 +14,6 @@ class CallHeadApi {
       dateFrom: contractParams.dateFrom,
       dateTo: contractParams.dateTo,
     };
-    console.log (dto);
     axios ({
       method: 'post',
       url: `http://localhost:8080/head/generatePDF`,
@@ -28,9 +25,8 @@ class CallHeadApi {
 
   sendDecission (decission) {
     let dto = {
-      description: decission.description, //decission.description,
-      jobApplicationID: decission.jobApplicationID, // decission.jobApplicationID,
-      result: decission.result,
+      description: decission.description,
+      jobApplicationID: decission.jobApplicationID,
       rate: decission.rate,
     };
 
@@ -40,7 +36,6 @@ class CallHeadApi {
   }
 
   getAllApplications () {
-    console.log ('getAll');
     return axios ({
       method: 'get',
       url: `http://localhost:8080/head/allApplications`,
@@ -48,17 +43,14 @@ class CallHeadApi {
   }
 
   getSpecifiedAppliacations (searchParameters) {
-    console.log (searchParameters);
-
     const dto = {
       firstName: searchParameters.firstName,
-      lastName: searchParameters.lastName, //searchParameters.lastName,
-      position: searchParameters.position, //searchParameters.position,
-      status: searchParameters.status, //searchParameters.status,
-      //result: 1, //searchParameters.result, // to powinien byc int
-      Rate: searchParameters.rate, //searchParameters.rate, // DTO tez ma duzą literę
+      lastName: searchParameters.lastName,
+      position: searchParameters.position,
+      status: searchParameters.status,
+      Rate: searchParameters.rate,
     };
-    console.log ('DTO', JSON.stringify (dto));
+
     return axios ({
       method: 'post',
       url: `http://localhost:8080/head/parametrizedApplications`,

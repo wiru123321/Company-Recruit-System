@@ -12,7 +12,6 @@ const PositionsListing = () => {
   async function getPositions () {
     CallApi.getAllRecrutationProccesses ().then (response => {
       setPositions (response.data);
-      console.log (response.data);
     });
   }
 

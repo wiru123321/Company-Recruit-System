@@ -1,5 +1,4 @@
 import React from 'react';
-import {Field, FieldArray} from 'formik';
 import axios from 'axios';
 class FileUpload extends React.Component {
   constructor (props) {
@@ -13,9 +12,9 @@ class FileUpload extends React.Component {
   }
 
   onFormSubmit (e) {
-    e.preventDefault (); // Stop form submit
+    e.preventDefault ();
     this.fileUpload (this.state.file).then (response => {
-      console.log (response.data);
+      alert ('Dodano plik.');
     });
   }
 

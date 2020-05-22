@@ -1,5 +1,5 @@
 import React, {useState, useContext, createContext, useEffect} from 'react';
-//import Search from '../components/Search.jsx';
+import Search from '../components/Search.jsx';
 import Applications from '../components/Applications.jsx';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/SurveyOffers.css';
@@ -85,91 +85,6 @@ const SurveyContextProvider = () => {
       <Search />
       <Applications />
     </SurveyContext.Provider>
-  );
-};
-
-const Search = () => {
-  const {paramsFirstName, setParamsFirstName} = useContext (SurveyContext);
-  const {paramsLastName, setParamsLastName} = useContext (SurveyContext);
-  const {paramsPosition, setParamsPosition} = useContext (SurveyContext);
-  const {paramsStatus, setParamsStatus} = useContext (SurveyContext);
-  const {paramsResult, setParamsResult} = useContext (SurveyContext);
-  const {paramsRate, setParamsRate} = useContext (SurveyContext);
-  const {getAll, getAppsBySearchParams} = useContext (SurveyContext);
-  return (
-    <div className="searchParamsForm">
-      <form
-        onSubmit={event => {
-          event.preventDefault ();
-          getAppsBySearchParams ();
-        }}
-      >
-        <input
-          placeholder="Imię"
-          value={paramsFirstName}
-          name="firstName"
-          onChange={event => {
-            setParamsFirstName (event.target.value);
-          }}
-        />
-        <input
-          placeholder="Nazwisko"
-          value={paramsLastName}
-          name="lastName"
-          onChange={event => {
-            setParamsLastName (event.target.value);
-          }}
-        />
-        {/*<input
-          placeholder="Stanowisko"
-          value={paramsPosition}
-          name="position"
-          onChange={event => {
-            setParamsPosition (event.target.value);
-          }}
-        />
-        <input
-          placeholder="Status"
-          value={paramsStatus}
-          name="staus"
-          onChange={event => {
-            setParamsStatus (event.target.value);
-          }}
-        />*/}
-        {/*<label>Wynik </label>
-        <select
-          placeholder="Wynik"
-          value={paramsResult}
-          name="result"
-          onChange={event => {
-            setParamsResult (parseInt (event.target.value));
-          }}
-        >
-          <option value="0">-</option>
-          <option value="1">pozytywny</option>
-          <option value="2">negatywny</option>
-        </select>*/}
-        {/*
-          <input
-            placeholder="Ocena"
-            value={paramsRate}
-            name="rate"
-            onChange={event => {
-              setParamsRate (event.target.value);
-            }}
-          />
-          */}
-        <input type="submit" value="Szukaj" />
-      </form>
-      <button
-        onClick={event => {
-          event.preventDefault ();
-          getAll ();
-        }}
-      >
-        ZNAJDŹ WSZYSTKIE
-      </button>
-    </div>
   );
 };
 

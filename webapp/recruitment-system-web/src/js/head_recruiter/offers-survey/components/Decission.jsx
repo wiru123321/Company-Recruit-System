@@ -1,16 +1,14 @@
 import React, {useState, useContext} from 'react';
-import axios from 'axios';
 import CallApi from '../../service/CallApi.js';
 import '../../../../css/Applications.css';
 import {SurveyContext} from '../context/SurveyContext.js';
 
 const Decission = props => {
-  const [isShown, toggleShow] = useState (false);
   const [description, setDescription] = useState ('');
-  const [jobApplicationID, setJobApplicationID] = useState (props.id);
+  const [jobApplicationID] = useState (props.id);
   const [result, setResult] = useState ('2');
   const [rate, setRate] = useState (0);
-  const {getAppsBySearchParams, getAll} = useContext (SurveyContext);
+  const {getAppsBySearchParams} = useContext (SurveyContext);
 
   return (
     <div className="decission">
@@ -68,8 +66,6 @@ const Decission = props => {
               props.reset ();
               getAppsBySearchParams ();
             });
-          } else {
-            console.log (dto, 'not ok');
           }
         }}
       >

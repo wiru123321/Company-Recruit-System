@@ -52,7 +52,6 @@ const Experiences = props => {
         onClick={event => {
           event.preventDefault ();
           props.onRemove (id);
-          console.log ('remove');
         }}
       >
         USUŃ

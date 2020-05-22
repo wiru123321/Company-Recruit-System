@@ -1,17 +1,11 @@
 import React from 'react';
 import '../../css/AdminPage.css';
-import {
-  BrowserRouter as Router,
-  withRouter,
-  Route,
-  NavLink,
-} from 'react-router-dom';
+import {BrowserRouter as Router, withRouter, NavLink} from 'react-router-dom';
 import RecruiterAuthenticationService
   from '../serivce/AuthenticationSerivce.js';
 import WorkersSurvey from './workers-survey/WorkersSurvey.jsx';
 import AddWorkers from './add-workers/AddWorkers.jsx';
 import AuthRoute from '../serivce/AdminAuthenticatedRoute.js';
-/* Strona administratora */
 class AdminPage extends React.Component {
   render () {
     return (

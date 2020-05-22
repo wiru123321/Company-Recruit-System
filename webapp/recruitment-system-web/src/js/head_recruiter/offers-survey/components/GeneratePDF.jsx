@@ -6,7 +6,7 @@ const GeneratePDF = props => {
   const [salary, setSalary] = useState ('');
   const [dateFrom, setDateFrom] = useState ('');
   const [dateTo, setDateTo] = useState ('');
-  const [isShown, toggleShow] = useState (false);
+
   return (
     <div className="decission">
       <h4>UMOWA</h4>

@@ -19,7 +19,6 @@ import {
   withRouter,
 } from 'react-router-dom';
 import CallApi from '../head_recruiter/service/CallApi';
-/* Strona rekrutera dostepna pod /recruiter*/
 class RecruiterPage extends React.Component {
   render () {
     return (
@@ -69,7 +68,6 @@ class RecruiterPage extends React.Component {
           <div className="r-row">
             <div>
               <div>
-                {/* TO DO: Naprawic autentykacje */}
                 <AuthRoute
                   path="/recruiter/register"
                   component={RegisterForm}
