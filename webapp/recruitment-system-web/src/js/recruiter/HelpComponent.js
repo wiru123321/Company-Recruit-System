@@ -3,7 +3,7 @@ import React from 'react';
 class HelpComponent extends React.Component {
   render () {
     return <div>
-        <div><h1>Witaj na stronie rekrutera</h1></div>
+        <div><h1 style={{borderBottom: 'none'}}>Witaj na stronie rekrutera</h1></div>
         <div className="helpComponentDivRecruit">
           <div className="helpOptionRecruit">
             <p className="helpTitleRecruit"><b>Dodawanie nowych kandydatów.</b></p>

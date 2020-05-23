@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .r-row::after {
@@ -12,12 +14,11 @@
 
 [class*="col-"] {
   
-  padding: 10px;
 }
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
+.col-3 {width: 100%;}
 .col-4 {width: 100%;}
 .col-5 {width: 41.66%;}
 .col-6 {width: 50%;}
@@ -38,15 +39,16 @@ html {
 }
 
 .r-menu{
-  height: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: #ffffff;
   color: black;
   text-align: left;
+  display: block;
 }
 
 .r-menu label{
   font-size: 50px;
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,35 +58,32 @@ html {
 .r-menu ul {
   list-style-type: none;
   margin: 0;
-  padding: 20px;
-  margin-bottom: 170px;
+  background-color: black;
+  margin-bottom: 15px;
 }
 
 .r-menu a{
-  font-size: 40px;
+  font-size: 20px;
   text-decoration: none;
-  color: black;
+  color: white;
   transition: all 1s ease;
 }
 
 .r-menu li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2em;
-  background-color: #ffffff;
+  width: 25%;
   color: #ffffff;
-  border-left-color: red;
-  border-left-width: 3px;
-  border-left-style: solid;
-  display: block;
-  transition: all 0s ease;
+  display: inline-block;
+  text-align: center;
 }
 .r-menu footer{
   color: black;
   position: fixed;
   left: 20px;
   top: -50px;
+}
+
+.footerContent{
+  display: block;
 }
 /*
 .r-menu li.interactive:hover {
@@ -94,36 +93,22 @@ html {
 .r-menu a:hover{
   color: royalblue;
 }
-.r-menu li:hover{
-  border-bottom-color: red;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-  border-top-color: red;
-  border-top-width: 3px;
-  border-top-style: solid;
-  border-right-color: red;
-  border-right-width: 3px;
-  border-right-style: solid;
-  border-left-color: white;
-}
 
-.r-menu img{
-  
-  width: 45px;
-  height: 45px;
+.imgSize {
+  display: flex;
+  width: 35px;
+  height: 35px;
   background-color: royalblue;
+  border-radius: 35%;
   padding: 5px;
-  display: inline-block;
-  
+  margin: auto;
 }
 
 
 .r-content input{
-  
-  background-color: rgb(46, 139, 226);
+  background-color: white;
   margin: 2px;
   padding: 10px;
-  border-radius: 6px;
   border: solid;
   border-color: royalblue;
   border-width: 2px;
@@ -133,48 +118,43 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
- font-size: 30px;
+  font-size: 30px;
   margin-bottom: 4px;
-  border-bottom-color: red;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
 }
 
 .r-content button{
- 
-  background-color: rgb(46, 139, 226);
+  background-color: white;
   margin: 2px;
   padding: 10px;
-  border-radius: 6px;
   border: solid;
   border-color: royalblue;
   border-width: 2px;
 }
 
 .r-content select{
- 
-  background-color: rgb(46, 139, 226);
+  background-color: white;
   margin: 4px;
   padding: 10px;
-  border-radius: 6px;
   border: solid;
   border-color: royalblue;
   border-width: 2px;
 }
 .helpComponentDivRecruit{
-  background-color: blue;
-  width: 1750px;
-  height: 500px;
-  margin-top: 100px;
+  background-color: darkgrey;
+  width: 1300px;
+  height: 400px;
+  margin: auto;
+  margin-top: 50px;
 }
 .helpOptionRecruit{
   margin: 0;
   padding: 0;
-  float: left;
-  background-color: royalblue;
+  display: inline-block;
+  background-color: white;
+  box-shadow: 15px 15px 15px gray;
   margin: 25px;
   width: 580px;
-  height: 450px;
+  height: 350px;
 }
 .helpTitleRecruit{
   font-size: 30px;

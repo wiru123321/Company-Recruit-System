@@ -36,7 +36,7 @@
   }
   
   .header {
-    background-color: wheat;
+    background-color: white;
     color: black;
     padding: 15px;
   }
@@ -47,10 +47,6 @@
     padding-bottom: 0px;
     padding-top: 10px;
     width: 270px;
-    border-radius: 10%;
-    border-color: red;
-    border-width: 1px;
-    border-style: solid;
   }
   
   .form li {
@@ -87,7 +83,7 @@
 
   .form button{
       background-color: blue;
-      color: wheat;
+      color: white;
       width: 60%;
       float: left;
       border-radius: 6px;
@@ -101,7 +97,7 @@
 
   .info{
       background-color: #3399CC;
-      color: wheat;
+      color: white;
   }
 
   .allComponent{
@@ -112,7 +108,7 @@
     font-size: 50px;
     margin-left: 150px;
     margin-right: 150px;
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid black;
   }
 
   .info p{

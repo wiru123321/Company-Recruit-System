@@ -193,7 +193,7 @@ class FormContent extends React.Component {
             this.props.onReload ();
           }}
         >
-          <label style={{fontSize: '80px', borderBottom: 'none'}}>
+          <label style={{fontSize: '50px', borderBottom: 'none', display:'block'}}>
             Podanie o pracę
           </label>
           <br />

@@ -27,8 +27,8 @@ class RecruiterPage extends React.Component {
           <div class="col-3 r-menu">
             <ul>
               <li className="interactive">
-                <NavLink to="/recruiter/register">
-                  <img src={reg} /> Zarejestruj
+              <img className="imgSize" src={reg} />
+                <NavLink to="/recruiter/register"> Zarejestruj
                 </NavLink>
               </li>
               <li className="interactive">
@@ -38,7 +38,7 @@ class RecruiterPage extends React.Component {
               </li>
               <li className="interactive">
                 <NavLink to="/recruiter/help">
-                  <img src={help} /> Pomoc
+                  <img className="imgSize" src={help} /> Pomoc
                 </NavLink>
               </li>
               <li className="interactive">
@@ -50,20 +50,9 @@ class RecruiterPage extends React.Component {
                 </a>
               </li>
             </ul>
-            <img
-              src={logoRecruiter}
-              style={{
-                width: 720,
-                height: 151,
-                backgroundColor: '#ffffff',
-                position: 'fixed',
-              }}
-            />
+            
 
-            <footer style={{marginTop: '100vh', fontSize: 20}}>
-
-              &#9400; 2020 - System Obsługi Rekrutacji
-            </footer>
+            
           </div>
           <div className="r-row">
             <div>
@@ -79,6 +68,19 @@ class RecruiterPage extends React.Component {
             </div>
 
           </div>
+          <footer style={{marginTop: '15px', fontSize: 20}}>
+              <img
+                  src={logoRecruiter}
+                  style={{
+                        width: 720,
+                        height: 151,
+                        backgroundColor: '#ffffff',
+                        float: 'left',
+                        float: 'inline-end'
+                        }}
+                          />
+              <a className="footerContent"> &#9400; 2020 - System Obsługi Rekrutacji</a>
+            </footer>
         </Router>
       </div>
     );
