@@ -13,13 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final AdminFacade adminFacade;
 
-    @GetMapping("/hi")
-    @ResponseBody
-    public String hi(){
-        return "hi";
-    }
-
-
     @PostMapping("/addEmployee")
     public void addNewEmployee(@RequestBody EmployeeDTO dto) {
         adminFacade.addNewInternalEmployee(dto);

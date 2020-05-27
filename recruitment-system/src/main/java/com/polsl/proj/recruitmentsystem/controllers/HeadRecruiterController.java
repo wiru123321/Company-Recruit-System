@@ -69,20 +69,20 @@ public class HeadRecruiterController {
 
     @PostMapping("/parametrizedApplications")
     @ResponseBody
-    List<JobOutDTO> getParametrizedApplications(@RequestBody SearchParametersFINAL dto,Principal principal) { //TODO MultiPart czy nie multipart??
+    List<JobOutDTO> getParametrizedApplications(@RequestBody SearchParametersFINAL dto,Principal principal) {
         return headRecruiterFacade.getFiltered(dto,principal.getName());
     }
 
-    @GetMapping("/getFile/{liczba}")
+    @GetMapping("/getFile/{recruitID}")
     @ResponseBody
-    public ResponseEntity<Resource> getFile() throws IOException {
-        ByteArrayResource resource = fileUtility.read("plik.jpg");
+    public ResponseEntity<Resource> getFile(@PathVariable("recruitID")String recruitID) throws IOException {
+        ByteArrayResource resource = fileUtility.read(recruitID);
         var headers = new HttpHeaders();
-        headers.add("attachment", "inline; filename = umowa.jpg");
+        headers.add("attachment", "inline; filename = "+recruitID+".pdf");
         return ResponseEntity
                 .ok()
                 .headers(headers)
-                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .contentType(MediaType.APPLICATION_PDF)
                 .body(resource);
     }
 

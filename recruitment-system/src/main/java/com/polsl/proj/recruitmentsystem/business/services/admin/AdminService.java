@@ -8,6 +8,8 @@ import com.polsl.proj.recruitmentsystem.repositories.people.AdminRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +19,8 @@ public class AdminService {
     private final HeadRecruiterRepository headRecruiterRepository;
     private final RecruiterRepository recruiterRepository;
 
+
+    private final PasswordEncoder passwordEncoder;
 
     Admin findByName(String name) {
         if (adminRepository.findByFirstName(name).isPresent()) {
@@ -28,10 +32,10 @@ public class AdminService {
 
     void addNewInternalEmployee(EmployeeDTO dto) {
         if (dto.getType().equals("recruiter")) {
-            Recruiter recruiter = new Recruiter(dto.getFirstName(),dto.getLastName(),dto.getPassword(),true,"ROLE_RECRUITER",dto.getDepartment());
+            Recruiter recruiter = new Recruiter(dto.getFirstName(),dto.getLastName(),passwordEncoder.encode(dto.getPassword()),true,"ROLE_RECRUITER",dto.getDepartment());
             recruiterRepository.save(recruiter);
         } else {
-            HeadRecruiter headRecruiter = new HeadRecruiter(dto.getFirstName(),dto.getLastName(),dto.getPassword(),true,"ROLE_HEAD",dto.getDepartment());
+            HeadRecruiter headRecruiter = new HeadRecruiter(dto.getFirstName(),dto.getLastName(),passwordEncoder.encode(dto.getPassword()),true,"ROLE_HEAD",dto.getDepartment());
             headRecruiterRepository.save(headRecruiter);
         }
     }

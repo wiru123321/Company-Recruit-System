@@ -19,5 +19,4 @@ public class InputRecruitAttributesDTO {
     private List<SkillPOJO> skills;
     private List<TrainingPOJO> trainings;
     private List<ExperiencePOJO> experiences;
-    // private List<FileDTO> files;
 }

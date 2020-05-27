@@ -24,11 +24,10 @@ public class Education {
         return degree.toString();
     }
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     private Recruit recruit;
 
-    public void setDegree(String degree) {       //TODO Refactor
+    public void setDegree(String degree) {
         switch (degree) {
             case "srednie": {
                 this.degree = EduDegree.secondary;

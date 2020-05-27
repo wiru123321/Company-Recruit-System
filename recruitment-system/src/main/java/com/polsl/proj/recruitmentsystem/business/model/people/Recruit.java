@@ -28,6 +28,7 @@ public class Recruit {
     private Long id;
     private String firstName;
     private String lastName;
+    private String cvFilename;
 
     @OneToMany(mappedBy = "recruit",   //  'mappedBy = "recruit"' oznacza,że 'private Recruit recruit' w
             cascade = CascadeType.ALL, // klasie Education odpowiada za relację (zawiera klucz obcy do query by znaleźć wszystkie wizyty dla danego rekruta
@@ -89,6 +90,7 @@ public class Recruit {
         }
 
         return RecruitOutDTO.builder()
+                .ID(this.id)
                 .firstName(this.firstName)
                 .lastName(this.lastName)
                 .trainings(trainingsDTO)
@@ -103,6 +105,5 @@ public class Recruit {
             educations = new LinkedList<>();
         }
         this.educations.add(education);
-       // education.setRecruit(this);
     }
 }

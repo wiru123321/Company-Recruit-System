@@ -12,6 +12,7 @@ import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobAppl
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate;
 import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
 import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
+import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.DecissionRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.RateRepository;
@@ -39,6 +40,7 @@ class HeadRecruiterService {
     private final RateRepository rateRepository;
     private final DecissionRepository decissionRepository;
     private final RecrutationProcessesRepository recrutationProcessesRepository;
+    private final RecruitRepository recruitRepository;
     private CriteriaBuilder builder;
 
 
@@ -128,5 +130,16 @@ class HeadRecruiterService {
 
     boolean deleteHeadRecruiter(String firstname) {
         return headRecruiterRepository.deleteByFirstname(firstname) > 0;
+    }
+
+     String findRecruitByID(Long id) {
+         String result="empty";
+        try {
+             result = recruitRepository.findById(id).getCvFilename();
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        return result ;
     }
 }

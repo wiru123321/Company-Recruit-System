@@ -10,6 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 public class DecissionOutDTO {
 
-    private Integer result; // TODO podmienić na enum
+    private Integer result;
     private String description;
 }
