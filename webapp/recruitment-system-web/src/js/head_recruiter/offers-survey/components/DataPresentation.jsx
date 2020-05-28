@@ -42,7 +42,7 @@ const DataPresentation = (props) => {
                 return (
                   <tr key={index}>
                     <td>{e.name}</td>
-                    <td>{e.date}</td>
+                    <td>{e.date.substring(0,10)}</td>
                   </tr>
                 );
               })}
@@ -63,8 +63,8 @@ const DataPresentation = (props) => {
                 return (
                   <tr key={index}>
                     <td>{e.position}</td>
-                    <td>{e.dateFrom}</td>
-                    <td>{e.dateTo}</td>
+                    <td>{e.dateFrom.substring(0,10)}</td>
+                    <td>{e.dateTo.substring(0,10)}</td>
                   </tr>
                 );
               })}

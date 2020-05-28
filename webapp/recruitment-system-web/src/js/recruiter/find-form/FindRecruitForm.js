@@ -104,27 +104,27 @@ const Recruit = (props) => {
         <div>
           <label>
             {" "}
-            Wykształcenie:{" "}
+            <b>Wykształcenie:</b>{" "}
             {LangParser.educationParser(props.recruit.educations[0])}
           </label>{" "}
           <br />
-          <label>Szkolenia: </label>
+          <label><b>Szkolenia:</b> </label>
           {props.recruit.trainings.map((item, index) => {
             return (
               <li className="recruits">
-                {item.name} {item.date}
+                {item.name} {item.date.substring(0,10)}
               </li>
             );
           })}
-          Doświadczenie zawodowe:{" "}
+          <b>Doświadczenie zawodowe:</b>{" "}
           {props.recruit.empolymentExperiences.map((item, index) => {
             return (
               <li className="recruits">
-                {item.position} {item.dateFrom} {item.dateTo}
+                {item.position} {item.dateFrom.substring(0,10)} {item.dateTo.substring(0,10)}
               </li>
             );
           })}
-          Umiejętności:{" "}
+          <b>Umiejętności:</b>{" "}
           {props.recruit.skills.map((item, index) => {
             return (
               <li className="recruits">
