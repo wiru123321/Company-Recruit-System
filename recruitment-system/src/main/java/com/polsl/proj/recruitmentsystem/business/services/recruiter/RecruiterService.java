@@ -59,6 +59,7 @@ public class RecruiterService {
         Recruit recruit = new Recruit();
         recruit.setLastName(recruitDTO.getLastName());
         recruit.setFirstName(recruitDTO.getFirstName());
+        recruit.setCvFilename(recruitDTO.getFirstName()+recruitDTO.getLastName());
         recruitRepository.save(recruit);
         saveEducations(attributesDTO.getEducationDegrees(), recruit);
         saveSkills(attributesDTO.getSkills(), recruit);
