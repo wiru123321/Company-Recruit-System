@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 class CallHeadApi {
-  getFile () {
-    window.open (`http://localhost:8080/head/getFile`);
+  getFile() {
+    window.open(`http://localhost:8080/head/getFile`);
   }
 
-  createPDF (contractParams) {
+  createPDF(contractParams) {
     let dto = {
       firstName: contractParams.firstName,
       lastName: contractParams.lastName,
@@ -14,35 +14,36 @@ class CallHeadApi {
       dateFrom: contractParams.dateFrom,
       dateTo: contractParams.dateTo,
     };
-    axios ({
-      method: 'post',
+    axios({
+      method: "post",
       url: `http://localhost:8080/head/generatePDF`,
       data: dto,
-    }).then (() => {
-      window.open (`http://localhost:8080/head/recievePDF`);
+    }).then(() => {
+      window.open(`http://localhost:8080/head/recievePDF`);
     });
   }
 
-  sendDecission (decission) {
+  sendDecission(decission) {
     let dto = {
       description: decission.description,
       jobApplicationID: decission.jobApplicationID,
+      result: decission.result,
       rate: decission.rate,
     };
 
-    return axios.post (`http://localhost:8080/head/addDecission`, dto, {
-      headers: {'Content-Type': 'application/json'},
+    return axios.post(`http://localhost:8080/head/addDecission`, dto, {
+      headers: { "Content-Type": "application/json" },
     });
   }
 
-  getAllApplications () {
-    return axios ({
-      method: 'get',
+  getAllApplications() {
+    return axios({
+      method: "get",
       url: `http://localhost:8080/head/allApplications`,
     });
   }
 
-  getSpecifiedAppliacations (searchParameters) {
+  getSpecifiedAppliacations(searchParameters) {
     const dto = {
       firstName: searchParameters.firstName,
       lastName: searchParameters.lastName,
@@ -51,32 +52,32 @@ class CallHeadApi {
       Rate: searchParameters.rate,
     };
 
-    return axios ({
-      method: 'post',
+    return axios({
+      method: "post",
       url: `http://localhost:8080/head/parametrizedApplications`,
       data: dto,
     });
   }
 
-  startRecrutation (position, description, maxHires) {
+  startRecrutation(position, description, maxHires) {
     let dto = {
       position: position,
       description: description,
       maxHires: maxHires,
     };
-    return axios ({
-      method: 'post',
+    return axios({
+      method: "post",
       url: `http://localhost:8080/head/startRecrutation`,
       data: dto,
     });
   }
 
-  getAllRecrutationProccesses () {
-    return axios ({
-      method: 'get',
+  getAllRecrutationProccesses() {
+    return axios({
+      method: "get",
       url: `http://localhost:8080/head/getAllRecrutationProcesses`,
     });
   }
 }
 
-export default new CallHeadApi ();
+export default new CallHeadApi();

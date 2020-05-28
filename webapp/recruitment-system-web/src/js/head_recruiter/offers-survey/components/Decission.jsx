@@ -1,70 +1,71 @@
-import React, {useState, useContext} from 'react';
-import CallApi from '../../service/CallApi.js';
-import '../../../../css/Applications.css';
-import {SurveyContext} from '../context/SurveyContext.js';
+import React, { useState, useContext } from "react";
+import CallApi from "../../service/CallApi.js";
+import "../../../../css/Applications.css";
+import { SurveyContext } from "../context/SurveyContext.js";
 
-const Decission = props => {
-  const [description, setDescription] = useState ('');
-  const [jobApplicationID] = useState (props.id);
-  const [result, setResult] = useState ('2');
-  const [rate, setRate] = useState (0);
-  const {getAppsBySearchParams} = useContext (SurveyContext);
+const Decission = (props) => {
+  const [description, setDescription] = useState("");
+  const [jobApplicationID, setJobApplicationID] = useState(props.id);
+  const [result, setResult] = useState(2);
+  const [rate, setRate] = useState(0);
+  const { getAppsBySearchParams } = useContext(SurveyContext);
 
   return (
     <div className="decission">
       <h4>OCENA</h4>
       <p>
-        Wniosek został rozpatrzony{' '}
+        Wniosek został rozpatrzony{" "}
         <select
-          onChange={event => {
-            setResult (event.target.value);
+          onChange={(event) => {
+            setResult(parseInt(event.target.value));
           }}
         >
           <option value="2">-</option>
           <option value="1">Pozytywnie</option>
           <option value="0">Negatywnie</option>
-        </select>
-        {' '}z oceną{' '}
+        </select>{" "}
+        z oceną{" "}
         <input
           placeholder="ocena"
           type="number"
-          onChange={event => {
-            setRate (parseInt (event.target.value));
+          onChange={(event) => {
+            setRate(parseInt(event.target.value));
           }}
         />
-        {'.'}
+        {"."}
       </p>
       <textarea
         placeholder="Uzasadnienie"
-        onChange={event => {
-          setDescription (event.target.value);
+        onChange={(event) => {
+          setDescription(event.target.value);
         }}
       />
       <button
-        style={{float: 'right'}}
+        style={{ float: "right" }}
         className="submit"
-        onClick={event => {
-          event.preventDefault ();
-          const dto = {
-            description: description,
-            jobApplicationID: jobApplicationID,
-            result: result,
-            rate: rate,
-          };
+        onClick={(event) => {
+          event.preventDefault();
           if (
-            description !== '' &&
-            result !== '' &&
-            rate !== '' &&
-            result !== '2'
+            description !== "" &&
+            result !== "" &&
+            rate !== "" &&
+            result !== 2
           ) {
-            CallApi.sendDecission (dto).then (response => {
+            const dto = {
+              description: description,
+              jobApplicationID: jobApplicationID,
+              result: result,
+              rate: rate,
+            };
+            console.log(dto);
+            CallApi.sendDecission(dto).then((response) => {
               const msg = () => {
-                if (result === 1) return 'negatywnie';
-                else return 'pozytywnie';
+                if (result === 1) return "negatywnie";
+                else return "pozytywnie";
               };
-              alert ('Podanie o pracę zostało zweryfikowane ' + msg ());
-              props.reset ();
-              getAppsBySearchParams ();
+              alert("Podanie o pracę zostało zweryfikowane " + msg());
+              props.reset();
+              getAppsBySearchParams();
             });
           }
         }}
