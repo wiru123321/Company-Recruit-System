@@ -20,6 +20,8 @@ public class RecrutationProcess {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NonNull
+    private String position;
+    @NonNull
     private String requirements;
     @NonNull
     private Integer expectedRecruits;

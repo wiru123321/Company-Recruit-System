@@ -96,7 +96,7 @@ class HeadRecruiterService {
 
     void startNewRecrutation(NewRecrutationDTO dto, String name) {
         String department = headRecruiterRepository.getDepartmentForUser(name);
-        RecrutationProcess recrutationProcess = new RecrutationProcess(dto.getDescription(), dto.getMaxHires(), department);
+        RecrutationProcess recrutationProcess = new RecrutationProcess(dto.getPosition(),dto.getDescription(), dto.getMaxHires(), department);
         recrutationProcessesRepository.save(recrutationProcess);
 
     }

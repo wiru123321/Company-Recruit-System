@@ -1,5 +1,6 @@
 package com.polsl.proj.recruitmentsystem.business.utils.file;
 
+import com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.File;
 import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class FileUtility {
 
     private final String serverUrl = "C:\\UmowyProjekt\\";
     @Autowired
-    private  HeadRecruiterFacade headRecruiterFacade;
+    private HeadRecruiterFacade headRecruiterFacade;
 
     public void save(MultipartFile file, int id) throws IOException {
         byte[] bytes = file.getBytes();
@@ -27,8 +28,20 @@ public class FileUtility {
     }
 
     public ByteArrayResource read(String recruitID) throws IOException {
-        String databaseFilename = headRecruiterFacade.findRecruitByID(Long.valueOf(recruitID));
-        Path path = Paths.get(serverUrl + databaseFilename+".pdf");
-        return new ByteArrayResource(Files.readAllBytes(path));
+        String databaseFilename;
+        try {
+            databaseFilename = headRecruiterFacade.findRecruitByID(Long.valueOf(recruitID));
+        } catch (Exception e) {
+            databaseFilename = "empty";
+        }
+        Path path = Paths.get(serverUrl + databaseFilename + ".pdf");
+        ByteArrayResource file;
+        try {
+            file = new ByteArrayResource(Files.readAllBytes(path));
+        } catch (Exception e) {
+            path = Paths.get(serverUrl + "empty" + ".pdf");
+            file = new ByteArrayResource(Files.readAllBytes(path));
+        }
+        return file;
     }
 }
