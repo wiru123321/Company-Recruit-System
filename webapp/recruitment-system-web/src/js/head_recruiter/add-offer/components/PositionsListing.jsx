@@ -37,7 +37,7 @@ const PositionsListing = () => {
                 return (
                   <tr>
                     <td>{id}</td>
-                    <td>{elem.department}</td>
+                    <td>{elem.position}</td>
                     <td style={{fontSize: 'small'}}>{elem.expectedRecruits}</td>
                     <td>{elem.requirements}</td>
                   </tr>

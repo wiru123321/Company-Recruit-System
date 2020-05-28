@@ -32,6 +32,15 @@ const AddPosition = () => {
             setLimit ('');
           }}
         >
+
+          <input
+            placeholder="Stanowisko"
+            value={position}
+            name="position"
+            type="text"
+            onChange={event => setPosition (event.target.value)}
+            required
+          />
           <input
             placeholder="Wymagania"
             value={description}
