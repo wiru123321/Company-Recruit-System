@@ -1,33 +1,28 @@
-import React from 'react';
-import '../../../../css/Applications.css';
-const DataPresentation = props => {
+import React from "react";
+import "../../../../css/Applications.css";
+import LangParser from "../../../utils/LangParser.js";
+const DataPresentation = (props) => {
   return (
     <div>
-      <div>Wykształcenie: {props.item.recruit.educations}</div>
+      <div>
+        Wykształcenie:{" "}
+        {LangParser.educationParser(props.item.recruit.educations[0])}
+      </div>
       <div className="presentation">
-
         <div>
           <table>
-            <thead><tr><th>Umiejętność</th><th>Nazwa</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Umiejętność</th>
+                <th>Nazwa</th>
+              </tr>
+            </thead>
             <tbody>
-              {props.item.recruit.skills.map ((e, index) => {
+              {props.item.recruit.skills.map((e, index) => {
                 return (
                   <tr key={index}>
-                    <td>{e.skillName}</td><td>{e.skillLevel}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <table>
-            <thead><tr><th>Kurs</th><th>Data</th></tr></thead>
-            <tbody>
-              {props.item.recruit.trainings.map ((e, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{e.name}</td><td>{e.date}</td>
+                    <td>{e.skillName}</td>
+                    <td>{LangParser.skillParser(e.skillLevel)}</td>
                   </tr>
                 );
               })}
@@ -37,10 +32,34 @@ const DataPresentation = props => {
         <div>
           <table>
             <thead>
-              <tr><th>Historia zatrudnienia</th><th>Od</th><th>Do</th></tr>
+              <tr>
+                <th>Kurs</th>
+                <th>Data</th>
+              </tr>
             </thead>
             <tbody>
-              {props.item.recruit.empolymentExperiences.map ((e, index) => {
+              {props.item.recruit.trainings.map((e, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{e.name}</td>
+                    <td>{e.date}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>Historia zatrudnienia</th>
+                <th>Od</th>
+                <th>Do</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.item.recruit.empolymentExperiences.map((e, index) => {
                 return (
                   <tr key={index}>
                     <td>{e.position}</td>

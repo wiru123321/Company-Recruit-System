@@ -1,58 +1,59 @@
-import React, {useState} from 'react';
-import CallApi from './service/CallApi.js';
-import '../../../css/RecruiterPage.css';
+import React, { useState } from "react";
+import CallApi from "./service/CallApi.js";
+import LangParser from "../../utils/LangParser.js";
+import "../../../css/RecruiterPage.css";
 
 const FindRecruitForm = () => {
-  const [applications, setApplications] = useState ([]);
-  const [firstName, setFirstName] = useState ('');
-  const [lastName, setLastName] = useState ('');
-  const [rate, setRate] = useState ('');
-  const [result, setResult] = useState ('');
-  const [status, setStatus] = useState ('');
-  const [position, setPosition] = useState ('');
+  const [applications, setApplications] = useState([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [rate, setRate] = useState("");
+  const [result, setResult] = useState("");
+  const [status, setStatus] = useState("");
+  const [position, setPosition] = useState("");
   return (
     <div>
       <form
         className="params"
-        onSubmit={event => {
-          event.preventDefault ();
-          CallApi.getAllMatchingResults (
+        onSubmit={(event) => {
+          event.preventDefault();
+          CallApi.getAllMatchingResults(
             firstName,
             lastName,
             rate,
             result,
             status,
             position
-          ).then (response => setApplications (response.data));
+          ).then((response) => setApplications(response.data));
         }}
       >
         <input
-          onChange={event => {
-            setFirstName (event.target.value);
+          onChange={(event) => {
+            setFirstName(event.target.value);
           }}
           placeholder="Imie"
           name="firstName"
           value={firstName}
         />
         <input
-          onChange={event => {
-            setLastName (event.target.value);
+          onChange={(event) => {
+            setLastName(event.target.value);
           }}
           placeholder="Nazwisko"
           name="lastName"
           value={lastName}
         />
         <input
-          onChange={event => {
-            setRate (event.target.value);
+          onChange={(event) => {
+            setRate(event.target.value);
           }}
           placeholder="Ocena"
           name="rate"
           value={rate}
         />
         <input
-          onChange={event => {
-            setResult (event.target.value);
+          onChange={(event) => {
+            setResult(event.target.value);
           }}
           placeholder="Wynik"
           name="result"
@@ -60,16 +61,16 @@ const FindRecruitForm = () => {
           type="number"
         />
         <input
-          onChange={event => {
-            setStatus (event.target.value);
+          onChange={(event) => {
+            setStatus(event.target.value);
           }}
           placeholder="Status"
           name="status"
           value={status}
         />
         <input
-          onChange={event => {
-            setPosition (event.target.value);
+          onChange={(event) => {
+            setPosition(event.target.value);
           }}
           placeholder="Stanowisko"
           name="position"
@@ -78,7 +79,7 @@ const FindRecruitForm = () => {
         <input type="submit" value="Szukaj" />
       </form>
       <div>
-        {applications.map ((item, index) => {
+        {applications.map((item, index) => {
           return <Recruit recruit={item.recruit} />;
         })}
       </div>
@@ -86,40 +87,53 @@ const FindRecruitForm = () => {
   );
 };
 
-const Recruit = props => {
-  const [showDetails, setShowDetails] = useState (false);
+const Recruit = (props) => {
+  const [showDetails, setShowDetails] = useState(false);
   return (
-    <div className="recruits" style={{textAlign: 'left'}}>
+    <div className="recruits" style={{ textAlign: "left" }}>
       <button
-        onClick={event => {
-          event.preventDefault ();
-          setShowDetails (!showDetails);
+        onClick={(event) => {
+          event.preventDefault();
+          setShowDetails(!showDetails);
         }}
       >
         {props.recruit.firstName} {props.recruit.lastName}
-      </button> <br />
-      {showDetails &&
+      </button>{" "}
+      <br />
+      {showDetails && (
         <div>
-          <label> Wykształcenie: {props.recruit.educations}</label> <br />
+          <label>
+            {" "}
+            Wykształcenie:{" "}
+            {LangParser.educationParser(props.recruit.educations[0])}
+          </label>{" "}
+          <br />
           <label>Szkolenia: </label>
-          {props.recruit.trainings.map ((item, index) => {
-            return <li className="recruits">{item.name} {item.date}</li>;
+          {props.recruit.trainings.map((item, index) => {
+            return (
+              <li className="recruits">
+                {item.name} {item.date}
+              </li>
+            );
           })}
-          Doświadczenie zawodowe:
-          {' '}
-          {props.recruit.empolymentExperiences.map ((item, index) => {
+          Doświadczenie zawodowe:{" "}
+          {props.recruit.empolymentExperiences.map((item, index) => {
             return (
               <li className="recruits">
                 {item.position} {item.dateFrom} {item.dateTo}
               </li>
             );
           })}
-          Umiejętności: {props.recruit.skills.map ((item, index) => {
+          Umiejętności:{" "}
+          {props.recruit.skills.map((item, index) => {
             return (
-              <li className="recruits">{item.skillName} {item.skillLevel}</li>
+              <li className="recruits">
+                {item.skillName} {LangParser.skillParser(item.skillLevel)}
+              </li>
             );
           })}
-        </div>}
+        </div>
+      )}
     </div>
   );
 };
