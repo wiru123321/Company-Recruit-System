@@ -1,5 +1,5 @@
-import React from 'react';
-import WorkersContextProvider from './context/WorkersContext.js';
+import React from "react";
+import WorkersContextProvider from "./context/WorkersContext.js";
 
 const WorkersSurvey = () => {
   return (

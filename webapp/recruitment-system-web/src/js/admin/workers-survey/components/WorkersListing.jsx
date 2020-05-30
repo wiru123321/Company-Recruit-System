@@ -1,19 +1,19 @@
-import React, {useState, createContext, useEffect, useContext} from 'react';
-import CallApi from '../service/CallApi.js';
-import '../../../../css/WorkersList.css';
+import React, { useState, createContext, useEffect, useContext } from "react";
+import CallApi from "../service/CallApi.js";
+import "../../../../css/WorkersList.css";
 
-import {WorkersContext} from '../context/WorkersContext.js';
+import { WorkersContext } from "../context/WorkersContext.js";
 
 const WorkersListing = () => {
-  const {update} = useContext (WorkersContext);
-  const {filteredRecruiters, setFilteredRecruiters} = useContext (
+  const { update } = useContext(WorkersContext);
+  const { filteredRecruiters, setFilteredRecruiters } = useContext(
     WorkersContext
   );
-  const {filteredHeadRecruiters, setFilteredHeadRecruiters} = useContext (
+  const { filteredHeadRecruiters, setFilteredHeadRecruiters } = useContext(
     WorkersContext
   );
   return (
-    <table style={{width: '80%'}}>
+    <table style={{ width: "80%" }}>
       <thead>
         <tr>
           <th>Imie</th>
@@ -24,7 +24,7 @@ const WorkersListing = () => {
         </tr>
       </thead>
       <tbody>
-        {filteredRecruiters.map ((elem, id) => {
+        {filteredRecruiters.map((elem, id) => {
           if (elem.firstName)
             return (
               <tr key={id}>
@@ -33,10 +33,10 @@ const WorkersListing = () => {
                 <th>{elem.type} </th>
                 <th>{elem.department} </th>
                 <button
-                  onClick={event => {
-                    event.preventDefault ();
-                    CallApi.remove (elem.firstName).then (response => {
-                      update ();
+                  onClick={(event) => {
+                    event.preventDefault();
+                    CallApi.remove(elem.firstName).then((response) => {
+                      update();
                     });
                   }}
                 >
@@ -45,7 +45,7 @@ const WorkersListing = () => {
               </tr>
             );
         })}
-        {filteredHeadRecruiters.map ((elem, id) => {
+        {filteredHeadRecruiters.map((elem, id) => {
           if (elem.firstName)
             return (
               <tr key={id}>
@@ -55,10 +55,10 @@ const WorkersListing = () => {
                 <th>{elem.department} </th>
 
                 <button
-                  onClick={event => {
-                    event.preventDefault ();
-                    CallApi.remove (elem.firstName).then (response => {
-                      update ();
+                  onClick={(event) => {
+                    event.preventDefault();
+                    CallApi.remove(elem.firstName).then((response) => {
+                      update();
                     });
                   }}
                 >

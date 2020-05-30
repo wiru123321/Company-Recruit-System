@@ -1,72 +1,71 @@
-import React from 'react';
-import '../../css/MainPage.css';
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
-import RecruiterAuthenticationService
-  from '../serivce/AuthenticationSerivce.js';
-import Axios from 'axios';
+import React from "react";
+import "../../css/MainPage.css";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import RecruiterAuthenticationService from "../serivce/AuthenticationSerivce.js";
+import Axios from "axios";
 
-var redirect = '';
+var redirect = "";
 
 class LoginComponent extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       hasLoginFailed: false,
     };
 
-    this.handleChange = this.handleChange.bind (this);
-    this.handleLogInClick = this.handleLogInClick.bind (this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLogInClick = this.handleLogInClick.bind(this);
   }
 
-  handleChange (event) {
-    console.log (event.target.name);
-    this.setState ({
+  handleChange(event) {
+    console.log(event.target.name);
+    this.setState({
       [event.target.name]: event.target.value,
     });
   }
 
-  handleLogInClick (event) {
-    event.preventDefault ();
+  handleLogInClick(event) {
+    event.preventDefault();
 
-    RecruiterAuthenticationService.executeBasicAuthentication (
+    RecruiterAuthenticationService.executeBasicAuthentication(
       this.state.username,
       this.state.password
     )
-      .then (function (response) {
+      .then(function (response) {
         redirect = response.data;
       })
-      .then (() => {
-        if (redirect === 'recruiter')
-          RecruiterAuthenticationService.registerSuccessfullRecruiterLogin (
+      .then(() => {
+        if (redirect === "recruiter")
+          RecruiterAuthenticationService.registerSuccessfullRecruiterLogin(
             this.state.username,
             this.state.password
           );
-        else if (redirect === 'head') {
-          RecruiterAuthenticationService.registerSuccessfullHeadLogin (
+        else if (redirect === "head") {
+          RecruiterAuthenticationService.registerSuccessfullHeadLogin(
             this.state.username,
             this.state.password
           );
-        } else if (redirect === 'admin') {
-          RecruiterAuthenticationService.registerSuccessfullAdminLogin (
+        } else if (redirect === "admin") {
+          RecruiterAuthenticationService.registerSuccessfullAdminLogin(
             this.state.username,
             this.state.password
           );
-          Axios.get ('http://localhost:8080/admin/hi');
+          Axios.get("http://localhost:8080/admin/hi");
         }
-        this.props.history.push ('/' + redirect);
+        this.props.history.push("/" + redirect);
       })
-      .catch (() => {
-        this.setState ({hasLoginFailed: true});
+      .catch(() => {
+        this.setState({ hasLoginFailed: true });
       });
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <div className="col-2">
+        <div className="col-6">
           <form>
             <ul>
               <li>
@@ -101,10 +100,10 @@ class LoginComponent extends React.Component {
   }
 }
 
-function OnLoginFailed (props) {
+function OnLoginFailed(props) {
   if (props.hasLoginFailed === true)
     return <div>Podano błędny login lub hasło.</div>;
   else return null;
 }
 
-export default withRouter (LoginComponent);
+export default withRouter(LoginComponent);

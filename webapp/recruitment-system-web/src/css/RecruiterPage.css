@@ -13,21 +13,44 @@
 }
 
 [class*="col-"] {
-  
 }
 
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 100%;}
-.col-4 {width: 100%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 100%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
+.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
+.col-3 {
+  width: 100%;
+}
+.col-4 {
+  width: 100%;
+}
+.col-5 {
+  width: 41.66%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 100%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33%;
+}
+.col-11 {
+  width: 91.66%;
+}
+.col-12 {
+  width: 100%;
+}
 
 html {
   font-family: "Lucida Sans", sans-serif;
@@ -38,7 +61,7 @@ html {
   padding: 15px;
 }
 
-.r-menu{
+.r-menu {
   height: 100%;
   width: 100%;
   background-color: #ffffff;
@@ -47,12 +70,11 @@ html {
   display: block;
 }
 
-.r-menu label{
+.r-menu label {
   font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .r-menu ul {
@@ -62,7 +84,7 @@ html {
   margin-bottom: 15px;
 }
 
-.r-menu a{
+.r-menu a {
   font-size: 20px;
   text-decoration: none;
   color: white;
@@ -75,14 +97,14 @@ html {
   display: inline-block;
   text-align: center;
 }
-.r-menu footer{
+.r-menu footer {
   color: black;
   position: fixed;
   left: 20px;
   top: -50px;
 }
 
-.footerContent{
+.footerContent {
   display: block;
 }
 /*
@@ -90,7 +112,7 @@ html {
   background-color: #0c0d0d;
 }
 */
-.r-menu a:hover{
+.r-menu a:hover {
   color: royalblue;
 }
 
@@ -104,8 +126,7 @@ html {
   margin: auto;
 }
 
-
-.r-content input{
+.r-content input {
   background-color: white;
   margin: 2px;
   padding: 10px;
@@ -114,7 +135,7 @@ html {
   border-width: 2px;
 }
 
-.r-content label{
+.r-content label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +143,7 @@ html {
   margin-bottom: 4px;
 }
 
-.r-content button{
+.r-content button {
   background-color: white;
   margin: 2px;
   padding: 10px;
@@ -131,7 +152,7 @@ html {
   border-width: 2px;
 }
 
-.r-content select{
+.r-content select {
   background-color: white;
   margin: 4px;
   padding: 10px;
@@ -139,53 +160,44 @@ html {
   border-color: royalblue;
   border-width: 2px;
 }
-.helpComponentDivRecruit{
-  background-color: darkgrey;
-  width: 1300px;
-  height: 400px;
-  margin: auto;
-  margin-top: 50px;
-}
-.helpOptionRecruit{
+.helpOptionRecruit {
   margin: 0;
   padding: 0;
-  display: inline-block;
+  display: block;
   background-color: white;
-  box-shadow: 15px 15px 15px gray;
-  margin: 25px;
-  width: 580px;
-  height: 350px;
+  width: 100%;
+  height: 40%;
 }
-.helpTitleRecruit{
-  font-size: 30px;
+.helpTitleRecruit {
+  font-size: 2vw;
 }
-.helpContentRecruit{
+.helpContentRecruit {
   font-size: 23px;
   line-height: 25px;
   margin-left: 30px;
   margin-right: 30px;
 }
 
-input.sub{
+input.sub {
   background-color: white;
   width: 20%;
   padding: 10px;
 }
 
-input.sub:hover{
+input.sub:hover {
   background-color: rgb(109, 180, 39);
 }
 
-div.recruits{
+div.recruits {
   margin-left: 40%;
   font-size: 16px;
 }
 
-.recruits li{
+.recruits li {
   list-style-type: none;
 }
 
-.recruits button{
+.recruits button {
   border: none;
   color: white;
   padding: 16px 32px;
@@ -196,18 +208,18 @@ div.recruits{
   margin: 4px;
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: white; 
-  color: black; 
-  border: 2px solid #008CBA;
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
   border-radius: 25px;
 }
 
-.recruits button:hover{
-  background-color: #008CBA;
-  color:  white;
+.recruits button:hover {
+  background-color: #008cba;
+  color: white;
 }
 
-.params input{
+.params input {
   border: none;
   color: white;
   padding: 6px 6px;
@@ -218,13 +230,13 @@ div.recruits{
   margin: 4px;
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: white; 
-  color: black; 
-  border: 2px solid #008CBA;
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
   border-radius: 25px;
 }
 
-.params input[type='submit']:hover{
-  background-color: #008CBA;
-  color:  white;
+.params input[type="submit"]:hover {
+  background-color: #008cba;
+  color: white;
 }

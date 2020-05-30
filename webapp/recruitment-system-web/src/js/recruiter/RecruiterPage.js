@@ -1,15 +1,15 @@
-import React from 'react';
-import '../../css/RecruiterPage.css';
-import RegisterForm from './register-form/Form';
-import FindRecruitForm from './find-form/FindRecruitForm';
-import HelpComponent from './HelpComponent';
-import AuthRoute from '../serivce/RecruiterAuthenticatedRoute';
-import Auth from '../serivce/AuthenticationSerivce.js';
-import reg from '../../resources/register.png';
-import find from '../../resources/search.png';
-import help from '../../resources/question.png';
-import logout from '../../resources/logout.png';
-import logoRecruiter from '../../resources/logo.png';
+import React from "react";
+import "../../css/RecruiterPage.css";
+import RegisterForm from "./register-form/Form";
+import FindRecruitForm from "./find-form/FindRecruitForm";
+import HelpComponent from "./HelpComponent";
+import AuthRoute from "../serivce/RecruiterAuthenticatedRoute";
+import Auth from "../serivce/AuthenticationSerivce.js";
+import reg from "../../resources/register.png";
+import find from "../../resources/search.png";
+import help from "../../resources/question.png";
+import logout from "../../resources/logout.png";
+import logoRecruiter from "../../resources/logo.png";
 
 import {
   BrowserRouter as Router,
@@ -17,19 +17,18 @@ import {
   NavLink,
   Link,
   withRouter,
-} from 'react-router-dom';
-import CallApi from '../head_recruiter/service/CallApi';
+} from "react-router-dom";
+import CallApi from "../head_recruiter/service/CallApi";
 class RecruiterPage extends React.Component {
-  render () {
+  render() {
     return (
       <div>
         <Router>
-          <div class="col-3 r-menu">
+          <div class="col-3 r-menu ">
             <ul>
               <li className="interactive">
-              <img className="imgSize" src={reg} />
-                <NavLink to="/recruiter/register"> Zarejestruj
-                </NavLink>
+                <img className="imgSize" src={reg} />
+                <NavLink to="/recruiter/register"> Zarejestruj</NavLink>
               </li>
               <li className="interactive">
                 <NavLink to="/recruiter/find">
@@ -42,17 +41,11 @@ class RecruiterPage extends React.Component {
                 </NavLink>
               </li>
               <li className="interactive">
-
                 <a href="/login" onClick={Auth.logoutRecruiter}>
-
                   <img className="imgSize" src={logout} /> Wyloguj
-
                 </a>
               </li>
             </ul>
-            
-
-            
           </div>
           <div className="r-row">
             <div>
@@ -63,28 +56,29 @@ class RecruiterPage extends React.Component {
                 />
                 <AuthRoute path="/recruiter/find" component={FindRecruitForm} />
                 <AuthRoute path="/recruiter/help" component={HelpComponent} />
-
               </div>
             </div>
-
           </div>
-          <footer style={{marginTop: '15px', fontSize: 20}}>
-              <img
-                  src={logoRecruiter}
-                  style={{
-                        width: 720,
-                        height: 151,
-                        backgroundColor: '#ffffff',
-                        float: 'left',
-                        float: 'inline-end'
-                        }}
-                          />
-              <a className="footerContent"> &#9400; 2020 - System Obsługi Rekrutacji</a>
-            </footer>
+          <footer class="col-12" style={{ marginTop: "15px", fontSize: "2vw" }}>
+            <img
+              src={logoRecruiter}
+              className="r-row"
+              style={{
+                width: "50vw",
+                backgroundColor: "#ffffff",
+                float: "left",
+                float: "inline-end",
+              }}
+            />
+            <a className="footerContent">
+              {" "}
+              &#9400; 2020 - System Obsługi Rekrutacji
+            </a>
+          </footer>
         </Router>
       </div>
     );
   }
 }
 
-export default withRouter (RecruiterPage);
+export default withRouter(RecruiterPage);

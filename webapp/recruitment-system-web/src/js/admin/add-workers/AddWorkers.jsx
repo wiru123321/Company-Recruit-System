@@ -1,5 +1,5 @@
-import React from 'react';
-import AddWorkersContextProvider from './context/AddWorkersContext';
+import React from "react";
+import AddWorkersContextProvider from "./context/AddWorkersContext";
 
 const AddWorkers = () => {
   return (

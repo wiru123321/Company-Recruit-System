@@ -1,75 +1,79 @@
 .sidenav {
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100%;
-    width: 20%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 22%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow: hidden;
+}
+
+.sidenav a {
+  margin-top: 3%;
+  text-align: left;
+  font-size: 3vw;
+  padding: 6px;
+  text-decoration: none;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: green;
+}
+
+.sidenav a.help:hover {
+  color: blue;
+}
+
+.sidenav a.logout:hover {
+  color: red;
+}
+
+.main {
+  margin-left: 19.5%; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  height: 100%;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
   }
-  
   .sidenav a {
-    margin-top: 3%;
-    text-align: left;
-    font-size: 25px;
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    color: #818181;
-    display: block;
+    font-size: 18px;
   }
-  
-  .sidenav a:hover {
-    color: green;
-  }
-
-  .sidenav a.help:hover {
-    color: blue;
-  }
-
-  .sidenav a.logout:hover {
-    color: red;
-  }
-  
-  .main {
-    margin-left: 19.5%; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
-    height: 100%;
-  }
-  
-  .image{
-      width: 50px;
-      height: 50px;
-  }
-
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  .helpComponentDiv{
-    background-color: blue;
-    width: 1260px;
-    height: 500px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .helpOption{
-    margin: 0;
-    padding: 0;
-    float: left;
-    background-color: royalblue;
-    margin: 25px;
-    width: 580px;
-    height: 450px;
-  }
-  .helpTitle{
-    font-size: 30px;
-  }
-  .helpContent{
-    font-size: 23px;
-    line-height: 25px;
-    margin-left: 30px;
-    margin-right: 30px;
-  }
+}
+.helpComponentDiv {
+  background-color: blue;
+  width: 1260px;
+  height: 500px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.helpOption {
+  margin: 0;
+  padding: 0;
+  float: left;
+  background-color: royalblue;
+  margin: 25px;
+  width: 580px;
+  height: 450px;
+}
+.helpTitle {
+  font-size: 30px;
+}
+.helpContent {
+  font-size: 23px;
+  line-height: 25px;
+  margin-left: 30px;
+  margin-right: 30px;
+}

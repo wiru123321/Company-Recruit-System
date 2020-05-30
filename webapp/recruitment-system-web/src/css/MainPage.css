@@ -1,126 +1,154 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  .row::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  [class*="col-"] {
-    float: left;
-    padding: 4px;
-  }
-  
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 45%;
-  float: right;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
-  
-  html {
-    font-family: "Lucida Sans", sans-serif;
-  }
-  .logo{
-      width: auto;
-      height: auto;
-  }
-  
-  .header {
-    background-color: white;
-    color: black;
-    padding: 15px;
-  }
-  .form ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 20px;
-    padding-bottom: 0px;
-    padding-top: 10px;
-    width: 270px;
-  }
-  
-  .form li {
-    padding: 6px;
-    margin-bottom: 10px;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
-  }
+  box-sizing: border-box;
+}
 
-  .form input{
-      width: 100%;
-      background-color: darkturquoise;
-      border-radius: 6px;
-      padding: 6px;
-      border: none;
-  }
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
-  input.checkbox{
-    width: 20%;
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
+[class*="col-"] {
+  float: left;
+  padding: 4px;
+}
 
-  p.checkbox{
-    padding: 0;
-    margin-top: 0;
-    margin-top: 20px;
-    color: blue;
-  }
+.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 45%;
+  float: right;
+}
+.col-3 {
+  width: 25%;
+}
+.col-4 {
+  width: 33.33%;
+}
+.col-5 {
+  width: 41.66%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 66.66%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33%;
+}
+.col-11 {
+  width: 91.66%;
+}
+.col-12 {
+  width: 100%;
+}
+.allLogin {
+  width: 100%;
+}
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+.logo {
+  width: 30%;
+  height: 30%;
+}
+.logo1 {
+  width: 60%;
+  height: 30%;
+}
+.header {
+  background-color: white;
+  color: black;
+}
+.form ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  width: 270px;
+}
 
-  .form button{
-      background-color: blue;
-      color: white;
-      width: 60%;
-      float: left;
-      border-radius: 6px;
-      padding: 7px;
-      border: none;
-  }
+.form li {
+  padding: 6px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+}
 
-  .form button:hover{
-    background-color: rgb(10, 5, 83);
-  }
+.form input {
+  width: 100%;
+  background-color: darkturquoise;
+  border-radius: 6px;
+  padding: 6px;
+  border: none;
+}
 
-  .info{
-      background-color: #3399CC;
-      color: white;
-  }
+input.checkbox {
+  width: 20%;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
 
-  .allComponent{
-    padding: 0 0px;
-  }
-  h1{
-    margin-bottom: -45px;
-    font-size: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
-    border-bottom: 3px solid black;
-  }
+p.checkbox {
+  padding: 0;
+  margin-top: 0;
+  margin-top: 20px;
+  color: blue;
+}
 
-  .info p{
-    margin-top: 100px;
-    margin-left: 20px;
-    font-size: 30px;
-    text-align: center;
-    margin-right: 20px;
-  }
-  
-  .footer{
-      background-color: black;
-      color: white;
-      padding: 50px;
-  }
+.form button {
+  background-color: blue;
+  color: white;
+  width: 60%;
+  float: left;
+  border-radius: 6px;
+  padding: 7px;
+  border: none;
+}
+
+.form button:hover {
+  background-color: rgb(10, 5, 83);
+}
+
+.info {
+  background-color: #3399cc;
+  color: white;
+  width: 100%;
+}
+
+.allComponent {
+  padding: 0 0px;
+}
+h1 {
+  margin-bottom: -45px;
+  font-size: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.info p {
+  margin-top: 100px;
+  margin-left: 20px;
+  font-size: 30px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 50px;
+}
