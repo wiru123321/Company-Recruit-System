@@ -59,11 +59,15 @@ const Decission = (props) => {
             };
             console.log(dto);
             CallApi.sendDecission(dto).then((response) => {
-              const msg = () => {
-                if (result === 1) return "negatywnie";
-                else return "pozytywnie";
-              };
-              alert("Podanie o pracę zostało zweryfikowane " + msg());
+              let msg = "";
+              if (result === 1) {
+                msg = "pozytywnie";
+              } else {
+                if (result === 0) {
+                  msg = "negatywnie";
+                }
+              }
+              alert("Podanie o pracę zostało zweryfikowane " + msg);
               props.reset();
               getAppsBySearchParams();
             });

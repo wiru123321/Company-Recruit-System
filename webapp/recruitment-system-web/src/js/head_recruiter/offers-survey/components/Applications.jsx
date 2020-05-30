@@ -101,17 +101,19 @@ const AppUI = (props) => {
             CV
           </button>
         </li>
-        <li style={{ width: "15%" }}>
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              if (componentId === 3) setComponentId(0);
-              else setComponentId(3);
-            }}
-          >
-            UMOWA PDF
-          </button>
-        </li>
+        {props.item.decission.result !== 0 && (
+          <li style={{ width: "15%" }}>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                if (componentId === 3) setComponentId(0);
+                else setComponentId(3);
+              }}
+            >
+              UMOWA PDF
+            </button>
+          </li>
+        )}
         <div className="simple">
           <RenderComponentByID />
         </div>
