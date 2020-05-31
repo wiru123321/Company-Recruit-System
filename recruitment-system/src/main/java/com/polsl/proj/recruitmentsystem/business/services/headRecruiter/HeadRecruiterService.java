@@ -142,4 +142,8 @@ class HeadRecruiterService {
         }
         return result ;
     }
+
+     List<String> getAllDepartments() {
+        return  headRecruiterRepository.getAllDepartments();
+    }
 }

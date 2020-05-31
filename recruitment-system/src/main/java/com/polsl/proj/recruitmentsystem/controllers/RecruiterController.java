@@ -29,7 +29,8 @@ public class RecruiterController {
     @PostMapping("/addFullApplication")
     @ResponseBody
     public String addFullApplication(@RequestPart RecruitDTO recruitDTO, @RequestPart InputRecruitAttributesDTO attributesDTO,Principal principal){
-        recruiterFacade.addNewApplication(recruitDTO,attributesDTO);
+        String name = principal.getName();
+        recruiterFacade.addNewApplication(recruitDTO,attributesDTO,name);
         return "ok";
     }
 

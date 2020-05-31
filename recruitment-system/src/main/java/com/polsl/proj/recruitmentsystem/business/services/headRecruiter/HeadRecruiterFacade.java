@@ -55,4 +55,8 @@ public class HeadRecruiterFacade {
     public String findRecruitByID(Long id) {
        return headRecruiterService.findRecruitByID(id);
     }
+
+    public List<String> getAllDepartments() {
+        return headRecruiterService.getAllDepartments();
+    }
 }

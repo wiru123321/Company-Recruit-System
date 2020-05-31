@@ -55,7 +55,8 @@ public class RecruiterService {
     private final EntityManager entityManager;
     private CriteriaBuilder builder;
 
-    boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
+    boolean addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO, String name) {
+        String department = recruiterRepository.getDepartmentForUser(name);
         Recruit recruit = new Recruit();
         recruit.setLastName(recruitDTO.getLastName());
         recruit.setFirstName(recruitDTO.getFirstName());
@@ -65,7 +66,7 @@ public class RecruiterService {
         saveSkills(attributesDTO.getSkills(), recruit);
         saveTrainings(attributesDTO.getTrainings(), recruit);
         saveExperience(attributesDTO.getExperiences(), recruit);
-        JobApplication jobApplication = new JobApplication("Refactor", "nierozpatrzony", recruitDTO.getDepartment(), recruit);
+        JobApplication jobApplication = new JobApplication(recruitDTO.getDepartment(), "nierozpatrzony", department, recruit); // mały trick - dto w department przynosi nazwę stanowiska
         jobApplicationRepository.save(jobApplication);
         return true;
     }
@@ -79,9 +80,9 @@ public class RecruiterService {
 
     }
 
-    private void saveTrainings(List<com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO> trainings, Recruit recruit) {
-        for (com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO trainingValue : trainings) {
-            Training training = new Training(trainingValue.getTrainingName(), "opisRefactor", trainingValue.getTrainingDate());
+    private void saveTrainings(List<TrainingPOJO> trainings, Recruit recruit) {
+        for (TrainingPOJO trainingValue : trainings) {
+            Training training = new Training(trainingValue.getTrainingName(), trainingValue.getTrainingDescription(), trainingValue.getTrainingDate());
             training.setRecruit(recruit);
             trainingRepository.save(training);
         }

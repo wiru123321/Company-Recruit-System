@@ -41,4 +41,8 @@ public class AdminFacade {
        }
 
     }
+
+    public List<String> getAllDepartments() {
+        return headRecruiterFacade.getAllDepartments();
+    }
 }
