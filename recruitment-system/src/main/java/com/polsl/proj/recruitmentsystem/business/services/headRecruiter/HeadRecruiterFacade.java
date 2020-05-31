@@ -4,6 +4,7 @@ import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.*;
 import com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO;
 import com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter;
 import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
+import com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper;
 import com.polsl.proj.recruitmentsystem.business.services.recrutationProcesses.RecrutationProcessFacade;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -54,5 +55,9 @@ public class HeadRecruiterFacade {
 
     public String findRecruitByID(Long id) {
        return headRecruiterService.findRecruitByID(id);
+    }
+
+    public DepartmentsWrapper getAllDepartments() {
+        return headRecruiterService.getAllDepartments();
     }
 }

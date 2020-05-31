@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -22,4 +23,7 @@ public interface HeadRecruiterRepository  extends JpaRepository<HeadRecruiter,In
     @Transactional
     @Query("DELETE FROM  HeadRecruiter HR WHERE HR.firstName= :firstName")
     int deleteByFirstname(@Param("firstName")String firstName);
+
+    @Query("SELECT h.department FROM HeadRecruiter h")
+    List<String> getAllDepartments();
 }

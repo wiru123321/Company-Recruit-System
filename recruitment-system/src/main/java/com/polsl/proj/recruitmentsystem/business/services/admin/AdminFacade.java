@@ -3,6 +3,7 @@ package com.polsl.proj.recruitmentsystem.business.services.admin;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
 import com.polsl.proj.recruitmentsystem.business.model.people.Admin;
+import com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper;
 import com.polsl.proj.recruitmentsystem.business.model.wrappers.EmployeesWrapper;
 import com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade;
 import com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterFacade;
@@ -40,5 +41,9 @@ public class AdminFacade {
            recruiterFacade.deleteRecruiter(firstname);
        }
 
+    }
+
+    public DepartmentsWrapper getAllDepartments() {
+        return headRecruiterFacade.getAllDepartments();
     }
 }

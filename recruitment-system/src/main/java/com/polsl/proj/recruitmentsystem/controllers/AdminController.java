@@ -1,10 +1,13 @@
 package com.polsl.proj.recruitmentsystem.controllers;
 
 import com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO;
+import com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper;
 import com.polsl.proj.recruitmentsystem.business.model.wrappers.EmployeesWrapper;
 import com.polsl.proj.recruitmentsystem.business.services.admin.AdminFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -26,5 +29,10 @@ public class AdminController {
     @DeleteMapping("/deleteEmployee/{firstname}")
     public void deleteEmployee(@PathVariable(name = "firstname") String firstname){
         adminFacade.deleteEmployee(firstname);
+    }
+
+    @GetMapping("/getAllDepartments")
+    public DepartmentsWrapper getAllDepartments(){
+        return adminFacade.getAllDepartments();
     }
 }

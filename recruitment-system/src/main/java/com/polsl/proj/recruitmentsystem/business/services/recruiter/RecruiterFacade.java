@@ -23,8 +23,8 @@ public class RecruiterFacade {
     private final FileUtility fileUtils;
     private final RecruiterService service;
 
-    public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO) {
-       service.addNewApplication(recruitDTO,attributesDTO);
+    public void addNewApplication(RecruitDTO recruitDTO, InputRecruitAttributesDTO attributesDTO, String name) {
+       service.addNewApplication(recruitDTO,attributesDTO,name);
     }
     public Recruiter findByName(String name) {
         try {
