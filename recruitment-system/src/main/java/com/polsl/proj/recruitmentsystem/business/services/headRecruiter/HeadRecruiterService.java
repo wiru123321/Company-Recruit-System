@@ -11,6 +11,7 @@ import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Decissi
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication;
 import com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate;
 import com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess;
+import com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper;
 import com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository;
 import com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository;
 import com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.DecissionRepository;
@@ -143,7 +144,7 @@ class HeadRecruiterService {
         return result ;
     }
 
-     List<String> getAllDepartments() {
-        return  headRecruiterRepository.getAllDepartments();
+    DepartmentsWrapper getAllDepartments() {
+        return new DepartmentsWrapper(headRecruiterRepository.getAllDepartments());
     }
 }
