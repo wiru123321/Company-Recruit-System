@@ -1,130 +1,131 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  div.pos-nav{
-      background-color: #111;
-      padding: 10px;
-  }
+div.pos-nav {
+  background-color: #111;
+  padding: 5px;
+  margin-left: -30px;
+}
 
-  .pos-nav button{
-      padding: 0;
-      margin-left: 0;
-      font-size: large;
-      border: none;
-      width: 30%;
-      color: #818181;
-      background-color: #111;
-      border-radius: 20px;
-      outline:none;
-  }
+.pos-nav button {
+  padding: 0;
+  margin-left: 0;
+  font-size: large;
+  border: none;
+  width: 30%;
+  color: #818181;
+  background-color: #111;
+  border-radius: 20px;
+  outline: none;
+}
 
-  .pos-search img{
-    text-align: center;
-    width: 25px;
-    height: 25px;
-  }
+.pos-search img {
+  text-align: center;
+  width: 25px;
+  height: 25px;
+}
 
-  button.pos-search {
-    margin-top: 1%;
-    margin-left: 1%;
-    padding: 8px;
-    width: auto;
-    border: 2px solid blue;
-    border-radius: 10px;
-    background-color: rgb(238, 236, 236);
-    outline: none;
-  }
-  button.pos-search:hover{
-    background-color: rgb(80, 95, 71);
-  }
+button.pos-search {
+  margin-top: 1%;
+  margin-left: 1%;
+  padding: 8px;
+  width: auto;
+  border: 2px solid blue;
+  border-radius: 10px;
+  background-color: rgb(238, 236, 236);
+  outline: none;
+}
+button.pos-search:hover {
+  background-color: rgb(80, 95, 71);
+}
 
-  .pos-nav button:hover{
-      color: blue;
-  }
+.pos-nav button:hover {
+  color: blue;
+}
 
-  .pos-search input{
-    background-color: rgb(238, 236, 236);
-    font-size: large;
-    color: black;
-    padding-left:20px;
-    padding-top: 15px;
-    padding-bottom: 10px;
-    border:1px  blue;
-    border-radius: 10px;
-    width: 30%;
-    outline:none;
-  }
+.pos-search input {
+  background-color: rgb(238, 236, 236);
+  font-size: large;
+  color: black;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border: 1px blue;
+  border-radius: 10px;
+  width: 30%;
+  outline: none;
+}
 
-  div.pos-add{
-    margin-top: 10px;
-    height: 600px;
-    background-color: white
-  }
+div.pos-add {
+  margin-top: 10px;
+  height: 600px;
+  background-color: white;
+}
 
-  .pos-add input{
-    float: left;
-    padding: 14px;
-    font-size: large;
-    margin-top: 1%;
-    margin-left: 10%;
-    border: none;
-    width: 40%;
-    background-color: gainsboro;
-    border: 0.5px  blue;
-    border-radius: 10px;
-    outline:none;
-  }
+.pos-add input {
+  float: left;
+  padding: 14px;
+  font-size: large;
+  margin-top: 1%;
+  margin-left: 10%;
+  border: none;
+  width: 40%;
+  background-color: gainsboro;
+  border: 0.5px blue;
+  border-radius: 10px;
+  outline: none;
+}
 
-  .pos-add input[type='number']{
-    width: 20%;
-    margin-left: 10%;
-  }
+.pos-add input[type="number"] {
+  width: 20%;
+  margin-left: 10%;
+}
 
-  .pos-add input[type='submit']{
-    width: 20%;
-    margin-left: 60%;
-    border: 2px solid blue;
-  }
+.pos-add input[type="submit"] {
+  width: 20%;
+  margin-left: 60%;
+  border: 2px solid blue;
+}
 
-  .pos-add textarea{
-    float: left;
-    font-size: large;
-    padding: 8px;
-    margin-top: 1%;
-    margin-left: 10%;
-    border: none;
-    width: 70%;
-    height: 100px;
-    background-color: gainsboro;
-    border: 1px  blue;
-    border-radius: 10px;
-    outline:none;
-  }
+.pos-add textarea {
+  float: left;
+  font-size: large;
+  padding: 8px;
+  margin-top: 1%;
+  margin-left: 10%;
+  border: none;
+  width: 70%;
+  height: 100px;
+  background-color: gainsboro;
+  border: 1px blue;
+  border-radius: 10px;
+  outline: none;
+}
 
-  .pos-add p{
-    font-size: 40px;
-    float: left;
-    margin-left: 10%;
-  }
+.pos-add p {
+  font-size: 40px;
+  float: left;
+  margin-left: 10%;
+}
 
-  input.submit {
-    font-size: large;
-    background-color: white;
-    color: blue;
-  }
+input.submit {
+  font-size: large;
+  background-color: white;
+  color: blue;
+}
 
-  input.submit:hover{
-    background-color: rgb(65, 207, 77);
-    color: white;
-  }
+input.submit:hover {
+  background-color: rgb(65, 207, 77);
+  color: white;
+}
 
-  .pos-list thead{
-    font-size: xx-large;
-    background-color: white;
-  }
+.pos-list thead {
+  font-size: xx-large;
+  background-color: white;
+}
 
-  .pos-list tbody > tr{
-    font-size: large;
-    background-color: gainsboro;
+.pos-list tbody > tr {
+  font-size: large;
+  background-color: gainsboro;
 }

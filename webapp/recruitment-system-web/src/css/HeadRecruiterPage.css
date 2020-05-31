@@ -1,7 +1,7 @@
 .sidenav {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  width: 22%;
+  width: 18%;
   position: fixed;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@
 }
 
 .main {
-  margin-left: 19.5%; /* Same as the width of the sidenav */
+  margin-left: 19%; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
   height: 100%;
