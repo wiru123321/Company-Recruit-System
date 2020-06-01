@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.polsl.proj.recruitmentsystem</OriginalElement>
+  <nodes>
+    <node x="1333.0" y="2332.0">com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper</node>
+    <node x="833.0" y="1329.0">com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ContractPOJO</node>
+    <node x="0.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.RecruitDTO</node>
+    <node x="148.0" y="1723.0">com.polsl.proj.recruitmentsystem.repositories.people.HeadRecruiterRepository</node>
+    <node x="0.0" y="1329.0">com.polsl.proj.recruitmentsystem.business.services.admin.AdminService</node>
+    <node x="1942.0" y="1723.0">com.polsl.proj.recruitmentsystem.IntegrationTests</node>
+    <node x="680.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.services.recrutationProcesses.RecrutationProcessService</node>
+    <node x="1599.0" y="169.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.TrainingOutDTO.TrainingOutDTOBuilder</node>
+    <node x="1268.0" y="1723.0">com.polsl.proj.recruitmentsystem.LoginController</node>
+    <node x="0.0" y="257.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO.RecruitOutDTOBuilder</node>
+    <node x="0.0" y="1165.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO.RateOutDTOBuilder</node>
+    <node x="483.0" y="0.0">com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterService</node>
+    <node x="1919.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.EmployeeDTO</node>
+    <node x="1170.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.EduDegree</node>
+    <node x="1709.0" y="1040.0">com.polsl.proj.recruitmentsystem.business.model.people.Recruiter</node>
+    <node x="278.0" y="1040.0">com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterFacade</node>
+    <node x="0.0" y="1537.0">com.polsl.proj.recruitmentsystem.controllers.RecruiterController</node>
+    <node x="1906.0" y="2213.0">com.polsl.proj.recruitmentsystem.Security.PasswordEncoderBean</node>
+    <node x="1320.0" y="1908.0">com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.JobApplicationRepository</node>
+    <node x="341.0" y="685.0">com.polsl.proj.recruitmentsystem.business.services.headRecruiter.HeadRecruiterFacade</node>
+    <node x="2062.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.NewRecrutationDTO</node>
+    <node x="1014.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Decission</node>
+    <node x="1711.0" y="1908.0">com.polsl.proj.recruitmentsystem.repositories.people.RecruiterRepository</node>
+    <node x="2111.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Training</node>
+    <node x="978.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Education</node>
+    <node x="192.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.ExperiencePOJO</node>
+    <node x="1605.0" y="1723.0">com.polsl.proj.recruitmentsystem.business.utils.file.FileUtility</node>
+    <node x="0.0" y="2332.0">com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.DecissionRepository</node>
+    <node x="1268.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.Skill</node>
+    <node x="1701.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.EmpolymentExperience</node>
+    <node x="1128.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.services.recrutationProcesses.RecrutationProcessFacade</node>
+    <node x="572.0" y="2332.0">com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.SkillRepository</node>
+    <node x="527.0" y="1723.0">com.polsl.proj.recruitmentsystem.Security.CustomUserDetailsService</node>
+    <node x="25.5" y="685.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO</node>
+    <node x="1901.0" y="1040.0">com.polsl.proj.recruitmentsystem.business.model.people.HeadRecruiter</node>
+    <node x="1624.5" y="0.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.TrainingOutDTO</node>
+    <node x="1728.0" y="685.0">com.polsl.proj.recruitmentsystem.business.utils.PDF.ContractTemplate</node>
+    <node x="0.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Rate</node>
+    <node x="533.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.TrainingPOJO</node>
+    <node x="290.0" y="2332.0">com.polsl.proj.recruitmentsystem.RecruitmentsystemApplicationTests</node>
+    <node x="614.0" y="1329.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.SearchParametersFINAL</node>
+    <node x="1829.0" y="2072.0">com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.TrainingRepository</node>
+    <node x="1933.0" y="0.0">com.polsl.proj.recruitmentsystem.business.utils.PDF.PDFUtility</node>
+    <node x="542.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.Result</node>
+    <node x="481.0" y="2213.0">com.polsl.proj.recruitmentsystem.repositories.recrutationProcesses.RecrutationProcessesRepository</node>
+    <node x="881.0" y="2213.0">com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.ExperienceRepository</node>
+    <node x="1513.0" y="1040.0">com.polsl.proj.recruitmentsystem.business.model.recruitmentParams.JobApplication</node>
+    <node x="1557.0" y="1329.0">com.polsl.proj.recruitmentsystem.controllers.AdminController</node>
+    <node x="1573.0" y="2213.0">com.polsl.proj.recruitmentsystem.repositories.recruitAttibutes.EducationRepository</node>
+    <node x="0.0" y="1723.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.SkillLevel</node>
+    <node x="0.0" y="2213.0">com.polsl.proj.recruitmentsystem.business.model.wrappers.EmployeesWrapper</node>
+    <node x="764.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputDecissionDTO</node>
+    <node x="1478.0" y="1537.0">com.polsl.proj.recruitmentsystem.business.model.recrutationProcesses.RecrutationProcess</node>
+    <node x="1233.0" y="2213.0">com.polsl.proj.recruitmentsystem.repositories.people.AdminRepository</node>
+    <node x="520.0" y="1537.0">com.polsl.proj.recruitmentsystem.RecruitRepositoryTests</node>
+    <node x="841.0" y="2332.0">com.polsl.proj.recruitmentsystem.RecruitmentsystemApplication</node>
+    <node x="1560.0" y="2072.0">com.polsl.proj.recruitmentsystem.BeanInitializer</node>
+    <node x="902.0" y="1723.0">com.polsl.proj.recruitmentsystem.repositories.people.RecruitRepository</node>
+    <node x="371.0" y="2072.0">com.polsl.proj.recruitmentsystem.business.model.recruitAttributes.File</node>
+    <node x="254.0" y="1908.0">com.polsl.proj.recruitmentsystem.business.model.DTO.InputDTO.InputRecruitAttributesDTO</node>
+    <node x="1041.0" y="0.0">com.polsl.proj.recruitmentsystem.business.services.recruiter.RecruiterService</node>
+    <node x="797.0" y="685.0">com.polsl.proj.recruitmentsystem.controllers.HeadRecruiterController</node>
+    <node x="299.0" y="2213.0">com.polsl.proj.recruitmentsystem.business.model.DTO.POJOs.SkillPOJO</node>
+    <node x="375.0" y="1329.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.JobOutDTO</node>
+    <node x="7.5" y="1040.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO</node>
+    <node x="69.5" y="0.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO</node>
+    <node x="0.0" y="832.0">com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO.DecissionOutDTOBuilder</node>
+    <node x="787.0" y="1040.0">com.polsl.proj.recruitmentsystem.business.services.admin.AdminFacade</node>
+    <node x="1197.0" y="1329.0">com.polsl.proj.recruitmentsystem.Security.SecurityConfig</node>
+    <node x="1345.0" y="685.0">com.polsl.proj.recruitmentsystem.business.model.people.Recruit</node>
+    <node x="1144.0" y="1040.0">com.polsl.proj.recruitmentsystem.Security.CustomUserDetails</node>
+    <node x="1097.0" y="2332.0">com.polsl.proj.recruitmentsystem.repositories.recruitmentParams.RateRepository</node>
+    <node x="1015.0" y="1329.0">com.polsl.proj.recruitmentsystem.business.model.people.Admin</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO.RecruitOutDTOBuilder" target="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RecruitOutDTO">
+      <point x="0.0" y="-191.5" />
+      <point x="0.0" y="103.5" />
+    </edge>
+    <edge source="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO.RateOutDTOBuilder" target="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.RateOutDTO">
+      <point x="0.0" y="-59.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO.DecissionOutDTOBuilder" target="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.DecissionOutDTO">
+      <point x="0.0" y="-81.5" />
+      <point x="0.0" y="48.5" />
+    </edge>
+    <edge source="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.TrainingOutDTO.TrainingOutDTOBuilder" target="com.polsl.proj.recruitmentsystem.business.model.DTO.OutputDTO.TrainingOutDTO">
+      <point x="0.0" y="-103.5" />
+      <point x="0.0" y="59.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1" x="884.2500000000007" y="1256.9166666666674" />
+  <SelectedNodes>
+    <node>com.polsl.proj.recruitmentsystem.business.model.wrappers.DepartmentsWrapper</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

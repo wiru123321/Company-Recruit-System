@@ -18,7 +18,8 @@
 &emsp;2.4. Panel kierownika działu rekrutacji<br>
 &emsp;&emsp;2.4.1. Przegląd i ocena aplikujących rekrutów<br> 
 &emsp;&emsp;&emsp;2.4.1.1 Generowanie umowy w formacie PDF<br>
-&emsp;&emsp;2.4.2. Przegląd i dodanie nowych wymagań rekrutacyjnych<br>     
+&emsp;&emsp;2.4.2. Przegląd i dodanie nowych wymagań rekrutacyjnych<br> 
+&emsp;&emsp;2.4.3. Podgląd pomocniczy<br>
 <b>3.Opis architektury systemu</b><br>
 &emsp;3.1. Diagram klas części backendowej<br>
 &emsp;3.2. Diagram bazodanowy<br>
@@ -35,7 +36,13 @@
 &emsp;5.1. Wykorzystane narzędzia.<br>
 &emsp;5.2. CORS (Cross-Origin Resource Sharing).<br>
 &emsp;5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.<br>
-&emsp;5.4. Przepływ sterowania.<br></div>
+&emsp;&emsp;5.3.1. Props drilling<br>
+&emsp;&emsp;5.3.2. Context API<br>
+&emsp;5.4. Przepływ sterowania.<br>
+&emsp;&emsp;5.4.1. Przepływ sterowania pomiędzy użytkownikami.<br>
+&emsp;&emsp;5.4.2. Przepływ sterowania na stronie rekrutera.<br>
+&emsp;&emsp;5.4.3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</div>
+
 
 
 <div style="text-align: center"></div><h2>1.Wstęp</h2></div>
@@ -98,17 +105,41 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 ![](C:\Users\Mirosław Adamski\Pictures\recruiter help.JPG)
 
 <div style="text-align: justify">Okno "Pomoc" jest najprostszym z dostępnych dla rekrutera - zawiera ono opis tekstowy pozostałych funkcjonalności.
-
 <h4>2.4. Panel kierownika działu rekrutacji</h4>
 <h4>2.4.1. Przegląd i ocena aplikujących rekrutów</h4>
+![](C:\Users\Mirosław Adamski\Pictures\head-przeglad.JPG)
+<div style="text-align: justify">Domyślnie po przejściu na panel Przeglądu ofert zatrudnienia wyświetlona zostaje lista ze wszystkimi osobami ubiegającymi się o zatrudnienie w zespole, za który odpowiedzialny jest dany szef rekrutacji.Możliwe jest odfiltrowanie rekrutów według ich imienia lub nazwiska.Następuje to po naciśnięciu przycisku 'Szukaj' przypisanym do formularza składającego się z dwóch pól, służących do pobierania wyżej wymienionych parametrów.W przypadku pozostawienia formularza pustego i naciśnięcia przycisku 'Szukaj' wyświetleni zostaną ponownie wszyscy rekruci. Rekruci są zaprezentowani w postaci listy, a każdy jej element domyślnie wyświetla imię i nazwisko kandydata, oraz udostępnia cztery przyciski: 
+     <li>OCENA - po jego naciśnięciu pojawia sie formularz umożliwiający ocenę rekruta wraz z uzasadnieniem.Kierownik rekrutacji musi podać jak rozpatruje daną aplikacją wybierając wartość 'Pozytywnie' lub 'Negatywnie' z listy rozwijanej, oraz na jaką ocenę ocenia podanie, wpisując liczbę całkowitą.Zapisanie oceny w bazie danych następuje po naciśnięciu doczepionego do formularza przycisku 'PRZEŚLIJ DECYZJĘ'. </li>
+     <li>Dane - po jego naciśnięciu zaprezentowane bardziej szczegółowe informacje, takie jak stopień wykształcenia, nabyte umiejętności czy historia zatrudnienia. </li>
+     <li>CV - przycisku umożliwiający pobranie pliku PDF prezentującego CV kandydata. W przypadku gdy kandydat nie dostarczył takowego pliku, wyświetlany jest pusty plik. </li>
+     <li>UMOWA PDF - po jego naciśnięciu pojawia się formularz służący do sparametryzowania szablonu umowy która ma zostać zaproponowana rekrutowi. </li>
 <h4>2.4.1.1 Generowanie umowy w formacie PDF</h4>
+![](C:\Users\Mirosław Adamski\Pictures\head umowa.JPG)
+<div style="text-align: justify">    
+    Możliwośc przygotowania umowy dla rekruta udostępniana jest po naciśnięciu przycisku "UMOWA PDF", który powoduje wyświetlenie się odpowiedniego formularza.Wypełniając ten formularz kierownik rekrutacji musi wybrać rodzaj zatrudnienia z listy rozwijanej (do wyboru:Zlecenie,Umowa o pracę, umowa o dzieło,Staż), wysokość wynagrodzenia (kwota netto za pełną godzinę pracy).Dodatkowo, w przypadku umów na czas określony, formularz zawiera pola z podpiętymi kalendarzami, określające początek i koniec trwania umowy.Nie uzupełnienie tych pól spowoduje, że system automatycznie określi umowę jako umowę na czas nieokreślony.Wygenerowanie umowy następuje po naciśnięciu podpiętego do formularza przycisku 'GENERUJ UMOWĘ'.Aby wyświetlić wygenerowany plik PDF należy ponownie podać swój login i hasło.</div>
 <h4>2.4.2. Przegląd i dodanie nowych wymagań rekrutacyjnych</h4>  
+
+![](C:\Users\Mirosław Adamski\Pictures\head - rekrutacje szukaj.JPG)
+
 <div style="text-align: justify">
-    Opis heada
+    Po przejściu do okna odpowiedzialnego za zarządzanie ofertami domyślnie wyświetlane są w formie listy wszystkie zdefiniowane wcześniej wymogi rekrutacyjne na kolejne stanowiska wraz z ilością wskazującą, ilu nowych pracowników jest potrzebnych.Możliwe jest wyszukanie konkretnego procesu rekrutacyjnego wpisjąc jego nazwę w polu znajdującym się nad listą.Po naciśnięciu przycisku z lupą wysłane zostaje zapytanie do bazy danych, po którym na liście pozostają jedynie rekrutacje na wskazane stanowisko. Znajdujący się powyżej panel nawigacyjny pozwala przejść do okna definiowania nowego procesu rekrutacyjnego.
 </div>
+
+![](C:\Users\Mirosław Adamski\Pictures\head - rekrutacje dodaj.JPG)
+
+<div style="text-align: justify">Aby wprowadzić do systemu informacje dotyczące nowego procesu rekrutacyjnego, określanego jako oferta zatrudnienia, należy uzupełnić formularz składający się z pól opisujących stanowisko na jakie ma być przeprowadzana rekrutacja, zbiór wymagań oraz zakładaną ilość osób do zatrudnienia.Wszystkie te pola są wymagane. Zapisanie oferty w bazie danych następuje po naciśnięciu przycisku 'Zatwierdź'.</div>
+
+<h4>2.4.3. Podgląd pomocniczy</h4>
+
+![](C:\Users\Mirosław Adamski\Pictures\recruiter help.JPG)
+<div style="text-align: justify">
+    Okno pomocnicza dla kierownika rekrutacji jest analogiczne do okna pomocniczego dla rekrutera - również tutaj są to skrócone instrukcje opisujące możliwe do wykonania czynności.
+</div>
+
 
 <h4>3.Opis architektury systemu</h4>
 <h4>3.1. Diagram klas części backendowej</h4>
+<div style="text-align: justify">Ze względu na swoją obszerność, diagram klas jest dostępny w plikach "RecruitSystem - diagram klas.pdf" oraz "recruitmentsystem.uml" zamieszczonych na repozytorium projektu</div>
 <h4>3.2. Diagram bazodanowy</h4>
 <h4>3.3. Diagram klas części frontendowej</h4>
 <h4>3.4. Diagram przypadków użycia</h4>
@@ -142,7 +173,8 @@ React dostarcza bardzo wygodne narzędzia do implementowania asynchronicznej naw
 
 <h4>5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.</h4>
 
-<h5>1. Props drilling.</h1>
+<h5>5.3.1. Props drilling.</h1>
+
 
 <div style="text-align: justify">Props drilling polega na przesyłanie stanu w dół drzewa komponentów, za pomocą odpowiednich właściwości (props). Komponenty potomne odbierają te właściwości, a programista może się do nich odwołać wykorzystując **props.nazwaWłaściwości** .
 Zaletą tego rozwiązania jest prostota. W praktyce props-drilling przypomina przekazywanie kaskadowo, odpowiednich wartości do przygotowanych wcześniej funkcji (tutaj komponentów). Dla niewielkich drzew komponentów jest to rozwiązanie o czytelnej architekturze i małej zawiłości wyprodukowanego kodu.
@@ -240,7 +272,7 @@ const LightsController = props => {
 
 
 
-<h5>2. Context API.</h5>
+<h5>5.3.2. Context API.</h5>
 
 <div style="text-align: justify">Context API jest dostępne od wersji React v16.3.0. Jest to funkcjonalność wspierająca zarządzanie stanem komponentu oraz komunikację między komponentami.
 Zamysł tej architektury przybliża poniższy schemat.</div>
@@ -251,7 +283,7 @@ Zamysł tej architektury przybliża poniższy schemat.</div>
 
 
 
-Elementy potomne danej funkcjonalności tworzone są w obszarze zasięgu jej kontekstu (kolor czerwony). Kontekst jest dostarczany do każdego potomka (Child Components kolor zielony) przez Context Provider. Przypomina to trochę korzystanie z globalnego magazynu (a nawet zmiennych globalnych), jednak kontekst można łatwo enkapsulować dostarczając go do wybranych komponentów potomnych.Takie działanie nazywane jest owijaniem (ang. wrapping). 
+<div style="text-align: justify">Elementy potomne danej funkcjonalności tworzone są w obszarze zasięgu jej kontekstu (kolor czerwony). Kontekst jest dostarczany do każdego potomka (Child Components kolor zielony) przez Context Provider. Przypomina to trochę korzystanie z globalnego magazynu (a nawet zmiennych globalnych), jednak kontekst można łatwo enkapsulować dostarczając go do wybranych komponentów potomnych.Takie działanie nazywane jest owijaniem (ang. wrapping). </div>
 
 Kontekst tworzy się w sposób pokazany poniżej (createContext należy zaimportować z ‘react’).
 
@@ -287,9 +319,9 @@ const ChildComponent = () => {
 
 <h4>5.4. Przepływ sterowania.</h4>
 
-Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (Login, Recruiter, Head, Admin). Strona Logowania odpowiada za przekierowanie użytkownika na odpowiednią stronę oraz walidację logowania. Natomiast reszta wyszczególnionych stron odpowiada, za dostarczenie mechanizmów pozwalających na wykonanie użytkownikowi odpowiedniej pracy.
+<div style="text-align: justify">Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (Login, Recruiter, Head, Admin). Strona Logowania odpowiada za przekierowanie użytkownika na odpowiednią stronę oraz walidację logowania. Natomiast reszta wyszczególnionych stron odpowiada, za dostarczenie mechanizmów pozwalających na wykonanie użytkownikowi odpowiedniej pracy.</div>
 
-<h5>1. Przepływ sterowania pomiędzy użytkownikami.</h5>
+<h5>5.4.1.Przepływ sterowania pomiędzy użytkownikami.</h5>
 
 
 
@@ -299,7 +331,7 @@ Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (
 
 
 
-<h5>2. Przepływ sterowania na stronie rekrutera.</h5>
+<h5>5.4.2.Przepływ sterowania na stronie rekrutera.</h5>
 
 
 
@@ -309,7 +341,7 @@ Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (
 
 
 
-<h5>3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
+<h5>5.4.3.Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
 
 
 
@@ -319,7 +351,7 @@ Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (
 
 
 
-<h5>4. Przepływ sterowanie na stronie administratora.</h5>
+<h5>5.4.4. Przepływ sterowanie na stronie administratora.</h5>
 
 
 
