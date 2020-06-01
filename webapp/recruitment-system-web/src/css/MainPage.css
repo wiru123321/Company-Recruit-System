@@ -10,7 +10,6 @@
 
 [class*="col-"] {
   float: left;
-  padding: 4px;
 }
 
 .col-1 {
@@ -48,10 +47,10 @@
   width: 91.66%;
 }
 .col-12 {
-  width: 100%;
+  width: 100vw;
 }
 .allLogin {
-  width: 100%;
+  width: 100vw;
 }
 html {
   font-family: "Lucida Sans", sans-serif;
@@ -126,7 +125,7 @@ p.checkbox {
 .info {
   background-color: #3399cc;
   color: white;
-  width: 100%;
+  width: 100vw;
 }
 
 .allComponent {

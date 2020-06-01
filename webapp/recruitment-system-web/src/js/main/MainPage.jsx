@@ -9,7 +9,7 @@ class MainPage extends React.Component {
     return (
       <div class="allLogin">
         <div className="header col-12 form">
-          <div className="col-12" style={{ width: "100vw" }}>
+          <div className="col-12">
             <img className="logo1" src={logo} alt="logo" />
             <LoginCompnent />
           </div>

@@ -88,7 +88,6 @@ html {
   font-size: 20px;
   text-decoration: none;
   color: white;
-  transition: all 1s ease;
 }
 
 .r-menu li {
@@ -114,6 +113,10 @@ html {
 */
 .r-menu a:hover {
   color: royalblue;
+}
+
+.helphover a:hover {
+  color: green;
 }
 
 .imgSize {

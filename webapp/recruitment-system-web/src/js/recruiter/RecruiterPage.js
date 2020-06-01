@@ -35,12 +35,12 @@ class RecruiterPage extends React.Component {
                   <img className="imgSize" src={find} /> Wyszukaj
                 </NavLink>
               </li>
-              <li className="interactive">
+              <li className="interactive helphover">
                 <NavLink to="/recruiter/help">
                   <img className="imgSize" src={help} /> Pomoc
                 </NavLink>
               </li>
-              <li className="interactive">
+              <li className="interactive logouthover">
                 <a href="/login" onClick={Auth.logoutRecruiter}>
                   <img className="imgSize" src={logout} /> Wyloguj
                 </a>

@@ -21,8 +21,9 @@ class AdminPage extends React.Component {
               <li className="interactive">
                 <NavLink to="/admin/addWorkers">Dodaj pracownika</NavLink>
               </li>
-              <li className="interactive">
+              <li className="interactive logouthover">
                 <a
+                  className=""
                   href="/login"
                   onClick={RecruiterAuthenticationService.logoutAdmin}
                 >

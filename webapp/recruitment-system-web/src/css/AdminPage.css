@@ -17,7 +17,6 @@
   font-size: 20px;
   text-decoration: none;
   color: white;
-  transition: all 1s ease;
 }
 
 .r-menu-adm li {
@@ -35,4 +34,8 @@
 }
 .r-menu-adm a:hover {
   color: royalblue;
+}
+
+.logouthover a:hover {
+  color: red;
 }
