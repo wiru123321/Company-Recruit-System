@@ -1,8 +1,6 @@
-<h1><div style="text-align: center">Recruit System - dokumentacja techniczna </h1> 
+<h1><div style="text-align: center">Recruit System - dokumentacja techniczna </h1>
 
 <div class="page-break"></div>
-
-
 
 <div style="page-break-after: always; break-after: page;"></div>
 
@@ -32,36 +30,27 @@
 &emsp;4.2. Komunikacja między warstwą frontnedową a backendową<br>
 &emsp;4.3. Bezpieczeństwo systemu<br>
 &emsp;4.4. Obsługa załączanych plików pdf<br>
-&emsp;4.5. Generowanie pliku pdf z wartościami pobranymi z bazy danych<br></div>
-
-
+&emsp;4.5. Generowanie pliku pdf z wartościami pobranymi z bazy danych<br>
+<b>5. Architektura oprogramowania po stronie Frontendu.</b><br>
+&emsp;5.1. Wykorzystane narzędzia.<br>
+&emsp;5.2. CORS (Cross-Origin Resource Sharing).<br>
+&emsp;5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.<br>
+&emsp;5.4. Przepływ sterowania.<br></div>
 
 
 <div style="text-align: center"></div><h2>1.Wstęp</h2></div>
-
-
 
 <h4>1.1. Opis ogólny </h4>
 
 ![](C:\Users\Mirosław Adamski\Downloads\Logo_exported_1.0.png)
 
-
-
 <div style="text-align: justify;page-break-after: always; break-after: page;">Recruit System jest aplikacją webową przeznaczoną dla firm, które dążą do usprawnienia i usystematyzowania procesu rekrutacji. W tym celu system ten oferuje zbiór prostych w obsłudze rozwiązań, dzięki którym poszczególni rekruterzy mogą w szybki i łatwy sposób wprowadzić wszystkie niezbędne informacje dotyczące osoby ubiegającej się o zatrudnienie, a kierownicy poszczególnych działów rekrutacji mają możliwość precyzowania oczekiwań wobec poszukiwanych pracowników,wyboru najlepszego kandydata z opcją podglądu dostarczonego przez niego CV, dokanania oceny poszczególnych rekrutów oraz wygenerowania proponowanej umowy na podstawie parametryzowanego szablonu.W celu zapewnienia spójności działania utworzony został również panel admnistracyjny, w obrębie którego możliwe jest tworzenie i usuwanie kont dla osób zajmujących się rekrutacją.W celu ułatwienia pracy osobom rekrutującym, zarówno rekruterzy jak i szefowie działów rekrutacji mają wgląd jedynie do rekrutów aplikujących do zespołów zgodnych z zespołami, którymi opiekują się dani pracownicy działu HR. Oznacza to, że osoba odpowiedzialna za rekrutację pracowników do zespołu pracującego w języku Java będzie widziała jedynie osoby zainteresowane pracą na którymkolwiek stanowisku związanym z tym zespołem (np. testerów, deweloperów, PM'ów), jednak nie będzie mogła zobaczyć osoby ubiegające się o pracę w zespole C++ ze względu na założnie, że informacje te nie są jej potrzebne w codziennej pracy.</div>
 
-
-
-
-
 <div style="text-align: center"></div><h2>2.Opis funcjonalności systemu</h2></div>
-
-
 
 <h4>2.1. Strona główna</h4>
 ![](C:\Users\Mirosław Adamski\Pictures\main_page.JPG)
 <div style="text-align: justify">Strona główna jest podstawową witryną, służącą za stronę powitalną. Zawiera ona krótki opis zawierający podstawowe informacje o zastosowaniu aplikacji Recruit System oraz formularz logowania, umożliwiający użytkownikowi zalogowanie się na swoje konto.Po poprawnym zweryfikowaniu użytkownika, zostaje on automatycznie przekierowany na przeznaczony dla niego panel.W przypadku wprowadzenia błędnych danych wyświetlana jest informacja "Podano błędny login lub hasło.".Strona główna jest jedyną dostępną dla niezalogowanego użytkownika.</div>
-
-
 
 <h4>2.2. Panel administratora systemu</h4>
 ![](C:\Users\Mirosław Adamski\Pictures\admin-main.JPG)
@@ -133,3 +122,205 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 <div style="text-align: justify">Bezpieczeństwo aplikacji zostało zrealizowane poprzez wykorzystanie rozwiązań oferowanych przez Spring Security, polegających na zaszyfrowanie hasła każdego użytkownika, sprawdzanie uprawnień przy wysyłaniu żądań do serwera (przykładowo rekruter próbując przejść do okna kierownika rekrutacji dostanie informację o braku uprawnień, podobnie osoba niezalogowana nie będzie miała dostępu do żadnej funkcjonalności systemu za wyjątkiem formularza logowania). W szczególnym przypadku jakim jest generowanie umowy dla wybranego rekruta wymagana jest ponowna autentyfikacja poprzez ponowne wpisanie loginu oraz hasła.</div>
 <h4>4.4. Obsługa załączanych plików pdf</h4>
 <h4>4.5. Generowanie pliku pdf z wartościami pobranymi z bazy danych</h4>
+
+<h4>5. Architektura oprogramowania po stronie Frontendu.</h4>
+
+<div style="text-align: justify">Całość aplikacji odpowiadająca za frontend jest zrealizowana w frameworku React.js. Architektura strony internetowej to tzw SPA, czyli Single Page App.
+React dostarcza bardzo wygodne narzędzia do implementowania asynchronicznej nawigacji i dynamicznym ładowaniu treści serwisu.
+</div>
+<h4>5.1. Wykorzystane narzędzia.</h4>
+
+<div style="text-align: justify"><b>React Router</b> – narzędzie wspomagające routing po stronie internetowej. Wspomaga SPA poprzez nadzorowanie ładowania wybranych treści w sposób asynchroniczny.
+<b>Formik</b> – narzędzie służące do tworzenia formularzy oraz ich obsługi (walidacja, obsługa zdarzeń). Głównymi zaletami Formika jest łatwość w dostępie do wartości przechowywanych przez pola, walidacja danych, informowanie o błędach i pomoc w obsłudzę zdarzeń.
+
+<b>Axios</b> – klient http dla przeglądarek i NodeJS, oparty o promise’y. Pozwala na formowanie requestów i obsługę odpowiedzi. Axios automatycznie transformuje dane do postaci łańcuchu znaków oraz pozwala na konfigurację requestów za pomocą funkcji dostarczanych przez tzw. interceptors.
+
+<h4>5.2. CORS (Cross-Origin Resource Sharing).</h4>
+<div style="text-align: justify">
+<b>Cross-Origin</b> - w aplikacji serwery odpowiadające za frontend i backend znajdują się w innych domenach. Requesty wysłane z frontendu, dobierane są przez serwer na którym znajduje się REST API. Aby serwery mogły się skontaktować należy umożliwić wykrycie Originu serwera Frontendu na serwerze z backendem. Tej operacji dokonuje się konfigurując odpowiednie kontrolery REST API.
+</div>
+
+<h4>5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.</h4>
+
+<h5>1. Props drilling.</h1>
+
+<div style="text-align: justify">Props drilling polega na przesyłanie stanu w dół drzewa komponentów, za pomocą odpowiednich właściwości (props). Komponenty potomne odbierają te właściwości, a programista może się do nich odwołać wykorzystując **props.nazwaWłaściwości** .
+Zaletą tego rozwiązania jest prostota. W praktyce props-drilling przypomina przekazywanie kaskadowo, odpowiednich wartości do przygotowanych wcześniej funkcji (tutaj komponentów). Dla niewielkich drzew komponentów jest to rozwiązanie o czytelnej architekturze i małej zawiłości wyprodukowanego kodu.
+Z props-drilling’u należy zdecydowanie zrezygnować w sytuacji, gdy spodziewamy się przekazywania danych, przez duże ilości warstw drzewa komponentów, wynoszenia stanu w górę (callback do rodzica), bądź wielu komponentów potomnych. 
+Poniższy przykład prezentuje przykładowe wykorzystanie props-drillingu.
+Komponent TrafficLight jest najwyżej w hierarchii drzewa komponentów i przechowuje on stan aktualnie wybranego światła. Poprzez “propsy” przekazywane są funkcje zmieniające wybrany kolor oraz cyfra opisująca wybrany kolor.
+</div>
+
+
+
+```react
+
+ class TrafficLight extends React.Component {
+  constructor (props) {
+    super (props);
+    this.state = {
+      // 0 - red, 1 - orange, 2- green
+      currentColorNumber: 0,
+    };
+    this.incrementColor = this.incrementColor.bind (this);
+    this.decrementColor = this.decrementColor.bind (this);
+  }
+ 
+  incrementColor () {
+    if (this.state.currentColorNumber + 1 < 3)
+      this.setState (state => ({
+        currentColorNumber: state.currentColorNumber + 1,
+      }));
+  }
+ 
+  decrementColor () {
+    if (this.state.currentColorNumber > 0)
+      this.setState (state => ({
+        currentColorNumber: state.currentColorNumber - 1,
+      }));
+  }
+ 
+  render () {
+    return (
+      <div>
+        <Light color={this.state.currentColorNumber} />
+        <LightsController
+          increment={this.incrementColor}
+          decrement={this.decrementColor}
+        />
+      </div>
+    );
+  }
+}
+
+```
+
+<div style="text-align: justify">Komponent Light odpowiada za zapalenie odpowiedniego światła na podstawie przekazanego przez props stanu.</div>
+
+```react
+const Light = props => {
+  return (
+    <div>
+      {props.color === 0 &&
+        <div><a style={{padding: '4px', backgroundColor: 'red'}} /></div>}
+      {props.color === 1 &&
+        <div><a style={{padding: '4px', backgroundColor: 'orange'}} /></div>}
+      {props.color === 2 &&
+        <div><a style={{padding: '4px', backgroundColor: 'green'}} /></div>}
+    </div>
+  );
+};
+
+```
+
+<div style="text-align: justify">Natomiast komponent LightsController wywołuje metody zaimplementowane w klasie TrafficLight. Zbindowanie metod w komponencie TrafficLight pozwala na wykorzystanie ich, w celu zmiany stanu komponentu TrafficLight w innym komponencie. Jest to również przykład przekazywania funkcji przez props’y.</div>
+
+```react
+const LightsController = props => {
+  return (
+    <div>
+      <button
+        onClick={event => {
+          event.preventDefault ();
+          props.increment ();
+        }}
+      >
+        INKREMENTUJ
+      </button>
+      <button
+        onClick={event => {
+          event.preventDefault ();
+          props.decrement ();
+        }}
+      >
+        DEKREMENTUJ
+      </button>
+    </div>
+```
+
+
+
+<h5>2. Context API.</h5>
+
+<div style="text-align: justify">Context API jest dostępne od wersji React v16.3.0. Jest to funkcjonalność wspierająca zarządzanie stanem komponentu oraz komunikację między komponentami.
+Zamysł tej architektury przybliża poniższy schemat.</div>
+
+<div  style="text-align: justify">Zamysł tej architektury przybliża poniższy schemat.</div>
+
+![img](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\context)
+
+
+
+Elementy potomne danej funkcjonalności tworzone są w obszarze zasięgu jej kontekstu (kolor czerwony). Kontekst jest dostarczany do każdego potomka (Child Components kolor zielony) przez Context Provider. Przypomina to trochę korzystanie z globalnego magazynu (a nawet zmiennych globalnych), jednak kontekst można łatwo enkapsulować dostarczając go do wybranych komponentów potomnych.Takie działanie nazywane jest owijaniem (ang. wrapping). 
+
+Kontekst tworzy się w sposób pokazany poniżej (createContext należy zaimportować z ‘react’).
+
+```react
+const AppContext = createContext ();
+```
+
+Następnie należy stworzyć ContextProvider. Stan kontekstu (someData) po owinięciu jest dostępny w każdym elemencie potomnym.
+
+```react
+const AppContextProvider = () => {
+  // Stan w obszarze kontekstu
+  const [someData, setSomeData] = useState ();
+
+  return (
+    <div>
+      {/* Owijanie potomków przez Conext */}
+      <AppContext.Provider>
+        <ChildComponents />
+      </AppContext.Provider>
+    </div>
+  );
+};
+```
+
+Poniżej znajduje się przykład odbierania stanu w komponencie potomnym.
+
+```react
+const ChildComponent = () => {
+  const {someData, setSomeData} = useContext (AppContext);
+};
+```
+
+<h4>5.4. Przepływ sterowania.</h4>
+
+Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (Login, Recruiter, Head, Admin). Strona Logowania odpowiada za przekierowanie użytkownika na odpowiednią stronę oraz walidację logowania. Natomiast reszta wyszczególnionych stron odpowiada, za dostarczenie mechanizmów pozwalających na wykonanie użytkownikowi odpowiedniej pracy.
+
+<h5>1. Przepływ sterowania pomiędzy użytkownikami.</h5>
+
+
+
+![](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania pomiędzy userami.png)
+
+
+
+
+
+<h5>2. Przepływ sterowania na stronie rekrutera.</h5>
+
+
+
+![Przepływ sterowania rekrutera](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania rekrutera.png)
+
+
+
+
+
+<h5>3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
+
+
+
+![Sterowanie head_rekrut](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Sterowanie head_rekrut.png)
+
+
+
+
+
+<h5>4. Przepływ sterowanie na stronie administratora.</h5>
+
+
+
+![Przepływ sterowania admin](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania admin.png)
