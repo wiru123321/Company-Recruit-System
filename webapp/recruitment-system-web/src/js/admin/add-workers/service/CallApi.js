@@ -1,19 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
 class CallApi {
-  createWorker (workerDto) {
+  createWorker(workerDto) {
     let dto = workerDto;
-    return axios ({
-      method: 'post',
+    return axios({
+      method: "post",
       url: `http://localhost:8080/admin/addEmployee`,
       data: dto,
     });
   }
-  hi () {
+
+  getDepartments() {
+    return axios({
+      method: "GET",
+      url: `http://localhost:8080/admin/getAllDepartments`,
+    });
+  }
+  hi() {
     axios
-      .get (`http://localhost:8080/admin/hi`)
-      .then (response => console.log ('8080', response.data));
+      .get(`http://localhost:8080/admin/hi`)
+      .then((response) => console.log("8080", response.data));
   }
 }
 
-export default new CallApi ();
+export default new CallApi();

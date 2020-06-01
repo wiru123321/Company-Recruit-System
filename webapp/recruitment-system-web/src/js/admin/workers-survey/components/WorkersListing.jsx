@@ -33,6 +33,7 @@ const WorkersListing = () => {
                 <th>{elem.type} </th>
                 <th>{elem.department} </th>
                 <button
+                  className="remove"
                   onClick={(event) => {
                     event.preventDefault();
                     CallApi.remove(elem.firstName).then((response) => {
@@ -55,6 +56,7 @@ const WorkersListing = () => {
                 <th>{elem.department} </th>
 
                 <button
+                  className="remove"
                   onClick={(event) => {
                     event.preventDefault();
                     CallApi.remove(elem.firstName).then((response) => {

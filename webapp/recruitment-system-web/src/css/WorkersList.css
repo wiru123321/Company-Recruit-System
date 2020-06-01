@@ -1,55 +1,74 @@
-div.filters-nav{
-    float: left;
-    box-sizing: border-box;
-    width: 20%;
-    height: 1000px;
-    background-color:ghostwhite;
-    font-size: large;
+div.filters-nav {
+  float: left;
+  box-sizing: border-box;
+  width: 20%;
+  height: 1000px;
+  background-color: ghostwhite;
+  font-size: large;
 }
 
-.filters-nav input{
-    font-size: large;
-    border: 2px solid blue;
-    border-radius: 15px;
-    margin-top: 1%;
-    padding: 8px;
-    width: 80%;
-    outline: none;
+.filters-nav input {
+  font-size: large;
+  border: 2px solid blue;
+  border-radius: 15px;
+  margin-top: 1%;
+  padding: 8px;
+  width: 80%;
+  outline: none;
 }
 
-.filters-nav label{
-    text-align: left;
-    width: 50%;
-    margin-top: 2%;
+.filters-nav label {
+  text-align: left;
+  width: 50%;
+  margin-top: 2%;
 }
 
-.filters-nav select{
-    font-size: large;
-    border: 2px solid blue;
-    border-radius: 15px;
-    margin-top: 1%;
-    padding: 8px;
-    width: 50%;
-    outline: none;
+.filters-nav select {
+  font-size: large;
+  border: 2px solid blue;
+  border-radius: 15px;
+  margin-top: 1%;
+  padding: 8px;
+  width: 50%;
+  outline: none;
 }
 
-input.submit{
-    background-color: white;
-    color: black;
+input.submit {
+  background-color: white;
+  color: black;
 }
 
-input.submit:hover{
-    background-color: green;
-    color: white;
+input.submit:hover {
+  background-color: green;
+  color: white;
 }
 
-div.list-workers{
-    float: left;
-    font-size: large;
-    background-color: darkgrey;
+div.list-workers {
+  float: left;
+  font-size: large;
+  background-color: darkgrey;
 }
 
-.list-workers label{
-    margin-left: 5%;
-    width: 30%;
+.list-workers label {
+  margin-left: 5%;
+  width: 30%;
+}
+
+button.remove {
+  background-color: white; /* Green */
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+button.remove:hover {
+  background-color: #f44336;
+  color: white;
 }
