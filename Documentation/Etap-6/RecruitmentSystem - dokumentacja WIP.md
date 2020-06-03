@@ -112,12 +112,15 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
      <li>OCENA - po jego naciśnięciu pojawia sie formularz umożliwiający ocenę rekruta wraz z uzasadnieniem.Kierownik rekrutacji musi podać jak rozpatruje daną aplikacją wybierając wartość 'Pozytywnie' lub 'Negatywnie' z listy rozwijanej, oraz na jaką ocenę ocenia podanie, wpisując liczbę całkowitą.Zapisanie oceny w bazie danych następuje po naciśnięciu doczepionego do formularza przycisku 'PRZEŚLIJ DECYZJĘ'. </li>
      <li>Dane - po jego naciśnięciu zaprezentowane bardziej szczegółowe informacje, takie jak stopień wykształcenia, nabyte umiejętności czy historia zatrudnienia. </li>
      <li>CV - przycisku umożliwiający pobranie pliku PDF prezentującego CV kandydata. W przypadku gdy kandydat nie dostarczył takowego pliku, wyświetlany jest pusty plik. </li>
-     <li>UMOWA PDF - po jego naciśnięciu pojawia się formularz służący do sparametryzowania szablonu umowy która ma zostać zaproponowana rekrutowi. </li>
+    <li>UMOWA PDF - po jego naciśnięciu pojawia się formularz służący do sparametryzowania szablonu umowy która ma zostać zaproponowana rekrutowi. </li></div>
 <h4>2.4.1.1 Generowanie umowy w formacie PDF</h4>
 ![](C:\Users\Mirosław Adamski\Pictures\head umowa.JPG)
+
+
 <div style="text-align: justify">    
     Możliwośc przygotowania umowy dla rekruta udostępniana jest po naciśnięciu przycisku "UMOWA PDF", który powoduje wyświetlenie się odpowiedniego formularza.Wypełniając ten formularz kierownik rekrutacji musi wybrać rodzaj zatrudnienia z listy rozwijanej (do wyboru:Zlecenie,Umowa o pracę, umowa o dzieło,Staż), wysokość wynagrodzenia (kwota netto za pełną godzinę pracy).Dodatkowo, w przypadku umów na czas określony, formularz zawiera pola z podpiętymi kalendarzami, określające początek i koniec trwania umowy.Nie uzupełnienie tych pól spowoduje, że system automatycznie określi umowę jako umowę na czas nieokreślony.Wygenerowanie umowy następuje po naciśnięciu podpiętego do formularza przycisku 'GENERUJ UMOWĘ'.Aby wyświetlić wygenerowany plik PDF należy ponownie podać swój login i hasło.</div>
 <h4>2.4.2. Przegląd i dodanie nowych wymagań rekrutacyjnych</h4>  
+
 
 ![](C:\Users\Mirosław Adamski\Pictures\head - rekrutacje szukaj.JPG)
 
@@ -135,8 +138,6 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 <div style="text-align: justify">
     Okno pomocnicza dla kierownika rekrutacji jest analogiczne do okna pomocniczego dla rekrutera - również tutaj są to skrócone instrukcje opisujące możliwe do wykonania czynności.
 </div>
-
-
 <h4>3.Opis architektury systemu</h4>
 <h4>3.1. Diagram klas części backendowej</h4>
 <div style="text-align: justify">Ze względu na swoją obszerność, diagram klas jest dostępny w plikach "RecruitSystem - diagram klas.pdf" oraz "recruitmentsystem.uml" zamieszczonych na repozytorium projektu</div>
@@ -150,9 +151,150 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 <h4>4.2. Komunikacja między warstwą frontnedową a backendową</h4>
 <div style="text-align: justify">Komunikacja między częścią frontendowa a backendową odbywa się za pomocą klas opatrzonych adnotacją @RestController oraz @CrossOrigin, umożliwiającej komunikację aplikacjami wystawionymi na różnych poratach.
 <h4>4.3. Bezpieczeństwo systemu</h4>
-<div style="text-align: justify">Bezpieczeństwo aplikacji zostało zrealizowane poprzez wykorzystanie rozwiązań oferowanych przez Spring Security, polegających na zaszyfrowanie hasła każdego użytkownika, sprawdzanie uprawnień przy wysyłaniu żądań do serwera (przykładowo rekruter próbując przejść do okna kierownika rekrutacji dostanie informację o braku uprawnień, podobnie osoba niezalogowana nie będzie miała dostępu do żadnej funkcjonalności systemu za wyjątkiem formularza logowania). W szczególnym przypadku jakim jest generowanie umowy dla wybranego rekruta wymagana jest ponowna autentyfikacja poprzez ponowne wpisanie loginu oraz hasła.</div>
+    <div style="text-align: justify">Bezpieczeństwo aplikacji zostało zrealizowane poprzez wykorzystanie rozwiązań oferowanych przez Spring Security, polegających na zaszyfrowanie hasła każdego użytkownika, sprawdzanie uprawnień przy wysyłaniu żądań do serwera (przykładowo rekruter próbując przejść do okna kierownika rekrutacji dostanie informację o braku uprawnień, podobnie osoba niezalogowana nie będzie miała dostępu do żadnej funkcjonalności systemu za wyjątkiem formularza logowania). W szczególnym przypadku jakim jest generowanie umowy dla wybranego rekruta wymagana jest ponowna autentyfikacja poprzez ponowne wpisanie loginu oraz hasła.W naszym systemie najistotniejsze elementy implementacji bezpieczeństwa aplikacji to:</div>
+
+```Java
+@Qualifier("customUserDetailsService")
+@Autowired
+UserDetailsService userDetailsService;
+```
+<div style="text-align: justify">Jawne zrzutowanie UserDetailsService na stworzoną przez nas implementację.
+
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .antMatchers("/recruiter/*").hasRole("RECRUITER")
+            .antMatchers("/head/*").hasRole("HEAD")
+            .antMatchers("/admin/*").hasRole("ADMIN")
+            .and()
+            .httpBasic();
+}
+```
+<div style="text-align: justify">Metoda konfiguracyjna zabezpień protokołu HTTP, znajdująca się w klasie SecurityConfig pakietu com.polsl.proj.recruitmentsystem.Security.Definiuje ona wymagane role, jakie musi posiadać zalogowany użytkownik by uzyskać dostęp do zasobów znajdujących się pod wywołanym endpointem.W przypadku zapytania OPTIONS, udostępniony został swobodny dostęp, w celu pobrania przez przeglądarkę potrzebnych informacji poprzedzających dalszą komunikację.</div>
+
+```java
+@Override
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder);
+}
+```
+
+<div style="text-align: justify">Metoda konfiguracyjna procesu autentykacji logującego się użytkownika, znajdująca sie w klasie SecurityConfig pakietu com.polsl.proj.recruitmentsystem.Security.Definiuje ona, że domyślny manager autentykacyjny ma wykorzystywać stworzoną przez nas implementację interfejsu UserDetailsService,a ten natomiast ma wykorzystywać podany przez nas enkoder hasła.
+
 <h4>4.4. Obsługa załączanych plików pdf</h4>
-<h4>4.5. Generowanie pliku pdf z wartościami pobranymi z bazy danych</h4>
+<div style="text-align: justify">Obsługa serwerowa plików wgrywanych przez rekrutera rozpoczyna się od pobrania jej w formie pliku JSON przesyłanego jako MulitpartFile:</div>
+```Java
+@PostMapping("/addFiles")
+@ResponseBody
+public String addFiles(@RequestParam MultipartFile file){
+        recruiterFacade.saveFile(file);
+        return  "OK";
+}
+```
+
+<div style="text-align: justify">Następnie w klasie FileUtility w pakiecie com.polsl.proj.recruitmentsystem.business.utils.file wykorzystywane są funkcjonalności dostarczone przez bibliotekę java.nio.file aby zapisać plik na dysku. Odbywa się to w ramach metody:</div>
+
+```java
+public void save(MultipartFile file, int id) throws IOException {
+    byte[] bytes = file.getBytes();
+    Path path = Paths.get(serverUrl + file.getOriginalFilename());
+    Files.write(path, bytes);
+}
+```
+
+<div style="text-align: justify">Gdzie serverUrl został zdefiniowany jako pole typu String klasy FileUtility.</div>
+
+<div style="text-align: justify"><br>W przypadku chęci wyświetlenia pliku CV przez kierownika działu rekrutacji, z przeglądarki jest wywyłane zapytanie zawierające @PathVariable, przechowujące wartość ID danego rekruta.Następnie w klasie FileUtility wykonywana jest metoda pobierająca szukany plik. W tym celu wysłane zostaje zapytanie do bazy danych, zawierające przesłaną wartość ID. Informacja zwrotna składa się z imienia i nazwiska danego rekruta. Dane te są dołączane są wraz z rozszerzeniem ".pdf" do zmiennej typu String, reprezentującej ścieżkę do katalogu, w którym przechowywane są pliki CV. Po pobraniu tego pliku zostaje on przekonwertowany do postaci ByteArrayResource i zwrócony na przeglądarkę. Pobieranie pliku z serwera prezentuje poniższy kod:</div>
+
+```java
+public ByteArrayResource read(String recruitID) throws IOException {
+    String databaseFilename;
+    try {
+        databaseFilename = headRecruiterFacade.findRecruitByID(Long.valueOf(recruitID));
+    } catch (Exception e) {
+        databaseFilename = "empty";
+    }
+    Path path = Paths.get(serverUrl + databaseFilename + ".pdf");
+    ByteArrayResource file;
+    try {
+        file = new ByteArrayResource(Files.readAllBytes(path));
+    } catch (Exception e) {
+        path = Paths.get(serverUrl + "empty" + ".pdf");
+        file = new ByteArrayResource(Files.readAllBytes(path));
+    }
+    return file;
+}
+```
+
+<h4>4.5. Generowanie sparametryzowanego pliku pdf</h4>
+
+<div style="text-align: justify">Generowanie pliku PDF przedstawiającego proponowaną umowę rozpoczyna się od pobrania z przesłanego pliku JSON wartości zdefiniowanych przez kierownika rekrutacji tak, jak zostało to opisane w punkcie 2.4.1.1. . Wartości te odczytywane są w klasie ContractTemplate znajdującej się w pakiecie com.polsl.proj.recruitmentsystem.business.utils.PDF aby wybrać wartości pól, służących jako dane uzupełniające modyfikowalne miejsca w szablonie.Pozostałe wartości są pobierane z wcześniej zdefiniowanych wartości pól, a także z bazy danych. Następnie wykonywana jest metoda createSimplePDFFile klasy PDFUtility pakiety com.polsl.proj.recruitmentsystem.business.utils.PDF :</div>
+
+```java
+public ByteArrayInputStream createSimplePDFFile() {
+    Document document = new Document();
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    try {
+        PdfWriter.getInstance(document, out);
+    } catch (DocumentException e) {
+        e.printStackTrace();
+    }
+    document.open();
+    try {
+        addHeader(document);
+        addInitials(document);
+        addEmployeeDuties(document);
+        addEmployerObligations(document);
+        addLawIssues(document);
+        addFinals(document);
+    } catch (DocumentException e) {
+        e.printStackTrace();
+    }
+    document.close();
+    return new ByteArrayInputStream(out.toByteArray());
+}
+```
+
+<div style="text-align: justify">Jej działanie polega na załadowaniu instancji klasy PdfWriter pochodzącej z biblioteki com.itextpdf.text.pdf.PdfWriter (w tym celu w pliku pom.xml zamieszczona została odpowiednia zależność). PdfWriter operuje na instancji obiektu klasy Documnent, przetwarzając ją odpowiednio, aby było możliwe przekazywanie jej w formie ByteArrayInputStream pod koniec działania metody. W trakcie wykonywania kolejnych etapów budowania umowy PDF, do obiektu document dołączane są kolejne elementy tworzące plik. Przykładowe dodanie fragmentu opisującego zobowiązania pracodawcy wobec pracownika prezentuje poniższy kod:</div>
+
+```java
+private void addEmployerObligations(Document document) throws DocumentException {
+    Paragraph obligations = new Paragraph();
+    insertEmptyLines(2, obligations);
+    obligations.add(new Paragraph("Zobowiązania Zleceniodawcy", boldFont));
+
+    Paragraph chunk3 = new Paragraph(contractTemplate.employerObligations(), standardFont);
+    chunk3.setAlignment(Element.ALIGN_JUSTIFIED);
+    insertEmptyLines(3, chunk3);
+    document.add(obligations);
+    document.add(chunk3);
+}
+```
+
+<div style="text-align: justify">Metoda ta przyjmuje modyfikowany document, po czym tworzy instancję klasy Paragraph. Dodawanie kolejnych elementów odbywa się poprzez wywołanie metody add klasy Paragraph. Po umieszczeniu wszystkich elementów danego paragrafu umowy, należy dodać go, w sposób analogiczny wywołując metodę add przyjmującą ów paragraf ( w powyższym przykładzie są to: obligations oraz chunk3).Za pomocą klasy Paragraph mamy możliwość swobodnego modyfikowania dołączanej zawartości, na przykład poprzez ustawienie formatowania tekstu na wyjustowany, tak jak widać to na przykładzie paragrafu chunk3. Aby odzielić od siebie fragmenty umowy stworzona została własna metoda  private void insertEmptyLines(int count, Paragraph paragraph) zawierająca pętlę, dodającą do przekazanego paragraph taką ilość pustych linii, jaka zostanie przekazana pod wartością count.<br><br>
+    Tak stworzony plik pdf jest wyświetlany w przeglądarce poprzez wysłanie go w odpowiedzi z wykorzystaniem ResponseEntity:</div>
+
+```java
+@GetMapping(value = "/recievePDF")
+@ResponseBody
+public ResponseEntity<InputStreamResource> recievePDF() {
+    ByteArrayInputStream bis = pdfUtility.createSimplePDFFile();
+    var headers = new HttpHeaders();
+    headers.add("attachment", "inline; filename=umowa.pdf");
+    return ResponseEntity
+            .ok()
+            .headers(headers)
+            .contentType(MediaType.APPLICATION_PDF)
+            .body(new InputStreamResource(bis));
+}    
+```
+
 
 <h4>5. Architektura oprogramowania po stronie Frontendu.</h4>
 
@@ -168,8 +310,9 @@ React dostarcza bardzo wygodne narzędzia do implementowania asynchronicznej naw
 
 <h4>5.2. CORS (Cross-Origin Resource Sharing).</h4>
 <div style="text-align: justify">
-<b>Cross-Origin</b> - w aplikacji serwery odpowiadające za frontend i backend znajdują się w innych domenach. Requesty wysłane z frontendu, dobierane są przez serwer na którym znajduje się REST API. Aby serwery mogły się skontaktować należy umożliwić wykrycie Originu serwera Frontendu na serwerze z backendem. Tej operacji dokonuje się konfigurując odpowiednie kontrolery REST API.
+<b>Cross-Origin</b> - w aplikacji serwery odpowiadające za frontend i backend znajdują się w innych domenach. Requesty wysłane z frontendu, dobierane są przez serwer na którym znajduje się REST API. Aby serwery mogły się skontaktować należy umożliwić wykrycie Originu serwera Frontendu na serwerze z backendem. Tej operacji dokonuje się konfigurując odpowiednie kontrolery REST API.Korzystając z możliwości dostarczanych przez framework Spring, taka konfiguracja polega na umieszczeniu adnotacji @CrossOrigin nad nazwą klasy.
 </div>
+
 
 <h4>5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.</h4>
 
