@@ -32,16 +32,21 @@
 &emsp;4.3. Bezpieczeństwo systemu<br>
 &emsp;4.4. Obsługa załączanych plików pdf<br>
 &emsp;4.5. Generowanie pliku pdf z wartościami pobranymi z bazy danych<br>
-<b>5. Architektura oprogramowania po stronie Frontendu.</b><br>
+<b>5. Wykorzystane narzędzia po stronie Frontendu. </b><br>
 &emsp;5.1. Wykorzystane narzędzia.<br>
 &emsp;5.2. CORS (Cross-Origin Resource Sharing).<br>
-&emsp;5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.<br>
-&emsp;&emsp;5.3.1. Props drilling<br>
-&emsp;&emsp;5.3.2. Context API<br>
-&emsp;5.4. Przepływ sterowania.<br>
-&emsp;&emsp;5.4.1. Przepływ sterowania pomiędzy użytkownikami.<br>
-&emsp;&emsp;5.4.2. Przepływ sterowania na stronie rekrutera.<br>
-&emsp;&emsp;5.4.3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</div>
+<b>6. Architektura oprogramowania po stronie Frontendu.</b><br>
+&emsp;6.1. Główne moduły aplikacji frontendowej.<br>
+&emsp;6.2. Budowa modułów.<br/>
+&emsp;6.2.1. Moduł main.<br/>
+&emsp;6.2.2. Moduł recruiter.<br/>
+&emsp;6.2.3. Moduł head-recruiter.<br/>
+&emsp;6.2.4. Moduł admin.<br/>
+&emsp;6.3. Przepływ sterowania.<br>
+&emsp;&emsp;6.3.1. Przepływ sterowania pomiędzy użytkownikami.<br>
+&emsp;&emsp;6.3.2. Przepływ sterowania na stronie rekrutera.<br>
+&emsp;&emsp;6.3.3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</div>
+
 
 
 
@@ -295,176 +300,75 @@ public ResponseEntity<InputStreamResource> recievePDF() {
 }    
 ```
 
-
-<h4>5. Architektura oprogramowania po stronie Frontendu.</h4>
-
-<div style="text-align: justify">Całość aplikacji odpowiadająca za frontend jest zrealizowana w frameworku React.js. Architektura strony internetowej to tzw SPA, czyli Single Page App.
-React dostarcza bardzo wygodne narzędzia do implementowania asynchronicznej nawigacji i dynamicznym ładowaniu treści serwisu.
-</div>
-<h4>5.1. Wykorzystane narzędzia.</h4>
+<h3>5. Wykorzystane narzędzia po stronie Frontendu.</h3>
 
 <div style="text-align: justify"><b>React Router</b> – narzędzie wspomagające routing po stronie internetowej. Wspomaga SPA poprzez nadzorowanie ładowania wybranych treści w sposób asynchroniczny.
 <b>Formik</b> – narzędzie służące do tworzenia formularzy oraz ich obsługi (walidacja, obsługa zdarzeń). Głównymi zaletami Formika jest łatwość w dostępie do wartości przechowywanych przez pola, walidacja danych, informowanie o błędach i pomoc w obsłudzę zdarzeń.
-
 <b>Axios</b> – klient http dla przeglądarek i NodeJS, oparty o promise’y. Pozwala na formowanie requestów i obsługę odpowiedzi. Axios automatycznie transformuje dane do postaci łańcuchu znaków oraz pozwala na konfigurację requestów za pomocą funkcji dostarczanych przez tzw. interceptors.
 
-<h4>5.2. CORS (Cross-Origin Resource Sharing).</h4>
+<h4>5.1. CORS (Cross-Origin Resource Sharing).</h4>
+
 <div style="text-align: justify">
 <b>Cross-Origin</b> - w aplikacji serwery odpowiadające za frontend i backend znajdują się w innych domenach. Requesty wysłane z frontendu, dobierane są przez serwer na którym znajduje się REST API. Aby serwery mogły się skontaktować należy umożliwić wykrycie Originu serwera Frontendu na serwerze z backendem. Tej operacji dokonuje się konfigurując odpowiednie kontrolery REST API.Korzystając z możliwości dostarczanych przez framework Spring, taka konfiguracja polega na umieszczeniu adnotacji @CrossOrigin nad nazwą klasy.
 </div>
 
+<h3>6. Architektura oprogramowania po stronie Frontendu.</h3>
 
-<h4>5.3. Wykorzystane modele zarządzania stanem aplikacji, wraz z przykładem implementacji.</h4>
+Aplikacja napisana jest jako Single Page Application i wykorzystuje mechanizmy routingu do dynamicznego ładowania modułów interfejsu użytkownika. Poniżej przedstawiony został system, w jakim pracują moduły oraz ich budowę.
 
-<h5>5.3.1. Props drilling.</h1>
+<h4>6.1. Główne moduły aplikacji frontendowej.</h4>
 
+Aplikacja frontendowa została podzielona na 4 główne moduły:
 
-<div style="text-align: justify">Props drilling polega na przesyłanie stanu w dół drzewa komponentów, za pomocą odpowiednich właściwości (props). Komponenty potomne odbierają te właściwości, a programista może się do nich odwołać wykorzystując **props.nazwaWłaściwości** .
-Zaletą tego rozwiązania jest prostota. W praktyce props-drilling przypomina przekazywanie kaskadowo, odpowiednich wartości do przygotowanych wcześniej funkcji (tutaj komponentów). Dla niewielkich drzew komponentów jest to rozwiązanie o czytelnej architekturze i małej zawiłości wyprodukowanego kodu.
-Z props-drilling’u należy zdecydowanie zrezygnować w sytuacji, gdy spodziewamy się przekazywania danych, przez duże ilości warstw drzewa komponentów, wynoszenia stanu w górę (callback do rodzica), bądź wielu komponentów potomnych. 
-Poniższy przykład prezentuje przykładowe wykorzystanie props-drillingu.
-Komponent TrafficLight jest najwyżej w hierarchii drzewa komponentów i przechowuje on stan aktualnie wybranego światła. Poprzez “propsy” przekazywane są funkcje zmieniające wybrany kolor oraz cyfra opisująca wybrany kolor.
-</div>
+- main- odpowiada za stronę główna i logowanie,
+- recruiter - odpowiada za stronę rekrutera, dodawanie rekrutów i wyszukiwanie rekrutów,
+- head-recruiter - odpowiada za stronę kierownika, dostarcza narzędzia do oceny rekrutów, umożliwia przeglądanie rekrutów, wyświetla informacje o rekrutach, generowanie umowy pdf i  dodawanie nowej oferty rekrutacji,
+- admin - udostępnia interfejs administratora, który pozwala na dodawanie nowych pracowników oraz ich wyszukiwanie i usuwanie.
+- service - dostarcza obsługę logowania i autentykacji.
 
+<h4>6.2. Budowa modułów.</h4>
 
+<h5>6.2.1. Moduł main.</h5>
 
-```react
+Moduł main składa się z komponentu MainPage. W MainPage zaimplementowany jest routing generujący odpowiednie komponenty w danej chwili.
 
- class TrafficLight extends React.Component {
-  constructor (props) {
-    super (props);
-    this.state = {
-      // 0 - red, 1 - orange, 2- green
-      currentColorNumber: 0,
-    };
-    this.incrementColor = this.incrementColor.bind (this);
-    this.decrementColor = this.decrementColor.bind (this);
-  }
- 
-  incrementColor () {
-    if (this.state.currentColorNumber + 1 < 3)
-      this.setState (state => ({
-        currentColorNumber: state.currentColorNumber + 1,
-      }));
-  }
- 
-  decrementColor () {
-    if (this.state.currentColorNumber > 0)
-      this.setState (state => ({
-        currentColorNumber: state.currentColorNumber - 1,
-      }));
-  }
- 
-  render () {
-    return (
-      <div>
-        <Light color={this.state.currentColorNumber} />
-        <LightsController
-          increment={this.incrementColor}
-          decrement={this.decrementColor}
-        />
-      </div>
-    );
-  }
-}
+Komponent MainPage zawiera komponent Content odpowiadający za informacje o aplikacje oraz komponent Login. 
 
-```
+Login obsługuje wyświetlanie formularza logowania oraz wykorzystuje API logowania z modułu service.
 
-<div style="text-align: justify">Komponent Light odpowiada za zapalenie odpowiedniego światła na podstawie przekazanego przez props stanu.</div>
+![image-20200606222427220](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606222427220.png)
 
-```react
-const Light = props => {
-  return (
-    <div>
-      {props.color === 0 &&
-        <div><a style={{padding: '4px', backgroundColor: 'red'}} /></div>}
-      {props.color === 1 &&
-        <div><a style={{padding: '4px', backgroundColor: 'orange'}} /></div>}
-      {props.color === 2 &&
-        <div><a style={{padding: '4px', backgroundColor: 'green'}} /></div>}
-    </div>
-  );
-};
+<h5>6.2.2. Moduł recruiter.</h5>
 
-```
+RecruiterPage obsługuje routing komponentów: Help, RegisterForm, Find. Komponent Help wyświetla pomocnicze informacje o obsłudze strony rekrutera. RegisterForm obsługuje formularz rejestracji nowego rekruta. Umozliwia dodanie takich informacji jak:
 
-<div style="text-align: justify">Natomiast komponent LightsController wywołuje metody zaimplementowane w klasie TrafficLight. Zbindowanie metod w komponencie TrafficLight pozwala na wykorzystanie ich, w celu zmiany stanu komponentu TrafficLight w innym komponencie. Jest to również przykład przekazywania funkcji przez props’y.</div>
+imie, nazwisko, stanowisko aplikacjii, wykształcenie, umijętności, doświadczenie zawodowe, szkolenia i dokument CV.
 
-```react
-const LightsController = props => {
-  return (
-    <div>
-      <button
-        onClick={event => {
-          event.preventDefault ();
-          props.increment ();
-        }}
-      >
-        INKREMENTUJ
-      </button>
-      <button
-        onClick={event => {
-          event.preventDefault ();
-          props.decrement ();
-        }}
-      >
-        DEKREMENTUJ
-      </button>
-    </div>
-```
+Integracja z backendem umożliwia klasa Service, udostepniająca metodę fullApplication pozwalając na wysłanie "post requesta" zawierającego niezbędne informacje o rekrucie.
+
+Komponent Find odpowiada za wyświetlanie listy dodanych rekrutów i filtrowanie wyników.
+
+![image-20200606223453845](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606223453845.png)
+
+<h5>6.2.3. Moduł head-recruiter.</h5>
+
+HeadRecruiterPage obsługuje routing komponentów: Help, OffersSurvey, AddOffer.  Komponent Help wyświetla pomocnicze informacje o obsłudze strony kierownika. 
+
+Komponent OffersSurvey odpowiada za wyświetlanie aplikacji i ich filtorwanie. Logika filtrowania zaimplementowana jest po stronie backendu, komponent Search to fromularz , który po wypełnieniu wykorzystuje metodę getSpecifiedApplications lub getAllApplications z klasy Service do pobrania aplikacjii z bazy danych. Applications wyswietla przefiltrowane  wyniki i za pomocą komponentów DataPresentation, GeneratePDF i Decission pozwala zarządzać rekrutami. DataPresentation przedstawia  wylistowane dane rekruta. GeneratePDF to formularz umowy, który wykorzystuje Service w celu stworzenia umowy dla rekruta. Decission jest formularzem ocenyrekrutera i dostarcza wyniki rekrutacji do backendu za pomocą metody sendDecission, klasy Service. 
+
+AddOffer jest komponentem odpowiedzialnym za dodawanie nowej oferty pracy, dodatkowo pozwala na przejrzenie istniejących ofert.
+
+![image-20200606231200078](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606231200078.png)
 
 
 
-<h5>5.3.2. Context API.</h5>
+<h5>6.2.4. Moduł admin.</h5>
 
-<div style="text-align: justify">Context API jest dostępne od wersji React v16.3.0. Jest to funkcjonalność wspierająca zarządzanie stanem komponentu oraz komunikację między komponentami.
-Zamysł tej architektury przybliża poniższy schemat.</div>
+AdminPage dostarcza routing komponentów WorkersSurvey i AddWorker. AddWorker to formularz dodający nowego pracownika (rekrutera lub kierownika), przesyła dane do backendu za pomocą metody createWorker z klasy Service. WorkersSurvey wykorzystuje komponenty WorkersListing i Filter do obsługi listy rekrutów. Filter to komponent z zaimplementowanym filtrowaniem pracowników. WorkersListing odpowiada za wyświetlenie filtrowanych wyników.
 
-<div  style="text-align: justify">Zamysł tej architektury przybliża poniższy schemat.</div>
+![image-20200606233951145](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606233951145.png)
 
-![img](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\context)
-
-
-
-<div style="text-align: justify">Elementy potomne danej funkcjonalności tworzone są w obszarze zasięgu jej kontekstu (kolor czerwony). Kontekst jest dostarczany do każdego potomka (Child Components kolor zielony) przez Context Provider. Przypomina to trochę korzystanie z globalnego magazynu (a nawet zmiennych globalnych), jednak kontekst można łatwo enkapsulować dostarczając go do wybranych komponentów potomnych.Takie działanie nazywane jest owijaniem (ang. wrapping). </div>
-
-Kontekst tworzy się w sposób pokazany poniżej (createContext należy zaimportować z ‘react’).
-
-```react
-const AppContext = createContext ();
-```
-
-Następnie należy stworzyć ContextProvider. Stan kontekstu (someData) po owinięciu jest dostępny w każdym elemencie potomnym.
-
-```react
-const AppContextProvider = () => {
-  // Stan w obszarze kontekstu
-  const [someData, setSomeData] = useState ();
-
-  return (
-    <div>
-      {/* Owijanie potomków przez Conext */}
-      <AppContext.Provider>
-        <ChildComponents />
-      </AppContext.Provider>
-    </div>
-  );
-};
-```
-
-Poniżej znajduje się przykład odbierania stanu w komponencie potomnym.
-
-```react
-const ChildComponent = () => {
-  const {someData, setSomeData} = useContext (AppContext);
-};
-```
-
-<h4>5.4. Przepływ sterowania.</h4>
-
-<div style="text-align: justify">Poniżej znajdują sie schematy przepływu sterowania na 4 głównych stronach (Login, Recruiter, Head, Admin). Strona Logowania odpowiada za przekierowanie użytkownika na odpowiednią stronę oraz walidację logowania. Natomiast reszta wyszczególnionych stron odpowiada, za dostarczenie mechanizmów pozwalających na wykonanie użytkownikowi odpowiedniej pracy.</div>
-
-<h5>5.4.1.Przepływ sterowania pomiędzy użytkownikami.</h5>
+<h4>6.3.Przepływ sterowania pomiędzy użytkownikami.</h5>
 
 
 
@@ -474,7 +378,7 @@ const ChildComponent = () => {
 
 
 
-<h5>5.4.2.Przepływ sterowania na stronie rekrutera.</h5>
+<h5>6.3.1.Przepływ sterowania na stronie rekrutera.</h5>
 
 
 
@@ -484,7 +388,7 @@ const ChildComponent = () => {
 
 
 
-<h5>5.4.3.Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
+<h5>6.3.2.Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
 
 
 
@@ -494,7 +398,7 @@ const ChildComponent = () => {
 
 
 
-<h5>5.4.4. Przepływ sterowanie na stronie administratora.</h5>
+<h5>6.3.3. Przepływ sterowanie na stronie administratora.</h5>
 
 
 
