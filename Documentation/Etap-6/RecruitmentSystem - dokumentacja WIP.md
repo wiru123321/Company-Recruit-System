@@ -108,7 +108,18 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 
 ![](C:\Users\Mirosław Adamski\Pictures\recruiter help.JPG)
 
-![head-umowa](C:\Users\Mirosław Adamski\Pictures\head-umowa.JPG))
+<div style="text-align: justify">Okno "Pomoc" jest najprostszym z dostępnych dla rekrutera - zawiera ono opis tekstowy pozostałych funkcjonalności.
+<h4>2.4. Panel kierownika działu rekrutacji</h4>
+<h4>2.4.1. Przegląd i ocena aplikujących rekrutów</h4>
+![](C:\Users\Mirosław Adamski\Pictures\head-przeglad.JPG)
+<div style="text-align: justify">Domyślnie po przejściu na panel Przeglądu ofert zatrudnienia wyświetlona zostaje lista ze wszystkimi osobami ubiegającymi się o zatrudnienie w zespole, za który odpowiedzialny jest dany szef rekrutacji.Możliwe jest odfiltrowanie rekrutów według ich imienia lub nazwiska.Następuje to po naciśnięciu przycisku 'Szukaj' przypisanym do formularza składającego się z dwóch pól, służących do pobierania wyżej wymienionych parametrów.W przypadku pozostawienia formularza pustego i naciśnięcia przycisku 'Szukaj' wyświetleni zostaną ponownie wszyscy rekruci. Rekruci są zaprezentowani w postaci listy, a każdy jej element domyślnie wyświetla imię i nazwisko kandydata, oraz udostępnia cztery przyciski: 
+     <li>OCENA - po jego naciśnięciu pojawia sie formularz umożliwiający ocenę rekruta wraz z uzasadnieniem.Kierownik rekrutacji musi podać jak rozpatruje daną aplikacją wybierając wartość 'Pozytywnie' lub 'Negatywnie' z listy rozwijanej, oraz na jaką ocenę ocenia podanie, wpisując liczbę całkowitą.Zapisanie oceny w bazie danych następuje po naciśnięciu doczepionego do formularza przycisku 'PRZEŚLIJ DECYZJĘ'. </li>
+     <li>Dane - po jego naciśnięciu zaprezentowane bardziej szczegółowe informacje, takie jak stopień wykształcenia, nabyte umiejętności czy historia zatrudnienia. </li>
+     <li>CV - przycisku umożliwiający pobranie pliku PDF prezentującego CV kandydata. W przypadku gdy kandydat nie dostarczył takowego pliku, wyświetlany jest pusty plik. </li>
+    <li>UMOWA PDF - po jego naciśnięciu pojawia się formularz służący do sparametryzowania szablonu umowy która ma zostać zaproponowana rekrutowi. </li></div>
+<h4>2.4.1.1 Generowanie umowy w formacie PDF</h4>
+
+![](C:\Users\Mirosław Adamski\Pictures\head-umowa.JPG)
 
 
 
