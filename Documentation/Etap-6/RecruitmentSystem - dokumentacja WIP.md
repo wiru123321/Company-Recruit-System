@@ -5,7 +5,7 @@
 <div style="page-break-after: always; break-after: page;"></div>
 
 <div style="page-break-after: always; break-after: page;"><b>1.Wstęp</b><br>
-&emsp;1.1. Opis ogólny systemu............................................................................................3<br>   
+&emsp;1.1. Opis ogólny systemu<br>   
 <b>2.Opis funcjonalności systemu</b> <br>
 &emsp;2.1. Strona główna<br>    
 &emsp;2.2. Panel administratora systemu<br>
@@ -23,9 +23,8 @@
 <b>3.Opis architektury systemu</b><br>
 &emsp;3.1. Diagram klas części backendowej<br>
 &emsp;3.2. Diagram bazodanowy<br>
-&emsp;3.3. Diagram klas części frontendowej<br>
-&emsp;3.4. Diagram przypadków użycia<br>
-&emsp;3.5. Diagram funkcyjny<br>
+&emsp;3.3. Diagram przypadków użycia<br>
+&emsp;3.4. Diagram funkcyjny<br>
 <b>4.Opis zastosowanych rozwiązań implementacyjnych</b><br>
 &emsp;4.1. Komunikacja aplikacji z bazą danych<br>
 &emsp;4.2. Komunikacja między warstwą frontnedową a backendową<br>
@@ -46,6 +45,7 @@
 &emsp;&emsp;6.3.1. Przepływ sterowania pomiędzy użytkownikami.<br>
 &emsp;&emsp;6.3.2. Przepływ sterowania na stronie rekrutera.<br>
 &emsp;&emsp;6.3.3. Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</div>
+
 
 
 
@@ -104,22 +104,12 @@ W przypadku przeglądania rekrutów, w przeciwieństwie do przeglądu pracownik�
 
 <div style="text-align: justify">
 Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy uzupełnić następującymi danymi: Imie,Naziwsko,Stanowisko na którym chce pracować rekrut, Wykształcenie (oparte na liście rozwijanej, oferującej do wyboru wartości "Średnie","Zawodowe" oraz "Wyższe",Umiejętności,Szkolenia, Doświadczenie zawodowe oraz Dodatkowe pliki. Za wyjątkiem dodatkowych plików, wszystkie pozostałe pola są obligatoryjne. W przypadku umiejętności należy podać jej opis (np. "Znajomośc języka SQL") oraz wybrać z listy rozwijanej stopień, na jaki ocenił daną umiejętność rekrut - do wyboru są wartości "początkujący","średnio-zaawansowany","zaawansowany","ekspert".W przypadku szkoleń należy wpisać nazwę szkolenia (np. "Szkolenie z cyberbezpieczeństwa", jego krótki opis (np."Szkolenie dotyczło najczęstszych sposobów ataku na serwisy internetowe" oraz datę jego odbycia za pomocą dostępnego kalendarza.Analogicznie należy postąpić w przypadku dodawania doświadczenia zawodowego, poprzez wpisanie stanowiska na jakim pracował rekrut, oraz wybrania z kalendarzy daty początkowej oraz daty końcowej. W przypadku posiadania przez rekruta większej ilości umiejętności, odbytych szkoleń lub doświadczenia zawodowego na większej ilości stanowisk, należy nacisnąć przy każdym z nich przycisk "DODAJ", który spowoduje pojawienie się dodatkowych pól umożliwiających dodatnie kolejnych danych.Istnieje również możliwość usunięcia tak utworzonych dodatkowych pól przyciskiem "USUŃ". Nie możliwe jest jednak zupełne usunięcie tych pól i wymagane jest uzupełnienie przynajmniej jednego zestawu danych dla każdego z nich.W przypadku braku odpowiednich danych do wprowadzenia (np. rekrut nie odbył żadnych szkoleń) należy pola opisowe uzupełnić wartością "brak" a datę ustawić na aktualny dzień.Informacją niewymaganą jest sekcja "Dodatkowe pliki". Zawiera ona przycisk "Wybierz plik", po naciśnięciu którego otwiera się ekplorator Windows	w celu dołączenia odpowiedniego pliku. Aby wysłać kompletne informacje o pracowniku należy nacisnąć przycisk "Zatwierdź"</div>
-
-<h4>2.3.3. Podgląd pomocniczy</h4>
+<div style="page-break-after: always; break-after: page;"></div><h4>2.3.3. Podgląd pomocniczy</h4>
 
 ![](C:\Users\Mirosław Adamski\Pictures\recruiter help.JPG)
 
-<div style="text-align: justify">Okno "Pomoc" jest najprostszym z dostępnych dla rekrutera - zawiera ono opis tekstowy pozostałych funkcjonalności.
-<h4>2.4. Panel kierownika działu rekrutacji</h4>
-<h4>2.4.1. Przegląd i ocena aplikujących rekrutów</h4>
-![](C:\Users\Mirosław Adamski\Pictures\head-przeglad.JPG)
-<div style="text-align: justify">Domyślnie po przejściu na panel Przeglądu ofert zatrudnienia wyświetlona zostaje lista ze wszystkimi osobami ubiegającymi się o zatrudnienie w zespole, za który odpowiedzialny jest dany szef rekrutacji.Możliwe jest odfiltrowanie rekrutów według ich imienia lub nazwiska.Następuje to po naciśnięciu przycisku 'Szukaj' przypisanym do formularza składającego się z dwóch pól, służących do pobierania wyżej wymienionych parametrów.W przypadku pozostawienia formularza pustego i naciśnięcia przycisku 'Szukaj' wyświetleni zostaną ponownie wszyscy rekruci. Rekruci są zaprezentowani w postaci listy, a każdy jej element domyślnie wyświetla imię i nazwisko kandydata, oraz udostępnia cztery przyciski: 
-     <li>OCENA - po jego naciśnięciu pojawia sie formularz umożliwiający ocenę rekruta wraz z uzasadnieniem.Kierownik rekrutacji musi podać jak rozpatruje daną aplikacją wybierając wartość 'Pozytywnie' lub 'Negatywnie' z listy rozwijanej, oraz na jaką ocenę ocenia podanie, wpisując liczbę całkowitą.Zapisanie oceny w bazie danych następuje po naciśnięciu doczepionego do formularza przycisku 'PRZEŚLIJ DECYZJĘ'. </li>
-     <li>Dane - po jego naciśnięciu zaprezentowane bardziej szczegółowe informacje, takie jak stopień wykształcenia, nabyte umiejętności czy historia zatrudnienia. </li>
-     <li>CV - przycisku umożliwiający pobranie pliku PDF prezentującego CV kandydata. W przypadku gdy kandydat nie dostarczył takowego pliku, wyświetlany jest pusty plik. </li>
-    <li>UMOWA PDF - po jego naciśnięciu pojawia się formularz służący do sparametryzowania szablonu umowy która ma zostać zaproponowana rekrutowi. </li></div>
-<h4>2.4.1.1 Generowanie umowy w formacie PDF</h4>
-![](C:\Users\Mirosław Adamski\Pictures\head umowa.JPG)
+![head-umowa](C:\Users\Mirosław Adamski\Pictures\head-umowa.JPG))
+
 
 
 <div style="text-align: justify">    
@@ -147,16 +137,25 @@ Okno dodania nowego rekruta do systemu opiera się na formularzu, który należy
 <h4>3.1. Diagram klas części backendowej</h4>
 <div style="text-align: justify">Ze względu na swoją obszerność, diagram klas jest dostępny w plikach "RecruitSystem - diagram klas.pdf" oraz "recruitmentsystem.uml" zamieszczonych na repozytorium projektu</div>
 <h4>3.2. Diagram bazodanowy</h4>
-<h4>3.3. Diagram klas części frontendowej</h4>
-<h4>3.4. Diagram przypadków użycia</h4>
-<h4>3.5. Diagram funkcyjny</h4>
+![](C:\Users\Mirosław Adamski\Pictures\diagram_baza.JPG)
+
+<div style="page-break-after: always; break-after: page;"></div>
+<h4>3.3. Diagram przypadków użycia</h4>
+
+![](C:\Users\Mirosław Adamski\Downloads\pobrane.png)
+
+<div style="page-break-after: always; break-after: page;"></div><h4>3.4. Diagram funkcyjny</h4>
+
+![](C:\Users\Mirosław Adamski\Downloads\funkcje.png)
 <h4>4.Opis zastosowanych rozwiązań implementacyjnych</h4>
 <h4>4.1. Komunikacja aplikacji z bazą danych</h4>
 <div style="text-align: justify">Informacje na temat wykorzystywanej bazy danych zostały zawarte w pliku application.properties. Znajduje się tam adres bazy danych, dane potrzebne do uwierzytelniania oraz inne niezbędne parametry, takie jak dialekt bazy.Wartości te są automatycznie pobierane przez aplikację w momencie jej uruchomienia.Obsługa części bazodanowej została zaimplementowana z wykorzystaniem frameworka Hibernate. Tabele bazodanowe są reprezentowane w kodzie za pomocą klas opatrzonych adnotacją @Entity. Każda taka klasa zawiera pole typu long, odpowiadające za reprezentowanie ID w bazie danych. Pola te są opisane przez adotację @ID oraz  @GeneratedValue(strategy = GenerationType.AUTO) oznaczające, że generowanie wartości ID przy dodawaniu nowej encji do bazy danych jest realizowane w sposób domyślnie wykorzystywany przez serwer bazodanowy. W zależności od potrzeb wynikających z logiki działania aplikacji, niektóre klasy zawierają również mapowania, wiążące ich encje z encjami innych tabel. Do zastosowanych mapowań należą @OneToOne oraz @ManyToOne z @OneToMany. W celu optymalizacji zarządzania bazą danych, mapowania opierają się na połączeniu bikierunkowym, w którym jedna z tabel zawiera wartości id encji z drugiej tabeli.W ten sposób udało się wyeliminować tworzenie się w bazie danych dodatkowych tabel, odpowiadających jedynie za reprezentowanie połączeń między encjami.Dodatkowo, przy każdym mapowaniu zastosowano pełną kaskadowość bazodanową oraz uwzględniono usuwanie osieroconych encji zależnych.Za komunikację z bazą danych odpowiadają implementacje interfejsu JpaRepository.Każde repozytorium przyjmuje jako parametry: nazwę encji na której operuje oraz Long, jako format przechowywania ID w bazie danych.W wielu przypadkach w sposób jawny zostało zdefiniowane zapytanie do bazy danych, wykorzystując adnotację @Query, jednak w przypadkach, gdzie było to możliwe wykorzystano domyślne zapytania realizowane przez JpaRepository.Przed wysłaniem danych na część frontendową, pobrane encje są konwertowane na DTO, przez co pliki JSON nie zawierają oryginalnych encji, lecz jedynie wyciągnięty z nich zbiór potrzebnych inforamcji.</div>
-<h4>4.2. Komunikacja między warstwą frontnedową a backendową</h4>
+<div style="page-break-after: always; break-after: page;"></div><h4>4.2. Komunikacja między warstwą frontnedową a backendową</h4>
 <div style="text-align: justify">Komunikacja między częścią frontendowa a backendową odbywa się za pomocą klas opatrzonych adnotacją @RestController oraz @CrossOrigin, umożliwiającej komunikację aplikacjami wystawionymi na różnych poratach.
 <h4>4.3. Bezpieczeństwo systemu</h4>
     <div style="text-align: justify">Bezpieczeństwo aplikacji zostało zrealizowane poprzez wykorzystanie rozwiązań oferowanych przez Spring Security, polegających na zaszyfrowanie hasła każdego użytkownika, sprawdzanie uprawnień przy wysyłaniu żądań do serwera (przykładowo rekruter próbując przejść do okna kierownika rekrutacji dostanie informację o braku uprawnień, podobnie osoba niezalogowana nie będzie miała dostępu do żadnej funkcjonalności systemu za wyjątkiem formularza logowania). W szczególnym przypadku jakim jest generowanie umowy dla wybranego rekruta wymagana jest ponowna autentyfikacja poprzez ponowne wpisanie loginu oraz hasła.W naszym systemie najistotniejsze elementy implementacji bezpieczeństwa aplikacji to:</div>
+
+
 
 ```Java
 @Qualifier("customUserDetailsService")
@@ -305,8 +304,7 @@ public ResponseEntity<InputStreamResource> recievePDF() {
 <div style="text-align: justify"><b>React Router</b> – narzędzie wspomagające routing po stronie internetowej. Wspomaga SPA poprzez nadzorowanie ładowania wybranych treści w sposób asynchroniczny.
 <b>Formik</b> – narzędzie służące do tworzenia formularzy oraz ich obsługi (walidacja, obsługa zdarzeń). Głównymi zaletami Formika jest łatwość w dostępie do wartości przechowywanych przez pola, walidacja danych, informowanie o błędach i pomoc w obsłudzę zdarzeń.
 <b>Axios</b> – klient http dla przeglądarek i NodeJS, oparty o promise’y. Pozwala na formowanie requestów i obsługę odpowiedzi. Axios automatycznie transformuje dane do postaci łańcuchu znaków oraz pozwala na konfigurację requestów za pomocą funkcji dostarczanych przez tzw. interceptors.
-
-<h4>5.1. CORS (Cross-Origin Resource Sharing).</h4>
+<div style="page-break-after: always; break-after: page;"></div><h4>5.1. CORS (Cross-Origin Resource Sharing).</h4>
 
 <div style="text-align: justify">
 <b>Cross-Origin</b> - w aplikacji serwery odpowiadające za frontend i backend znajdują się w innych domenach. Requesty wysłane z frontendu, dobierane są przez serwer na którym znajduje się REST API. Aby serwery mogły się skontaktować należy umożliwić wykrycie Originu serwera Frontendu na serwerze z backendem. Tej operacji dokonuje się konfigurując odpowiednie kontrolery REST API.Korzystając z możliwości dostarczanych przez framework Spring, taka konfiguracja polega na umieszczeniu adnotacji @CrossOrigin nad nazwą klasy.
@@ -328,7 +326,7 @@ Aplikacja frontendowa została podzielona na 4 główne moduły:
 
 <h4>6.2. Budowa modułów.</h4>
 
-<h5>6.2.1. Moduł main.</h5>
+<h4>6.2.1. Moduł main.</h4>
 
 Moduł main składa się z komponentu MainPage. W MainPage zaimplementowany jest routing generujący odpowiednie komponenty w danej chwili.
 
@@ -336,9 +334,9 @@ Komponent MainPage zawiera komponent Content odpowiadający za informacje o apli
 
 Login obsługuje wyświetlanie formularza logowania oraz wykorzystuje API logowania z modułu service.
 
-![image-20200606222427220](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606222427220.png)
+![image-20200606222427220](F:\KamilDoku\image-20200606222427220.png)
 
-<h5>6.2.2. Moduł recruiter.</h5>
+<h4>6.2.2. Moduł recruiter.</h4>
 
 RecruiterPage obsługuje routing komponentów: Help, RegisterForm, Find. Komponent Help wyświetla pomocnicze informacje o obsłudze strony rekrutera. RegisterForm obsługuje formularz rejestracji nowego rekruta. Umozliwia dodanie takich informacji jak:
 
@@ -348,9 +346,9 @@ Integracja z backendem umożliwia klasa Service, udostepniająca metodę fullApp
 
 Komponent Find odpowiada za wyświetlanie listy dodanych rekrutów i filtrowanie wyników.
 
-![image-20200606223453845](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606223453845.png)
+![image-20200606223453845](F:\KamilDoku\aaa.png)
 
-<h5>6.2.3. Moduł head-recruiter.</h5>
+<h4>6.2.3. Moduł head-recruiter.</h4>
 
 HeadRecruiterPage obsługuje routing komponentów: Help, OffersSurvey, AddOffer.  Komponent Help wyświetla pomocnicze informacje o obsłudze strony kierownika. 
 
@@ -358,48 +356,49 @@ Komponent OffersSurvey odpowiada za wyświetlanie aplikacji i ich filtorwanie. L
 
 AddOffer jest komponentem odpowiedzialnym za dodawanie nowej oferty pracy, dodatkowo pozwala na przejrzenie istniejących ofert.
 
-![image-20200606231200078](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606231200078.png)
+![image-20200606231200078](F:\KamilDoku\image-20200606231200078.png)
 
 
 
-<h5>6.2.4. Moduł admin.</h5>
+<h4>6.2.4. Moduł admin.</h4>
 
 AdminPage dostarcza routing komponentów WorkersSurvey i AddWorker. AddWorker to formularz dodający nowego pracownika (rekrutera lub kierownika), przesyła dane do backendu za pomocą metody createWorker z klasy Service. WorkersSurvey wykorzystuje komponenty WorkersListing i Filter do obsługi listy rekrutów. Filter to komponent z zaimplementowanym filtrowaniem pracowników. WorkersListing odpowiada za wyświetlenie filtrowanych wyników.
 
-![image-20200606233951145](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\image-20200606233951145.png)
+![image-20200606233951145](F:\KamilDoku\image-20200606233951145.png)
 
-<h4>6.3.Przepływ sterowania pomiędzy użytkownikami.</h5>
-
-
-
-![](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania pomiędzy userami.png)
+<h4>6.3.Przepływ sterowania pomiędzy użytkownikami.</h4>
 
 
 
 
-
-<h5>6.3.1.Przepływ sterowania na stronie rekrutera.</h5>
-
-
-
-![Przepływ sterowania rekrutera](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania rekrutera.png)
+![](F:\KamilDoku\Przepływ sterowania pomiędzy userami.png)
 
 
 
 
 
-<h5>6.3.2.Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h5>
+<h4>6.3.1.Przepływ sterowania na stronie rekrutera.</h4>
 
 
 
-![Sterowanie head_rekrut](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Sterowanie head_rekrut.png)
+![Przepływ sterowania rekrutera](F:\KamilDoku\Przepływ sterowania rekrutera.png)
 
 
 
 
 
-<h5>6.3.3. Przepływ sterowanie na stronie administratora.</h5>
+<h4>6.3.2.Przepływ sterowania na stronie kierownika rekrutacji(head recruiter).</h4>
 
 
 
-![Przepływ sterowania admin](F:\REPOS\PP\Web-app.RecruitSystem\Documentation\Etap-6\Przepływ sterowania admin.png)
+![Sterowanie head_rekrut](F:\KamilDoku\Sterowanie head_rekrut.png)
+
+
+
+
+
+<h4>6.3.3. Przepływ sterowanie na stronie administratora.</h4>
+
+
+
+![Przepływ sterowania admin](F:\KamilDoku\Przepływ sterowania admin.png)
